@@ -4,29 +4,39 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd = {
+    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
+    kernelModules = [ "wl" ];
+  };
+  boot.kernelModules = ["kvm-intel" "wl"];
   boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "quiet" "splash" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d86af9a3-3627-4ed5-aa8c-152673d2397c";
+  hardware = {
+    enableRedistributableFirmware = true;
+    firmware = with pkgs; [ wireless-regdb ];
+  };
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2A7B-5D40";
+    "/boot" = {
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/9884c440-8c3a-437f-a7b7-3c0d5bc7fe3f"; }
-    ];
+  };
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

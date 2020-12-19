@@ -10,52 +10,43 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = false;
+  };
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.opengl.extraPackages = with pkgs; [ intel-compute-runtime ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "dickhead"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "dickhead";
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
-
-  # Configure keymap in X11
-  services.xserver.enable = true;
   services.xserver.layout = "us";
-  # services.xserver.synaptics.enable = true;
-  services.xserver.libinput = {
-    enable = true;
-    tapping = true;
-    naturalScrolling = true;
-  };
-  # services.xserver.videoDrivers = ["modesetting"];
-  # services.xserver.useGlamor = true;
-  services.xserver.autorun = false;
-  services.xserver.displayManager.startx.enable = true;
 
-  #nixpkgs.overlays = [ (self: super: {
-  #  dwm = super.dwm.overrideAttrs (_: {
-  #    src = builtins.fetchGit https://github.com/phenax/dwm;
-  #  });
-  #}) ];  
+  environment.variables = {
+    EDITOR = "nvim";
+  };
+
+  # X11 config
+  services.xserver = {
+    enable = true;
+    autorun = false;
+    displayManager.startx.enable = true;
+    libinput = {
+      enable = true;
+      tapping = true;
+      naturalScrolling = false;
+    };
+  };
+
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   dwm = pkgs.dwm.overrideAttrs (_: {
+  #     src = builtins.fetchGit {
+  #       url = "https://github.com/phenax/dwm";
+  #       ref = "master";
+  #     };
+  #   }); 
+  # };
 
   # services.xserver.xkbOptions = "eurosign:e";
 
@@ -66,7 +57,7 @@
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User
   users.users.imsohexy = {
     isNormalUser = true;
     extraGroups = [ "wheel" "input" "audio" "video" "storage" "git" "networkmanager" ];
@@ -75,26 +66,32 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
     neovim
+    silver-searcher
+    ripgrep
+    fzf
+    git
+
     dwm
     st
+
     mtm
     xorg.xinit
     firefox
     w3m
     xorg.xrandr
+
     mpv
     sxiv
     feh
-    silver-searcher
-    ripgrep
-    fzf
     ffmpeg-full
+
     unzip
-    git
     curl
     wget
+    ytop
+    killall
+    inxi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -105,16 +102,6 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -123,6 +110,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
-
 }
 
