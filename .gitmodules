@@ -1,0 +1,3 @@
+[submodule "external/nvim/config"]
+	path = external/nvim/config
+	url = https://github.com/phenax/peepeepoopoo-nvim-config.git

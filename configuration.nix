@@ -27,7 +27,23 @@
   # Global
   environment.variables = {
     EDITOR = "nvim";
+    SHELL = "zsh";
+    VISUAL = "nvim";
   };
+
+  environment.shells = [ pkgs.zsh pkgs.bashInteractive ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    histFile = "~/.config/zshhistory";
+    histSize = 50000;
+    interactiveShellInit = "source ~/nixos/external/zsh/zshrc";
+    promptInit = "";
+  };
+
 
   # X11 config
   services.xserver = {
@@ -62,6 +78,7 @@
   users.users.imsohexy = {
     isNormalUser = true;
     extraGroups = [ "wheel" "input" "audio" "video" "storage" "git" "networkmanager" ];
+    shell = pkgs.zsh;
   };
 
   # Nix config
@@ -89,10 +106,13 @@
   # Packages
   environment.systemPackages = with pkgs; [
     vim
+    neovim
     silver-searcher
     ripgrep
     fzf
     git
+    nodejs-15_x
+    yarn
 
     dwm
     st
@@ -108,6 +128,7 @@
     feh
     ffmpeg-full
 
+    pass
     alsaUtils
     unzip
     curl
@@ -121,10 +142,10 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = false;
+  };
 
 
   # This value determines the NixOS release from which the default
