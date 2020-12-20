@@ -159,6 +159,7 @@ in {
     xorg.xinit
     xorg.xrandr
     xorg.xmodmap
+    xorg.xbacklight
 
     # Media
     mpv
