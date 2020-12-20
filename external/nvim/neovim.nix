@@ -1,7 +1,7 @@
 self: super: {
   tree-sitter-updated = super.tree-sitter.overrideAttrs(oldAttrs: {
     postInstall = ''
-      PREFIX=$out make install;
+        PREFIX=$out make install;
     '';
   });
   neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: rec {
