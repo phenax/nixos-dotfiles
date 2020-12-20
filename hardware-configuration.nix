@@ -9,23 +9,29 @@
   ];
 
   boot.initrd = {
-    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
+    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "wl" ];
     kernelModules = [ "wl" ];
   };
   boot.kernelModules = ["kvm-intel" "wl"];
   boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "quiet" "splash" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.extraModulePackages = [];
+  boot.extraModprobeConfig = ''
+    options snd slots=snd-hda-intel
+  '';
 
   hardware = {
-    enableRedistributableFirmware = true;
+    enableAllFirmware = true;
+    cpu.intel.updateMicrocode = true;
     firmware = with pkgs; [ wireless-regdb ];
   };
 
+  # Bootloader
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
 
+  # File system
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/nixos";
@@ -38,5 +44,9 @@
   };
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = lib.mkDefault "powersave";
+  };
 }
