@@ -1,0 +1,8 @@
+clear Lock
+
+keycode  66 = Escape NoSymbol Escape
+! keycode  66 = Hyper_L
+
+remove mod4 = Hyper_L
+add mod3 = Hyper_L
+

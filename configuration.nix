@@ -10,6 +10,13 @@ let
   shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
   dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
   st = pkgs.callPackage ./packages/st/pkg.nix {};
+  windowManagers = {
+    dwm = ''
+      while true; do
+        (ssh-agent dwm &>> /tmp/dwm.log) || break;
+      done
+    '';
+  };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -47,10 +54,19 @@ in {
     syntaxHighlighting.enable = true;
     histFile = "~/.config/zshhistory";
     histSize = 50000;
-    interactiveShellInit = "source ~/nixos/external/zsh/zshrc";
+    interactiveShellInit = ''source ~/nixos/external/zsh/zshrc'';
     promptInit = "";
-  };
+    loginShellInit = ''
+      setup_dwm() {
+        echo "~/nixos/external/xconfig/init.sh; ${windowManagers.dwm}" > ~/.xinitrc;
+      }
 
+      case "$(tty)" in
+        /dev/tty1) setup_dwm && startx ;;
+        *) echo "No tty for u" ;;
+      esac;
+    '';
+  };
 
   # X11 config
   services.xserver = {
@@ -62,8 +78,12 @@ in {
       tapping = true;
       naturalScrolling = false;
     };
-    # xkbOptions = "eurosign:e";
   };
+  fonts.fonts = with pkgs; [
+    jetbrains-mono
+    cozette
+    noto-fonts-emoji
+  ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -125,6 +145,7 @@ in {
     firefox
     w3m
     xorg.xrandr
+    xorg.xmodmap
 
     mpv
     sxiv
