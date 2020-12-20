@@ -15,6 +15,7 @@
     allowBroken = false;
   };
 
+  # Network
   networking.hostName = "dickhead";
   networking.networkmanager.enable = true;
 
@@ -23,6 +24,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   services.xserver.layout = "us";
 
+  # Global
   environment.variables = {
     EDITOR = "nvim";
   };
@@ -37,6 +39,7 @@
       tapping = true;
       naturalScrolling = false;
     };
+    # xkbOptions = "eurosign:e";
   };
 
   # nixpkgs.config.packageOverrides = pkgs: {
@@ -48,13 +51,11 @@
   #   }); 
   # };
 
-  # services.xserver.xkbOptions = "eurosign:e";
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
+  sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
   # User
@@ -63,10 +64,31 @@
     extraGroups = [ "wheel" "input" "audio" "video" "storage" "git" "networkmanager" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Nix config
+  nixpkgs.overlays = [ (self: super: {
+    tree-sitter-updated = super.tree-sitter.overrideAttrs(oldAttrs: {
+      postInstall = ''
+        PREFIX=$out make install;
+      '';
+    });
+    neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: rec {
+      name = "neovim-nightly";
+      version = "0.5-nightly";
+      src = self.fetchFromGitHub {
+        owner = "neovim";
+        repo = "neovim";
+        rev = "nightly";
+        sha256 = "0vpjdd32lgzyh85gyazqpms8vmaad6px3zx2svdxhvcdxgschqz9";
+      };
+
+      nativeBuildInputs = with self.pkgs; [ unzip cmake pkgconfig gettext tree-sitter-updated ];
+    });
+  })];
+
+
+  # Packages
   environment.systemPackages = with pkgs; [
-    neovim
+    vim
     silver-searcher
     ripgrep
     fzf
@@ -86,12 +108,14 @@
     feh
     ffmpeg-full
 
+    alsaUtils
     unzip
     curl
     wget
-    ytop
+    gotop
     killall
     inxi
+    pciutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
