@@ -152,6 +152,7 @@ in {
     (pkgs.callPackage ./packages/shotkey/pkg.nix {})
     (pkgs.callPackage ./packages/dwm/pkg.nix {})
     (pkgs.callPackage ./packages/st/pkg.nix {})
+    (pkgs.callPackage ./packages/dmenu/pkg.nix {})
 
     pass
     xcwd

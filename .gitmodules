@@ -10,3 +10,6 @@
 [submodule "packages/st/source"]
 	path = packages/st/source
 	url = git@github.com:phenax/st.git
+[submodule "packages/dmenu/source"]
+	path = packages/dmenu/source
+	url = git@github.com:phenax/dmenu.git
