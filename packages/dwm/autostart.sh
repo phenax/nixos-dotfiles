@@ -1,4 +1,5 @@
-# source ~/.zshrc;
+source ~/nixos/external/zsh/paths.zsh;
+source ~/nixos/external/zsh/config.zsh;
 
 ##### Helpers {{{
 action="$1";

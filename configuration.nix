@@ -5,6 +5,14 @@
 { config, pkgs, ... }:
 
 let
+  # Packages
+  dmenu = pkgs.callPackage ./packages/dmenu/pkg.nix {};
+  sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
+  shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
+  dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
+  st = pkgs.callPackage ./packages/st/pkg.nix {};
+
+  # Config
   apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
   windowManagers = {
     dwm = ''
@@ -104,38 +112,52 @@ in {
   };
 
   # Nix config
-  nixpkgs.overlays = [ (import ./external/nvim/neovim.nix) ];
+  nixpkgs.overlays = [
+    (import ./external/nvim/neovim.nix)
+    (self: super: {
+      pass = super.pass.override { dmenu = dmenu; };
+    })
+  ];
 
   # Packages
   environment.systemPackages = with pkgs; [
-    vim
+    # Dev
     neovim
     silver-searcher
     ripgrep
+    ctags
     fzf
     git
     nodejs-15_x
     yarn
 
-    mtm
-    xorg.xinit
+    # Browser
     firefox
+    brave
+    # qutebrowser
     w3m
+
+    # X
+    xorg.xinit
     xorg.xrandr
     xorg.xmodmap
-    # qutebrowser
 
+    # Media
     mpv
     sxiv
     feh
     ffmpeg-full
 
-    (pkgs.callPackage ./packages/sensible-apps/pkg.nix {})
-    (pkgs.callPackage ./packages/shotkey/pkg.nix {})
-    (pkgs.callPackage ./packages/dwm/pkg.nix {})
-    (pkgs.callPackage ./packages/st/pkg.nix {})
-    (pkgs.callPackage ./packages/dmenu/pkg.nix {})
+    # Custom packages
+    sensible-apps
+    shotkey
+    dwm
+    st
+    dmenu
 
+    # Utils
+    mtm
+    lf
     pass
     xcwd
     alsaUtils
