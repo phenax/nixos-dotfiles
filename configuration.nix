@@ -6,10 +6,6 @@
 
 let
   apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
-  sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
-  shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
-  dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
-  st = pkgs.callPackage ./packages/st/pkg.nix {};
   windowManagers = {
     dwm = ''
       while true; do
@@ -152,10 +148,10 @@ in {
     feh
     ffmpeg-full
 
-    sensible-apps
-    shotkey
-    dwm
-    st
+    (pkgs.callPackage ./packages/sensible-apps/pkg.nix {})
+    (pkgs.callPackage ./packages/shotkey/pkg.nix {})
+    (pkgs.callPackage ./packages/dwm/pkg.nix {})
+    (pkgs.callPackage ./packages/st/pkg.nix {})
 
     pass
     xcwd
