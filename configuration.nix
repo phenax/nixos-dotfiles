@@ -9,6 +9,7 @@ let
   sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
   shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
   dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
+  st = pkgs.callPackage ./packages/st/pkg.nix {};
 in {
   imports = [
     ./hardware-configuration.nix
@@ -63,15 +64,6 @@ in {
     };
     # xkbOptions = "eurosign:e";
   };
-
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   dwm = pkgs.dwm.overrideAttrs (_: {
-  #     src = builtins.fetchGit {
-  #       url = "https://github.com/phenax/dwm";
-  #       ref = "master";
-  #     };
-  #   }); 
-  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -128,9 +120,6 @@ in {
     nodejs-15_x
     yarn
 
-    # dwm
-    st
-
     mtm
     xorg.xinit
     firefox
@@ -145,6 +134,7 @@ in {
     sensible-apps
     shotkey
     dwm
+    st
 
     pass
     xcwd
