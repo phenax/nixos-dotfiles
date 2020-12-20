@@ -4,11 +4,13 @@
 
 { config, pkgs, ... }:
 
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+let
+  apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
+  sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
+in {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -26,9 +28,11 @@
 
   # Global
   environment.variables = {
-    EDITOR = "nvim";
-    SHELL = "zsh";
-    VISUAL = "nvim";
+    EDITOR = apps.EDITOR;
+    VISUAL = apps.EDITOR;
+    TERMINAL = apps.TERMINAL;
+    BROWSER = apps.BROWSER;
+    PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
   };
 
   environment.shells = [ pkgs.zsh pkgs.bashInteractive ];
@@ -128,6 +132,8 @@
     feh
     ffmpeg-full
 
+    sensible-apps
+
     pass
     alsaUtils
     unzip
@@ -139,14 +145,10 @@
     pciutils
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = false;
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
