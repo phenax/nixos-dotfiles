@@ -84,10 +84,27 @@ in {
     };
   };
   fonts.fonts = with pkgs; [
-    jetbrains-mono
+    # jetbrains-mono
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     cozette
     noto-fonts-emoji
   ];
+  services.picom = {
+    enable = true;
+    inactiveOpacity = 0.8;
+    backend = "glx";
+    settings = {
+      "inactive-dim" = 0.3;
+      "focus-exclude" = [ "class_g = 'dwm'" "class_g = 'dmenu'"];
+    };
+    opacityRules = [
+      "98:class_g = 'St' && focused"
+      "85:class_g = 'St' && !focused"
+      "90:class_g = 'qutebrowser' && !focused"
+      "100:class_g = 'qutebrowser' && focused"
+    ];
+    menuOpacity = 0.9;
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
