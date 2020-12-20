@@ -13,3 +13,6 @@
 [submodule "packages/dmenu/source"]
 	path = packages/dmenu/source
 	url = git@github.com:phenax/dmenu.git
+[submodule "packages/dwmblocks/source"]
+	path = packages/dwmblocks/source
+	url = git@github.com:phenax/dwmblocks.git

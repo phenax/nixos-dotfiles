@@ -10,6 +10,7 @@ let
   sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
   shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
   dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
+  dwmBlocks = pkgs.callPackage ./packages/dwmblocks/pkg.nix {};
   st = pkgs.callPackage ./packages/st/pkg.nix {};
 
   # Config
@@ -169,6 +170,7 @@ in {
     sensible-apps
     shotkey
     dwm
+    dwmBlocks
     st
     dmenu
 
