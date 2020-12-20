@@ -8,6 +8,7 @@ let
   apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
   sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
   shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
+  dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
 in {
   imports = [
     ./hardware-configuration.nix
@@ -127,7 +128,7 @@ in {
     nodejs-15_x
     yarn
 
-    dwm
+    # dwm
     st
 
     mtm
@@ -143,8 +144,10 @@ in {
 
     sensible-apps
     shotkey
+    dwm
 
     pass
+    xcwd
     alsaUtils
     unzip
     curl

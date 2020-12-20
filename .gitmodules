@@ -4,3 +4,6 @@
 [submodule "packages/shotkey/source"]
 	path = packages/shotkey/source
 	url = https://github.com/phenax/shotkey.git
+[submodule "packages/dwm/source"]
+	path = packages/dwm/source
+	url = git@github.com:phenax/dwm.git
