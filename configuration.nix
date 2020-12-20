@@ -7,6 +7,7 @@
 let
   apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
   sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
+  shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
 in {
   imports = [
     ./hardware-configuration.nix
@@ -81,7 +82,15 @@ in {
   # User
   users.users.imsohexy = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "audio" "video" "storage" "git" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "input"
+      "audio"
+      "video"
+      "storage"
+      "git"
+      "networkmanager"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -133,6 +142,7 @@ in {
     ffmpeg-full
 
     sensible-apps
+    shotkey
 
     pass
     alsaUtils
