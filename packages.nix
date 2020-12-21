@@ -35,7 +35,7 @@ let
 
   apps = with pkgs; [
     # Browser
-    # qutebrowser
+    qutebrowser
     firefox
     brave
 
@@ -63,6 +63,7 @@ let
     udiskie
     feh
     ffmpeg-full
+    # nm-applet
 
     # X stuff
     xorg.xinit
@@ -71,9 +72,11 @@ let
     xorg.xbacklight
   ];
 in {
+
   # Overlays
   nixpkgs.overlays = [
     (import ./external/nvim/neovim.nix)
+    (import ./external/qutebrowser/overlay.nix)
     (self: super: {
       pass = super.pass.override { dmenu = dmenu; };
     })
