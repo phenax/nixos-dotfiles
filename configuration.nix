@@ -5,15 +5,6 @@
 { config, pkgs, ... }:
 
 let
-  # Packages
-  dmenu = pkgs.callPackage ./packages/dmenu/pkg.nix {};
-  sensible-apps = pkgs.callPackage ./packages/sensible-apps/pkg.nix {};
-  shotkey = pkgs.callPackage ./packages/shotkey/pkg.nix {};
-  dwm = pkgs.callPackage ./packages/dwm/pkg.nix {};
-  dwmBlocks = pkgs.callPackage ./packages/dwmblocks/pkg.nix {};
-  st = pkgs.callPackage ./packages/st/pkg.nix {};
-
-  # Config
   apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
   windowManagers = {
     dwm = ''
@@ -25,6 +16,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    ./packages.nix
   ];
 
   nixpkgs.config = {
@@ -49,7 +41,6 @@ in {
     BROWSER = apps.BROWSER;
     PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
   };
-
   environment.shells = [ pkgs.zsh pkgs.bashInteractive ];
   programs.zsh = {
     enable = true;
@@ -128,69 +119,6 @@ in {
     ];
     shell = pkgs.zsh;
   };
-
-  # Nix config
-  nixpkgs.overlays = [
-    (import ./external/nvim/neovim.nix)
-    (self: super: {
-      pass = super.pass.override { dmenu = dmenu; };
-    })
-  ];
-
-  # Packages
-  environment.systemPackages = with pkgs; [
-    # Dev
-    neovim
-    silver-searcher
-    ripgrep
-    ctags
-    fzf
-    git
-    nodejs-15_x
-    yarn
-    python3
-
-    # Browser
-    firefox
-    brave
-    # qutebrowser
-    w3m
-
-    # X
-    xorg.xinit
-    xorg.xrandr
-    xorg.xmodmap
-    xorg.xbacklight
-
-    # Media
-    mpv
-    sxiv
-    feh
-    ffmpeg-full
-
-    # Custom packages
-    sensible-apps
-    shotkey
-    dwm
-    dwmBlocks
-    st
-    dmenu
-
-    # Utils
-    mtm
-    lf
-    pass
-    xcwd
-    alsaUtils
-    unzip
-    curl
-    wget
-    gotop
-    killall
-    inxi
-    pciutils
-    udiskie
-  ];
 
   programs.gnupg.agent = {
     enable = true;
