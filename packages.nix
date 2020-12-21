@@ -18,10 +18,19 @@ let
     ripgrep
     ctags
     fzf
+
     git
-    nodejs-15_x
     yarn
+
+    nodejs-15_x
     python3
+    rustup
+    ghc
+
+    rnix-lsp
+    ccls
+    haskell-language-server
+    # nodePackages.bash-language-server
   ];
 
   apps = with pkgs; [
