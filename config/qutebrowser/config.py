@@ -291,6 +291,8 @@ c.url.searchengines = {
     'y': 'http://www.youtube.com/results?search_query={}',
     'az': 'http://search.azlyrics.com/search.php?q={}',
 
+    'nix': 'https://search.nixos.org/packages?channel=unstable&query={}',
+
     # Ignore
     'DEFAULT': 'http://this-is-a-placeholder.com?q={}',
 }
