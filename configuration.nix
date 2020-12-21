@@ -4,19 +4,12 @@
 
 { config, pkgs, ... }:
 
-let
-  apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
-  windowManagers = {
-    dwm = ''
-      while true; do
-        (ssh-agent dwm &>> /tmp/dwm.log) || break;
-      done
-    '';
-  };
-in {
+{
   imports = [
+    <home-manager/nixos>
     ./hardware-configuration.nix
     ./packages.nix
+    ./login.nix
   ];
 
   nixpkgs.config = {
@@ -33,72 +26,10 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
   services.xserver.layout = "us";
 
-  # Global
-  environment.variables = {
-    EDITOR = apps.EDITOR;
-    VISUAL = apps.EDITOR;
-    TERMINAL = apps.TERMINAL;
-    BROWSER = apps.BROWSER;
-    PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
-  };
-  environment.shells = [ pkgs.zsh pkgs.bashInteractive ];
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableBashCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    histFile = "~/.config/zshhistory";
-    histSize = 50000;
-    interactiveShellInit = ''source ~/nixos/external/zsh/zshrc'';
-    promptInit = "";
-    loginShellInit = ''
-      setup_dwm() {
-        echo "~/nixos/external/xconfig/init.sh; ${windowManagers.dwm}" > ~/.xinitrc;
-        sleep 0.2;
-      }
-
-      case "$(tty)" in
-        /dev/tty1) setup_dwm && startx ;;
-        *) echo "Only tty for you, $(tty)" ;;
-      esac;
-    '';
-  };
-  services = {
-    mingetty = {
-      autologinUser = "imsohexy";
-      helpLine = "";
-      greetingLine = let
-        c1 = "\\e{lightblue}";
-        c2 = "\\e{lightcyan}";
-        res = "\\e{reset}";
-      in ''
-
-${c1}          ▗▄▄▄       ${c2}▗▄▄▄▄    ▄▄▄▖${res}
-${c1}          ▜███▙       ${c2}▜███▙  ▟███▛${res}                        ${c1}TTY:${res}       \e{bold}\l${res}
-${c1}           ▜███▙       ${c2}▜███▙▟███▛${res}                         ${c2}Time:${res}      \e{halfbright}\d \t${res}
-${c1}            ▜███▙       ${c2}▜██████▛${res}                          ${c2}Distr${res}      \e{halfbright}\S{PRETTY_NAME} \m${res}
-${c1}     ▟█████████████████▙ ${c2}▜████▛     ${c1}▟▙${res}                    ${c2}Kernal:${res}    \e{halfbright}\s \r${res}
-${c1}    ▟███████████████████▙ ${c2}▜███▙    ${c1}▟██▙${res}                   ${c2}WM:${res}        \e{halfbright}dwm${res}
-${c1}           ▄▄▄▄▖           ▜███▙  ${c1}▟███▛${res}
-${c1}          ▟███▛             ▜██▛ ${c1}▟███▛${res}
-${c1}         ▟███▛               ▜▛ ${c1}▟███▛${res}
-${c1}▟███████████▛                  ${c1}▟██████████▙${res}
-${c1}▜██████████▛                  ${c1}▟███████████▛${res}
-${c1}      ▟███▛ ${c1}▟▙               ▟███▛${res}
-${c1}     ▟███▛ ${c1}▟██▙             ▟███▛${res}
-${c1}    ▟███▛  ${c1}▜███▙           ▝▀▀▀▀${res}
-${c1}    ▜██▛    ${c1}▜███▙ ${c2}▜██████████████████▛${res}
-${c1}     ▜▛     ${c1}▟████▙ ${c2}▜████████████████▛${res}
-${c1}           ▟██████▙       ${c2}▜███▙${res}
-${c1}          ▟███▛▜███▙       ${c2}▜███▙${res}
-${c1}         ▟███▛  ▜███▙       ${c2}▜███▙${res}
-${c1}         ▝▀▀▀    ▀▀▀▀▘       ${c2}▀▀▀▘${res}
-
-
-
-\e{bold}What's the password, dipshit?\e{reset}'';
-    };
+  # Home manager
+  home-manager.users.imsohexy = { pkgs, ... }: {
+    imports = [./home.nix];
+    home = { stateVersion = "21.03"; };
   };
 
   # X11 config
@@ -118,44 +49,12 @@ ${c1}         ▝▀▀▀    ▀▀▀▀▘       ${c2}▀▀▀▘${res}
     cozette
     noto-fonts-emoji
   ];
-  #services.picom = {
-    #enable = true;
-    #inactiveOpacity = 0.8;
-    #backend = "glx";
-    #settings = {
-      #"inactive-dim" = 0.3;
-      #"focus-exclude" = [ "class_g = 'dwm'" "class_g = 'dmenu'"];
-    #};
-    #opacityRules = [
-      #"98:class_g = 'St' && focused"
-      #"85:class_g = 'St' && !focused"
-      #"90:class_g = 'qutebrowser' && !focused"
-      #"100:class_g = 'qutebrowser' && focused"
-    #];
-    #menuOpacity = 0.9;
-  #};
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # User
-  users.users.imsohexy = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "input"
-      "audio"
-      "video"
-      "storage"
-      "git"
-      "networkmanager"
-    ];
-    shell = pkgs.zsh;
-  };
 
   programs.gnupg.agent = {
     enable = true;

@@ -49,7 +49,6 @@ let
     lf
     libnotify
     dunst
-    mtm
     pass
     xcwd
     alsaUtils

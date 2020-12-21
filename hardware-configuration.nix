@@ -2,10 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
-#let
-  #rtl8822ce = pkgs.callPackage ./packages/drivers/rtl8822ce.nix {};
-#in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
