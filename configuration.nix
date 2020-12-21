@@ -55,13 +55,50 @@ in {
     loginShellInit = ''
       setup_dwm() {
         echo "~/nixos/external/xconfig/init.sh; ${windowManagers.dwm}" > ~/.xinitrc;
+        sleep 0.2;
       }
 
       case "$(tty)" in
         /dev/tty1) setup_dwm && startx ;;
-        *) echo "No tty for u" ;;
+        *) echo "Only tty for you, $(tty)" ;;
       esac;
     '';
+  };
+  services = {
+    mingetty = {
+      autologinUser = "imsohexy";
+      helpLine = "";
+      greetingLine = let
+        c1 = "\\e{lightblue}";
+        c2 = "\\e{lightcyan}";
+        res = "\\e{reset}";
+      in ''
+
+${c1}          ▗▄▄▄       ${c2}▗▄▄▄▄    ▄▄▄▖${res}
+${c1}          ▜███▙       ${c2}▜███▙  ▟███▛${res}                        ${c1}TTY:${res}       \e{bold}\l${res}
+${c1}           ▜███▙       ${c2}▜███▙▟███▛${res}                         ${c2}Time:${res}      \e{halfbright}\d \t${res}
+${c1}            ▜███▙       ${c2}▜██████▛${res}                          ${c2}Distr${res}      \e{halfbright}\S{PRETTY_NAME} \m${res}
+${c1}     ▟█████████████████▙ ${c2}▜████▛     ${c1}▟▙${res}                    ${c2}Kernal:${res}    \e{halfbright}\s \r${res}
+${c1}    ▟███████████████████▙ ${c2}▜███▙    ${c1}▟██▙${res}                   ${c2}WM:${res}        \e{halfbright}dwm${res}
+${c1}           ▄▄▄▄▖           ▜███▙  ${c1}▟███▛${res}
+${c1}          ▟███▛             ▜██▛ ${c1}▟███▛${res}
+${c1}         ▟███▛               ▜▛ ${c1}▟███▛${res}
+${c1}▟███████████▛                  ${c1}▟██████████▙${res}
+${c1}▜██████████▛                  ${c1}▟███████████▛${res}
+${c1}      ▟███▛ ${c1}▟▙               ▟███▛${res}
+${c1}     ▟███▛ ${c1}▟██▙             ▟███▛${res}
+${c1}    ▟███▛  ${c1}▜███▙           ▝▀▀▀▀${res}
+${c1}    ▜██▛    ${c1}▜███▙ ${c2}▜██████████████████▛${res}
+${c1}     ▜▛     ${c1}▟████▙ ${c2}▜████████████████▛${res}
+${c1}           ▟██████▙       ${c2}▜███▙${res}
+${c1}          ▟███▛▜███▙       ${c2}▜███▙${res}
+${c1}         ▟███▛  ▜███▙       ${c2}▜███▙${res}
+${c1}         ▝▀▀▀    ▀▀▀▀▘       ${c2}▀▀▀▘${res}
+
+
+
+\e{bold}What's the password, dipshit?\e{reset}'';
+    };
   };
 
   # X11 config
@@ -133,4 +170,3 @@ in {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
 }
-
