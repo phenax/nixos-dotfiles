@@ -2,8 +2,8 @@ let
   apps = {
     EDITOR = "nvim";
     TERMINAL = "st";
-    BROWSER = "firefox";
-    PRIVATE_BROWSER = "firefox";
+    BROWSER = "qutebrowser";
+    PRIVATE_BROWSER = "qutebrowser";
   };
   package = { stdenv }: stdenv.mkDerivation rec {
     name = "local-sensible-apps-${version}";
