@@ -62,6 +62,7 @@ let
     pciutils
     udiskie
     feh
+    picom
     ffmpeg-full
     # nm-applet
 
