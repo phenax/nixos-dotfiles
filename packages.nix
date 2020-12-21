@@ -38,7 +38,6 @@ let
     # qutebrowser
     firefox
     brave
-    w3m
 
     # Media
     mpv
@@ -46,8 +45,11 @@ let
   ];
 
   utils = with pkgs; [
-    mtm
+    w3m
     lf
+    libnotify
+    dunst
+    mtm
     pass
     xcwd
     alsaUtils

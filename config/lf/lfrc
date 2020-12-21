@@ -1,0 +1,117 @@
+set hidden true
+# set color256 true
+set drawbox true
+set icons true
+set ignorecase true
+set relativenumber true
+set ratios 2:3
+
+set preview false
+set previewer ~/.config/lf/previewer.sh
+
+# Function definitions {{{
+cmd open_inplace ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$fx" 2&> /dev/null ;;
+        video/*)   setsid -f swallow mpv "$f" 2&> /dev/null ;;
+        image/gif) setsid -f swallow mpv "$f" 2&> /dev/null ;;
+        image/*)   setsid -f swallow sxiv "$f" 2&> /dev/null ;;
+        application/pdf) setsid -f swallow zathura "$f" 2&> /dev/null ;;
+        *)
+          for f in "$fx"; do
+            open "$f"
+          done
+        ;;
+    esac;
+    disown;
+}}
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$fx" ;;
+        video/*|application/pdf) open "$f" & ;;
+        *)
+          for f in "$fx"; do
+            open "$f"
+          done
+        ;;
+    esac;
+    disown;
+}}
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd move_to_trash ${{
+  mkdir -p /tmp/.trash-cache/
+  echo "$fx" | while read file; do
+    mv "$file" /tmp/.trash-cache/
+  done;
+}}
+
+cmd rename %{{
+  printf " Rename to: "
+  read ans
+  mv "$f" "$ans"
+}}
+
+cmd set_wallpaper $feh --bg-scale "$f"
+
+cmd show_images ${{
+  if [ "$(echo "$fx" | wc -l)" = "1" ]; then
+    swallow sxiv $(dirname "$fx") &
+  else
+    swallow sxiv $fx &
+  fi;
+}}
+
+# }}}
+
+# Unset old keys {{{
+  map w
+  map m
+  map n
+  map "'"
+  map '"'
+  map d}}
+  map c
+  map e
+  map d
+# }}}
+
+# Mutations
+map dd      move_to_trash
+map p       paste
+map x       cut
+map y       copy
+map mf      mkfile
+map md      mkdir
+map wp      set_wallpaper
+map rr      rename
+
+
+# View changes
+map <enter> open_inplace
+map si      show_images
+map du      $du -h -d1 | less
+map sh      :set hidden!
+map st      :set sortby time
+
+
+# Traversal keys
+map gde   cd ~/Desktop
+map gdl   cd ~/Downloads/dl
+map gdm   cd ~/Downloads/music
+map gdv   cd ~/dev
+map gs    cd ~/scripts
+map gp    cd ~/Pictures
+
