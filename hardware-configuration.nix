@@ -13,7 +13,7 @@
     kernelModules = [ "wl" ];
   };
   boot.kernelModules = ["kvm-intel" "wl"];
-  boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "quiet" "splash" ];
+  boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" ];
   boot.extraModulePackages = [];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
@@ -27,7 +27,11 @@
 
   # Bootloader
   boot.loader = {
-    systemd-boot.enable = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 30;
+    };
+    timeout = 1;
     efi.canTouchEfiVariables = true;
   };
 

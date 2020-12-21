@@ -148,6 +148,7 @@ in {
     git
     nodejs-15_x
     yarn
+    python3
 
     # Browser
     firefox
@@ -188,6 +189,7 @@ in {
     killall
     inxi
     pciutils
+    udiskie
   ];
 
   programs.gnupg.agent = {
