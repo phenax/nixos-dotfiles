@@ -3,16 +3,20 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
+#let
+  #rtl8822ce = pkgs.callPackage ./packages/drivers/rtl8822ce.nix {};
+#in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd = {
-    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "wl" ];
-    kernelModules = [ "wl" ];
+    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" ];
+    kernelModules = [];
   };
-  boot.kernelModules = ["kvm-intel" "wl"];
+  boot.kernelModules = ["kvm-intel" "sd_mod" "rtw88_8822ce"];
   boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" ];
   boot.extraModulePackages = [];
   boot.extraModprobeConfig = ''
@@ -22,7 +26,7 @@
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
-    firmware = with pkgs; [ wireless-regdb ];
+    firmware = with pkgs; [ wireless-regdb rtlwifi_new-firmware ];
   };
 
   # Bootloader
