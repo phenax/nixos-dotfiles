@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+cd ~/Downloads/music/untagged;
+
+~/scripts/notify.sh "Downloading audio in the background...";
+
+youtube-dl \
+  --add-metadata \
+  --ignore-errors \
+  --output '%(title)s.%(ext)s' \
+  --extract-audio \
+  --yes-playlist \
+  "$QUTE_URL";
+
+~/scripts/notify.sh "Download complete";
+

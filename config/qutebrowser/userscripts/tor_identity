@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+mypass=$(pass show Tor/client);
+
+echo -e "AUTHENTICATE \"$mypass\"\\r\\nsignal NEWNYM\\r\\nQUIT" | nc 127.0.0.1 9051;
+

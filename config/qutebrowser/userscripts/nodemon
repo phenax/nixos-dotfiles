@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+WATCH_DIR="$1";
+EXTENSIONS="${2:-"js,html,css"}";
+
+nodemon --exec "echo 'reload' >> $QUTE_FIFO" -e $EXTENSIONS -w "$WATCH_DIR" &
+
+~/scripts/notify.sh "[$PID] Watching $WATCH_DIR for $EXTENSIONS...";
+
+disown;
+

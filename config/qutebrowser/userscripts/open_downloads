@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sensible-terminal -e ~/.bin/with_zsh "lf ${QUTE_DOWNLOAD_DIR:-$HOME/Downloads}";
+

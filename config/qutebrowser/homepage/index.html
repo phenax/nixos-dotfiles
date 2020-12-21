@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>New tab</title>
+    <style>
+      :root {
+        --col-primary: #14121e;
+        --col-accent: #5e4ab3;
+        --col-accent-light: #8e7ae3;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--col-primary);
+        color: #fff;
+        font-family: JetBrains Mono, sans-serif;
+      }
+      html, body, body * { box-sizing: border-box }
+
+      .hotkey-display {
+        position: fixed;
+        right: 0;
+        top: 0;
+        padding: 0.3em 0.5em;
+        background-color: var(--col-primary);
+        color: #888;
+      }
+    </style>
+    <script>
+      // Library
+      const $ = document.querySelector.bind(document);
+      const h = (el, props, children) => {
+        const $el = Object.assign(document.createElement(el), props);
+        children.forEach($ch => $el.appendChild($ch));
+        return $el;
+      };
+      const text = str => {
+        const $t = document.createTextNode(str);
+        return $t;
+      };
+      const render = ($el, $tree) => {
+        while($el.firstChild) $el.removeChild($el.firstChild);
+        $el.appendChild($tree);
+      };
+
+      const HotKeys = {
+        hooks: {},
+        accum: '',
+        $el: null,
+        bind: (key, action) => (HotKeys.hooks[key] = { action }),
+        init: () => {
+          HotKeys.$el = h('div', { className: 'hotkey-display' }, [text('')]);
+          document.body.appendChild(HotKeys.$el);
+
+          document.addEventListener('keypress', e => {
+            const maxkeylen = Math.max(...Object.keys(HotKeys.hooks).map(x => x.length));
+
+            if(/[A-Za-z]/.test(e.key) && HotKeys.accum.length + 1 <= maxkeylen) {
+              HotKeys.accum += e.key;
+            } else {
+              HotKeys.accum = '';
+            }
+
+            render(HotKeys.$el, text(`${HotKeys.accum}`));
+
+            if (HotKeys.hooks[HotKeys.accum])
+              HotKeys.hooks[HotKeys.accum].action({ key: HotKeys.accum, event: e });
+          });
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div class="home">
+      <div id="clock" style='width: 100%;'></div>
+      <div id="grid" style='width: 100%;'></div>
+    </div>
+
+
+    <!-- Init -->
+    <script>
+      HotKeys.init();
+    </script>
+
+
+    <!-- Date/Time -->
+    <style>
+      .home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: 100;
+        min-height: 100vh;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 2em 0;
+      }
+      .home-time {
+        font-size: 4em;
+        letter-spacing: -2px;
+      }
+      .home-date {
+        font-size: 2em;
+        color: #aaa;
+        letter-spacing: -1px;
+      }
+    </style>
+    <script>
+      const $clock = $('#clock');
+
+      const formatTime = date => {
+        const format = new Intl.DateTimeFormat('en-IN', {
+          hour12: true,
+          hour: 'numeric', minute: 'numeric'
+        });
+
+        return format.format(date);
+      };
+      const formatDate = date => {
+        const format = new Intl.DateTimeFormat('en-IN', {
+          weekday: 'long', month: 'short', day: 'numeric',
+        });
+
+        return format.format(date);
+      };
+
+      function renderDateTime() {
+        const d = new Date();
+
+        // Update every second
+        setInterval(renderDateTime, 20 * 1000);
+
+        render($clock, h('div', {}, [
+          h('div', { className: 'home-time' }, [ text(formatTime(d)) ]),
+          h('div', { className: 'home-date' }, [ text(formatDate(d)) ]),
+        ]));
+      }
+
+      renderDateTime();
+    </script>
+
+
+
+    <!-- Links -->
+    <style>
+      .grid {
+        display: flex;
+        flex-direction: column;
+        padding: 3em 4em;
+        line-height: 1.4em;
+        font-size: 0.9em;
+
+        --block-margin-h: 0.5em;
+      }
+
+      .grid a {
+        color: var(--col-accent);
+        text-decoration: none;
+      }
+
+      .grid-block {
+        background-color: #0f0c19;
+        box-shadow: 1px 1px 5px 0.2px #000;
+        padding: 2em 3em;
+        color: #ddd;
+        margin: 0 var(--block-margin-h) 1em;
+        width: 100%;
+        text-align: left;
+      }
+
+      .grid-block-title {
+        padding-bottom: 0.5em;
+      }
+
+      .link-shortcut {
+        display: inline-block;
+        margin-right: 1em;
+        font-weight: bold;
+        color: var(--col-accent-light);
+      }
+
+      @media (min-width: 800px) {
+        .grid {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .grid-block {
+          width: calc(50% - var(--block-margin-h)*2);
+        }
+      }
+      @media (min-width: 1300px) {
+        .grid {
+          flex-direction: row;
+          flex-wrap: nowrap;
+        }
+      }
+
+    </style>
+    <script>
+      const getBlock = ({ title, links }) => h('div', { className: 'grid-block' }, [
+        h('div', { className: 'grid-block-title' }, [ title ]),
+        h('div', {}, links.map(({ label, link, shortcut }) => {
+          HotKeys.bind(shortcut, () => (window.location.href = link));
+
+          return h('div', {}, [
+            h('a', { href: link }, [
+              h('span', { className: 'link-shortcut' }, [ text(`[${shortcut}]`) ]),
+              label,
+            ]),
+          ]);
+        })),
+      ]);
+
+      const blocks = [
+        {
+          title: text('Reddit'),
+          links: [
+            { shortcut: 'rs', label: text('r/suckless'), link: 'https://reddit.com/r/suckless' },
+            { shortcut: 'ru', label: text('r/unixporn'), link: 'https://reddit.com/r/unixporn' },
+            { shortcut: 'rp', label: text('r/ps4'), link: 'https://reddit.com/r/ps4' },
+            { shortcut: 'rc', label: text('r/cursedcomments'), link: 'https://www.reddit.com/r/cursedcomments' },
+          ],
+        },
+        {
+          title: text('Dev'),
+          links: [
+            { shortcut: 'gh', label: text('Github'), link: 'https://github.com' },
+            { shortcut: 'gt', label: text('GH Trending'), link: 'https://github.com/trending' },
+            { shortcut: 'dx', label: text('Xlib'), link: 'https://tronche.com/gui/x/xlib/' },
+            { shortcut: 'su', label: text('Suckless.org'), link: 'https://suckless.org' },
+          ],
+        },
+        {
+          title: text('Blogs'),
+          links: [
+            { shortcut: 'bm', label: text('Hacks mozilla'), link: 'https://hacks.mozilla.org/' },
+            { shortcut: 'ct', label: text('CSS Tricks'), link: 'https://css-tricks.com/' },
+            { shortcut: 'dw', label: text('David Walsh'), link: 'https://davidwalsh.name/' },
+          ],
+        },
+        {
+          title: text('Others'),
+          links: [
+            { shortcut: 'yo', label: text('Youtube'), link: 'https://youtube.com' },
+            { shortcut: 'tw', label: text('Twitter'), link: 'https://twitter.com/' },
+          ],
+        },
+      ];
+
+      const $grid = $('#grid');
+      render($grid, h('div', { className: 'grid' }, blocks.map(getBlock)));
+    </script>
+  </body>
+</html>
