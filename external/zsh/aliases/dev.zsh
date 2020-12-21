@@ -3,6 +3,10 @@ alias aws="docker run --rm -it amazon/aws-cli"
 
 nrx() { nix-shell -p nodejs-14_x --run "npm run $1"; }
 
+with_node_14() { nix-shell -p nodejs-14_x --run 'WITH_NIX_PREFIX="node14" zsh'; }
+
+nix-zshell() { nix-shell --run 'WITH_NIX_PREFIX=":" zsh' "$@"; }
+
 # :: Filename Pattern Replacetext
 far() {
   local file_r="$1"; shift;
