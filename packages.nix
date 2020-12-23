@@ -1,15 +1,19 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  dmenu = pkgs.callPackage ./packages/dmenu/pkg.nix {};
+  localPkgs = import ./packages/default.nix { pkgs = pkgs; };
   customPackages = [
-    (pkgs.callPackage ./packages/sensible-apps/pkg.nix {})
-    (pkgs.callPackage ./packages/shotkey/pkg.nix {})
-    (pkgs.callPackage ./packages/dwm/pkg.nix {})
-    (pkgs.callPackage ./packages/dwmblocks/pkg.nix {})
-    (pkgs.callPackage ./packages/st/pkg.nix {})
-    dmenu
+    localPkgs.sensible-apps
+    localPkgs.shotkey
+    localPkgs.dwm
+    localPkgs.dwmblocks
+    localPkgs.st
+    localPkgs.dmenu
+    #localPkgs.anypinentry
   ];
+
+  # security.setuidPrograms = [ "bslock" ];
+  # security.wrappers.bslock.source = "${bslock.out}/bin/bslock";
 
   devPackages = with pkgs; [
     # Dev
@@ -46,6 +50,7 @@ let
 
   utils = with pkgs; [
     w3m
+    mtm
     lf
     libnotify
     dunst
@@ -78,7 +83,7 @@ in {
     (import ./external/nvim/neovim.nix)
     (import ./external/qutebrowser/overlay.nix)
     (self: super: {
-      pass = super.pass.override { dmenu = dmenu; };
+      pass = super.pass.override { dmenu = localPkgs.dmenu; };
     })
   ];
 
