@@ -25,3 +25,6 @@
 [submodule "config/nvim"]
 	path = config/nvim
 	url = https://github.com/phenax/peepeepoopoo-nvim-config.git
+[submodule "extras/wallpapers"]
+	path = extras/wallpapers
+	url = git@github.com:phenax/wallpapers.git
