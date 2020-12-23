@@ -1,11 +1,17 @@
 
 alias aws="docker run --rm -it amazon/aws-cli"
 
-nrx() { nix-shell -p nodejs-14_x --run "npm run $1"; }
+# nix shell with zsh
+nix-zsh() { nix-shell --run "WITH_NIX_PREFIX='${NX_PREFIX:-':'}' zsh" "$@"; }
 
-with_node_14() { nix-shell -p nodejs-14_x --run 'WITH_NIX_PREFIX="node14" zsh'; }
+# shell for node 14
+with_node_14() { NX_PREFIX="node14" nix-zsh -p nodejs-14_x "$@"; }
 
-nix-zshell() { nix-shell --run 'WITH_NIX_PREFIX=":" zsh' "$@"; }
+# shell for docker-compose
+with_dcomp() { TMPDIR=$HOME/dump/tempdir NX_PREFIX=docker-compose nix-zsh -p docker-compose; }
+
+# npm run for node_14
+nrx() { with_node_14 --run "npm run $*"; }
 
 # :: Filename Pattern Replacetext
 far() {

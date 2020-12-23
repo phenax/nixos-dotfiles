@@ -2,7 +2,7 @@
 let
   sessions = [
     ["tty1" windowManagers.dwm ]
-    ["tty2" windowManagers.bspwm ]
+    ["tty2" windowManagers.browser ]
   ];
   windowManagers = {
     dwm = ''
@@ -10,8 +10,8 @@ let
         (ssh-agent dwm &>> /tmp/dwm.log) || break;
       done
     '';
-    # TODO
-    bspwm = ''
+    # TODO: Bspwm
+    browser = ''
       exec firefox;
     '';
   };
@@ -31,6 +31,9 @@ in {
     ];
     shell = pkgs.zsh;
   };
+  #security.sudo.configFile = ''
+  # %wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown
+  #'';
 
   # Global
   environment.variables = let
