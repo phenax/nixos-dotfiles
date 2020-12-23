@@ -30,7 +30,7 @@ export PATH;
 
 # Util config
 export rofi_LIBS=/usr;
-export GNUPGHOME=$XDG_CONFIG_HOME/gnupg;
+export GNUPGHOME=$HOME/.gnupg;
 export PASSWORD_STORE_DIR=$XDG_CONFIG_HOME/password-store;
 export BTPD_HOME=$XDG_CONFIG_HOME/btpd;
 
