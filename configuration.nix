@@ -11,6 +11,7 @@ in {
     <home-manager/nixos>
     ./hardware-configuration.nix
     ./packages.nix
+    ./overlays/default.nix
     ./login.nix
   ];
 

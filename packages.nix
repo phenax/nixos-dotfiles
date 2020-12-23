@@ -79,16 +79,6 @@ let
     xclip
   ];
 in {
-
-  # Overlays
-  nixpkgs.overlays = [
-    (import ./external/nvim/neovim.nix)
-    (import ./external/qutebrowser/overlay.nix)
-    (self: super: {
-      pass = super.pass.override { dmenu = localPkgs.dmenu; };
-    })
-  ];
-
   # Packages
   environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
 
