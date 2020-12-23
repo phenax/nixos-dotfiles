@@ -20,6 +20,7 @@ in {
   home.file = {
     ".config/dunst".source = ./config/dunst;
     ".config/lf".source = ./config/lf;
+    ".config/nvim".source = ./config/nvim;
     ".config/qutebrowser".source = ./config/qutebrowser;
     ".local/share/qutebrowser/userscripts".source = ./config/qutebrowser/userscripts;
     ".local/share/qutebrowser/greasemonkey".source = ./config/qutebrowser/greasemonkey;
