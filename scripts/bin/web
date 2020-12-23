@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+w3m -o imgdisplay=/usr/lib/w3m/w3mimgdisplay "$@";
+

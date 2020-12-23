@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+srun() { setsid -f "$@"; }
+run() { srun "$@" > /dev/null 2> /dev/null; }
+run_async() { run "$@" & disown; }
+
+open_by_mimetype() {
+  local file="$1";
+  local mime=`file "$file" --mime-type -bL`;
+
+  local is_opened=1;
+
+  echo "Opening $file ($mime)...";
+
+  case "$mime" in
+    inode/directory)             lf "$file" ;;
+
+    application/x-bittorrent)    ~/scripts/torrent.sh torrent "$file" ;;
+
+    text/*)                      sensible-editor "$file" ;;
+    application/javascript)      sensible-editor "$file" ;;
+    application/json)            sensible-editor "$file" ;;
+    application/xml)             sensible-editor "$file" ;;
+    application/x-*)             sensible-editor "$file" ;;
+    *pdf)                        run_async zathura "$file" ;;
+
+    video/*|image/gif)           run_async mpv "$file" ;;
+    image/*)                     run_async sxiv "$file" ;;
+    audio/*)
+      mpc insert "file://$(readlink -e "$file")" && mpc play && \
+        echo "Adding song to queue";
+    ;;
+
+    *) is_opened=0 ;;
+  esac;
+
+  [[ "$is_opened" == 1 ]] && exit 0;
+}
+
+open_by_path() {
+  local file="$1";
+
+  # Magnet torrent url
+  if [[ "$file" =~ ^magnet: ]]; then
+    echo "opening magnet link...";
+    ~/scripts/torrent.sh magnet "$file";
+    exit 0;
+  fi;
+
+  # Https? and file urls
+  if [[ "$file" =~ ^https?:// ]] || [[ "$file" =~ ^file?:// ]]; then
+    echo "opening url $file...";
+    run_async sensible-browser "$file";
+    exit 0;
+  fi;
+}
+
+
+filepath="$1";
+[[ -z "$filepath" ]] && exit 1;
+
+open() {
+  open_by_path "$filepath";
+  open_by_mimetype "$filepath";
+
+  # If it doesn't exit out, it couldn't open the file
+  echo "Couldn't open file. Add rule to opener."; exit 1;
+}
+open;
+

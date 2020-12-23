@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+~/scripts/brightness.sh set 2;
+

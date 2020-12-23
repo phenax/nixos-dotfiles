@@ -19,13 +19,15 @@ in {
 
   home.file = {
     ".config/zsh".source = ./config/zsh;
-    ".config/dunst".source = ./config/dunst;
-    ".config/lf".source = ./config/lf;
     ".config/nvim".source = ./config/nvim;
     ".config/qutebrowser".source = ./config/qutebrowser;
     ".local/share/qutebrowser/userscripts".source = ./config/qutebrowser/userscripts;
     ".local/share/qutebrowser/greasemonkey".source = ./config/qutebrowser/greasemonkey;
     # ".local/share/qutebrowser/sessions".source = ./private-config/qutebrowser/sessions;
+    ".config/dunst".source = ./config/dunst;
+    ".config/lf".source = ./config/lf;
+    "Pictures/wallpapers".source = ./extras/wallpapers;
+    "scripts".source = ./scripts;
   };
 
   services.picom = {

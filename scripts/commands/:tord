@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+~/.bin/dsudo chown -R an:an /var/lib/tor;
+
+tor --runasdaemon 1 -f ~/.config/tor/torrc & disown;
+

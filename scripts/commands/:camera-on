@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+dsudo modprobe uvcvideo && notify-send "Camera turned on" || notify-send "Something went wrong"

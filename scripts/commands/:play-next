@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+musicdir=$HOME/Downloads/music;
+
+ls_songs() {
+  cd $musicdir;
+  find -follow | while read l; do [[ -f "$l" ]] && echo "$l"; done | sed 's/^\.\///';
+}
+
+song=$(ls_songs | sort | dmenu -p "Song :: ");
+
+[[ -z "$song" ]] && exit 1;
+
+mpc insert "file://$musicdir/$song";
+
+[[ "$(~/scripts/music/player.sh get_play_state)" == "Stopped" ]] && mpc play;
+update-dwmblock music;

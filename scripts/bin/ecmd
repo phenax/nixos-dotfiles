@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+source ~/.config/zshconf/paths.zsh;
+
+cd $COMMANDS_DIR;
+
+selected=`fzf +i --print-query -e`;
+[[ -z "$selected" ]] && exit 0;
+
+query=`echo -e "$selected" | head -n 1`;
+selected=`echo -e "$selected" | tail -n 1`;
+
+if [[ "$1" == "rm" ]]; then
+  [[ ! -f $selected ]] && echo "Cant remove $selected. File not found" && exit 1;
+  # TODO: Add confirmation here maybe
+  rm $selected;
+  echo "Removed $selected";
+  exit 0;
+fi;
+
+if (echo "$query" | grep -e '^:') && [[ ! -f "$query" ]]; then
+  escript "$COMMANDS_DIR/$query";
+  echo "Added new command $query";
+else
+  escript "$COMMANDS_DIR/$selected" || echo "$selected command not found";
+  echo "Edited command $query";
+fi;
+

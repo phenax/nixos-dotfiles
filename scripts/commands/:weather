@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sensible-terminal -e bash -c 'curl wttr.in/Virar && read'

@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+sensible-terminal -e sensible-editor ~/.config/vimwiki/index.md;

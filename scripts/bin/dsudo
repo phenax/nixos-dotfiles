@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+SUDO_ASKPASS="$HOME/scripts/password_prompt.sh" sudo -A "$@";
+

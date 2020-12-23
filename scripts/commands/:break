@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+reason=`echo -n "" | dmenu -p "Reason for break ::"`;
+
+operation=`[[ "$reason" =~ ^- ]] && echo "stop" || echo "start"`;
+
+reason=`echo $reason | sed 's/^-//g'`;
+([[ -z "$reason" ]]) && exit 1;
+
+if (ponos "$operation" "$reason"); then
+  notify-send "Break ${operation}ed";
+else
+  notify-send -u critical "Something went wrong";
+fi;

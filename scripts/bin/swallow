@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+wid=$(xdo id);
+
+xdo hide && "$@";
+
+xdo show "$wid";

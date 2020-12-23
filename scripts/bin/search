@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+AG_PREFIX="ag --noheading --color --smart-case "
+
+export FZF_DEFAULT_COMMAND="$AG_PREFIX '.'";
+
+# TODO: Add preview
+filename=$(fzf --bind "change:reload:$AG_PREFIX {q} || true" --ansi --phony | cut -d':' -f1);
+
+[[ ! -z "$filename" ]] && [[ -f "$filename" ]] && \
+  open "$filename";
+

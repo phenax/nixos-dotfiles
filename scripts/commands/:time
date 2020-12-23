@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+sensible-terminal -e tty-clock -t -b -c

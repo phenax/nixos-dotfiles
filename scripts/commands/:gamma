@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ $# == 1 ]]; then
+  r=$1; g=$1; b=$1;
+else
+  r=${1:-'1'}; g=${2:-'1'}; b=${3:-'1'};
+fi;
+
+notify-send "Setting gamma to ($r, $g, $b)";
+xrandr --output eDP-1 --brightness 1 --gamma $r:$g:$b
+

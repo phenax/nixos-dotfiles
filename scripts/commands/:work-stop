@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if (ponos stop work); then
+  notify-send "Stopped 'work' block";
+else
+  notify-send -u critical "Something went wrong";
+fi;

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+dir="";
+[[ -z "$1" ]] && return 1;
+if [[ ! -f "$1" ]]; then
+  dir=$(dirname "$1");
+  [[ ! -d "$dir" ]] && mkdir -p "$dir";
+
+  touch "$1";
+  echo -e "#!/usr/bin/env bash\n" > "$1";
+fi;
+
+chmod u+x "$1";
+
+sensible-editor "$1";
+

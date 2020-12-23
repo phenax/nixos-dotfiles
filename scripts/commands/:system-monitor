@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sensible-terminal -e ytop

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+notify_content() {
+  echo "Copied $1 to clipboard";
+  sleep 1;
+}
+
+show_color() {
+  notify_content "$1" | popcorn --bg "$1" --fg "#ffffff";
+}
+
+color=$(grabc);
+
+echo "$color" | xclip -selection clipboard -i;
+
+show_color "$color" & disown;
+
