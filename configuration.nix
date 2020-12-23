@@ -21,6 +21,8 @@
   networking.hostName = "dickhead";
   networking.networkmanager.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
