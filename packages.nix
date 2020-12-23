@@ -9,7 +9,7 @@ let
     localPkgs.dwmblocks
     localPkgs.st
     localPkgs.dmenu
-    #localPkgs.anypinentry
+    localPkgs.anypinentry
   ];
 
   # security.setuidPrograms = [ "bslock" ];

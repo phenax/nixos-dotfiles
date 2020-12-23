@@ -16,3 +16,9 @@
 [submodule "packages/dwmblocks/source"]
 	path = packages/dwmblocks/source
 	url = git@github.com:phenax/dwmblocks.git
+[submodule "packages/bslock/source"]
+	path = packages/bslock/source
+	url = git@github.com:phenax/bslock.git
+[submodule "packages/anypinentry/source"]
+	path = packages/anypinentry/source
+	url = git@github.com:phenax/any-pinentry.git
