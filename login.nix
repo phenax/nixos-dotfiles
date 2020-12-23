@@ -2,19 +2,18 @@
 let
   sessions = [
     ["tty1" windowManagers.dwm ]
-    ["tty2" windowManagers.browser ]
+    #["tty2" windowManagers.bspwm ]
   ];
   windowManagers = {
-    dwm = ''
-      while true; do
-        (ssh-agent dwm &>> /tmp/dwm.log) || break;
-      done
-    '';
-    # TODO: Bspwm
-    browser = ''
-      exec firefox;
-    '';
+    dwm = looped "dwm";
+    bspwm = exec "bspwm";
   };
+  exec = s: "exec ${s}";
+  looped = s: ''
+    while true; do
+      ssh-agent ${s} || break;
+    done
+  '';
 in {
   # User
   users.users.imsohexy = {

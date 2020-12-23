@@ -32,7 +32,6 @@ let
     rnix-lsp
     ccls
     haskell-language-server
-    # nodePackages.bash-language-server
   ];
 
   apps = with pkgs; [
@@ -77,6 +76,7 @@ let
     xorg.xrandr
     xorg.xmodmap
     xorg.xbacklight
+    xclip
   ];
 in {
 
