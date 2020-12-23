@@ -19,7 +19,7 @@ cmd open_inplace ${{
         application/pdf) setsid -f swallow zathura "$f" 2&> /dev/null ;;
         *)
           for f in "$fx"; do
-            open "$f"
+            ~/scripts/bin/open "$f"
           done
         ;;
     esac;
@@ -29,10 +29,10 @@ cmd open_inplace ${{
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$fx" ;;
-        video/*|application/pdf) open "$f" & ;;
+        video/*|application/pdf) ~/scripts/bin/open "$f" & ;;
         *)
           for f in "$fx"; do
-            open "$f"
+            ~/scripts/bin/open "$f"
           done
         ;;
     esac;
