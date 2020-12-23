@@ -1,5 +1,7 @@
 { pkgs, ... }:
-{
+let
+  localPkgs = import ./packages/default.nix { pkgs = pkgs; };
+in {
   #home.packages = with pkgs; [
     #picom
   #];
@@ -9,6 +11,10 @@
     maxCacheTtl = 864000;
     defaultCacheTtl = 864000;
     enableSshSupport = false;
+    pinentryFlavor = null;
+    extraConfig = ''
+      pinentry-program ${localPkgs.anypinentry}/bin/anypinentry
+    '';
   };
 
   home.file = {
