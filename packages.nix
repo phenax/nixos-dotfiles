@@ -46,6 +46,8 @@ let
     # Media
     mpv
     sxiv
+    youtube-dl
+    imagemagick
   ];
 
   utils = with pkgs; [
@@ -59,6 +61,8 @@ let
     alsaUtils
     unzip
     curl
+    jq
+    lsd
     wget
     gotop
     killall
