@@ -53,7 +53,7 @@ in {
     syntaxHighlighting.enable = true;
     histFile = "~/.config/zshhistory";
     histSize = 50000;
-    interactiveShellInit = ''source ~/nixos/external/zsh/zshrc'';
+    interactiveShellInit = ''source ~/.config/zsh/zshrc'';
     promptInit = "";
     loginShellInit = with builtins; let
       cases = map (s: ''

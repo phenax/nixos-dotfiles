@@ -18,6 +18,7 @@ in {
   };
 
   home.file = {
+    ".config/zsh".source = ./config/zsh;
     ".config/dunst".source = ./config/dunst;
     ".config/lf".source = ./config/lf;
     ".config/nvim".source = ./config/nvim;
