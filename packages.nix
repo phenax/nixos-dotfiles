@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
@@ -10,10 +10,8 @@ let
     localPkgs.st
     localPkgs.dmenu
     localPkgs.anypinentry
+    localPkgs.bslock
   ];
-
-  # security.setuidPrograms = [ "bslock" ];
-  # security.wrappers.bslock.source = "${bslock.out}/bin/bslock";
 
   devPackages = with pkgs; [
     # Dev
@@ -93,4 +91,9 @@ in {
 
   # Packages
   environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
+
+  # Security wrappers
+  security.wrappers = {
+    bslock.source = "${localPkgs.bslock}/bin/bslock";
+  };
 }
