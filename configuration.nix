@@ -11,7 +11,7 @@ in {
     <home-manager/nixos>
     ./hardware-configuration.nix
     ./packages.nix
-    ./overlays/default.nix
+    ./overlays-system.nix
     ./login.nix
   ];
 
@@ -24,6 +24,7 @@ in {
   networking = {
     hostName = "dickhead";
     networkmanager.enable = true;
+    extraHosts = '''';
   };
 
   virtualisation.docker.enable = true;

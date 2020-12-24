@@ -21,9 +21,6 @@ let
     ctags
     fzf
 
-    git
-    yarn
-
     nodejs-15_x
     python3
     rustup
@@ -53,13 +50,11 @@ let
     lf
     libnotify
     dunst
-    pass
     xcwd
     alsaUtils
     unzip
     curl
     jq
-    lsd
     wget
     gotop
     killall
