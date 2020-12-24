@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
 in {
@@ -6,6 +6,7 @@ in {
 
   home.packages = with pkgs; [
     yarn
+    ncmpcpp
     #pass
   ];
 
@@ -50,6 +51,33 @@ in {
     #signing.signByDefault = true;
   };
 
+  services.clipmenu.enable = true;
+
+  services.syncthing = {
+    enable = true;
+    tray = false;
+  };
+
+  services.unclutter = {
+    enable = true;
+    timeout = 5;
+  };
+
+  services.udiskie = {
+    enable = true;
+    tray = "always";
+  };
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "${config.home.homeDirectory}/Downloads/music";
+    playlistDirectory = "${config.home.homeDirectory}/Downloads/music/playlist";
+    network = {
+      listenAddress = "127.0.0.1";
+      port = 6600;
+    };
+  };
+
   programs.password-store = {
     enable = true;
     package = pkgs.pass.withExtensions(exts: [ exts.pass-otp ]);
@@ -57,7 +85,6 @@ in {
       PASSWORD_STORE_DIR = "~/.config/password-store";
     };
   };
-
   services.gpg-agent = {
     enable = true;
     maxCacheTtl = 864000;
@@ -78,7 +105,7 @@ in {
     # ".local/share/qutebrowser/sessions".source = ./private-config/qutebrowser/sessions;
     ".config/dunst".source = ./config/dunst;
     ".config/lf".source = ./config/lf;
-    "Pictures/wallpapers".source = ./extras/wallpapers;
+    #"Pictures/wallpapers".source = ./extras/wallpapers;
     "scripts".source = ./scripts;
   };
 

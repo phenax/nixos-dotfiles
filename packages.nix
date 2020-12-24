@@ -44,6 +44,7 @@ let
     imagemagick
     ffmpeg-full
     feh
+
     w3m
     mtm
     lf
