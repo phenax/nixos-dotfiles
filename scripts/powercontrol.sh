@@ -20,7 +20,7 @@ $optn_cancel
 
 lock() { bslock; }
 logout_() { ~/.config/autostart.sh kill; killall dwm; }
-poweroff_() { systemctl shutdown; }
+poweroff_() { systemctl poweroff; }
 reboot_() { systemctl reboot; }
 suspend_() { lock & disown; sleep 0.3; sudo zzz; }
 
