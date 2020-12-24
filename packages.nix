@@ -42,28 +42,29 @@ let
     sxiv
     youtube-dl
     imagemagick
-  ];
-
-  utils = with pkgs; [
+    ffmpeg-full
+    feh
     w3m
     mtm
     lf
-    libnotify
     dunst
+    gotop
+    tremc
+  ];
+
+  utils = with pkgs; [
+    libnotify
     xcwd
     alsaUtils
     unzip
     curl
     jq
     wget
-    gotop
     killall
     inxi
     pciutils
     udiskie
-    feh
     # picom
-    ffmpeg-full
     # nm-applet
 
     # X stuff

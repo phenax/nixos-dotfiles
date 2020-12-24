@@ -27,6 +27,7 @@ in {
       "git"
       "networkmanager"
       "docker"
+      "transmission"
     ];
     shell = pkgs.zsh;
   };
