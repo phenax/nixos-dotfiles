@@ -18,7 +18,6 @@ xset r rate 350 30;
 ~/scripts/commands/:day
 
 # Sound
-#~/scripts/sound.sh mic-vol full;
-~/scripts/sound.sh mute-mic;
-~/scripts/sound.sh mute;
+amixer set Capture nocap;
+amixer set Master off;
 

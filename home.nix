@@ -2,12 +2,13 @@
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
 in {
-  imports = [ ./overlays-home.nix ];
+  imports = [
+    ./modules/music.nix
+    ./overlays-home.nix
+  ];
 
   home.packages = with pkgs; [
     yarn
-    ncmpcpp
-    #pass
   ];
 
   programs.lsd = {
@@ -66,16 +67,6 @@ in {
   services.udiskie = {
     enable = true;
     tray = "always";
-  };
-
-  services.mpd = {
-    enable = true;
-    musicDirectory = "${config.home.homeDirectory}/Downloads/music";
-    playlistDirectory = "${config.home.homeDirectory}/Downloads/music/playlist";
-    network = {
-      listenAddress = "127.0.0.1";
-      port = 6600;
-    };
   };
 
   programs.password-store = {
