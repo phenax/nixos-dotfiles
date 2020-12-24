@@ -59,7 +59,7 @@ in {
     loginShellInit = with builtins; let
       cases = map (s: ''
         /dev/${elemAt s 0})
-          echo "~/nixos/external/xconfig/init.sh; ${elemAt s 1}" > ~/.xinitrc;
+          echo "~/.config/xorg/init.sh; ${elemAt s 1}" > ~/.xinitrc;
           sleep 0.2;
           startx;
         ;;

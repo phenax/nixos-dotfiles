@@ -1,12 +1,10 @@
 #!/usr/bin/env sh
 
-NIX_X="$HOME/nixos/external/xconfig";
-
 # Xresources (theme)
-xrdb -merge $NIX_X/Xresources;
+xrdb -merge ~/.Xresources;
 
 # Xmodmap (keymapping)
-xmodmap $NIX_X/Xmodmap;
+xmodmap ~/.config/xorg/Xmodmap;
 
 # No screen saver
 xset s off;
@@ -17,10 +15,10 @@ xset s noblank;
 xset r rate 350 30;
 
 # Display settings
-# ~/scripts/commands/:day
+~/scripts/commands/:day
 
 # Sound
 #~/scripts/sound.sh mic-vol full;
-#~/scripts/sound.sh mute-mic;
-#~/scripts/sound.sh mute;
+~/scripts/sound.sh mute-mic;
+~/scripts/sound.sh mute;
 
