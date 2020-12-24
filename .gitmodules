@@ -25,3 +25,6 @@
 [submodule "extras/wallpapers"]
 	path = extras/wallpapers
 	url = git@github.com:phenax/wallpapers.git
+[submodule "extras/notes"]
+	path = extras/notes
+	url = git@github.com:phenax/personal-notes.git
