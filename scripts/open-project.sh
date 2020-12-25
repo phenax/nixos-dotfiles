@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PROJECTS_DIR="$HOME/dev/projects";
 SUCKLESS_DIR="$HOME/.config/suckless";

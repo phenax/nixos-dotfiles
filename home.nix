@@ -52,8 +52,6 @@ in {
     #signing.signByDefault = true;
   };
 
-  services.clipmenu.enable = true;
-
   services.syncthing = {
     enable = true;
     tray = false;
@@ -86,6 +84,8 @@ in {
       #pinentry-program /home/imsohexy/nixos/packages/anypinentry/source/anypinentry
     #'';
   };
+
+  services.network-manager-applet.enable = true;
 
   xresources.properties = let
     bg = "#0f0c19";
