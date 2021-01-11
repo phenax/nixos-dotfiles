@@ -72,7 +72,7 @@ in {
     '';
   };
   services = {
-    mingetty = {
+    getty = {
       autologinUser = "imsohexy";
       helpLine = "";
       greetingLine = let
