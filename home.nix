@@ -154,19 +154,19 @@ in {
     "scripts".source = ./scripts;
   };
 
-  services.picom = {
-    enable = true;
-    backend = "glx";
-    inactiveDim = "0.3";
-    opacityRule = [
-      "98:class_g = 'St' && focused"
-      "85:class_g = 'St' && !focused"
-      "90:class_g = 'qutebrowser' && !focused"
-      "100:class_g = 'qutebrowser' && focused"
-    ];
-    extraOptions = ''
-      focus-exclude = [ "class_g = 'dwm'", "class_g = 'dmenu'"];
-    '';
-    menuOpacity = "0.9";
-  };
+  #services.picom = {
+    #enable = true;
+    #backend = "glx";
+    #inactiveDim = "0.3";
+    #opacityRule = [
+      #"98:class_g = 'St' && focused"
+      #"85:class_g = 'St' && !focused"
+      #"90:class_g = 'qutebrowser' && !focused"
+      #"100:class_g = 'qutebrowser' && focused"
+    #];
+    #extraOptions = ''
+      #focus-exclude = [ "class_g = 'dwm'", "class_g = 'dmenu'"];
+    #'';
+    #menuOpacity = "0.9";
+  #};
 }

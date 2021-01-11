@@ -3,7 +3,7 @@ let
     EDITOR = "nvim";
     TERMINAL = "st";
     BROWSER = "qutebrowser";
-    PRIVATE_BROWSER = "qutebrowser";
+    PRIVATE_BROWSER = "qutebrowser ':open -p'";
   };
   package = { stdenv }: stdenv.mkDerivation rec {
     name = "local-sensible-apps-${version}";

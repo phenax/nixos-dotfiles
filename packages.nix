@@ -24,17 +24,13 @@ let
     nodejs-15_x
     python3
     rustup
-    ghc
 
     rnix-lsp
-    ccls
-    haskell-language-server
   ];
 
   apps = with pkgs; [
     # Browser
     qutebrowser
-    firefox
     brave
 
     # Media
@@ -45,8 +41,11 @@ let
     ffmpeg-full
     feh
 
-    w3m
-    mtm
+    # Remind
+    remind
+    wyrd
+
+    signal-cli
     lf
     dunst
     gotop
@@ -62,18 +61,20 @@ let
     jq
     wget
     killall
-    inxi
     pciutils
     udiskie
-    # picom
-    # nm-applet
+    file
 
     # X stuff
+    bc
+    brightnessctl
     xorg.xinit
     xorg.xrandr
     xorg.xmodmap
-    xorg.xbacklight
+    #xorg.xbacklight
     xclip
+    xdo
+    xdotool
   ];
 in {
   # Packages
