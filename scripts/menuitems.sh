@@ -38,12 +38,12 @@ icon() {
 }
 
 date_module() {
-  echo "$(icon date) $(date +"%A, %e %b - %I:%M %p")";
+  echo "$(icon date)  $(date +"%A, %e %b - %I:%M %p")";
 }
 
 battery_module() {
   local capacity=$(cat "/sys/class/power_supply/BAT0/capacity");
-  echo "$(icon battery) $capacity%";
+  echo "$(icon battery)  $capacity%";
 }
 
 music_module() {
@@ -52,7 +52,7 @@ music_module() {
 }
 
 brightness_module() {
-  echo "$(icon brightness) $(printf "%.0f%s" "$(xbacklight -get)" "%")"
+  echo "$(icon brightness)  $(printf "%.0f%s" "$(xbacklight -get)" "%")"
 }
 
 volume_module() {

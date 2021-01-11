@@ -6,8 +6,8 @@ notify() { notify-send "$@"; }
 
 scrsht() {
   local type=$1;
-  local window=$([ -z "$2" ] && echo "" || echo "-window $2");
-  magick import $window "$SCREENSHOTS/$type-$(date '+%Y_%m_%d_%H_%M_%S').jpg";
+  local window=$([ -z "$2" ] && echo "" || echo $([[ "$2" == root ]] && "-screen" || "-window $2"));
+  import $window "$SCREENSHOTS/$type-$(date '+%Y_%m_%d_%H_%M_%S').jpg";
   notify "Screenshot ($type) captured";
 }
 

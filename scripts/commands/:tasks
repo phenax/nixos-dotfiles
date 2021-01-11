@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sensible-terminal -e sensible-editor ~/.config/vimwiki/Work.md;
+sensible-terminal -e sensible-editor ~/nixos/extras/notes/Work.md;
 

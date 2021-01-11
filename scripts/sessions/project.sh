@@ -2,10 +2,19 @@
 
 dir="$1";
 
-sensible-terminal -d "$dir" -e sensible-editor . &
+editor="sensible-editor";
+
+if [[ -f "$dir/default.nix" ]]; then
+  editor="nix-shell --run '$editor'";
+fi;
+
+term() { sensible-terminal -d "$dir" "$@"; }
+editor() { term -e sh -c "echo 'Loading...'; $editor"; }
+
+editor &
 sleep 0.1;
-sensible-terminal -d "$dir" &
-sensible-terminal -d "$dir" &
+term &
+term &
 
 disown;
 

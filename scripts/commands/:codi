@@ -3,7 +3,7 @@
 filetype=${1:-javascript}
 tmpfile=$(mktemp /tmp/interpreter.XXXXXXX)
 
-sensible-terminal -e sh -c "~/.bin/with_zsh 'codi $filetype $tmpfile'";
+sensible-terminal -e sh -c "~/scripts/bin/with_zsh 'codi $filetype $tmpfile'";
 
 rm $tmpfile;
 
