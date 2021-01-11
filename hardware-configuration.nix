@@ -13,7 +13,7 @@
     kernelModules = [];
   };
   boot.kernelModules = ["kvm-intel" "sd_mod" "rtw88_8822ce"];
-  boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" ];
+  boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "i915.enable_dpcd_backlight=1" "acpi_backlight=vendor" ];
   boot.extraModulePackages = [];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
