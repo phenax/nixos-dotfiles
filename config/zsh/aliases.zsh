@@ -4,6 +4,7 @@ for f in $ZSH_CUSTOM_CONF_FILES/aliases/*.zsh; do source $f; done;
 alias grep="grep --color=auto";
 
 # Application shortcuts
+alias emedit="emacsclient -c -n";
 alias e="sensible-editor";
 alias v="nvim";
 alias o='open $(fzf)';

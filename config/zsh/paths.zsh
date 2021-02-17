@@ -10,7 +10,7 @@ export COMMANDS_DIR="$HOME/scripts/commands";
 # Lang specific stuff
 export CARGO_HOME=$XDG_CONFIG_HOME/cargo;
 export GEM_HOME=$HOME/.gem;
-export GOROOT=/usr/lib/go;
+#export GOROOT=/usr/lib/go;
 export GOPATH=$HOME/dev/go;
 export DENO_INSTALL="$HOME/.config/deno";
 
