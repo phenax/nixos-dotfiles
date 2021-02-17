@@ -28,3 +28,6 @@
 [submodule "extras/notes"]
 	path = extras/notes
 	url = git@github.com:phenax/personal-notes.git
+[submodule "config/emacs"]
+	path = config/emacs
+	url = git@github.com:phenax/emacs-config.git
