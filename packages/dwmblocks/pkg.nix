@@ -1,5 +1,5 @@
-{ stdenv, libX11, pkgconfig }:
-with stdenv.lib;
+{ stdenv, pkgs, libX11, pkgconfig }:
+with pkgs.lib;
 
 stdenv.mkDerivation rec {
   name = "local-dwmblocks-${version}";

@@ -1,5 +1,5 @@
-{ stdenv, libX11, libXinerama, libXft, fontconfig, pkgconfig, ncurses }:
-with stdenv.lib;
+{ stdenv, pkgs, libX11, libXinerama, libXft, fontconfig, pkgconfig, ncurses }:
+with pkgs.lib;
 
 stdenv.mkDerivation rec {
   name = "local-st-${version}";

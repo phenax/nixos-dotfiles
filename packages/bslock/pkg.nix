@@ -1,5 +1,5 @@
-{ stdenv, xorgproto, libX11, libXinerama, libXext, libXrandr }:
-with stdenv.lib;
+{ stdenv, pkgs, xorgproto, libX11, libXinerama, libXext, libXrandr }:
+with pkgs.lib;
 
 let
   user = "imsohexy";

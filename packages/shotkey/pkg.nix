@@ -1,5 +1,5 @@
-{ stdenv, libX11 }:
-with stdenv.lib;
+{ stdenv, pkgs, libX11 }:
+with pkgs.lib;
 
 stdenv.mkDerivation rec {
   name = "local-shotkey-${version}";

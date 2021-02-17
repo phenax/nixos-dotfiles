@@ -1,5 +1,5 @@
 { stdenv, pkgs, dmenu ? (import ../default.nix { pkgs = pkgs; }).dmenu }:
-with stdenv.lib;
+with pkgs.lib;
 
 stdenv.mkDerivation rec {
   name = "local-anypinentry-${version}";
