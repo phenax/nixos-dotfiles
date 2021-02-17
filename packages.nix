@@ -2,15 +2,15 @@
 
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
-  customPackages = [
-    localPkgs.sensible-apps
-    localPkgs.shotkey
-    localPkgs.dwm
-    localPkgs.dwmblocks
-    localPkgs.st
-    localPkgs.dmenu
-    localPkgs.anypinentry
-    localPkgs.bslock
+  customPackages = with localPkgs; [
+    sensible-apps
+    shotkey
+    dwm
+    dwmblocks
+    st
+    dmenu
+    anypinentry
+    bslock
   ];
 
   devPackages = with pkgs; [
@@ -26,7 +26,15 @@ let
     rustup
 
     rnix-lsp
-  ];
+    python-language-server
+    haskell-language-server
+    cabal-install
+    ghc
+  ] ++ (with pkgs.nodePackages; [
+    typescript
+    typescript-language-server
+    bash-language-server
+  ]);
 
   apps = with pkgs; [
     # Browser

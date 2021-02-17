@@ -15,6 +15,7 @@ let
     done
   '';
 in {
+
   # User
   users.users.imsohexy = {
     isNormalUser = true;
@@ -28,6 +29,7 @@ in {
       "networkmanager"
       "docker"
       "transmission"
+      "lxd"
     ];
     shell = pkgs.zsh;
   };
