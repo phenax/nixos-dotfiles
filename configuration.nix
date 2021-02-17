@@ -13,6 +13,7 @@ in {
     ./packages.nix
     ./overlays-system.nix
     ./login.nix
+    ./modules/torrent.home.nix
   ];
 
   nixpkgs.config = {
@@ -27,7 +28,10 @@ in {
     extraHosts = '''';
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    lxd.enable = true;
+  };
 
   # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";
@@ -40,35 +44,6 @@ in {
     home = { stateVersion = "21.03"; };
   };
 
-  services.transmission = {
-    enable = true;
-    settings = {
-      "download-dir" = "/home/imsohexy/Downloads/dl";
-      "download-queue-enabled" = true;
-      "download-queue-size" = 5;
-      "incomplete-dir" = "/home/imsohexy/Downloads/dl/incomplete";
-      "incomplete-dir-enabled" = true;
-      "peer-port" = 51413;
-      "peer-port-random-high" = 65535;
-      "peer-port-random-low" = 49152;
-      "prefetch-enabled" = true;
-      "rename-partial-files" = true;
-      "rpc-authentication-required" = false;
-      "rpc-bind-address" = "127.0.0.1";
-      "rpc-enabled" = true;
-      "rpc-port" = 9091;
-      "rpc-whitelist-enabled" = true;
-      "script-torrent-done-enabled" = false;
-      "script-torrent-done-filename" = "";
-      "start-added-torrents" = true;
-      "trash-original-torrent-files" = false;
-      "umask" = 18;
-      "utp-enabled" = true;
-      "watch-dir" = "/home/an/Downloads/qute";
-      "watch-dir-enabled" = false;
-    };
-  };
-
   # X11 config
   services.xserver = {
     enable = true;
@@ -76,8 +51,10 @@ in {
     displayManager.startx.enable = true;
     libinput = {
       enable = true;
-      tapping = true;
-      naturalScrolling = false;
+      touchpad = {
+        tapping = true;
+        naturalScrolling = false;
+      };
     };
   };
   fonts.fonts = with pkgs; [

@@ -1,55 +1,28 @@
-{ config, pkgs, ... }:
+{ config, pkgs, epkgs, ... }:
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
 in {
   imports = [
-    ./modules/music.nix
     ./overlays-home.nix
+    ./modules/music.home.nix
+    ./modules/git.home.nix
   ];
 
   home.packages = with pkgs; [
     yarn
   ];
 
+  programs.emacs = {
+    enable = true;
+  };
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+  };
+
   programs.lsd = {
     enable = true;
     enableAliases = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userEmail = "phenax5@gmail.com";
-    userName = "Akshay Nair";
-    ignores = [
-      "tags"
-      ".vim.session"
-      "tags.lock"
-      "tags.temp"
-    ];
-    aliases = {
-      ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
-    };
-    extraConfig = {
-      "color" = {
-        "ui" = true;
-      };
-      "color \"diff-highlight\"" = {
-        oldNormal = "red bold";
-        oldHighlight = "red bold 52";
-        newNormal = "green bold";
-        newHighlight = "green bold 22";
-      };
-      "color \"diff\"" = {
-        meta = 11;
-        frag = "magenta bold";
-        commit = "yellow bold";
-        old = "red bold";
-        new = "green bold";
-        whitespace = "red reverse";
-      };
-    };
-    #signing.key = "GPG-KEY-ID";
-    #signing.signByDefault = true;
   };
 
   services.syncthing = {
@@ -85,7 +58,7 @@ in {
     #'';
   };
 
-  services.network-manager-applet.enable = true;
+  # services.network-manager-applet.enable = true;
 
   xresources.properties = let
     bg = "#0f0c19";
