@@ -1,5 +1,6 @@
 # Config editors
 alias enix='gnix && sensible-editor configuration.nix';
+alias eemacs='gemacs && emedit Emacs.org';
 alias eorg='gnotes && sensible-editor index.md';
 alias ezsh='gzsh && sensible-editor zshrc';
 alias edot='sensible-editor ~/nixos/scripts/dotfiles.sh';

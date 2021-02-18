@@ -16,6 +16,7 @@ alias gqute="cd $NIXCONF/config/qutebrowser";
 
 alias gnix="cd $NIXCONF";
 alias gvim="cd $NIXCONF/config/nvim";
+alias gemacs="cd $NIXCONF/config/emacs";
 alias gcmd="cd $NIXCONF/scripts/commands";
 alias gzsh="cd $NIXCONF/config/zsh";
 

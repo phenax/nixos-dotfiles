@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source ~/.config/zshconf/paths.zsh;
+source ~/nixos/config/zsh/paths.zsh;
 
 cd $COMMANDS_DIR;
 
