@@ -27,9 +27,9 @@ let
 
     rnix-lsp
     python-language-server
-    haskell-language-server
-    cabal-install
-    ghc
+    # haskell-language-server
+    # cabal-install
+    # ghc
   ] ++ (with pkgs.nodePackages; [
     typescript
     typescript-language-server

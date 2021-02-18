@@ -19,6 +19,10 @@ in {
     enable = true;
     client.enable = true;
   };
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
 
   programs.lsd = {
     enable = true;

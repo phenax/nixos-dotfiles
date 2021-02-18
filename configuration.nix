@@ -83,6 +83,10 @@ in {
     automatic = true;
     dates = "weekly";
   };
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
   system.stateVersion = "20.09";
 }
