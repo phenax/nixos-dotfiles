@@ -274,12 +274,13 @@ c.url.searchengines = {
     'sx': 'https://searx.fmac.xyz/?q={}',
     'q': 'https://www.qwant.com/search?q={}',
     'd': 'https://duckduckgo.com/?q={}',
-    'go': 'https://google.com/?q={}',
+    'go': 'https://google.com/search?q={}',
 
     # Dev stuff
     'bp': 'https://bundlephobia.com/result?p={}',
     'rs': 'https://crates.io/search?q={}',
     'ciu': 'https://caniuse.com/#search={}',
+    'npm': 'https://www.npmjs.com/search?q={}',
     'g': 'https://github.com/{}',
     'gh': 'http://github.com/search?q={}',
     'hg': 'http://www.haskell.org/hoogle/?hoogle={}',
@@ -307,6 +308,7 @@ c.aliases['view-google-cache'] = 'open --tab http://www.google.com/search?q=cach
 
 #  c.aliases['xa'] = 'quit --save'
 c.aliases['h'] = 'help'
+
 # }}}
 
 #### Dev {{{
