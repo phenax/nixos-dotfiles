@@ -22,7 +22,15 @@ fulldir="";
 case "$projtype" in
   dev)        fulldir="$PROJECTS_DIR/$projdir" ;;
   suckless)   fulldir="$SUCKLESS_DIR/$projdir" ;;
+  *)          fulldir="$PROJECTS_DIR/$projdir" ;;
 esac
 
-[ ! -z "$fulldir" ] && [ -d "$fulldir" ] && ~/scripts/sessions/project.sh "$fulldir";
+if [ ! -z "$fulldir" ]; then
+  if [ ! -d "$fulldir" ]; then
+    mkdir -p $fulldir;
+    notify-send "Created new project at $fulldir";
+  fi;
+
+  ~/scripts/sessions/project.sh "$fulldir";
+fi;
 
