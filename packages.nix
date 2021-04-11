@@ -21,6 +21,8 @@ let
     ctags
     fzf
 
+    gcc
+    gnumake
     nodejs-15_x
     python3
     rustup
@@ -30,11 +32,13 @@ let
     # haskell-language-server
     # cabal-install
     # ghc
-  ] ++ (with pkgs.nodePackages; [
-    typescript
-    typescript-language-server
-    bash-language-server
-  ]);
+  ] ++ (
+    with pkgs.nodePackages; [
+      typescript
+      typescript-language-server
+      bash-language-server
+    ]
+  );
 
   apps = with pkgs; [
     # Browser
@@ -72,6 +76,7 @@ let
     pciutils
     udiskie
     file
+    at
 
     # X stuff
     bc
@@ -84,7 +89,8 @@ let
     xdo
     xdotool
   ];
-in {
+in
+{
   # Packages
   environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
 

@@ -4,9 +4,10 @@
 
 { config, pkgs, ... }:
 
-let 
+let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
-in {
+in
+{
   imports = [
     <home-manager/nixos>
     ./hardware-configuration.nix
@@ -24,9 +25,19 @@ in {
   # Network
   networking = {
     hostName = "dickhead";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 8080 ];
+      allowedUDPPorts = [];
+    };
     networkmanager.enable = true;
-    extraHosts = '''';
+    extraHosts = ''
+      127.0.0.1       dev.parlezvous.io
+      127.0.0.1       demo.parlezvous.io
+    '';
   };
+
+  services.atd.enable = true;
 
   virtualisation = {
     docker.enable = true;
@@ -40,7 +51,7 @@ in {
 
   # Home manager
   home-manager.users.imsohexy = { pkgs, ... }: {
-    imports = [./home.nix];
+    imports = [ ./home.nix ];
     home = { stateVersion = "21.03"; };
   };
 
@@ -65,11 +76,11 @@ in {
   ];
   # nix-shell -p actkbd --run "sudo actkbd -n -s -d /dev/input/event#"
   #services.actkbd = {
-    #enable = true;
-    #bindings = [
-      #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
-      #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
-    #];
+  #enable = true;
+  #bindings = [
+  #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
+  #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
+  #];
   #};
   # Enable CUPS to print documents.
   # services.printing.enable = true;

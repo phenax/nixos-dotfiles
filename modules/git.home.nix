@@ -17,6 +17,9 @@
       "color" = {
         "ui" = true;
       };
+      "init" = {
+        defaultBranch = "main";
+      };
       "color \"diff-highlight\"" = {
         oldNormal = "red bold";
         oldHighlight = "red bold 52";
@@ -31,6 +34,7 @@
         new = "green bold";
         whitespace = "red reverse";
       };
+      #"pull" = { rebase = true; };
     };
     #signing.key = "GPG-KEY-ID";
     #signing.signByDefault = true;

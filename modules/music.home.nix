@@ -7,14 +7,16 @@
     musicDirectory = "${config.home.homeDirectory}/Downloads/music";
     playlistDirectory = "${config.home.homeDirectory}/Downloads/music/playlist";
     network = {
-      listenAddress = "0.0.0.0";
+      listenAddress = "127.0.0.1";
       port = 6600;
     };
     extraConfig = ''
+      user "imsohexy"
+      group "users"
       restore_paused "yes"
       metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
       auto_update	"yes"
-      auto_update_depth "3"
+      auto_update_depth "5"
       follow_outside_symlinks "yes"
       follow_inside_symlinks "yes"
       input {
@@ -26,10 +28,10 @@
         device "hw:0,0"
       }
       audio_output {
-        type                    "fifo"
-        name                    "my_fifo"
-        path                    "/tmp/mpd.fifo"
-        format                  "44100:16:2"
+        type "fifo"
+        name "my_fifo"
+        path "/tmp/mpd.fifo"
+        format "44100:16:2"
       }
       filesystem_charset		"UTF-8"
     '';
@@ -80,23 +82,24 @@
 
     bindings = with builtins; let
       toBinding = s: let get = elemAt s; in { key = get 0; command = get 1; };
-    in map toBinding [
-      ["h" ["previous_column" "master_screen" "jump_to_parent_directory"]]
-      ["l" ["next_column" "slave_screen" "enter_directory"]]
-      ["k" "scroll_up"]
-      ["j" "scroll_down"]
-      ["g" "page_up"]
-      ["G" "page_down"]
-      ["d" "delete_playlist_items"]
-      ["n" "next_found_item"]
-      ["N" "previous_found_item"]
-      ["P" "show_playlist_editor"]
-      ["B" "show_browser"]
-      ["s" "show_search_engine"]
-      ["S" "show_search_engine"]
-      ["ctrl-s" "save_playlist"]
-      ["c" "clear_main_playlist"]
-      ["ctrl-l" "show_lyrics"]
-    ];
+    in
+      map toBinding [
+        [ "h" [ "previous_column" "master_screen" "jump_to_parent_directory" ] ]
+        [ "l" [ "next_column" "slave_screen" "enter_directory" ] ]
+        [ "k" "scroll_up" ]
+        [ "j" "scroll_down" ]
+        [ "g" "page_up" ]
+        [ "G" "page_down" ]
+        [ "d" "delete_playlist_items" ]
+        [ "n" "next_found_item" ]
+        [ "N" "previous_found_item" ]
+        [ "P" "show_playlist_editor" ]
+        [ "B" "show_browser" ]
+        [ "s" "show_search_engine" ]
+        [ "S" "show_search_engine" ]
+        [ "ctrl-s" "save_playlist" ]
+        [ "c" "clear_main_playlist" ]
+        [ "ctrl-l" "show_lyrics" ]
+      ];
   };
 }
