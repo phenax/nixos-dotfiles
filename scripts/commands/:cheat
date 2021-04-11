@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-[[ ! -z "$1" ]] && file=$1 || file=Cheatsheets;
-
-sensible-terminal -e sensible-editor ~/.config/vimwiki/$file.md;

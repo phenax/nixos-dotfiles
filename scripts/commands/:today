@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-sensible-terminal -e sensible-editor ~/nixos/extras/notes/Today.md;
-
