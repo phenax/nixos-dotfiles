@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+kind=$1;
+
+[[ -f "$kind" ]] && echo "You need to specify the type of shell" && exit 1;
+
+shell_path="$HOME/nixos/shell/$kind.nix";
+
+[[ ! -f "$shell_path" ]] && echo "Shell $kind doesn't exist" && exit 1;
+
+cp $shell_path ./default.nix;
+
