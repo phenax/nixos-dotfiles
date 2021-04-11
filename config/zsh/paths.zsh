@@ -4,7 +4,7 @@ export PKG_CONFIG_PATH=/usr/lib/pkgconfig;
 
 # Local scripts
 export SCRIPTS_DIR="$HOME/scripts";
-export SCRIPTS_BINARY_DIR="$HOME/.bin";
+export SCRIPTS_BINARY_DIR="$SCRIPTS_DIR/bin";
 export COMMANDS_DIR="$HOME/scripts/commands";
 
 # Lang specific stuff

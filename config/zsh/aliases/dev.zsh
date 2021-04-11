@@ -34,3 +34,40 @@ codi() {
     Codi $syntax" "$@"
 }
 
+
+# Npm run key binding
+p__run_npm_script() {
+  [[ ! -f "package.json" ]] && return 1;
+
+  local commands=$(node -e 'const pkg = require("./package.json"); Object.entries(pkg.scripts || {}).map(([key, value]) => console.log(`${key}\t\t  "${value}"`))');
+
+  local result=$(echo -e "$commands" | fzf | cut -f1);
+
+  [[ -z "$result" ]] && return 1;
+  yarn "$result";
+}
+
+zle -N p__run_npm_script;
+bindkey '^B' p__run_npm_script;
+
+
+
+# Load shell
+p__load_nix_shell_file() {
+  if [[ -f "./default.nix" ]]; then
+    echo "";
+    echo "ERR: default.nix already exists in directory";
+    zle send-break;
+    return 1;
+  fi;
+
+  local shells=$(ls ~/nixos/shell);
+  local selected=$(echo -e "$shells" | fzf);
+  [[ -z "$selected" ]] && return 1;
+  cp ~/nixos/shell/$selected ./default.nix;
+  zle send-break
+}
+
+zle -N p__load_nix_shell_file;
+bindkey '^N' p__load_nix_shell_file;
+

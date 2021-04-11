@@ -1,7 +1,16 @@
 
 # Pacman aliases
 
+alias update="sudo nixos-rebuild switch --upgrade";
 alias auto-remove="sudo nix-collect-garbage -d && nix-store --optimize";
+
+alias rebuild="sudo nixos-rebuild switch";
+alias list-gens="sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+
+nix-rollback() {
+  [[ -z "$1" ]] && echo "Specify generation number: nix-rollback 330" && return 1;
+  sudo nixos-rebuild switch --rollback=$1;
+}
 
 #alias mirrorlist-refresh="sudo reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist-arch"
 
