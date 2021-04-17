@@ -9,6 +9,7 @@
       ".vim.session"
       "tags.lock"
       "tags.temp"
+      "ayak.sh"
     ];
     aliases = {
       ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
