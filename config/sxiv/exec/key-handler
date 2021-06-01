@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+# Mod key = Ctrl + x
+
+rotate() {
+	degree="$1"
+	tr '\n' '\0' | xargs -0 realpath | sort | uniq | while read file; do
+		case "$(file -b -i "$file")" in
+		image/jpeg*) jpegtran -rotate "$degree" -copy all -outfile "$file" "$file" ;;
+		*)           mogrify  -rotate "$degree" "$file" ;;
+		esac
+	done
+}
+
+# >, <  Rotate
+# <Return> Thumbnail view
+# C-x w  Set as wallpaper
+# C-x C-c Copy to clipboard
+
+case "$1" in
+# Copy image to clipboard
+"C-c")      while read file; do xclip -selection clipboard -target image/png "$file"; done ;;
+
+# Set as wallpaper
+"w")        while read file; do feh --bg-scale "$file"; done ;;
+esac
+

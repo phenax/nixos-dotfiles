@@ -1,7 +1,8 @@
 { config, pkgs, epkgs, ... }:
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
-in {
+in
+{
   imports = [
     ./overlays-home.nix
     ./modules/music.home.nix
@@ -46,7 +47,7 @@ in {
 
   programs.password-store = {
     enable = true;
-    package = pkgs.pass.withExtensions(exts: [ exts.pass-otp ]);
+    package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
     settings = {
       PASSWORD_STORE_DIR = "~/.config/password-store";
     };
@@ -58,7 +59,7 @@ in {
     enableSshSupport = false;
     #pinentryFlavor = null;
     #extraConfig = ''
-      #pinentry-program /home/imsohexy/nixos/packages/anypinentry/source/anypinentry
+    #pinentry-program /home/imsohexy/nixos/packages/anypinentry/source/anypinentry
     #'';
   };
 
@@ -122,6 +123,7 @@ in {
     ".config/zsh".source = ./config/zsh;
     ".config/nvim".source = ./config/nvim;
     ".config/qutebrowser".source = ./config/qutebrowser;
+    ".config/sxiv".source = ./config/sxiv;
     ".local/share/qutebrowser/userscripts".source = ./config/qutebrowser/userscripts;
     ".local/share/qutebrowser/greasemonkey".source = ./config/qutebrowser/greasemonkey;
     # ".local/share/qutebrowser/sessions".source = ./private-config/qutebrowser/sessions;
@@ -132,18 +134,18 @@ in {
   };
 
   #services.picom = {
-    #enable = true;
-    #backend = "glx";
-    #inactiveDim = "0.3";
-    #opacityRule = [
-      #"98:class_g = 'St' && focused"
-      #"85:class_g = 'St' && !focused"
-      #"90:class_g = 'qutebrowser' && !focused"
-      #"100:class_g = 'qutebrowser' && focused"
-    #];
-    #extraOptions = ''
-      #focus-exclude = [ "class_g = 'dwm'", "class_g = 'dmenu'"];
-    #'';
-    #menuOpacity = "0.9";
+  #enable = true;
+  #backend = "glx";
+  #inactiveDim = "0.3";
+  #opacityRule = [
+  #"98:class_g = 'St' && focused"
+  #"85:class_g = 'St' && !focused"
+  #"90:class_g = 'qutebrowser' && !focused"
+  #"100:class_g = 'qutebrowser' && focused"
+  #];
+  #extraOptions = ''
+  #focus-exclude = [ "class_g = 'dwm'", "class_g = 'dmenu'"];
+  #'';
+  #menuOpacity = "0.9";
   #};
 }
