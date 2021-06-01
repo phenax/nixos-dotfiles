@@ -35,14 +35,14 @@ run() {
 ##### Autostart {{{
   echo "[Autostart]: Running daemons";
 
-  # Wallpaper
-  run "" ~/.fehbg;
-
   # Key daemon
   run "shotkey" shotkey;
 
+  # Wallpaper
+  run "" ~/.fehbg;
+
   # Dwm blocks status text
-  run "dwmblocks" dwmblocks;
+  # run "dwmblocks" dwmblocks;
 
   # Notification daemon
   run "dunst" dunst -config ~/.config/dunst/dunstrc;

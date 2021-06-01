@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source "$HOME/scripts/modules/utils.sh";
 source "$HOME/scripts/modules/rofi-menu.sh";

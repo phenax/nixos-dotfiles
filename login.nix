@@ -1,11 +1,12 @@
 { pkgs, ... }:
 let
   sessions = [
-    ["tty1" windowManagers.dwm ]
-    #["tty2" windowManagers.bspwm ]
+    [ "tty1" windowManagers.xmonad ]
+    # [ "tty2" windowManagers.dwm ]
   ];
   windowManagers = {
     dwm = looped "dwm";
+    xmonad = exec "~/.xmonad/bin/xmonad-wm";
     bspwm = exec "bspwm";
   };
   exec = s: "exec ${s}";
@@ -14,7 +15,8 @@ let
       ssh-agent ${s} || break;
     done
   '';
-in {
+in
+{
 
   # User
   users.users.imsohexy = {
@@ -30,6 +32,7 @@ in {
       "docker"
       "transmission"
       "lxd"
+      "jackaudio"
     ];
     shell = pkgs.zsh;
   };
@@ -40,13 +43,14 @@ in {
   # Global
   environment.variables = let
     apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
-  in {
-    EDITOR = apps.EDITOR;
-    VISUAL = apps.EDITOR;
-    TERMINAL = apps.TERMINAL;
-    BROWSER = apps.BROWSER;
-    PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
-  };
+  in
+    {
+      EDITOR = apps.EDITOR;
+      VISUAL = apps.EDITOR;
+      TERMINAL = apps.TERMINAL;
+      BROWSER = apps.BROWSER;
+      PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
+    };
   environment.shells = with pkgs; [ zsh bashInteractive ];
   programs.zsh = {
     enable = true;
@@ -59,54 +63,28 @@ in {
     interactiveShellInit = ''source ~/.config/zsh/zshrc'';
     promptInit = "";
     loginShellInit = with builtins; let
-      cases = map (s: ''
-        /dev/${elemAt s 0})
-          echo "~/.config/xorg/init.sh; ${elemAt s 1}" > ~/.xinitrc;
-          sleep 0.2;
-          startx;
-        ;;
-      '') sessions;
-    in ''
-      case "$(tty)" in
-        ${toString cases}
-        *) echo "Only tty for you, $(tty)" ;;
-      esac;
-    '';
+      cases = map (
+        s: ''
+          /dev/${elemAt s 0})
+            echo "~/.config/xorg/init.sh; ${elemAt s 1}" > ~/.xinitrc;
+            sleep 0.2;
+            startx;
+          ;;
+        ''
+      ) sessions;
+    in
+      ''
+        case "$(tty)" in
+          ${toString cases}
+          *) echo "Only tty for you, $(tty)" ;;
+        esac;
+      '';
   };
   services = {
     getty = {
       autologinUser = "imsohexy";
       helpLine = "";
-      greetingLine = let
-        c1 = "\\e{lightblue}";
-        c2 = "\\e{lightcyan}";
-        res = "\\e{reset}";
-      in ''
-
-${c1}          ▗▄▄▄       ${c2}▗▄▄▄▄    ▄▄▄▖${res}
-${c1}          ▜███▙       ${c2}▜███▙  ▟███▛${res}                        ${c1}TTY:${res}       \e{bold}\l${res}
-${c1}           ▜███▙       ${c2}▜███▙▟███▛${res}                         ${c2}Time:${res}      \e{halfbright}\d \t${res}
-${c1}            ▜███▙       ${c2}▜██████▛${res}                          ${c2}Distr${res}      \e{halfbright}\S{PRETTY_NAME} \m${res}
-${c1}     ▟█████████████████▙ ${c2}▜████▛     ${c1}▟▙${res}                    ${c2}Kernal:${res}    \e{halfbright}\s \r${res}
-${c1}    ▟███████████████████▙ ${c2}▜███▙    ${c1}▟██▙${res}                   ${c2}WM:${res}        \e{halfbright}dwm${res}
-${c1}           ▄▄▄▄▖           ▜███▙  ${c1}▟███▛${res}
-${c1}          ▟███▛             ▜██▛ ${c1}▟███▛${res}
-${c1}         ▟███▛               ▜▛ ${c1}▟███▛${res}
-${c1}▟███████████▛                  ${c1}▟██████████▙${res}
-${c1}▜██████████▛                  ${c1}▟███████████▛${res}
-${c1}      ▟███▛ ${c1}▟▙               ▟███▛${res}
-${c1}     ▟███▛ ${c1}▟██▙             ▟███▛${res}
-${c1}    ▟███▛  ${c1}▜███▙           ▝▀▀▀▀${res}
-${c1}    ▜██▛    ${c1}▜███▙ ${c2}▜██████████████████▛${res}
-${c1}     ▜▛     ${c1}▟████▙ ${c2}▜████████████████▛${res}
-${c1}           ▟██████▙       ${c2}▜███▙${res}
-${c1}          ▟███▛▜███▙       ${c2}▜███▙${res}
-${c1}         ▟███▛  ▜███▙       ${c2}▜███▙${res}
-${c1}         ▝▀▀▀    ▀▀▀▀▘       ${c2}▀▀▀▘${res}
-
-
-
-\e{bold}What's the password, dipshit?\e{reset}'';
+      greetingLine = import ./modules/welcome-text.nix;
     };
   };
 }

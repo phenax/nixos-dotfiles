@@ -5,8 +5,8 @@ let
   customPackages = with localPkgs; [
     sensible-apps
     shotkey
-    dwm
-    dwmblocks
+    # dwm
+    # dwmblocks
     st
     dmenu
     anypinentry
