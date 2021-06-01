@@ -12,7 +12,13 @@
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" ];
     kernelModules = [];
   };
-  boot.kernelModules = [ "kvm-intel" "sd_mod" "rtw88_8822ce" ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "rtw88_8822ce"
+    "sd_mod"
+    "snd-seq"
+    "snd-rawmidi"
+  ];
   boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "i915.enable_dpcd_backlight=1" "acpi_backlight=vendor" ];
   boot.extraModulePackages = [];
   boot.extraModprobeConfig = ''

@@ -23,20 +23,23 @@ let
 
     gcc
     gnumake
-    nodejs-15_x
+    nodejs-16_x
     python3
-    rustup
+    # rustup
+
+    godot
+    blender
 
     rnix-lsp
-    python-language-server
-    # haskell-language-server
+    # python-language-server
+    haskell-language-server
+    ghc
     # cabal-install
-    # ghc
   ] ++ (
     with pkgs.nodePackages; [
       typescript
       typescript-language-server
-      bash-language-server
+      # bash-language-server
     ]
   );
 
@@ -54,20 +57,21 @@ let
     feh
 
     # Remind
-    remind
-    wyrd
+    # remind
+    # wyrd
 
-    signal-cli
+    # signal-cli
+    # signal-desktop
     lf
     dunst
     gotop
     tremc
   ];
 
+
   utils = with pkgs; [
     libnotify
     xcwd
-    alsaUtils
     unzip
     curl
     jq
