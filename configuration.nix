@@ -22,6 +22,10 @@ in
     allowBroken = false;
   };
 
+  services.tlp = {
+    enable = true;
+  };
+
   services.jack = {
     jackd.enable = true;
     alsa.enable = false;
