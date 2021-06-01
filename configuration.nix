@@ -22,6 +22,14 @@ in
     allowBroken = false;
   };
 
+  services.jack = {
+    jackd.enable = true;
+    alsa.enable = false;
+    loopback = {
+      enable = true;
+    };
+  };
+
   # Network
   networking = {
     hostName = "dickhead";

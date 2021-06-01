@@ -78,12 +78,19 @@ let
     file
     at
 
+    # Audio
+    alsaUtils
+    qjackctl
+    qsynth
+    ardour
+
     # X stuff
     bc
     brightnessctl
     xorg.xinit
     xorg.xrandr
     xorg.xmodmap
+    # xorg.xkill
     #xorg.xbacklight
     xclip
     xdo
@@ -93,6 +100,10 @@ in
 {
   # Packages
   environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "ffmpeg-3.4.8"
+  ];
 
   # Security wrappers
   security.wrappers = {
