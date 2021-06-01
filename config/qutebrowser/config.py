@@ -245,17 +245,18 @@ nmap(leader + 'pd', 'incognito-disable')
 #### Perdomain permission config {{{
 
 # Notifications
-c.content.notifications = 'ask'
+c.content.notifications.presenter = 'libnotify'
+c.content.notifications.enabled = 'ask'
 c.content.desktop_capture = 'ask'
 
-config.set('content.notifications', True, '*://reddit.com')
-config.set('content.notifications', True, '*://www.reddit.com')
-config.set('content.notifications', True, '*://web.whatsapp.com')
-config.set('content.notifications', True, '*://mail.google.com')
-config.set('content.notifications', True, '*://chat.google.com')
+config.set('content.notifications.enabled', True, '*://reddit.com')
+config.set('content.notifications.enabled', True, '*://www.reddit.com')
+config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
+config.set('content.notifications.enabled', True, '*://mail.google.com')
+config.set('content.notifications.enabled', True, '*://chat.google.com')
 
 # Google meet
-config.set('content.notifications', False, '*://meet.google.com')
+config.set('content.notifications.enabled', False, '*://meet.google.com')
 config.set('content.media.audio_video_capture', True, '*://meet.google.com')
 config.set('content.media.audio_capture', True, '*://meet.google.com')
 config.set('content.media.video_capture', True, '*://meet.google.com')
