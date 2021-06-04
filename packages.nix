@@ -20,6 +20,7 @@ let
     ripgrep
     ctags
     fzf
+    git-bug
 
     gcc
     gnumake
@@ -39,6 +40,7 @@ let
     with pkgs.nodePackages; [
       typescript
       typescript-language-server
+      vscode-json-languageserver
       # bash-language-server
     ]
   );
