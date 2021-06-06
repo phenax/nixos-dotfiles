@@ -21,6 +21,7 @@ let
     ctags
     fzf
     git-bug
+    docker-compose
 
     gcc
     gnumake
