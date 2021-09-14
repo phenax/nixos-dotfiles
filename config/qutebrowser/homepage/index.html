@@ -36,10 +36,7 @@
         children.forEach($ch => $el.appendChild($ch));
         return $el;
       };
-      const text = str => {
-        const $t = document.createTextNode(str);
-        return $t;
-      };
+      const text = str => document.createTextNode(str);
       const render = ($el, $tree) => {
         while($el.firstChild) $el.removeChild($el.firstChild);
         $el.appendChild($tree);
@@ -111,28 +108,24 @@
     </style>
     <script>
       const $clock = $('#clock');
-
-      const formatTime = date => {
-        const format = new Intl.DateTimeFormat('en-IN', {
+      const formatters = {
+        time: new Intl.DateTimeFormat('en-IN', {
           hour12: true,
           hour: 'numeric', minute: 'numeric'
-        });
-
-        return format.format(date);
-      };
-      const formatDate = date => {
-        const format = new Intl.DateTimeFormat('en-IN', {
+        }),
+        date: new Intl.DateTimeFormat('en-IN', {
           weekday: 'long', month: 'short', day: 'numeric',
-        });
-
-        return format.format(date);
+        }),
       };
+
+      const formatTime = date => formatters.time.format(date);
+      const formatDate = date => formatters.date.format(date);
 
       function renderDateTime() {
         const d = new Date();
 
         // Update every second
-        setInterval(renderDateTime, 20 * 1000);
+        setTimeout(renderDateTime, 20 * 1000);
 
         render($clock, h('div', {}, [
           h('div', { className: 'home-time' }, [ text(formatTime(d)) ]),

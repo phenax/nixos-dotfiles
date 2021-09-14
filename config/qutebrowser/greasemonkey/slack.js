@@ -21,13 +21,14 @@ let count = 0;
 const timer = setInterval(() => {
   const $btns = notificationsButtons();
 
-  console.log('>> Notification buttons', $btns);
+  console.log('>> [GM-N] Notification buttons', $btns);
 
   Array.from($btns)
-    .filter($btn => $btn.textContent.match(/enable.*notification/))
+    .filter($btn => $btn.textContent.match(/enable.*notification/gi))
     .forEach($btn => {
       $btn && $btn.click();
       clearInterval(timer);
+      console.log('>> [GM-N] Enabled notifications')
     });
 
   if (count > 10) clearInterval(timer);

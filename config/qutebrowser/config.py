@@ -92,6 +92,7 @@ c.hints.chars = 'azsxdclmknjb'
 c.hints.auto_follow = 'unique-match'
 c.content.pdfjs = True
 
+nunmap("<Ctrl-a>")
 nunmap('<Ctrl-v>')
 nunmap('<Ctrl-x>')
 nunmap('<Ctrl-V>')
@@ -100,9 +101,8 @@ nunmap('<Ctrl-h>')
 nunmap('<Ctrl-p>')
 
 # Edit text and edit url
-imap('<Ctrl-e>', 'open-editor')
-nmap('<Ctrl-e>', 'open-editor')
-# nmap('<Ctrl-l>', 'edit-url')
+imap('<Ctrl-e>', 'edit-text')
+nmap('<Ctrl-e>', 'edit-text')
 nmap(localleader+'e', 'edit-url')
 
 nmap('<Ctrl-p>', 'enter-mode passthrough')
@@ -268,14 +268,17 @@ config.set('content.media.video_capture', True, '*://meet.google.com')
 c.url.default_page = '~/.config/qutebrowser/homepage/index.html'
 c.url.start_pages = [c.url.default_page]
 
-DEFAULT_SEARCH_ENGINE = 'd'
+DEFAULT_SEARCH_ENGINE = 'br'
 c.url.searchengines = {
-    # General
+    # Main general
+    'd': 'https://duckduckgo.com/?q={}',
+    'go': 'https://google.com/search?q={}',
+    'br': 'https://search.brave.com/search?q={}',
+
+    # Alt general
     'sp': 'https://www.startpage.com/sp/search?q={}',
     'sx': 'https://searx.fmac.xyz/?q={}',
     'q': 'https://www.qwant.com/search?q={}',
-    'd': 'https://duckduckgo.com/?q={}',
-    'go': 'https://google.com/search?q={}',
 
     # Dev stuff
     'bp': 'https://bundlephobia.com/result?p={}',
@@ -285,15 +288,13 @@ c.url.searchengines = {
     'g': 'https://github.com/{}',
     'gh': 'http://github.com/search?q={}',
     'hg': 'http://www.haskell.org/hoogle/?hoogle={}',
-    'aw': 'http://wiki.archlinux.org/index.php?search={}',
     'cname': 'https://www.whatsmydns.net/#CNAME/{}',
+    'nx': 'https://search.nixos.org/packages?channel=unstable&query={}',
 
     # Media
     'r': 'http://www.reddit.com/r/{}/',
     'y': 'http://www.youtube.com/results?search_query={}',
-    'az': 'http://search.azlyrics.com/search.php?q={}',
-
-    'nx': 'https://search.nixos.org/packages?channel=unstable&query={}',
+    'ly': 'http://genius.com/search?q={}',
 
     # Ignore
     'DEFAULT': 'http://this-is-a-placeholder.com?q={}',

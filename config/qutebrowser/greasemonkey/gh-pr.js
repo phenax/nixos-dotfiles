@@ -4,17 +4,17 @@
 // @version            0.0.0
 // @description        Github PR helper
 // @author             Akshay Nair
-// @match              *://github.com/*/pull/*/files
+// @match              *://github.com/*/pull/*
 // ==/UserScript==
 
 const keys = {
   n: () => document.querySelector('.js-reviewed-toggle:not(.js-reviewed-file)').click(),
   N: () => Array.from(document.querySelectorAll('.js-reviewed-file')).slice(-1)[0].click(),
   //j: () => {
-    //const $el = document.querySelector('.js-reviewed-toggle:not(.js-reviewed-file)');
-    //if ($el) {
-      
-    //}
+  //const $el = document.querySelector('.js-reviewed-toggle:not(.js-reviewed-file)');
+  //if ($el) {
+
+  //}
   //},
 };
 
