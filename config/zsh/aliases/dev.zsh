@@ -1,4 +1,6 @@
 
+alias remi="wyrd $REMINDER_FILE";
+
 alias aws="docker run --rm -it amazon/aws-cli"
 
 # nix shell with zsh

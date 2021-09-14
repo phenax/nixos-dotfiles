@@ -33,10 +33,9 @@ export rofi_LIBS=/usr;
 export GNUPGHOME=$HOME/.gnupg;
 export PASSWORD_STORE_DIR=$XDG_CONFIG_HOME/password-store;
 export BTPD_HOME=$XDG_CONFIG_HOME/btpd;
+export REMINDER_FILE="$HOME/nixos/extras/notes/schedule/reminders.rem";
 
 # Development dir variables
 export DEV_DIR="$HOME/dev";
 export PROJECTS_DIR="$DEV_DIR/projects";
-export SHAADI=$PROJECTS_DIR/sh-react;
-export REG_SHAADI=$PROJECTS_DIR/sh-profile-creation;
 

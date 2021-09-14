@@ -2,7 +2,7 @@
 # Pacman aliases
 
 alias update="sudo nixos-rebuild switch --upgrade";
-alias auto-remove="sudo nix-collect-garbage -d && nix-store --optimize";
+alias auto-remove="sudo nix-collect-garbage -d";
 
 alias rebuild="sudo nixos-rebuild switch";
 alias list-gens="sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
