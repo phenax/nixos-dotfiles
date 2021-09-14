@@ -15,17 +15,17 @@ in
     yarn
   ];
 
-  programs.emacs = {
-    enable = true;
-  };
-  services.emacs = {
-    enable = true;
-    client.enable = true;
-  };
-  programs.direnv = {
-    enable = true;
-    enableNixDirenvIntegration = true;
-  };
+  #programs.emacs = {
+  #enable = true;
+  #};
+  #services.emacs = {
+  #enable = true;
+  #client.enable = true;
+  #};
+  #programs.direnv = {
+  #enable = true;
+  #enableNixDirenvIntegration = true;
+  #};
 
   programs.lsd = {
     enable = true;
@@ -78,23 +78,8 @@ in
     # ".local/share/qutebrowser/sessions".source = ./private-config/qutebrowser/sessions;
     ".config/dunst".source = ./config/dunst;
     ".config/lf".source = ./config/lf;
-    #"Pictures/wallpapers".source = ./extras/wallpapers;
+    ".config/picom.conf".source = ./config/picom.conf;
+    ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;
   };
-
-  #services.picom = {
-  #enable = true;
-  #backend = "glx";
-  #inactiveDim = "0.3";
-  #opacityRule = [
-  #"98:class_g = 'St' && focused"
-  #"85:class_g = 'St' && !focused"
-  #"90:class_g = 'qutebrowser' && !focused"
-  #"100:class_g = 'qutebrowser' && focused"
-  #];
-  #extraOptions = ''
-  #focus-exclude = [ "class_g = 'dwm'", "class_g = 'dmenu'"];
-  #'';
-  #menuOpacity = "0.9";
-  #};
 }
