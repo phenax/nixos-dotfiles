@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+REVIEWS_DIR="$HOME/nixos/extras/notes/weekly-reviews";
+
+get_date() { date +"%Y-%m-%d"; }
+
+template() {
+  local date=$(get_date);
+echo "# $date
+
+### What did you achieve this week?
+  - 
+
+### What do I want to achieve next week?
+  - 
+
+### What are you grateful for?
+  - 
+
+### What went wrong?
+  - 
+
+### How are you feeling?
+
+
+";
+}
+
+
+review_file="$REVIEWS_DIR/$(get_date).md";
+
+if [[ ! -f "$review_file" ]]; then
+  template > $review_file;
+fi
+
+sensible-terminal -e sensible-editor $review_file;
+

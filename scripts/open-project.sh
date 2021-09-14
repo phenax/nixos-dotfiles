@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 PROJECTS_DIR="$HOME/dev/projects";
-SUCKLESS_DIR="$HOME/.config/suckless";
+GODOT_DIR="$HOME/dev/godot";
 
 get_projects() {
   ls -t "$PROJECTS_DIR" | sed 's/^/dev:/g';
-  ls -t "$SUCKLESS_DIR" | sed 's/^/suckless:/g';
+  ls -t "$GODOT_DIR" | sed 's/^/godot:/g';
 }
 
 project=$(get_projects | dmenu -p "Project name :: ");
@@ -20,9 +20,9 @@ projdir=$(echo "$project" | cut -d: -f2-);
 fulldir="";
 
 case "$projtype" in
-  dev)        fulldir="$PROJECTS_DIR/$projdir" ;;
-  suckless)   fulldir="$SUCKLESS_DIR/$projdir" ;;
-  *)          fulldir="$PROJECTS_DIR/$projdir" ;;
+  dev)      fulldir="$PROJECTS_DIR/$projdir" ;;
+  godot)    fulldir="$GODOT_DIR/$projdir" ;;
+  *)        fulldir="$PROJECTS_DIR/$projdir" ;;
 esac
 
 if [ ! -z "$fulldir" ]; then

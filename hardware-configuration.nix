@@ -25,6 +25,11 @@
     options snd slots=snd-hda-intel
   '';
 
+  services.udev.extraRules = ''
+    # DualShock 4 over bluetooth hidraw
+    KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
+  '';
+
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;

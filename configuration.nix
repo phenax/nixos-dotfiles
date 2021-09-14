@@ -26,6 +26,26 @@ in
     enable = true;
   };
 
+  hardware.bluetooth.enable = false;
+  #hardware.bluetooth.package = pkgs.bluezFull;
+
+  services.monero = {
+    enable = false;
+    dataDir = "/var/lib/monero";
+    # mining.enable = {
+    #   enable = false;
+    #   threads = 2;
+    # };
+    rpc = {
+      address = "127.0.0.1";
+      port = 18081;
+      # user = "hexyman";
+      # password = "";
+    };
+  };
+
+  # Enable sound.
+  sound.enable = true;
   services.jack = {
     jackd.enable = true;
     alsa.enable = false;
@@ -86,19 +106,6 @@ in
     cozette
     noto-fonts-emoji
   ];
-  # nix-shell -p actkbd --run "sudo actkbd -n -s -d /dev/input/event#"
-  #services.actkbd = {
-  #enable = true;
-  #bindings = [
-  #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
-  #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
-  #];
-  #};
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
 
   nix.autoOptimiseStore = true;
   nix.gc = {

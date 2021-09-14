@@ -17,7 +17,7 @@ on_startup() { is_kill || [[ "$(wmctrl -l | wc -l)" = "0" ]] && $@ & }
 once() {
   local name=$1; shift;
   if (is_kill); then
-    killall "$name";
+    pkill "$name";
   else
     pgrep $name || $@ &
   fi;
@@ -26,7 +26,7 @@ once() {
 # Kill previous instance and run again
 run() {
   local name=$1; shift;
-  [[ ! -z "$name" ]] && killall -9 $name && sleep 0.05;
+  [[ ! -z "$name" ]] && pkill "$name" && sleep 0.05;
   is_kill || $@ &
 }
 # }}}
@@ -48,10 +48,13 @@ run() {
   run "dunst" dunst -config ~/.config/dunst/dunstrc;
 
   # Compositor
-  # run "picom" picom --experimental-backends --config ~/.config/compton.conf;
+  run "picom" picom --experimental-backends --config ~/.config/picom.conf;
 
   # Cron jobs
   #run "crond" crond -n -f ~/.config/crontab/crontab;
+
+  # Scheduler
+  run "remind" remind -k"notify-send -a reminder %s" -z10 $REMINDER_FILE;
 
   # Battery watcher
   run "" ~/scripts/battery-watch.sh start;

@@ -1,5 +1,5 @@
 [global]
-    font = JetBrains Mono, Font Awesome 5 Free Solid, Font Awesome 5 Free Regular, Font Awesome 5 Brands 11
+    font = JetBrainsMono Nerd Font, Font Awesome 5 Free Solid, Font Awesome 5 Free Regular, Font Awesome 5 Brands 11
 
     # Allow a small subset of html markup:
     #   <b>bold</b>

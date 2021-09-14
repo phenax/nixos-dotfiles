@@ -2,12 +2,12 @@
 let
   sessions = [
     [ "tty1" windowManagers.xmonad ]
-    # [ "tty2" windowManagers.dwm ]
+    #[ "tty2" windowManagers.bspwm ]
   ];
   windowManagers = {
     dwm = looped "dwm";
     xmonad = exec "~/.xmonad/bin/xmonad-wm";
-    bspwm = exec "bspwm";
+    bspwm = "st; ${exec "bspwm"};";
   };
   exec = s: "exec ${s}";
   looped = s: ''

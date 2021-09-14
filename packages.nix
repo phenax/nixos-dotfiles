@@ -11,6 +11,9 @@ let
     dmenu
     anypinentry
     bslock
+
+    # Not local
+    #pkgs.bspwm
   ];
 
   devPackages = with pkgs; [
@@ -34,7 +37,7 @@ let
 
     rnix-lsp
     # python-language-server
-    haskell-language-server
+    #haskell-language-server # Broken on 8-Sept-2021
     ghc
     # cabal-install
   ] ++ (
@@ -58,10 +61,11 @@ let
     imagemagick
     ffmpeg-full
     feh
+    #monero-gui
 
-    # Remind
-    # remind
-    # wyrd
+    # Scheduling
+    remind
+    wyrd
 
     # signal-cli
     # signal-desktop
@@ -69,6 +73,7 @@ let
     dunst
     gotop
     tremc
+    zathura
   ];
 
 
@@ -84,6 +89,7 @@ let
     udiskie
     file
     at
+    bc
 
     # Audio
     alsaUtils
@@ -92,13 +98,12 @@ let
     ardour
 
     # X stuff
-    bc
+    picom
     brightnessctl
     xorg.xinit
     xorg.xrandr
     xorg.xmodmap
-    # xorg.xkill
-    #xorg.xbacklight
+    xorg.xkill
     xclip
     xdo
     xdotool
@@ -111,6 +116,9 @@ in
   nixpkgs.config.permittedInsecurePackages = [
     "ffmpeg-3.4.8"
   ];
+
+  programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
 
   # Security wrappers
   security.wrappers = {
