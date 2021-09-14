@@ -8,4 +8,5 @@
   dwmblocks = pkgs.callPackage ./dwmblocks/pkg.nix {};
   st = pkgs.callPackage ./st/pkg.nix {};
   anypinentry = pkgs.callPackage ./anypinentry/pkg.nix {};
+  xmonad = pkgs.callPackage ./xmonad/pkg.nix {};
 }
