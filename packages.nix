@@ -5,6 +5,7 @@ let
   customPackages = with localPkgs; [
     sensible-apps
     shotkey
+    xmonad
     # dwm
     # dwmblocks
     st

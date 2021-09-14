@@ -6,7 +6,7 @@ let
   ];
   windowManagers = {
     dwm = looped "dwm";
-    xmonad = exec "~/.xmonad/bin/xmonad-wm";
+    xmonad = exec "xmonad";
     bspwm = "st; ${exec "bspwm"};";
   };
   exec = s: "exec ${s}";
