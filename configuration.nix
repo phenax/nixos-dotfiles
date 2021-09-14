@@ -13,8 +13,9 @@ in
     ./hardware-configuration.nix
     ./packages.nix
     ./overlays-system.nix
-    ./login.nix
+    ./modules/login.nix
     ./modules/torrent.home.nix
+    ./modules/work.nix
   ];
 
   nixpkgs.config = {

@@ -42,7 +42,7 @@ in
 
   # Global
   environment.variables = let
-    apps = (import ./packages/sensible-apps/sensible-apps.nix).apps;
+    apps = (import ../packages/sensible-apps/sensible-apps.nix).apps;
   in
     {
       EDITOR = apps.EDITOR;
@@ -84,7 +84,7 @@ in
     getty = {
       autologinUser = "imsohexy";
       helpLine = "";
-      greetingLine = import ./modules/welcome-text.nix;
+      greetingLine = import ./welcome-text.nix;
     };
   };
 }
