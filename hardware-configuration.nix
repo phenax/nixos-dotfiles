@@ -10,7 +10,7 @@
   boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.initrd = {
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" ];
-    kernelModules = [];
+    kernelModules = [ ];
   };
   boot.kernelModules = [
     "kvm-intel"
@@ -20,15 +20,21 @@
     "snd-rawmidi"
   ];
   boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "i915.enable_dpcd_backlight=1" "acpi_backlight=vendor" ];
-  boot.extraModulePackages = [];
+  boot.extraModulePackages = [ ];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
   '';
 
-  services.udev.extraRules = ''
-    # DualShock 4 over bluetooth hidraw
-    KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
-  '';
+  services.udev = {
+    packages = [
+      pkgs.android-udev-rules
+    ];
+
+    extraRules = ''
+      # DualShock 4 over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
+    '';
+  };
 
   hardware = {
     enableAllFirmware = true;

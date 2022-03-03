@@ -12,7 +12,7 @@ self: super: {
         owner = "neovim";
         repo = "neovim";
         rev = "nightly";
-        sha256 = "05aswlzgqjy2v6ryh9mn0gskxq12xsl31pds6r69d0hdx9hcv1sj";
+        sha256 = "145mzl1pzqy0ic9gm0322z9ssvbyj0v9xiqs7k0wmi8b0590xg8s";
       };
 
       nativeBuildInputs = with self.pkgs; [ unzip cmake pkgconfig gettext tree-sitter-updated ];

@@ -9,7 +9,7 @@ if [[ -f "$dir/default.nix" ]]; then
 fi;
 
 term() { sensible-terminal -d "$dir" "$@"; }
-editor() { term -e sh -c "echo 'Loading...'; $editor"; }
+editor() { term -e sh -c "echo 'Loading...'; $editor; zsh"; }
 
 editor &
 sleep 0.1;

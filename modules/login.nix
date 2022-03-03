@@ -33,6 +33,8 @@ in
       "transmission"
       "lxd"
       "jackaudio"
+      "plugdev"
+      "adbusers"
     ];
     shell = pkgs.zsh;
   };
@@ -41,9 +43,10 @@ in
   #'';
 
   # Global
-  environment.variables = let
-    apps = (import ../packages/sensible-apps/sensible-apps.nix).apps;
-  in
+  environment.variables =
+    let
+      apps = (import ../packages/sensible-apps/sensible-apps.nix).apps;
+    in
     {
       EDITOR = apps.EDITOR;
       VISUAL = apps.EDITOR;
@@ -63,22 +66,24 @@ in
     interactiveShellInit = ''source ~/.config/zsh/zshrc'';
     promptInit = "";
     loginShellInit = with builtins; let
-      cases = map (
-        s: ''
-          /dev/${elemAt s 0})
-            echo "~/.config/xorg/init.sh; ${elemAt s 1}" > ~/.xinitrc;
-            sleep 0.2;
-            startx;
-          ;;
-        ''
-      ) sessions;
+      cases = map
+        (
+          s: ''
+            /dev/${elemAt s 0})
+              echo "~/.config/xorg/init.sh; ${elemAt s 1}" > ~/.xinitrc;
+              sleep 0.2;
+              startx;
+            ;;
+          ''
+        )
+        sessions;
     in
-      ''
-        case "$(tty)" in
-          ${toString cases}
-          *) echo "Only tty for you, $(tty)" ;;
-        esac;
-      '';
+    ''
+      case "$(tty)" in
+        ${toString cases}
+        *) echo "Only tty for you, $(tty)" ;;
+      esac;
+    '';
   };
   services = {
     getty = {

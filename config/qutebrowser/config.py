@@ -16,12 +16,12 @@ localleader = ' '
 config.load_autoconfig()
 
 # Helper Functions {{{
-# def toggle_stylesheets(stylesheets):
-    # return 'config-cycle content.user_stylesheets \'' \
-    # + json.dumps(c.content.user_stylesheets) \
-    # + '\' \'' \
-    # + json.dumps(c.content.user_stylesheets + stylesheets) \
-    # + '\''
+def toggle_stylesheets(stylesheets):
+    return 'config-cycle content.user_stylesheets \'' \
+    + json.dumps(c.content.user_stylesheets) \
+    + '\' \'' \
+    + json.dumps(c.content.user_stylesheets + stylesheets) \
+    + '\''
 
 def bind(key, command, mode):  # noqa: E302
     """Bind key to command in mode."""
@@ -72,6 +72,7 @@ c.content.autoplay = True
 c.url.open_base_url = True
 
 c.scrolling.bar = 'always'
+c.tabs.mousewheel_switching = False
 c.scrolling.smooth = True
 c.keyhint.delay = 250
 c.input.partial_timeout = 0
@@ -105,7 +106,10 @@ imap('<Ctrl-e>', 'edit-text')
 nmap('<Ctrl-e>', 'edit-text')
 nmap(localleader+'e', 'edit-url')
 
-nmap('<Ctrl-p>', 'enter-mode passthrough')
+# Pass through actions
+nmap('<Ctrl-p>', 'mode-enter passthrough')
+pmap('<Ctrl-j>', 'tab-next')
+pmap('<Ctrl-k>', 'tab-prev')
 # pmap('<Shift-Escape>', 'enter-mode normal') # Default
 
 nunmap("+")
@@ -144,7 +148,7 @@ c.content.user_stylesheets = [
 ]
 
 # Dark mode
-# c.aliases['toggle-darkmode'] = toggle_stylesheets(['styles/dark.css'])
+c.aliases['toggle-darkmode'] = toggle_stylesheets(['styles/dark.css'])
 
 nmap(localleader + 'td', ':toggle-darkmode')
 # }}}

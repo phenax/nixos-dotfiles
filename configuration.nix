@@ -27,6 +27,31 @@ in
     enable = true;
   };
 
+  services.borgbackup =
+    let
+      homeDir = config.users.users.imsohexy.home;
+      user = config.users.users.imsohexy.name;
+    in
+    {
+      jobs = {
+        testBkup = {
+          paths = "${homeDir}/dump/elm-worker-tmp";
+          repo = "${homeDir}/dump/backups";
+          compression = "none";
+          startAt = "weekly";
+          user = user;
+          group = "users";
+          encryption = {
+            mode = "none";
+          };
+          # encryption = {
+          #   mode = "repokey";
+          #   passCommand = "pass show BorgBackup/imsohexy";
+          # };
+        };
+      };
+    };
+
   hardware.bluetooth.enable = false;
   #hardware.bluetooth.package = pkgs.bluezFull;
 
@@ -109,7 +134,7 @@ in
     noto-fonts-emoji
   ];
 
-  nix.autoOptimiseStore = true;
+  nix.settings.auto-optimise-store = true;
   nix.gc = {
     automatic = true;
     dates = "weekly";

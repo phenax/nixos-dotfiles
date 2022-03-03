@@ -42,6 +42,7 @@ let
       typescript
       typescript-language-server
       vscode-json-languageserver
+      vscode-langservers-extracted
       # bash-language-server
     ]
   );
@@ -124,12 +125,6 @@ in
 
   #programs.steam.enable = true;
   #hardware.steam-hardware.enable = true;
-
-  # TODO: Remove after https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14505 gets merged and released
-  # system.replaceRuntimeDependencies = [
-  #   ({ original = pkgs.mesa; replacement = (import /etc/nixos/tmp-extras/mesa-nixpkgs { }).pkgs.mesa; })
-  #   ({ original = pkgs.mesa.drivers; replacement = (import /etc/nixos/tmp-extras/mesa-nixpkgs { }).pkgs.mesa.drivers; })
-  # ];
 
   # Security wrappers
   security.wrappers = {

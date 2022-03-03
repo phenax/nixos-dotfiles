@@ -3,7 +3,7 @@
   home.packages = with pkgs; [ mpc_cli ];
 
   services.mpd = {
-    enable = true;
+    enable = false;
     musicDirectory = "${config.home.homeDirectory}/Downloads/music";
     playlistDirectory = "${config.home.homeDirectory}/Downloads/music/playlist";
     network = {
@@ -38,7 +38,7 @@
   };
 
   programs.ncmpcpp = {
-    enable = true;
+    enable = false;
     settings = {
       # visualizer_type = "spectrum";
       user_interface = "alternative";

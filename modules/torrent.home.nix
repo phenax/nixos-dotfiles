@@ -3,7 +3,8 @@ let
   downloadsDir = "/home/imsohexy/Downloads/dl";
   incompleteDownloadsDir = "/home/imsohexy/Downloads/dl/incomplete";
   watchTorrentFilesOn = "/home/an/Downloads/qute";
-in {
+in
+{
   services.transmission = {
     enable = true;
     settings = {
@@ -23,7 +24,6 @@ in {
       "rpc-port" = 9091;
       "rpc-whitelist-enabled" = true;
       "script-torrent-done-enabled" = false;
-      "script-torrent-done-filename" = "";
       "start-added-torrents" = true;
       "trash-original-torrent-files" = false;
       "umask" = 18;

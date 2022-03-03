@@ -1,9 +1,10 @@
 { pkgs, ... }:
 let
   overlays = import ./overlays/default.nix {};
-in {
+in
+{
   nixpkgs.overlays = with overlays; [
-    neovim-nightly
+    # neovim-nightly
     qutebrowser
   ];
 }

@@ -1,17 +1,18 @@
 { config, pkgs, epkgs, ... }:
 {
-  xresources.properties = let
-    bg = "#0f0c19";
-    fg = "#d8dee9";
-    accent = "#4e3aA3";
-    ##A22F3E
-    ##A1313F
-    ##A82E3D
-    ##AE2E3D
-    ##EB4960
-    ##B22337
-    ##F32929
-  in
+  xresources.properties =
+    let
+      bg = "#0f0c19";
+      fg = "#d8dee9";
+      accent = "#4e3aA3";
+      ##A22F3E
+      ##A1313F
+      ##A82E3D
+      ##AE2E3D
+      ##EB4960
+      ##B22337
+      ##F32929
+    in
     {
       "*.foreground" = fg;
       "*.background" = bg;

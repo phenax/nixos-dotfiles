@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
 
-sensible-terminal -e ncmpcpp
+#sensible-terminal -e ncmpcpp
+
+spotify
