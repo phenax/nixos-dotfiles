@@ -73,3 +73,28 @@ p__load_nix_shell_file() {
 zle -N p__load_nix_shell_file;
 bindkey '^N' p__load_nix_shell_file;
 
+
+
+# Enter shell
+p__enter_nixshell() {
+  if [[ -f "./default.nix" ]] || [[ -f "./shell.nix" ]]; then
+    shell="nix-zsh"
+    if [[ -f "./shell.nix" ]]; then
+      shell="nix-zsh ./shell.nix"
+    fi
+    $shell
+    zle send-break
+    return 0;
+  else
+    echo "";
+    echo "ERR: default.nix already exists in directory";
+    zle send-break;
+    return 1;
+  fi;
+}
+
+zle -N p__enter_nixshell;
+bindkey '^X' p__enter_nixshell;
+
+alias fix-interpreter="nix-shell -p patchelf --run 'patchelf --set-interpreter \$(patchelf --print-interpreter \$(which mkdir))'"
+

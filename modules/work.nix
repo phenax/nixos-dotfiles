@@ -7,10 +7,9 @@ in
     ./vanta-daemon/module.nix
   ];
 
-  services.vanta =
-    {
-      enable = false;
-      agentKey = vantaCreds.VANTA_KEY;
-      email = vantaCreds.VANTA_OWNER_EMAIL;
-    };
+  services.vanta = {
+    enable = true;
+    agentKey = vantaCreds.VANTA_KEY;
+    email = vantaCreds.VANTA_OWNER_EMAIL;
+  };
 }

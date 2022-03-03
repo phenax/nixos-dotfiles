@@ -37,7 +37,7 @@
       };
       #"pull" = { rebase = true; };
     };
-    #signing.key = "GPG-KEY-ID";
-    #signing.signByDefault = true;
+    signing.key = "AAAB13AE8B82A5267C1A35D7E1B701723EA37849";
+    signing.signByDefault = true;
   };
 }

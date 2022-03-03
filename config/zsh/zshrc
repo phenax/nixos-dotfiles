@@ -18,6 +18,9 @@ export ZSH_CUSTOM_CONF_FILES="$HOME/.config/zsh";
 for f in $ZSH_CUSTOM_CONF_FILES/*.zsh; do source $f; done;
 source $ZSH_CUSTOM_CONF_FILES/aliases.zsh;
 
+# Direnv setup
+eval "$(direnv hook zsh)"
+
 # Plugins
 # source ~/.config/zshplugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh;
 

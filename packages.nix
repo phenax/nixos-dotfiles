@@ -24,23 +24,19 @@ let
     ripgrep
     ctags
     fzf
-    git-bug
     docker-compose
+    gibo
+    direnv
 
     gcc
     gnumake
     nodejs-16_x
-    python3
-    # rustup
 
-    godot
-    blender
+    # godot
+    # blender
 
     rnix-lsp
-    # python-language-server
-    #haskell-language-server # Broken on 8-Sept-2021
-    ghc
-    # cabal-install
+    efm-langserver
   ] ++ (
     with pkgs.nodePackages; [
       typescript
@@ -54,29 +50,33 @@ let
     # Browser
     qutebrowser
     brave
+    # ungoogled-chromium
+
+    # Comm
+    #slack
+    # signal-cli
+    # signal-desktop
 
     # Media
+    spotify
     mpv
     sxiv
     youtube-dl
     imagemagick
     ffmpeg-full
     feh
-    #monero-gui
 
     # Scheduling
     remind
     wyrd
 
-    # signal-cli
-    # signal-desktop
+    #monero-gui
     lf
     dunst
     gotop
     tremc
     zathura
   ];
-
 
   utils = with pkgs; [
     libnotify
@@ -95,7 +95,7 @@ let
     # Audio
     alsaUtils
     qjackctl
-    qsynth
+    #qsynth
     ardour
 
     # X stuff
@@ -118,11 +118,25 @@ in
     "ffmpeg-3.4.8"
   ];
 
-  programs.steam.enable = true;
-  hardware.steam-hardware.enable = true;
+  programs = {
+    adb.enable = true;
+  };
+
+  #programs.steam.enable = true;
+  #hardware.steam-hardware.enable = true;
+
+  # TODO: Remove after https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14505 gets merged and released
+  # system.replaceRuntimeDependencies = [
+  #   ({ original = pkgs.mesa; replacement = (import /etc/nixos/tmp-extras/mesa-nixpkgs { }).pkgs.mesa; })
+  #   ({ original = pkgs.mesa.drivers; replacement = (import /etc/nixos/tmp-extras/mesa-nixpkgs { }).pkgs.mesa.drivers; })
+  # ];
 
   # Security wrappers
   security.wrappers = {
-    bslock.source = "${localPkgs.bslock}/bin/bslock";
+    bslock = {
+      owner = config.users.users.imsohexy.name;
+      group = "users";
+      source = "${localPkgs.bslock}/bin/bslock";
+    };
   };
 }

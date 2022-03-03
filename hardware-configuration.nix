@@ -47,9 +47,10 @@
   };
 
   # File system
+  boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/1b40e7b9-b261-4555-8e84-348668345687";
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/mapper/nixos";
       fsType = "ext4";
     };
     "/boot" = {
@@ -57,8 +58,7 @@
       fsType = "vfat";
     };
   };
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
-
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   powerManagement = {
     enable = true;

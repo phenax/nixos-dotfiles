@@ -61,12 +61,12 @@ in
     firewall = {
       enable = true;
       allowedTCPPorts = [ 8080 ];
-      allowedUDPPorts = [];
+      allowedUDPPorts = [ ];
     };
     networkmanager.enable = true;
     extraHosts = ''
-      127.0.0.1       dev.parlezvous.io
-      127.0.0.1       demo.parlezvous.io
+      127.0.0.1       phenax.local
+      127.0.0.1       hasura.colabra
     '';
   };
 
@@ -74,7 +74,8 @@ in
 
   virtualisation = {
     docker.enable = true;
-    lxd.enable = true;
+    lxd.enable = false;
+    #anbox.enable = true;
   };
 
   # I18n and keyboard layout
