@@ -2,23 +2,33 @@
 
 SCREENSHOTS=$HOME/Pictures/screenshots;
 
-notify() { notify-send "$@"; }
+notify() { notify-send "Screenshot captured. $@"; }
 
-scrsht() {
-  local type=$1;
-  local window=$([ -z "$2" ] && echo "" || echo $([[ "$2" == root ]] && "-screen" || "-window $2"));
-  import $window "$SCREENSHOTS/$type-$(date '+%Y_%m_%d_%H_%M_%S').jpg";
-  notify "Screenshot ($type) captured";
+file_name() {
+  echo "$SCREENSHOTS/$1-$(date '+%Y_%m_%d_%H_%M_%S').jpg"
 }
 
-full_screenshot() { scrsht full root; }
-part_screenshot() { sleep 0.2; scrsht part & disown; }
-window_screenshot() { scrsht window "${1:-"$(xdo id)"}"; }
+full_screenshot() {
+  import -window root "$(file_name full)"
+  notify "(full)"
+}
+part_screenshot() {
+  sleep 0.2;
+  import "$(file_name part)"
+  notify "(selection)"
+}
+window_screenshot() {
+  local wid="${1:-"$(xdotool getwindowfocus)"}"
+  echo "WID: $wid"
+  import -window "$wid" "$(file_name window)"
+  notify "(window)"
+}
 
 case $1 in
   full) full_screenshot ;;
   part) part_screenshot ;;
   window) window_screenshot "$2" ;;
+  monitor) full_screenshot -display "$1" ;;
   *) echo "no"; exit 1 ;;
 esac
 
