@@ -272,7 +272,7 @@ config.set('content.media.video_capture', True, '*://meet.google.com')
 c.url.default_page = '~/.config/qutebrowser/homepage/index.html'
 c.url.start_pages = [c.url.default_page]
 
-DEFAULT_SEARCH_ENGINE = 'br'
+DEFAULT_SEARCH_ENGINE = 'd'
 c.url.searchengines = {
     # Main general
     'd': 'https://duckduckgo.com/?q={}',
@@ -322,7 +322,7 @@ nmap(leader + 'tr', 'config-source')    # Reload config
 nmap(leader + 'ti', 'devtools window')  # Inspector
 nmap(leader + 'ts', 'view-source')      # View page source
 
-# Json formatter
+# Json formatter {{{
 c.aliases['format-json'] = 'spawn --userscript format_json';
 nmap(leader + 'tj', 'format-json')
 # }}}

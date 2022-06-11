@@ -42,6 +42,7 @@ p__run_npm_script() {
   [[ ! -f "package.json" ]] && return 1;
 
   local commands=$(node -e 'const pkg = require("./package.json"); Object.entries(pkg.scripts || {}).map(([key, value]) => console.log(`${key}\t\t  "${value}"`))');
+  # cat package.json | jq -r '.scripts | to_entries | map([.key, .value] | join("\t\t\t")) | .[]' | fzf | cut -f1
 
   local result=$(echo -e "$commands" | fzf | cut -f1);
 

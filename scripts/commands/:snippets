@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+const { promises: { readFile, writeFile } } = require('fs')
+const path = require('path')
+const { homedir } = require('os')
+
+const util = require('util');
+const { exec } = require('child_process')
+
+const JSON_FILE = path.resolve(homedir(), 'nixos/snippets.json')
+
+const $ = async (cmd, input) => {
+  const stdout = await (new Promise((resolve, reject) => {
+    const ps = exec(cmd, (err, stdout) => err ? reject(err) : resolve(stdout))
+    if (typeof input === 'string') {
+      ps.stdin.end(input)
+    }
+  }))
+
+  return `${stdout}`.toString().trim()
+}
+
+const getSelection = () => $(`xclip -o`)
+
+const saveToClipboard = text => $('xclip -i -selection clipboard', text)
+
+const promptName = () => $(`sh -c 'echo -n "" | dmenu -p "Name :: "'`) // TODO: use input
+
+// TODO: Show current tags
+const promptTags = () => $(`sh -c 'echo -n "" | dmenu -p "Tags :: "'`)
+  .then(input => `${input}`.split(/\s+/g).filter(Boolean))
+
+const getCurrentJson = async () => {
+  try {
+    const contents = await readFile(JSON_FILE, 'utf8')
+    return JSON.parse(contents.toString())
+  } catch(_) {
+    return {}
+  }
+}
+
+const setCurrentJson = (data) =>
+  writeFile(JSON_FILE, JSON.stringify(data, null, 2))
+
+const promptSelect = async ls => $(`dmenu -p "Snippets :: "`, ls.join('\n'))
+
+const saveSnippets = async () => {
+  const contents = await getSelection()
+  const currentSnippets = await getCurrentJson()
+
+  const name = await promptName()
+  const tags = await promptTags()
+
+  const data = {
+    ...currentSnippets,
+    [name]: {
+      contents,
+      tags,
+    },
+  }
+
+  await setCurrentJson(data)
+}
+
+const loadSnippets = async () => {
+  const currentSnippets = await getCurrentJson()
+  const seperator = ' :: '
+
+  const menuInput = Object.entries(currentSnippets)
+    .map(([ name, { tags } ]) => `${name}${seperator}(${tags.join(', ')})`)
+
+  const selection = await promptSelect(menuInput)
+
+  if (selection) {
+    const name = selection.split(seperator)[0].trim()
+    const { contents } = currentSnippets[name] || {}
+    console.log(contents)
+    await saveToClipboard(contents)
+  }
+}
+
+const main = async () => {
+  try {
+    await saveToClipboard('foobaraa')
+    // await loadSnippets()
+  } catch(_) {
+    console.log('cancelled')
+  }
+}
+
+main()
+

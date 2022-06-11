@@ -24,6 +24,7 @@
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
   '';
+  boot.supportedFilesystems = [ "ntfs" ];
 
   services.udev = {
     packages = [

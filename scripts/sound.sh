@@ -21,6 +21,7 @@ case "$1" in
   volume) case "$2" in
     up) amixer sset Master '5%+' ;;
     down) amixer sset Master '5%-' ;;
+    perc) amixer sset Master "$3%" ;;
   esac ;;
   *) echo "Wrong command" ;;
 esac

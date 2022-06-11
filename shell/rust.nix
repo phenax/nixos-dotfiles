@@ -1,27 +1,34 @@
-# with import <nixpkgs> {};
-# let src = fetchFromGitHub {
-#       owner = "mozilla";
-#       repo = "nixpkgs-mozilla";
-#       rev = "9f35c4b09fd44a77227e79ff0c1b4b6a69dff533";
-#       sha256 = "18h0nvh55b5an4gmlgfbvwbyqj91bklf1zymis6lbdh75571qaz0";
-#    };
+# with import <nixpkgs> { };
+# let
+#   src = fetchFromGitHub {
+#     owner = "mozilla";
+#     repo = "nixpkgs-mozilla";
+#     rev = "15b7a05f20aab51c4ffbefddb1b448e862dccb7d"; # 10th April 2022
+#     sha256 = "sha256-YeN4bpPvHkVOpQzb8APTAfE7/R+MFMwJUMkqmfvytSk=";
+#   };
+#   moz = import "${src.out}/rust-overlay.nix" pkgs pkgs;
+#   rust = moz.latest.rustChannels.nightly.rust.override {
+#     extensions = [ "rust-src" ];
+#   };
 # in
-# with import "${src.out}/rust-overlay.nix" pkgs pkgs;
-# stdenv.mkDerivation {
-#   name = "rust-env";
+# mkShell rec {
 #   buildInputs = [
-#     # Note: to use use stable, just replace `nightly` with `stable`
-#     latest.rustChannels.nightly.rust
-# 
-#     # Add some extra dependencies from `pkgs`
-#     pkgconfig openssl
+#     # Build tools
+#     rust
+#
+#     # Lib deps
+#     pkg-config
+#     libclang
 #   ];
-# 
-#   # Set Environment Variables
-#   RUST_BACKTRACE = 1;
+#   nativeBuildInputs = [ clang ];
+#
+#   # RUST_SRC_PATH = rust.packages.stable.rustPlatform.rustLibSrc;
+#   # RUST_BACKTRACE = 1;
+#   LIBCLANG_PATH = "${libclang.lib}/lib";
+#   LD_LIBRARY_PATH = lib.makeLibraryPath (buildInputs ++ nativeBuildInputs);
 # }
 
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 mkShell rec {
   buildInputs = [
     # Build tools

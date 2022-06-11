@@ -27,6 +27,7 @@ let
     docker-compose
     gibo
     direnv
+    gh
 
     gcc
     gnumake
@@ -76,7 +77,7 @@ let
     dunst
     gotop
     tremc
-    zathura
+    # zathura # Broken on 9th April 2020
   ];
 
   utils = with pkgs; [

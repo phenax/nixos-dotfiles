@@ -100,6 +100,7 @@ in
   virtualisation = {
     docker.enable = true;
     lxd.enable = false;
+    virtualbox.host.enable = true;
     #anbox.enable = true;
   };
 

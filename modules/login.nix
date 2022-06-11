@@ -35,6 +35,7 @@ in
       "jackaudio"
       "plugdev"
       "adbusers"
+      "vboxusers"
     ];
     shell = pkgs.zsh;
   };

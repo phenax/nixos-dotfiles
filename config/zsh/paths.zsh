@@ -22,9 +22,9 @@ PATH="$COMMANDS_DIR:$PATH";
 export PATH;
 
 # Android/JVM garbage TODO: Remove if not needed
-export ANDROID_HOME=$HOME/dump/android-sdk;
-PATH=$PATH:$HOME/.config/android-sdk/platform-tools;
-PATH=$HOME/dump/flutter/bin:$PATH;
+# export ANDROID_HOME=$HOME/dump/android-sdk;
+# PATH=$PATH:$HOME/.config/android-sdk/platform-tools;
+# PATH=$HOME/dump/flutter/bin:$PATH;
 export PATH;
 
 
