@@ -1,4 +1,4 @@
-{ stdenv, pkgs, libX11 }:
+{ stdenv, pkgs, libX11, ... }:
 with pkgs.lib;
 
 stdenv.mkDerivation rec {

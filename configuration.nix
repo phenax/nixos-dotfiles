@@ -99,9 +99,15 @@ in
   services.atd.enable = true;
 
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      enable = true;
+      # autoPrune = {
+      #   enable = true;
+      #   flags = [ "--volumes" ];
+      # };
+    };
     lxd.enable = false;
-    virtualbox.host.enable = true;
+    virtualbox.host.enable = false;
     #anbox.enable = true;
   };
 

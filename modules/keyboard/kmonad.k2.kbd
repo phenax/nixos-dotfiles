@@ -7,24 +7,37 @@
   lctl lmet lalt           spc            ralt rmet rctl left down up right
 )
 
+#| Template
+(deflayer name
+	_
+  _    1    2    3    4    5    6    7    8    9    0    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _         _    _    _    _    _    _    _
+)
+|#
+
+
 (defalias
-   nv  (tap-next f (layer-toggle navigation))
+  navf  (tap-hold 180 f (layer-toggle navigation))
+  esc   (tap-hold 180 esc lctl)
 )
 
 (deflayer default
 	esc
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  esc  a    s    d   @nv   g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl left down up right
+  grv   1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @esc  a    s    d  @navf  g    h    j    k    l    ;    '    ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lmet lalt           spc            ralt rmet rctl left down up right
 )
 
 (deflayer navigation
 	_
-  grv  1    2    3    4    5    6      7      8    9    0    -    =    bspc
-  _    _    _    _    _    _    _      _      _    _    _    _    _    _
-  _    _    _    _    _    _    left   down   up   right    _    _    _
-  _    _    _    _    _    _    _      _      _    _    _    _
-  _    _    _              _           _    _    _    _    _    _    _
+  _   1    2    3    4    5    6      7      8    9      0    _    _    _
+  _   _    _    _    _    _    _      _      _    _      _    _    _    _
+  _   _    _    _    _    _    left   down   up   right  _    _    _
+  _   _    _    _    _    _    _      _      _    _      _    _
+  _   _    _              _           _      _    _      _    _    _    _
 )

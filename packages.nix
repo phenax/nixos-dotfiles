@@ -36,17 +36,18 @@ let
     # godot
     # blender
 
+    bspwm
+    sxhkd
+
     rnix-lsp
     efm-langserver
-  ] ++ (
-    with pkgs.nodePackages; [
-      typescript
-      typescript-language-server
-      vscode-json-languageserver
-      vscode-langservers-extracted
-      # bash-language-server
-    ]
-  );
+
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.vscode-json-languageserver
+    nodePackages.vscode-langservers-extracted
+    # nodePackage.bash-language-server
+  ];
 
   apps = with pkgs; [
     # Browser

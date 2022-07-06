@@ -20,7 +20,6 @@
     "snd-rawmidi"
   ];
   boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "i915.enable_dpcd_backlight=1" "acpi_backlight=vendor" ];
-  boot.extraModulePackages = [ ];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
   '';

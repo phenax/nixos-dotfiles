@@ -27,6 +27,18 @@ in
   #enableNixDirenvIntegration = true;
   #};
 
+  # xdg.configFile."mimeapps.list".text = ''
+  #   [Default Applications]
+  #   text/html=browser-select.desktop
+  #   x-scheme-handler/http=browser-select.desktop
+  #   x-scheme-handler/https=browser-select.desktop
+  #   x-scheme-handler/about=browser-select.desktop
+  #   x-scheme-handler/mailto=thunderbird.desktop;
+  #   x-scheme-handler/unknown=browser-select.desktop
+  #   image/png=sxiv.desktop
+  #   image/jpeg=sxiv.desktop
+  # '';
+
   programs.lsd = {
     enable = true;
     enableAliases = true;
