@@ -16,6 +16,7 @@ in
     ./modules/login.nix
     ./modules/torrent.home.nix
     ./modules/work.nix
+    ./modules/keyboard/default.nix
   ];
 
   nixpkgs.config = {

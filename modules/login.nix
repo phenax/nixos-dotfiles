@@ -2,12 +2,12 @@
 let
   sessions = [
     [ "tty1" windowManagers.xmonad ]
-    #[ "tty2" windowManagers.bspwm ]
+    [ "tty2" windowManagers.bspwm ]
   ];
   windowManagers = {
     dwm = looped "dwm";
     xmonad = exec "xmonad";
-    bspwm = "st; ${exec "bspwm"};";
+    bspwm = exec "bspwm";
   };
   exec = s: "exec ${s}";
   looped = s: ''
@@ -17,6 +17,11 @@ let
   '';
 in
 {
+
+  users.groups = {
+    uinput = { };
+    storage = { };
+  };
 
   # User
   users.users.imsohexy = {
@@ -36,6 +41,7 @@ in
       "plugdev"
       "adbusers"
       "vboxusers"
+      "uinput"
     ];
     shell = pkgs.zsh;
   };
