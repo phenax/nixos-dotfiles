@@ -93,7 +93,7 @@ in
       visualizer_type = "spectrum";
       visualizer_in_stereo = "yes";
       visualizer_look = "+|";
-      visualizer_color = "white, blue, cyan, magenta, red, red, black";
+      visualizer_color = "white, cyan, blue, magenta, red, red, black";
       visualizer_spectrum_smooth_look = "yes";
       visualizer_autoscale = "yes";
       visualizer_spectrum_dft_size = 3;

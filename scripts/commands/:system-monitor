@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sensible-terminal -e gotop

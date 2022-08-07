@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-sensible-terminal -e sensible-editor ~/.config/vimwiki/scratchpad.md;
-
