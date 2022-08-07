@@ -67,5 +67,24 @@
       clearInterval(timer);
     }
   }, 500);
+
+
+  /////////////////////// Push to talk
+
+  // let isSpacePressed = false
+  // const setSpacePressed = p => {
+  //   isSpacePressed = p
+  // }
+
+  // window.addEventListener('keydown', e => {
+  //   if (e.key === 'space') {
+  //     setSpacePressed(true)
+  //   }
+  // })
+  // window.addEventListener('keydown', e => {
+  //   if (e.key === 'space') {
+  //     setSpacePressed(false)
+  //   }
+  // })
 })();
 
