@@ -1,9 +1,13 @@
 { config, pkgs, ... }:
+let
+  visualizer_name = "my_fifo";
+  visualizer_fifo = "/tmp/mpd.fifo";
+in
 {
   home.packages = with pkgs; [ mpc_cli ];
 
   services.mpd = {
-    enable = false;
+    enable = true;
     musicDirectory = "${config.home.homeDirectory}/Downloads/music";
     playlistDirectory = "${config.home.homeDirectory}/Downloads/music/playlist";
     network = {
@@ -19,28 +23,32 @@
       auto_update_depth "5"
       follow_outside_symlinks "yes"
       follow_inside_symlinks "yes"
+
       input {
         plugin "curl"
       }
+
       audio_output {
-        type "alsa"
-        name "My ALSA Device"
-        device "hw:0,0"
+        type "pipewire"
+        name "My PipeWire Device"
       }
+
       audio_output {
         type "fifo"
-        name "my_fifo"
-        path "/tmp/mpd.fifo"
+        name "${visualizer_name}"
+        path "${visualizer_fifo}"
         format "44100:16:2"
       }
+
       filesystem_charset		"UTF-8"
     '';
   };
 
   programs.ncmpcpp = {
-    enable = false;
+    enable = true;
+    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+
     settings = {
-      # visualizer_type = "spectrum";
       user_interface = "alternative";
       playlist_display_mode = "columns";
       browser_display_mode = "columns";
@@ -63,6 +71,7 @@
       window_border_color = "magenta";
       active_window_border = "red";
 
+      progressbar_look = "=>-";
       now_playing_prefix = "$(blue)$b";
       now_playing_suffix = "$/b$(end)";
       current_item_prefix = "$(magenta)$r$b";
@@ -78,28 +87,39 @@
       external_editor = "sensible-editor";
       use_console_editor = "yes";
       mouse_support = "yes";
+
+      visualizer_data_source = visualizer_fifo;
+      visualizer_output_name = visualizer_name;
+      visualizer_type = "spectrum";
+      visualizer_in_stereo = "yes";
+      visualizer_look = "+|";
+      visualizer_color = "white, blue, cyan, magenta, red, red, black";
+      visualizer_spectrum_smooth_look = "yes";
+      visualizer_autoscale = "yes";
+      visualizer_spectrum_dft_size = 3;
     };
 
     bindings = with builtins; let
       toBinding = s: let get = elemAt s; in { key = get 0; command = get 1; };
     in
-      map toBinding [
-        [ "h" [ "previous_column" "master_screen" "jump_to_parent_directory" ] ]
-        [ "l" [ "next_column" "slave_screen" "enter_directory" ] ]
-        [ "k" "scroll_up" ]
-        [ "j" "scroll_down" ]
-        [ "g" "page_up" ]
-        [ "G" "page_down" ]
-        [ "d" "delete_playlist_items" ]
-        [ "n" "next_found_item" ]
-        [ "N" "previous_found_item" ]
-        [ "P" "show_playlist_editor" ]
-        [ "B" "show_browser" ]
-        [ "s" "show_search_engine" ]
-        [ "S" "show_search_engine" ]
-        [ "ctrl-s" "save_playlist" ]
-        [ "c" "clear_main_playlist" ]
-        [ "ctrl-l" "show_lyrics" ]
-      ];
+    map toBinding [
+      [ "h" [ "previous_column" "master_screen" "jump_to_parent_directory" ] ]
+      [ "l" [ "next_column" "slave_screen" "enter_directory" ] ]
+      [ "k" "scroll_up" ]
+      [ "j" "scroll_down" ]
+      [ "g" "page_up" ]
+      [ "G" "page_down" ]
+      [ "d" "delete_playlist_items" ]
+      [ "n" "next_found_item" ]
+      [ "N" "previous_found_item" ]
+      [ "P" "show_playlist_editor" ]
+      [ "B" "show_browser" ]
+      [ "s" "show_search_engine" ]
+      [ "S" "show_search_engine" ]
+      [ "8" "show_visualizer" ]
+      [ "ctrl-s" "save_playlist" ]
+      [ "c" "clear_main_playlist" ]
+      [ "ctrl-l" "show_lyrics" ]
+    ];
   };
 }
