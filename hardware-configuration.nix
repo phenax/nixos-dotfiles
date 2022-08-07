@@ -18,12 +18,19 @@
     "sd_mod"
     "snd-seq"
     "snd-rawmidi"
+    "uinput"
   ];
-  boot.kernelParams = [ "i8042.nopnp=1" "pci=nocrs" "i915.enable_dpcd_backlight=1" "acpi_backlight=vendor" ];
+  boot.kernelParams = [
+    "i8042.nopnp=1"
+    "pci=nocrs"
+    "i915.enable_dpcd_backlight=1"
+    "acpi_backlight=vendor"
+  ];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
   '';
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services.udev = {
     packages = [

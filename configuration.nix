@@ -28,30 +28,30 @@ in
     enable = true;
   };
 
-  services.borgbackup =
-    let
-      homeDir = config.users.users.imsohexy.home;
-      user = config.users.users.imsohexy.name;
-    in
-    {
-      jobs = {
-        testBkup = {
-          paths = "${homeDir}/dump/elm-worker-tmp";
-          repo = "${homeDir}/dump/backups";
-          compression = "none";
-          startAt = "weekly";
-          user = user;
-          group = "users";
-          encryption = {
-            mode = "none";
-          };
-          # encryption = {
-          #   mode = "repokey";
-          #   passCommand = "pass show BorgBackup/imsohexy";
-          # };
-        };
-      };
-    };
+  # services.borgbackup =
+  #   let
+  #     homeDir = config.users.users.imsohexy.home;
+  #     user = config.users.users.imsohexy.name;
+  #   in
+  #   {
+  #     jobs = {
+  #       testBkup = {
+  #         paths = "${homeDir}/dump/elm-worker-tmp";
+  #         repo = "${homeDir}/dump/backups";
+  #         compression = "none";
+  #         startAt = "weekly";
+  #         user = user;
+  #         group = "users";
+  #         encryption = {
+  #           mode = "none";
+  #         };
+  #         # encryption = {
+  #         #   mode = "repokey";
+  #         #   passCommand = "pass show BorgBackup/imsohexy";
+  #         # };
+  #       };
+  #     };
+  #   };
 
   hardware.bluetooth.enable = false;
   #hardware.bluetooth.package = pkgs.bluezFull;
@@ -72,14 +72,22 @@ in
   };
 
   # Enable sound.
-  sound.enable = true;
-  services.jack = {
-    jackd.enable = true;
-    alsa.enable = false;
-    loopback = {
-      enable = true;
-    };
+  sound.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+    # jack.enable = true;
+    # alsa.support32Bit = true;
   };
+  # services.jack = {
+  #   jackd.enable = true;
+  #   alsa.enable = false;
+  #   loopback = {
+  #     enable = true;
+  #   };
+  # };
 
   # Network
   networking = {
@@ -127,6 +135,7 @@ in
     enable = true;
     autorun = false;
     displayManager.startx.enable = true;
+    videoDrivers = [ "intel" "modesetting" ];
     libinput = {
       enable = true;
       touchpad = {

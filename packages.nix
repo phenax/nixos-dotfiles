@@ -12,9 +12,7 @@ let
     dmenu
     anypinentry
     bslock
-
-    # Not local
-    #pkgs.bspwm
+    sidekick
   ];
 
   devPackages = with pkgs; [
@@ -94,18 +92,23 @@ let
     file
     at
     bc
+    tty-clock
 
     # Audio
     alsaUtils
-    qjackctl
+    pavucontrol
+    obs-studio
+
+    # qjackctl
     #qsynth
-    ardour
+    # ardour
 
     # X stuff
     picom
     brightnessctl
     xorg.xinit
     xorg.xrandr
+    arandr
     xorg.xmodmap
     xorg.xkill
     xclip
