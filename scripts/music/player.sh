@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 player() { playerctl --player=mopidy "$@"; }
 

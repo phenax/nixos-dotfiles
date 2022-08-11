@@ -2,47 +2,15 @@
 let
   visualizer_name = "my_fifo";
   visualizer_fifo = "/tmp/mpd.fifo";
+  mpd = {
+    host = "127.0.0.1";
+    port = 6600;
+    musicDir = "${config.home.homeDirectory}/Downloads/music";
+    playlistDir = "${config.home.homeDirectory}/Downloads/music/playlist";
+  };
 in
 {
-  home.packages = with pkgs; [ mpc_cli ];
-
-  services.mpd = {
-    enable = true;
-    musicDirectory = "${config.home.homeDirectory}/Downloads/music";
-    playlistDirectory = "${config.home.homeDirectory}/Downloads/music/playlist";
-    network = {
-      listenAddress = "127.0.0.1";
-      port = 6600;
-    };
-    extraConfig = ''
-      user "imsohexy"
-      group "users"
-      restore_paused "yes"
-      metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
-      auto_update	"yes"
-      auto_update_depth "5"
-      follow_outside_symlinks "yes"
-      follow_inside_symlinks "yes"
-
-      input {
-        plugin "curl"
-      }
-
-      audio_output {
-        type "pipewire"
-        name "My PipeWire Device"
-      }
-
-      audio_output {
-        type "fifo"
-        name "${visualizer_name}"
-        path "${visualizer_fifo}"
-        format "44100:16:2"
-      }
-
-      filesystem_charset		"UTF-8"
-    '';
-  };
+  home.packages = with pkgs; [ mpc_cli playerctl ];
 
   programs.ncmpcpp = {
     enable = true;
@@ -92,7 +60,7 @@ in
       visualizer_output_name = visualizer_name;
       visualizer_type = "spectrum";
       visualizer_in_stereo = "yes";
-      visualizer_look = "+|";
+      visualizer_look = "●●";
       visualizer_color = "white, cyan, blue, magenta, red, red, black";
       visualizer_spectrum_smooth_look = "yes";
       visualizer_autoscale = "yes";
@@ -121,5 +89,54 @@ in
       [ "c" "clear_main_playlist" ]
       [ "ctrl-l" "show_lyrics" ]
     ];
+  };
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = mpd.musicDir;
+    playlistDirectory = mpd.playlistDir;
+    network = {
+      listenAddress = mpd.host;
+      port = mpd.port;
+    };
+    extraConfig = ''
+      user "imsohexy"
+      group "users"
+      restore_paused "yes"
+      metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
+      auto_update	"yes"
+      auto_update_depth "5"
+      follow_outside_symlinks "yes"
+      follow_inside_symlinks "yes"
+
+      input {
+        plugin "curl"
+      }
+
+      audio_output {
+        type "pipewire"
+        name "My PipeWire Device"
+      }
+
+      audio_output {
+        type "fifo"
+        name "${visualizer_name}"
+        path "${visualizer_fifo}"
+        format "44100:16:2"
+      }
+
+      filesystem_charset		"UTF-8"
+    '';
+  };
+
+  services.mpdris2 = {
+    enable = true;
+    notifications = false;
+    multimediaKeys = false;
+    mpd = {
+      host = mpd.host;
+      port = mpd.port;
+      musicDirectory = mpd.musicDir;
+    };
   };
 }

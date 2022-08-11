@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # All the wrapping wierdness to add support for cron
 # https://wiki.archlinux.org/index.php/Desktop_notifications#Usage_in_programming
 

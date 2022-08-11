@@ -98,6 +98,7 @@ let
     alsaUtils
     pavucontrol
     obs-studio
+    inkscape
 
     # qjackctl
     #qsynth
