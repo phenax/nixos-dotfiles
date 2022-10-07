@@ -2,6 +2,10 @@
 with pkgs.lib;
 
 let
+  useFakeHash = false;
+  commitHash = "f160ec9742cacd14f8853ea6d17dc4011f85156d";
+  realSha256 = "sha256-LCFcX23dY7tFoXPgEHaD+U6g2X/9M4aE4TPfvhu6bLI=";
+
   src = fetchFromGitHub {
     owner = "mozilla";
     repo = "nixpkgs-mozilla";
@@ -20,8 +24,11 @@ rustPlatform.buildRustPackage rec {
   src = pkgs.fetchFromGitHub {
     owner = "phenax";
     repo = "sidekick-dashboard";
-    rev = "994450070a984448cb0b286fc729a92c6487c0c9";
-    sha256 = "sha256-M4mbep/qxRsRxZdILxKY5ejRPVZ3Pm6nuToDCZky/A0=";
+    rev = commitHash;
+    sha256 =
+      if useFakeHash
+      then lib.fakeSha256
+      else realSha256;
   };
 
   cargoSha256 = "sha256-dgW2SlpKovw79wkdGcbVm6c8KqkbcZlvZCwCcdVBShw=";

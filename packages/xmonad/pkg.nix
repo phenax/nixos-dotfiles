@@ -5,7 +5,7 @@
 , haskellPackages
 }:
 let
-  xmobar_custom = haskellPackages.xmobar.overrideAttrs (
+  xmobar-custom = haskellPackages.xmobar.overrideAttrs (
     _: {
       configureFlags = [
         "-fwith_xft"
@@ -39,11 +39,11 @@ haskellPackages.mkDerivation rec {
     xmonad
     xmonad-contrib
 
-    xmobar_custom
+    xmobar-custom
   ];
 
   librarySystemDepends = with pkgs; [
-    pkgs.pkgconfig
+    pkgs.pkg-config
     xorg.libXext
     xorg.libXScrnSaver
     xorg.libXinerama
@@ -52,7 +52,7 @@ haskellPackages.mkDerivation rec {
     xorg.libXrandr
     xorg.libXft
     xorg.libXpm
-    alsaLib
+    alsa-lib
     wirelesstools
   ];
 }

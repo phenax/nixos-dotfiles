@@ -22,7 +22,7 @@ case "$1" in
 
 	# Docs
   *.md|*.org) glow -s dark "$1" ;;
-	*.csv) cat "$1" | sed s/,/\\n/g ;;
+	*.csv) cat "$1" | sed 's/,/  \|  /g' ;;
 	*.pdf) pdftotext "$1" - ;;
 	*.docx) docx2txt "$1" - ;;
 	*.epub) mediainfo "$1" ;;
@@ -41,10 +41,10 @@ case "$1" in
   ;;
 
   # Video
-  *.avi|*.mp4|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx)
+  *.avi|*.mp4|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.mts|*.m4v|*.r[am]|*.qt|*.divx)
     mediainfo "$1";
   ;;
 
   # Syntax
-	*) highlight --out-format ansi "$1" || cat "$1" ;;
+	*) bat --color always "$1" || cat "$1" ;;
 esac

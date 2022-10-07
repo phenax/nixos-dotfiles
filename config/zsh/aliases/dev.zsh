@@ -6,15 +6,6 @@ alias aws="docker run --rm -it amazon/aws-cli"
 # nix shell with zsh
 nix-zsh() { nix-shell --run "WITH_NIX_PREFIX='${NX_PREFIX:-':'}' zsh" "$@"; }
 
-# shell for node 14
-with_node_14() { NX_PREFIX="node14" nix-zsh -p nodejs-14_x "$@"; }
-
-# shell for docker-compose
-with_dcomp() { TMPDIR=$HOME/dump/tempdir NX_PREFIX=docker-compose nix-zsh -p docker-compose; }
-
-# npm run for node_14
-nrx() { with_node_14 --run "npm run $*"; }
-
 # :: Filename Pattern Replacetext
 far() {
   local file_r="$1"; shift;
@@ -88,7 +79,7 @@ p__enter_nixshell() {
     return 0;
   else
     echo "";
-    echo "ERR: default.nix already exists in directory";
+    echo "ERR: No default.nix or shell.nix in directory";
     zle send-break;
     return 1;
   fi;

@@ -1,5 +1,4 @@
 set hidden true
-# set color256 true
 set drawbox true
 set icons true
 set ignorecase true
@@ -9,35 +8,17 @@ set ratios 2:3
 set preview false
 set previewer ~/.config/lf/previewer.sh
 
-# Function definitions {{{
-cmd open_inplace ${{
-    case $(file --mime-type "$f" -bL) in
-        text/*|application/json) $EDITOR "$fx" 2&> /dev/null ;;
-        video/*)   setsid -f swallow mpv "$f" 2&> /dev/null ;;
-        image/gif) setsid -f swallow mpv "$f" 2&> /dev/null ;;
-        image/*)   setsid -f swallow sxiv "$f" 2&> /dev/null ;;
-        application/pdf) setsid -f swallow zathura "$f" 2&> /dev/null ;;
-        *)
-          for f in "$fx"; do
-            ~/scripts/bin/open "$f"
-          done
-        ;;
-    esac;
-    disown;
-}}
-
-cmd open ${{
+cmd open_internal ${{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$fx" ;;
-        video/*|application/pdf) ~/scripts/bin/open "$f" & ;;
-        *)
-          for f in "$fx"; do
-            ~/scripts/bin/open "$f"
-          done
-        ;;
+        video/*|application/pdf) ~/scripts/bin/open "$f" >/dev/null 2>&1 & ;;
+        *) for f in "$fx"; do
+          ~/scripts/bin/open "$f" 2>/dev/null
+        done ;;
     esac;
-    disown;
+    disown 2>/dev/null;
 }}
+cmd open open_internal
 
 cmd mkdir ${{
   printf "Directory Name: "
@@ -61,16 +42,14 @@ cmd move_to_trash ${{
 cmd rename %{{
   printf " Rename to: "
   read ans
-  mv "$f" "$ans"
+  mv -i "$f" "$ans"
 }}
-
-cmd set_wallpaper $feh --bg-scale "$f"
 
 cmd show_images ${{
   if [ "$(echo "$fx" | wc -l)" = "1" ]; then
-    swallow sxiv $(dirname "$fx") &
+    sxiv $(dirname "$fx") &
   else
-    swallow sxiv $fx &
+    sxiv $fx &
   fi;
 }}
 
@@ -95,23 +74,23 @@ map x       cut
 map y       copy
 map mf      mkfile
 map md      mkdir
-map wp      set_wallpaper
 map rr      rename
 
 
 # View changes
-map <enter> open_inplace
+map <enter> open_internal
+map <c-o>   open_internal
 map si      show_images
-map du      $du -h -d1 | less
-map sh      :set hidden!
-map st      :set sortby time
+map .       :set hidden!
+map st      :set sortby time; set info time
+map ss      :set sortby size; set info size
 
 
 # Traversal keys
-map gde   cd ~/Desktop
 map gdl   cd ~/Downloads/dl
 map gdm   cd ~/Downloads/music
 map gdv   cd ~/dev
-map gs    cd ~/scripts
+map gdp   cd ~/dump
 map gp    cd ~/Pictures
+map gmnt  cd /run/media/imsohexy
 

@@ -1,4 +1,4 @@
-{ stdenv, pkgs, libX11, pkgconfig }:
+{ stdenv, pkgs, libX11, pkg-config }:
 with pkgs.lib;
 
 stdenv.mkDerivation rec {
@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
 
   src = ./source;
 
-  nativeBuildInputs = [ pkgconfig ];
+  nativeBuildInputs = [ pkg-config ];
   buildInputs = [ libX11 ];
 
 

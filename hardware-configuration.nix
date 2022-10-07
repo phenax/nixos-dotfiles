@@ -46,7 +46,7 @@
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
-    firmware = with pkgs; [ wireless-regdb rtlwifi_new-firmware ];
+    firmware = with pkgs; [ wireless-regdb rtw88-firmware ]; # rtlwifi_new-firmware
   };
 
   # Bootloader

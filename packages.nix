@@ -44,6 +44,7 @@ let
     nodePackages.typescript-language-server
     nodePackages.vscode-json-languageserver
     nodePackages.vscode-langservers-extracted
+    nodePackages.tsun
     # nodePackage.bash-language-server
   ];
 
@@ -54,7 +55,7 @@ let
     # ungoogled-chromium
 
     # Comm
-    #slack
+    # slack
     # signal-cli
     # signal-desktop
 
@@ -66,17 +67,26 @@ let
     imagemagick
     ffmpeg-full
     feh
+    obs-studio
+    inkscape
+
+    # Gaming
+    chiaki
 
     # Scheduling
     remind
     wyrd
 
-    #monero-gui
+    # qjackctl
+    # ardour
+    pavucontrol
+    easyeffects
+
     lf
     dunst
     gotop
     tremc
-    # zathura # Broken on 9th April 2020
+    zathura
   ];
 
   utils = with pkgs; [
@@ -92,17 +102,16 @@ let
     file
     at
     bc
-    tty-clock
+    bat
+    fd
+    sad
+    mediainfo
+    poppler_utils
+    glow
+    # appimage-run
 
     # Audio
-    alsaUtils
-    pavucontrol
-    obs-studio
-    inkscape
-
-    # qjackctl
-    #qsynth
-    # ardour
+    alsa-utils
 
     # X stuff
     picom
@@ -119,18 +128,17 @@ let
 in
 {
   # Packages
-  environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
+  environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils ++ [ pkgs.steam-run ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "ffmpeg-3.4.8"
   ];
 
-  programs = {
-    adb.enable = true;
-  };
+  programs.adb.enable = true;
 
-  #programs.steam.enable = true;
-  #hardware.steam-hardware.enable = true;
+  programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
+  programs.gamemode.enable = true;
 
   # Security wrappers
   security.wrappers = {

@@ -1,4 +1,4 @@
-{ stdenv, pkgs, libX11, libXinerama, libXft, fontconfig, pkgconfig, ncurses }:
+{ stdenv, pkgs, libX11, libXinerama, libXft, fontconfig, pkg-config, ncurses }:
 with pkgs.lib;
 
 stdenv.mkDerivation rec {
@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
 
   src = ./source;
 
-  nativeBuildInputs = [ pkgconfig ];
+  nativeBuildInputs = [ pkg-config ];
   buildInputs = [ libX11 libXft fontconfig ncurses ];
 
 

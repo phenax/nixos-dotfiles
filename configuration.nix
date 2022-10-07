@@ -28,6 +28,8 @@ in
     enable = true;
   };
 
+  programs.dconf.enable = true;
+
   # services.borgbackup =
   #   let
   #     homeDir = config.users.users.imsohexy.home;
@@ -54,22 +56,7 @@ in
   #   };
 
   hardware.bluetooth.enable = false;
-  #hardware.bluetooth.package = pkgs.bluezFull;
-
-  services.monero = {
-    enable = false;
-    dataDir = "/var/lib/monero";
-    # mining.enable = {
-    #   enable = false;
-    #   threads = 2;
-    # };
-    rpc = {
-      address = "127.0.0.1";
-      port = 18081;
-      # user = "hexyman";
-      # password = "";
-    };
-  };
+  # services.blueman.enable = true;
 
   # Enable sound.
   sound.enable = false;
@@ -81,13 +68,6 @@ in
     # jack.enable = true;
     # alsa.support32Bit = true;
   };
-  # services.jack = {
-  #   jackd.enable = true;
-  #   alsa.enable = false;
-  #   loopback = {
-  #     enable = true;
-  #   };
-  # };
 
   # Network
   networking = {
