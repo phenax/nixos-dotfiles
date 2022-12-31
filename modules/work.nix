@@ -8,7 +8,7 @@ in
   ];
 
   services.vanta = {
-    enable = true;
+    enable = false;
     agentKey = vantaCreds.VANTA_KEY;
     email = vantaCreds.VANTA_OWNER_EMAIL;
   };

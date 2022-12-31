@@ -2,28 +2,20 @@
 {
   xresources.properties =
     let
-      bg = "#0f0c19";
-      fg = "#d8dee9";
-      accent = "#4e3aA3";
-      ##A22F3E
-      ##A1313F
-      ##A82E3D
-      ##AE2E3D
-      ##EB4960
-      ##B22337
-      ##F32929
+      theme = import ./xresources/catcula.nix;
+      # theme = import ./xresources/tealicious.nix;
     in
     {
-      "*.foreground" = fg;
-      "*.background" = bg;
-      "*.cursorColor" = fg;
-      "*.accent" = accent;
+      "*.foreground" = theme.foreground;
+      "*.background" = theme.background;
+      "*.cursorColor" = theme.foreground;
+      "*.accent" = theme.accent;
 
       "*.color0" = "#15121f";
       "*.color8" = "#555555";
 
       "*.color1" = "#e06c75";
-      "*.color9" = "#bf616a";
+      "*.color9" = "#7c162e";
 
       "*.color2" = "#98C379";
       "*.color10" = "#a3be8c";
@@ -43,22 +35,22 @@
       "*.color7" = "#ABB2BF";
       "*.color15" = "#ebdbb2";
 
-      "dmenu.background" = bg;
-      "dmenu.foreground" = fg;
-      "dmenu.selbackground" = accent;
-      "dmenu.selforeground" = fg;
+      "dmenu.background" = theme.background;
+      "dmenu.foreground" = theme.foreground;
+      "dmenu.selbackground" = theme.accent;
+      "dmenu.selforeground" = theme.foreground;
 
-      "dmenu.highlightbg" = bg;
-      "dmenu.highlightfg" = accent;
-      "dmenu.highlightselbg" = accent;
-      "dmenu.highlightselfg" = bg;
+      "dmenu.highlightbg" = theme.background;
+      "dmenu.highlightfg" = theme.accent;
+      "dmenu.highlightselbg" = theme.accent;
+      "dmenu.highlightselfg" = theme.background;
 
-      "dwm.normbordercolor" = bg;
-      "dwm.normbgcolor" = bg;
-      "dwm.normfgcolor" = fg;
+      "dwm.normbordercolor" = theme.background;
+      "dwm.normbgcolor" = theme.background;
+      "dwm.normfgcolor" = theme.foreground;
 
-      "dwm.selbordercolor" = accent;
-      "dwm.selbgcolor" = accent;
-      "dwm.selfgcolor" = fg;
+      "dwm.selbordercolor" = theme.accent;
+      "dwm.selbgcolor" = theme.accent;
+      "dwm.selfgcolor" = theme.foreground;
     };
 }

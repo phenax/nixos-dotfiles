@@ -15,10 +15,10 @@
       ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
     };
     extraConfig = {
-      "color" = {
-        "ui" = true;
+      color = {
+        ui = true;
       };
-      "init" = {
+      init = {
         defaultBranch = "main";
       };
       "color \"diff-highlight\"" = {
@@ -35,7 +35,7 @@
         new = "green bold";
         whitespace = "red reverse";
       };
-      #"pull" = { rebase = true; };
+      pull = { rebase = false; };
     };
     signing.key = "AAAB13AE8B82A5267C1A35D7E1B701723EA37849";
     signing.signByDefault = true;

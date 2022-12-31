@@ -48,7 +48,7 @@ run() {
   run "dunst" dunst -config ~/.config/dunst/dunstrc;
 
   # Compositor
-  run "picom" picom --experimental-backends --config ~/.config/picom.conf;
+  run "picom" picom --config ~/.config/picom.conf;
 
   # Cron jobs
   #run "crond" crond -n -f ~/.config/crontab/crontab;

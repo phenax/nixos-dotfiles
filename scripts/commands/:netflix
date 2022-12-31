@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+brave https://netflix.com & disown
+

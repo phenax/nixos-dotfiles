@@ -11,7 +11,7 @@ let
     st
     dmenu
     anypinentry
-    bslock
+    # bslock
     sidekick
   ];
 
@@ -98,7 +98,6 @@ let
     wget
     killall
     pciutils
-    udiskie
     file
     at
     bc
@@ -132,6 +131,7 @@ in
 
   nixpkgs.config.permittedInsecurePackages = [
     "ffmpeg-3.4.8"
+    "qtwebkit-5.212.0-alpha4"
   ];
 
   programs.adb.enable = true;
@@ -141,11 +141,11 @@ in
   programs.gamemode.enable = true;
 
   # Security wrappers
-  security.wrappers = {
-    bslock = {
-      owner = config.users.users.imsohexy.name;
-      group = "users";
-      source = "${localPkgs.bslock}/bin/bslock";
-    };
-  };
+  # security.wrappers = {
+  #   bslock = {
+  #     owner = config.users.users.imsohexy.name;
+  #     group = "users";
+  #     source = "${localPkgs.bslock}/bin/bslock";
+  #   };
+  # };
 }

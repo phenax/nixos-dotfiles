@@ -1,4 +1,4 @@
-{ config, pkgs, epkgs, ... }:
+{ config, pkgs, epkgs, lib, ... }:
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
 in
@@ -6,7 +6,6 @@ in
   imports = [
     ./overlays-home.nix
     ./modules/music.home.nix
-    ./modules/git.home.nix
     ./modules/git.home.nix
     ./modules/xresources.home.nix
   ];
@@ -56,7 +55,13 @@ in
 
   services.udiskie = {
     enable = true;
-    tray = "always";
+    automount = true;
+    notify = true;
+    tray = "never";
+  };
+  systemd.user.services.udiskie = {
+    Install.WantedBy = lib.mkForce [ "default.target" ];
+    Unit.After = lib.mkForce [ "udisks2.service" ];
   };
 
   programs.password-store = {
