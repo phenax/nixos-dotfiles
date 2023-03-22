@@ -32,7 +32,6 @@ let
     nodejs-16_x
 
     # godot
-    # blender
 
     bspwm
     sxhkd
@@ -52,6 +51,7 @@ let
     # Browser
     qutebrowser
     brave
+    # firefox
     # ungoogled-chromium
 
     # Comm
@@ -69,9 +69,11 @@ let
     feh
     obs-studio
     inkscape
+    krita
+    # blender
 
     # Gaming
-    chiaki
+    # chiaki
 
     # Scheduling
     remind
@@ -87,6 +89,13 @@ let
     gotop
     tremc
     zathura
+    # (emojipick.override {
+    #   dmenu = localPkgs.dmenu;
+    #   python3 = python3;
+    #   emojipick-print-emoji = false;
+    #   emojipick-font-family = "JetBrainsMono Nerd Font";
+    #   emojipick-font-size = "12";
+    # })
   ];
 
   utils = with pkgs; [
@@ -107,6 +116,7 @@ let
     mediainfo
     poppler_utils
     glow
+    wineWowPackages.stable
     # appimage-run
 
     # Audio

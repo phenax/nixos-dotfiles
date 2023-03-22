@@ -60,6 +60,18 @@ in
   hardware.bluetooth.enable = false;
   # services.blueman.enable = true;
 
+  # services.vdirsyncer = {
+  #   enable = true;
+  #   jobs = {
+  #     google_cal = {
+  #       enable = true;
+  #       config = {
+  #         #
+  #       };
+  #     };
+  #   };
+  # };
+
   # Enable sound.
   sound.enable = false;
   security.rtkit.enable = true;
@@ -67,8 +79,6 @@ in
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
-    # jack.enable = true;
-    # alsa.support32Bit = true;
   };
 
   # Network
@@ -98,7 +108,7 @@ in
     };
     lxd.enable = false;
     virtualbox.host.enable = false;
-    #anbox.enable = true;
+    # anbox.enable = true;
   };
 
   # I18n and keyboard layout

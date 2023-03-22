@@ -19,6 +19,7 @@
     "snd-seq"
     "snd-rawmidi"
     "uinput"
+    "v4l2loopback"
   ];
   boot.kernelParams = [
     "i8042.nopnp=1"
@@ -28,6 +29,7 @@
   ];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
   boot.supportedFilesystems = [ "ntfs" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

@@ -18,8 +18,13 @@ xresources = read_xresources('*')
 c.fonts.default_family = 'JetBrainsMono Nerd Font'
 c.fonts.default_size = '12px'
 c.colors.webpage.preferred_color_scheme = 'dark'
-c.colors.webpage.bg = "white"
-c.colors.webpage.darkmode.enabled = False
+
+c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.algorithm = "lightness-cielab"
+c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.darkmode.threshold.background = 100
+c.colors.webpage.darkmode.policy.images = 'always'
+c.colors.webpage.darkmode.grayscale.images = 0.35
 
 ## Hints
 c.colors.hints.bg = 'yellow'

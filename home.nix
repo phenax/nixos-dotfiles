@@ -14,17 +14,17 @@ in
     yarn
   ];
 
-  #programs.emacs = {
-  #enable = true;
-  #};
-  #services.emacs = {
-  #enable = true;
-  #client.enable = true;
-  #};
-  #programs.direnv = {
-  #enable = true;
-  #enableNixDirenvIntegration = true;
-  #};
+  # programs.emacs = {
+  #   enable = true;
+  # };
+  # services.emacs = {
+  #   enable = true;
+  #   client.enable = true;
+  # };
+  # programs.direnv = {
+  #   enable = true;
+  #   enableNixDirenvIntegration = true;
+  # };
 
   # xdg.configFile."mimeapps.list".text = ''
   #   [Default Applications]

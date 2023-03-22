@@ -93,6 +93,8 @@ c.hints.chars = 'azsxdclmknjb'
 c.hints.auto_follow = 'unique-match'
 c.content.pdfjs = True
 
+nunmap('m')
+nunmap('M')
 nunmap("<Ctrl-a>")
 nunmap('<Ctrl-v>')
 nunmap('<Ctrl-x>')

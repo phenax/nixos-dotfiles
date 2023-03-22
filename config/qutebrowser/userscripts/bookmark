@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+BOOKMARKS_PATH="$HOME/nixos/extras/bookmarks"
+
+case "$1" in
+  show)
+    local link=$(dmenu -p 'Bookmark :: ' < "$BOOKMARKS_PATH")
+    if test "$link"; then
+      echo "open -t '$link'" >> "$QUTE_FIFO"
+    fi
+  ;;
+  new)
+    echo "$QUTE_URL" >> "$BOOKMARKS_PATH"
+  ;;
+esac
+
