@@ -29,7 +29,7 @@ let
 
     gcc
     gnumake
-    nodejs-16_x
+    nodejs-18_x
 
     # godot
 
@@ -61,7 +61,7 @@ let
 
     # Media
     spotify
-    mpv
+    # mpv
     sxiv
     youtube-dl
     imagemagick

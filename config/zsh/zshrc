@@ -19,7 +19,9 @@ for f in $ZSH_CUSTOM_CONF_FILES/*.zsh; do source $f; done;
 source $ZSH_CUSTOM_CONF_FILES/aliases.zsh;
 
 # Direnv setup
-eval "$(direnv hook zsh)"
+if [[ "$DIRENV_DISABLE_HOOK" != "1" ]]; then
+  eval "$(direnv hook zsh)"
+fi;
 
 # Plugins
 # source ~/.config/zshplugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh;

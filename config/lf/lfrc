@@ -4,9 +4,11 @@ set icons true
 set ignorecase true
 set relativenumber true
 set ratios 2:3
+set dirpreviews false
 
-set preview false
+set preview true
 set previewer ~/.config/lf/previewer.sh
+set cursorpreviewfmt "\033[7m"
 
 cmd open_internal ${{
     case $(file --mime-type "$f" -bL) in
@@ -39,18 +41,24 @@ cmd move_to_trash ${{
   done;
 }}
 
-cmd rename %{{
-  printf " Rename to: "
-  read ans
-  mv -i "$f" "$ans"
-}}
-
 cmd show_images ${{
   if [ "$(echo "$fx" | wc -l)" = "1" ]; then
     sxiv $(dirname "$fx") &
   else
     sxiv $fx &
   fi;
+}}
+
+cmd unzip_zip ${{
+  unzip $f;
+}}
+
+cmd unzip_7z ${{
+  nix-zsh -p p7zip --run '7z x $f';
+}}
+
+cmd unzip_rar ${{
+  NIXPKGS_ALLOW_UNFREE=1 nix-zsh -p unrar --run 'unrar x $f';
 }}
 
 # }}}
@@ -74,8 +82,6 @@ map x       cut
 map y       copy
 map mf      mkfile
 map md      mkdir
-map rr      rename
-
 
 # View changes
 map <enter> open_internal

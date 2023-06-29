@@ -37,6 +37,7 @@
   services.udev = {
     packages = [
       pkgs.android-udev-rules
+      pkgs.platformio-core.udev
     ];
 
     extraRules = ''

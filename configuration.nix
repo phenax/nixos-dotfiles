@@ -57,7 +57,8 @@ in
   #     };
   #   };
 
-  hardware.bluetooth.enable = false;
+  # NOTE: Enable bluetooth using this and then use bluetoothctl
+  # hardware.bluetooth.enable = true;
   # services.blueman.enable = true;
 
   # services.vdirsyncer = {

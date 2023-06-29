@@ -8,6 +8,7 @@ in
     ./modules/music.home.nix
     ./modules/git.home.nix
     ./modules/xresources.home.nix
+    ./modules/mpv.home.nix
   ];
 
   home.packages = with pkgs; [
