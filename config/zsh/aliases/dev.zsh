@@ -88,5 +88,7 @@ p__enter_nixshell() {
 zle -N p__enter_nixshell;
 bindkey '^X' p__enter_nixshell;
 
-alias fix-interpreter="nix-shell -p patchelf --run 'patchelf --set-interpreter \$(patchelf --print-interpreter \$(which mkdir))'"
+fix-interpreter() {
+  nix-shell -p patchelf --run "patchelf --set-interpreter \$(patchelf --print-interpreter \$(which mkdir)) $@"
+}
 

@@ -29,7 +29,10 @@ case "$1" in
 	*.[1-8]) man "$1" | col -b ;;
 
 	# Images
-	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp) mediainfo "$1"; ;;
+	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp)
+		catimg -w "$((width * 2 * 3))" "$1";
+		echo "done"
+	;;
 
 	#*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp)
     #~/scripts/image.sh draw "$1" "$x" "$y" "$width" "$height";

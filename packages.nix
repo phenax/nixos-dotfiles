@@ -43,7 +43,7 @@ let
     nodePackages.typescript-language-server
     nodePackages.vscode-json-languageserver
     nodePackages.vscode-langservers-extracted
-    nodePackages.tsun
+    # nodePackages.tsun
     # nodePackage.bash-language-server
   ];
 
@@ -61,7 +61,6 @@ let
 
     # Media
     spotify
-    # mpv
     sxiv
     youtube-dl
     imagemagick
@@ -70,32 +69,26 @@ let
     obs-studio
     inkscape
     krita
-    # blender
+    zathura
+    blender
 
-    # Gaming
-    # chiaki
+    # chiaki # PS remote play
 
-    # Scheduling
     remind
-    wyrd
+    dunst
 
+    # Audio
     # qjackctl
     # ardour
     pavucontrol
     easyeffects
 
+    # TUI stuff
     lf
-    dunst
     gotop
     tremc
-    zathura
-    # (emojipick.override {
-    #   dmenu = localPkgs.dmenu;
-    #   python3 = python3;
-    #   emojipick-print-emoji = false;
-    #   emojipick-font-family = "JetBrainsMono Nerd Font";
-    #   emojipick-font-size = "12";
-    # })
+    wyrd
+    dua
   ];
 
   utils = with pkgs; [
@@ -111,11 +104,13 @@ let
     at
     bc
     bat
+    catimg
     fd
     sad
     mediainfo
     poppler_utils
     glow
+    figlet
     wineWowPackages.stable
     # appimage-run
 

@@ -137,14 +137,17 @@ in
       };
     };
   };
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     # jetbrains-mono
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     cozette
     noto-fonts-emoji
   ];
 
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
   nix.gc = {
     automatic = true;
     dates = "weekly";

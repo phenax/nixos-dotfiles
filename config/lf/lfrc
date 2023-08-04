@@ -54,11 +54,11 @@ cmd unzip_zip ${{
 }}
 
 cmd unzip_7z ${{
-  nix-zsh -p p7zip --run '7z x $f';
+  nix-shell -p p7zip --run '7z x $f';
 }}
 
 cmd unzip_rar ${{
-  NIXPKGS_ALLOW_UNFREE=1 nix-zsh -p unrar --run 'unrar x $f';
+  NIXPKGS_ALLOW_UNFREE=1 nix-shell -p unrar --run 'unrar x $f';
 }}
 
 # }}}
@@ -99,4 +99,5 @@ map gdv   cd ~/dev
 map gdp   cd ~/dump
 map gp    cd ~/Pictures
 map gmnt  cd /run/media/imsohexy
+map gdc   cd ~/Documents
 

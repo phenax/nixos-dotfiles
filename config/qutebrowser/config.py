@@ -156,12 +156,11 @@ nmap(localleader + 'td', ':toggle-darkmode')
 # }}}
 
 #### Sessions {{{
-c.aliases['load'] = 'session-load -t';
+# c.aliases['load'] = 'session-load -t';
 
 # Sessions
-nmap(leader + 'sv', ':load video');
-nmap(leader + 'sc', ':load work');
-nmap(leader + 'si', ':load interview');
+nmap(leader + 'sl', ':set-cmd-text :session-load ');
+nmap(leader + 'sw', ':set-cmd-text :session-save ');
 # }}}
 
 #### Navigation {{{
@@ -296,6 +295,8 @@ c.url.searchengines = {
     'hg': 'http://www.haskell.org/hoogle/?hoogle={}',
     'cname': 'https://www.whatsmydns.net/#CNAME/{}',
     'nx': 'https://search.nixos.org/packages?channel=unstable&query={}',
+    'pio': 'https://registry.platformio.org/search?q={}',
+    'pub': 'https://pub.dev/packages?q={}',
 
     # Media
     'r': 'http://www.reddit.com/r/{}/',

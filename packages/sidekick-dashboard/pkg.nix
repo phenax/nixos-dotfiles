@@ -7,8 +7,7 @@ let
   sidekickSrc = pkgs.fetchFromGitHub {
     owner = "phenax";
     repo = "sidekick-dashboard";
-    rev = "main";
-    # sha256 = lib.fakeSha256;
+    rev = "25709ed8eed6a13ff4bd5fdd5ccec50c13433895";
     sha256 = "sha256-1EJv0N1Ebp5vHN2+xETx4qhPQTS4YI6r3ysCkn0GozY=";
   };
 
