@@ -9,6 +9,9 @@ alias e="sensible-editor";
 alias v="nvim";
 alias o='open $(fzf)';
 
+alias j='just';
+alias jl='just -l';
+
 # Load work aliases
 # source "$HOME/.work-config/zshconf/aliases.zsh";
 

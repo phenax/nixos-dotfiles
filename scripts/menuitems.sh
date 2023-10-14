@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-volume_component() { amixer get Master | awk -F'[][]' '/dB/ {print $C}' C="$1"; }
+volume_component() { amixer get Master | awk -F'[][]' '/Left:/ {print $C}' C="$1"; }
 mic_component() { amixer get Capture | awk -F'[][]' '/dB/ {print $C}' C="$1" | head -n 1; }
 
 playerctl_icon() {
@@ -14,25 +14,21 @@ playerctl_icon() {
 }
 
 network_state() {
-  local state=$(nmcli dev show wlp5s0);
-  local ssid=$(echo -e "$state" | grep '^GENERAL.CONNECTION:' | sed 's/^GENERAL.CONNECTION:\s*//g');
-
-  [[ "$ssid" == "--" ]] && ssid="";
-
-  echo "$([[ -z "$ssid" ]] && echo "offline" || echo "online") ${ssid:0:12}...";
+  local status=$((nmcli dev show wlp1s0 || echo "") | grep '^GENERAL.STATE:' | sed 's/^GENERAL.STATE:\s*//g');
+  echo "  ${status:0:16}"; 
 }
 
-volume_icon() { volume_component 6 | sed 's/on//; s/off/🔇/'; }
-mic_icon() { mic_component 6 | sed 's/on//; s/off/✖/'; }
+volume_icon() { volume_component 4 | sed 's/on//; s/off/🔇/'; }
+mic_icon() { mic_component 4 | sed 's/on//; s/off/✖/'; }
 
 icon() {
   case "$1" in
     date)        echo "" ;;
     battery)     echo "" ;;
     music)       playerctl_icon ;;
-    volume)      echo -n "[$(mic_icon)]  $(volume_icon)" ;;
+    volume)      volume_icon ;;
     brightness)  echo "" ;;
-    network)     network_state | sed 's/online//; s/idle//; s/offline/❌/' ;;
+    network)     network_state ;; # | sed 's/\(connected\)//; s/\(connecting.*\)//; s/\(disconnected\)/❌/' ;;
     *) ;;
   esac
 }
@@ -56,7 +52,7 @@ brightness_module() {
 }
 
 volume_module() {
-  echo "$(icon volume) $(volume_component 2)";
+  echo "$(icon volume)  $(volume_component 2)";
 }
 
 keymode_module() {
@@ -82,4 +78,5 @@ get_module() {
 
 padding="  ";
 
-echo "$padding$(get_module $1)$padding";
+echo "$padding$(get_module $1 || echo "-")$padding";
+exit 0;

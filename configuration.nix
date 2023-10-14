@@ -24,38 +24,24 @@ in
     allowBroken = false;
   };
 
-  services.tlp = {
-    enable = true;
-  };
+  services.tlp.enable = true;
 
   services.udisks2.enable = true;
 
   programs.dconf.enable = true;
 
-  # services.borgbackup =
-  #   let
-  #     homeDir = config.users.users.imsohexy.home;
-  #     user = config.users.users.imsohexy.name;
-  #   in
-  #   {
-  #     jobs = {
-  #       testBkup = {
-  #         paths = "${homeDir}/dump/elm-worker-tmp";
-  #         repo = "${homeDir}/dump/backups";
-  #         compression = "none";
-  #         startAt = "weekly";
-  #         user = user;
-  #         group = "users";
-  #         encryption = {
-  #           mode = "none";
-  #         };
-  #         # encryption = {
-  #         #   mode = "repokey";
-  #         #   passCommand = "pass show BorgBackup/imsohexy";
-  #         # };
-  #       };
-  #     };
-  #   };
+  # Fix hmr issue?
+  systemd.extraConfig = ''DefaultLimitNOFILE=65536'';
+  systemd.user.extraConfig = ''DefaultLimitNOFILE=65536'';
+  boot.kernel.sysctl."fs.inotify.max_user_instances" = 8192;
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "-";
+      item = "nofile";
+      value = "65536";
+    }
+  ];
 
   # NOTE: Enable bluetooth using this and then use bluetoothctl
   # hardware.bluetooth.enable = true;
@@ -84,28 +70,27 @@ in
 
   # Network
   networking = {
-    hostName = "dickhead";
+    hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 8080 ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [ 8080 3000 3001 ];
+      allowedUDPPorts = [ 41641 ];
     };
+    nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+    search = [ "resolve.construction" ];
     networkmanager.enable = true;
     extraHosts = ''
       127.0.0.1       phenax.local
-      127.0.0.1       hasura.colabra
+      127.0.0.1       field.shape-e2e.com
     '';
   };
+  services.tailscale.enable = true;
 
   services.atd.enable = true;
 
   virtualisation = {
     docker = {
       enable = true;
-      # autoPrune = {
-      #   enable = true;
-      #   flags = [ "--volumes" ];
-      # };
     };
     lxd.enable = false;
     virtualbox.host.enable = false;

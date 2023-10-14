@@ -44,7 +44,8 @@ c.content.media.video_capture = 'ask'
 c.content.tls.certificate_errors = 'ask'
 c.content.desktop_capture = 'ask'
 c.content.mouse_lock = 'ask'
-c.content.javascript.can_access_clipboard = True
+# c.content.javascript.can_access_clipboard = True
+c.content.javascript.clipboard = 'access'
 c.content.canvas_reading = True
 # c.content.fullscreen.window = True   # Fullscreen fixed to window size
 

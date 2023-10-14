@@ -159,8 +159,10 @@ nmap(localleader + 'td', ':toggle-darkmode')
 # c.aliases['load'] = 'session-load -t';
 
 # Sessions
-nmap(leader + 'sl', ':set-cmd-text :session-load ');
-nmap(leader + 'sw', ':set-cmd-text :session-save ');
+# nmap(leader + 'sl', ':set-cmd-text :session-load ');
+# nmap(leader + 'sw', ':set-cmd-text :session-save ');
+nmap(leader + 'sl', ':cmd-set-text :session-load ');
+nmap(leader + 'sw', ':cmd-set-text :session-save --no-history');
 # }}}
 
 #### Navigation {{{
@@ -192,8 +194,10 @@ c.tabs.new_position.unrelated = 'next'
 c.tabs.last_close = 'close' # 'close' for closing window on last d
 
 # Keybindings
-nmap('o', 'set-cmd-text -s :open --tab')
-nmap('O', 'set-cmd-text -s :open')
+# nmap('o', 'set-cmd-text -s :open --tab')
+# nmap('O', 'set-cmd-text -s :open')
+nmap('o', 'cmd-set-text -s :open --tab')
+nmap('O', 'cmd-set-text -s :open')
 
 # Tab
 nmap('d', 'tab-close')
@@ -211,6 +215,7 @@ nmap('<Ctrl-j>', 'tab-next')
 nmap('<Ctrl-Shift-k>', 'tab-move -')
 nmap('<Ctrl-Shift-j>', 'tab-move +')
 nmap('b', 'set-cmd-text --space :buffer') # List buffers by index
+# nmap('b', 'cmd-set-text --space :buffer') # List buffers by index
 
 for i in range(1, 10 + 1):
     key = 0 if i == 10 else i
@@ -262,6 +267,7 @@ config.set('content.notifications.enabled', True, '*://chat.google.com')
 
 # Google meet
 config.set('content.notifications.enabled', False, '*://meet.google.com')
+config.set('content.notifications.enabled', False, '*://*.basecamp.com')
 config.set('content.media.audio_video_capture', True, '*://meet.google.com')
 config.set('content.media.audio_capture', True, '*://meet.google.com')
 config.set('content.media.video_capture', True, '*://meet.google.com')
@@ -331,8 +337,8 @@ nmap(leader + 'tj', 'format-json')
 # }}}
 
 #### History {{{
-nmap('<Shift-h>', 'back')
-nmap('<Shift-l>', 'forward')
+nmap('<Shift-h>', 'back --quiet')
+nmap('<Shift-l>', 'forward --quiet')
 nmap(leader + 'hh', 'history --tab')
 # }}}
 

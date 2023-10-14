@@ -39,6 +39,11 @@ in
   #   image/jpeg=sxiv.desktop
   # '';
 
+  services.easyeffects = {
+    enable = true;
+    preset = "default";
+  };
+
   programs.lsd = {
     enable = true;
     enableAliases = true;
@@ -83,8 +88,6 @@ in
     #'';
   };
 
-  # services.network-manager-applet.enable = true;
-
   home.file = {
     ".config/xorg".source = ./config/xorg;
     ".config/zsh".source = ./config/zsh;
@@ -93,7 +96,6 @@ in
     ".config/sxiv".source = ./config/sxiv;
     ".local/share/qutebrowser/userscripts".source = ./config/qutebrowser/userscripts;
     ".local/share/qutebrowser/greasemonkey".source = ./config/qutebrowser/greasemonkey;
-    # ".local/share/qutebrowser/sessions".source = ./private-config/qutebrowser/sessions;
     ".config/dunst".source = ./config/dunst;
     ".config/lf".source = ./config/lf;
     ".config/picom.conf".source = ./config/picom.conf;

@@ -34,13 +34,6 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
-cmd move_to_trash ${{
-  mkdir -p /tmp/.trash-cache/
-  echo "$fx" | while read file; do
-    mv "$file" /tmp/.trash-cache/
-  done;
-}}
-
 cmd show_images ${{
   if [ "$(echo "$fx" | wc -l)" = "1" ]; then
     sxiv $(dirname "$fx") &
@@ -61,22 +54,52 @@ cmd unzip_rar ${{
   NIXPKGS_ALLOW_UNFREE=1 nix-shell -p unrar --run 'unrar x $f';
 }}
 
-# }}}
+cmd unpack ${{
+  typ=$(file --mime-type "$f" -bL);
+  case $(typ) in
+    application/zip)
+      unzip "$f"
+    ;;
+    application/x-tar|application/gzip)
+      tar xzf "$f"
+    ;;
+    application/x-7z-compressed)
+      nix-shell -p p7zip --run "7z x '$f'"
+    ;;
+    application/vnd.rar)
+      NIXPKGS_ALLOW_UNFREE=1 nix-shell -p unrar --run "unrar x '$f'"
+    ;;
+    *)
+      lf -remote "send $id echoerr 'Unknown archive type: $typ'";
+    ;;
+  esac
+}}
 
-# Unset old keys {{{
-  map w
-  map m
-  map n
-  map "'"
-  map '"'
-  map d}}
-  map c
-  map e
-  map d
-# }}}
+
+# Unset old keys
+map w
+map m
+map n
+map p
+map "'"
+map '"'
+map d}}
+map c
+map e
+map d
+
+# TODO: fzf search through files
+
+# fzf search through directories
+cmd fuzzy_search_dirs ${{
+  dir=$(find . -type d | fzf);
+  if ! [ -z "$dir" ]; then
+    lf -remote "send $id cd $dir";
+  fi
+}}
 
 # Mutations
-map dd      move_to_trash
+map dd      delete
 map p       paste
 map x       cut
 map y       copy
@@ -91,8 +114,12 @@ map .       :set hidden!
 map st      :set sortby time; set info time
 map ss      :set sortby size; set info size
 
+# Search next/prev
+map <tab> search-next
+map <backtab> search-prev
 
 # Traversal keys
+map \\f   fuzzy_search_dirs
 map gdl   cd ~/Downloads/dl
 map gdm   cd ~/Downloads/music
 map gdv   cd ~/dev

@@ -5,9 +5,9 @@ let
   customPackages = with localPkgs; [
     sensible-apps
     shotkey
-    xmonad
-    # dwm
-    # dwmblocks
+    # xmonad
+    dwm
+    dwmblocks
     st
     dmenu
     anypinentry
@@ -23,18 +23,16 @@ let
     ctags
     fzf
     docker-compose
-    gibo
     direnv
     gh
+    # gibo
 
     gcc
     gnumake
-    nodejs-18_x
+    nodejs_20
 
-    # godot
-
-    bspwm
-    sxhkd
+    # bspwm
+    # sxhkd
 
     rnix-lsp
     efm-langserver
@@ -43,8 +41,7 @@ let
     nodePackages.typescript-language-server
     nodePackages.vscode-json-languageserver
     nodePackages.vscode-langservers-extracted
-    # nodePackages.tsun
-    # nodePackage.bash-language-server
+    nodePackages.prettier
   ];
 
   apps = with pkgs; [
@@ -55,9 +52,7 @@ let
     # ungoogled-chromium
 
     # Comm
-    # slack
-    # signal-cli
-    # signal-desktop
+    slack
 
     # Media
     spotify
@@ -71,6 +66,7 @@ let
     krita
     zathura
     blender
+    j4-dmenu-desktop
 
     # chiaki # PS remote play
 
@@ -81,7 +77,7 @@ let
     # qjackctl
     # ardour
     pavucontrol
-    easyeffects
+    # easyeffects
 
     # TUI stuff
     lf
@@ -128,6 +124,8 @@ let
     xclip
     xdo
     xdotool
+
+    v4l-utils
   ];
 in
 {

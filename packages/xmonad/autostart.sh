@@ -41,17 +41,11 @@ run() {
   # Wallpaper
   run "" ~/.fehbg;
 
-  # Dwm blocks status text
-  # run "dwmblocks" dwmblocks;
-
   # Notification daemon
   run "dunst" dunst -config ~/.config/dunst/dunstrc;
 
   # Compositor
   run "picom" picom --config ~/.config/picom.conf;
-
-  # Cron jobs
-  #run "crond" crond -n -f ~/.config/crontab/crontab;
 
   # Scheduler
   run "remind" remind -k"notify-send -a reminder %s" -z10 $REMINDER_FILE;

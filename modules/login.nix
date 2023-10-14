@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   sessions = [
-    [ "tty1" windowManagers.xmonad ]
-    [ "tty2" windowManagers.bspwm ]
+    [ "tty1" windowManagers.dwm ]
+    [ "tty2" windowManagers.xmonad ]
   ];
   windowManagers = {
     dwm = looped "dwm";

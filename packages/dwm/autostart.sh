@@ -26,8 +26,14 @@ once() {
 # Kill previous instance and run again
 run() {
   local name=$1; shift;
-  [[ ! -z "$name" ]] && pkill "$name" && sleep 0.05;
+  [[ ! -z "$name" ]] && pkill "$name" && sleep 0.1;
   is_kill || $@ &
+}
+
+spew() {
+  local name=$1; shift;
+  [[ ! -z "$name" ]] && pkill "$name" && sleep 0.1;
+  is_kill || setsid -f "$@" &
 }
 # }}}
 
@@ -36,28 +42,28 @@ run() {
   echo "[Autostart]: Running daemons";
 
   # Key daemon
-  run "shotkey" shotkey;
+  spew "shotkey" shotkey;
 
   # Wallpaper
   run "" ~/.fehbg;
 
-  # Dwm blocks status text
-  # run "dwmblocks" dwmblocks;
-
   # Notification daemon
-  run "dunst" dunst -config ~/.config/dunst/dunstrc;
+  spew "dunst" dunst -config ~/.config/dunst/dunstrc;
 
   # Compositor
-  run "picom" picom --experimental-backends --config ~/.config/picom.conf;
-
-  # Cron jobs
-  #run "crond" crond -n -f ~/.config/crontab/crontab;
+  spew "picom" picom --config ~/.config/picom.conf;
 
   # Scheduler
-  run "remind" remind -k"notify-send -a reminder %s" -z10 $REMINDER_FILE;
+  spew "remind" remind -k='notify-send -a reminder %s' -z10 "$REMINDER_FILE";
 
   # Battery watcher
   run "" ~/scripts/battery-watch.sh start;
+
+  # Dwm blocks status text
+  # run "dwmblocks" dwmblocks;
+
+  # Cron jobs
+  #run "crond" crond -n -f ~/.config/crontab/crontab;
 
   # Disk automount
   #once "udiskie" ~/.bin/with_zsh udiskie;
@@ -88,7 +94,9 @@ echo "[Autostart]: Checking applications";
 #on_startup sensible-browser;
 
 applications() {
-  #sleep 0.5;
+  sleep 0.5;
+
+  run "dwmblocks" dwmblocks;
 
   #focus_tag 9;
   #on_startup :today;

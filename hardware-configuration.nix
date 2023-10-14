@@ -7,6 +7,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # 2-Sep-2023, Bug: https://nixpk.gs/pr-tracker.html?pr=252605
   boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.initrd = {
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" ];
