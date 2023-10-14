@@ -264,10 +264,10 @@ config.set('content.notifications.enabled', True, '*://www.reddit.com')
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
 config.set('content.notifications.enabled', True, '*://mail.google.com')
 config.set('content.notifications.enabled', True, '*://chat.google.com')
+config.set('content.notifications.enabled', True, '*://*.basecamp.com')
 
 # Google meet
 config.set('content.notifications.enabled', False, '*://meet.google.com')
-config.set('content.notifications.enabled', False, '*://*.basecamp.com')
 config.set('content.media.audio_video_capture', True, '*://meet.google.com')
 config.set('content.media.audio_capture', True, '*://meet.google.com')
 config.set('content.media.video_capture', True, '*://meet.google.com')
