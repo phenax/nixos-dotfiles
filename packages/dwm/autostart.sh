@@ -33,7 +33,7 @@ run() {
 spew() {
   local name=$1; shift;
   [[ ! -z "$name" ]] && pkill "$name" && sleep 0.1;
-  is_kill || setsid -f "$@" &
+  is_kill || setsid -f "$@"
 }
 # }}}
 
