@@ -32,8 +32,8 @@ setup_webcam_day() {
 setup_webcam_night() {
   v4l2-ctl -d /dev/video2 --set-ctrl exposure_absolute=400
   v4l2-ctl -d /dev/video2 --set-ctrl gamma=230
-  v4l2-ctl -d /dev/video2 --set-ctrl saturation=16
-  v4l2-ctl -d /dev/video2 --set-ctrl contrast=11
+  v4l2-ctl -d /dev/video2 --set-ctrl saturation=14
+  v4l2-ctl -d /dev/video2 --set-ctrl contrast=10
   v4l2-ctl -d /dev/video2 --set-ctrl brightness=1
 }
 

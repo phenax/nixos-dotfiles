@@ -56,28 +56,7 @@ p__run_npm_script() {
 zle -N p__run_npm_script;
 bindkey '^B' p__run_npm_script;
 
-
-
-# Load shell
-# p__load_nix_shell_file() {
-#   if [[ -f "./default.nix" ]]; then
-#     echo "";
-#     echo "ERR: default.nix already exists in directory";
-#     zle send-break;
-#     return 1;
-#   fi;
-#
-#   local shells=$(ls ~/nixos/shell);
-#   local selected=$(echo -e "$shells" | fzf);
-#   [[ -z "$selected" ]] && return 1;
-#   cp ~/nixos/shell/$selected ./default.nix;
-#   zle send-break
-# }
-#
-# zle -N p__load_nix_shell_file;
-# bindkey '^N' p__load_nix_shell_file;
-
-
+# TODO: Run just script
 
 fix-interpreter() {
   nix-shell -p patchelf --run "patchelf --set-interpreter \$(patchelf --print-interpreter \$(which mkdir)) $@"
