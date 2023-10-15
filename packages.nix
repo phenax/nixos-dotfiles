@@ -25,6 +25,7 @@ let
     docker-compose
     direnv
     gh
+    just
     # gibo
 
     gcc

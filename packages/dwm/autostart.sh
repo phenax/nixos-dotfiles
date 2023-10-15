@@ -54,7 +54,7 @@ spew() {
   spew "picom" picom --config ~/.config/picom.conf;
 
   # Scheduler
-  spew "remind" remind -k='notify-send -a reminder %s' -z10 "$REMINDER_FILE";
+  spew "remind" remind -k'notify-send -a reminder %s' -z10 "$REMINDER_FILE";
 
   # Battery watcher
   run "" ~/scripts/battery-watch.sh start;
