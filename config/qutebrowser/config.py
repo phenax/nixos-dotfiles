@@ -156,13 +156,8 @@ nmap(localleader + 'td', ':toggle-darkmode')
 # }}}
 
 #### Sessions {{{
-# c.aliases['load'] = 'session-load -t';
-
-# Sessions
-# nmap(leader + 'sl', ':set-cmd-text :session-load ');
-# nmap(leader + 'sw', ':set-cmd-text :session-save ');
 nmap(leader + 'sl', ':cmd-set-text :session-load ');
-nmap(leader + 'sw', ':cmd-set-text :session-save --no-history');
+nmap(leader + 'sw', ':cmd-set-text :session-save');
 # }}}
 
 #### Navigation {{{
@@ -194,8 +189,6 @@ c.tabs.new_position.unrelated = 'next'
 c.tabs.last_close = 'close' # 'close' for closing window on last d
 
 # Keybindings
-# nmap('o', 'set-cmd-text -s :open --tab')
-# nmap('O', 'set-cmd-text -s :open')
 nmap('o', 'cmd-set-text -s :open --tab')
 nmap('O', 'cmd-set-text -s :open')
 
@@ -214,7 +207,6 @@ nmap('<Ctrl-k>', 'tab-prev')
 nmap('<Ctrl-j>', 'tab-next')
 nmap('<Ctrl-Shift-k>', 'tab-move -')
 nmap('<Ctrl-Shift-j>', 'tab-move +')
-nmap('b', 'set-cmd-text --space :buffer') # List buffers by index
 # nmap('b', 'cmd-set-text --space :buffer') # List buffers by index
 
 for i in range(1, 10 + 1):
