@@ -96,6 +96,16 @@ in
     virtualbox.host.enable = false;
     # anbox.enable = true;
   };
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = (with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-xapp
+    ]);
+  };
 
   # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";

@@ -109,6 +109,9 @@ let
     glow
     figlet
     wineWowPackages.stable
+    flatpak
+    distrobox
+    xorg.xhost
     # appimage-run
 
     # Audio
