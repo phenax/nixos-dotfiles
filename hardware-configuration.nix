@@ -52,6 +52,10 @@
     cpu.intel.updateMicrocode = true;
     firmware = with pkgs; [ wireless-regdb rtw88-firmware ]; # rtlwifi_new-firmware
   };
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  # };
 
   # Bootloader
   boot.loader = {

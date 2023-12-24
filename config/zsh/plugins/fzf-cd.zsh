@@ -4,7 +4,7 @@ fzf-change-dir-cwd() { # fzf + cd in cwd
   if [ ! -z "$selected" ] && [ "$selected" != "$(pwd)" ]; then
     cd $selected;
   fi
-  zle send-break
+  zle send-break || true
 }
 
 zle -N fzf-change-dir-cwd;
@@ -15,7 +15,7 @@ fzf-change-dir() {
   if ! [[ -z "$result" ]]; then
     cd "$result"
   fi
-  zle send-break
+  zle send-break || true
 }
 
 zle -N fzf-change-dir;

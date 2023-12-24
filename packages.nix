@@ -12,7 +12,7 @@ let
     dmenu
     anypinentry
     # bslock
-    sidekick
+    # sidekick
   ];
 
   devPackages = with pkgs; [
@@ -20,6 +20,7 @@ let
     neovim
     silver-searcher
     ripgrep
+    ast-grep
     ctags
     fzf
     docker-compose
@@ -48,6 +49,7 @@ let
   apps = with pkgs; [
     # Browser
     qutebrowser
+    # qutebrowser-qt5
     brave
     # firefox
     # ungoogled-chromium
@@ -64,7 +66,7 @@ let
     feh
     obs-studio
     inkscape
-    krita
+    # krita
     zathura
     blender
     j4-dmenu-desktop
@@ -75,9 +77,12 @@ let
     dunst
 
     # Audio
-    # qjackctl
-    # ardour
+    qjackctl
+    ardour
+    a2jmidid
     pavucontrol
+    audacity
+    # guitarix
     # easyeffects
 
     # TUI stuff
@@ -103,15 +108,15 @@ let
     bat
     catimg
     fd
-    sad
+    # sad
     mediainfo
     poppler_utils
     glow
-    figlet
+    # figlet
     wineWowPackages.stable
+    pkgs.steam-run
     flatpak
     distrobox
-    xorg.xhost
     # appimage-run
 
     # Audio
@@ -122,19 +127,20 @@ let
     brightnessctl
     xorg.xinit
     xorg.xrandr
-    arandr
     xorg.xmodmap
     xorg.xkill
+    xorg.xhost
     xclip
     xdo
     xdotool
+    arandr
 
     v4l-utils
   ];
 in
 {
   # Packages
-  environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils ++ [ pkgs.steam-run ];
+  environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
 
   nixpkgs.config.permittedInsecurePackages = [
     "ffmpeg-3.4.8"

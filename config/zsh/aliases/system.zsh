@@ -24,13 +24,13 @@ nix-rollback() {
 setup_webcam_day() {
   v4l2-ctl -d /dev/video2 --set-ctrl exposure_absolute=300
   v4l2-ctl -d /dev/video2 --set-ctrl gamma=180
-  v4l2-ctl -d /dev/video2 --set-ctrl saturation=17
-  v4l2-ctl -d /dev/video2 --set-ctrl contrast=12
+  v4l2-ctl -d /dev/video2 --set-ctrl saturation=15
+  v4l2-ctl -d /dev/video2 --set-ctrl contrast=11
   v4l2-ctl -d /dev/video2 --set-ctrl brightness=1
 }
 
 setup_webcam_night() {
-  v4l2-ctl -d /dev/video2 --set-ctrl exposure_absolute=400
+  v4l2-ctl -d /dev/video2 --set-ctrl exposure_absolute=460
   v4l2-ctl -d /dev/video2 --set-ctrl gamma=230
   v4l2-ctl -d /dev/video2 --set-ctrl saturation=14
   v4l2-ctl -d /dev/video2 --set-ctrl contrast=10

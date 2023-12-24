@@ -156,8 +156,8 @@ nmap(localleader + 'td', ':toggle-darkmode')
 # }}}
 
 #### Sessions {{{
-nmap(leader + 'sl', ':cmd-set-text :session-load ');
-nmap(leader + 'sw', ':cmd-set-text :session-save');
+nmap(leader + 'sl', ':cmd-set-text -s :session-load ');
+nmap(leader + 'sw', ':cmd-set-text -s :session-save');
 # }}}
 
 #### Navigation {{{
@@ -207,7 +207,7 @@ nmap('<Ctrl-k>', 'tab-prev')
 nmap('<Ctrl-j>', 'tab-next')
 nmap('<Ctrl-Shift-k>', 'tab-move -')
 nmap('<Ctrl-Shift-j>', 'tab-move +')
-# nmap('b', 'cmd-set-text --space :buffer') # List buffers by index
+nmap('b', 'cmd-set-text -s :tab-select') # List buffers by index
 
 for i in range(1, 10 + 1):
     key = 0 if i == 10 else i
