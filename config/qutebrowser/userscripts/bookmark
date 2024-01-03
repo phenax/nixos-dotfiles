@@ -12,5 +12,9 @@ case "$1" in
   new)
     echo "$QUTE_URL" >> "$BOOKMARKS_PATH"
   ;;
-esac
+  resource)
+    ~/dev/projects/nvim-ts-peek/bin/nvim-peek dmenu "$QUTE_URL" "$QUTE_TITLE" \
+      && notify-send "Saved $QUTE_URL";
+  ;;
+esac || true
 

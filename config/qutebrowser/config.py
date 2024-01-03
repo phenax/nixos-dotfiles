@@ -80,6 +80,8 @@ c.input.spatial_navigation = False
 
 c.content.dns_prefetch = True # Use dns prefetching for speed
 
+c.content.pdfjs = True
+
 # Editor
 c.editor.command = ['sensible-terminal', '-e', 'sensible-editor', '{}']
 c.input.insert_mode.auto_enter = True
@@ -87,11 +89,17 @@ c.input.insert_mode.auto_leave = True
 c.input.insert_mode.auto_load = True
 c.input.insert_mode.leave_on_load = True
 
+# File selector
+lf_file_picker = ['sensible-terminal', '-c', 'lf-selector', '-g', '170x40+50+50', '-e', 'lf', '-selection-path', '{}']
+c.fileselect.handler = 'external'
+c.fileselect.single_file.command = lf_file_picker
+c.fileselect.multiple_files.command = lf_file_picker
+
 # Hints
 c.hints.auto_follow = 'always'
 c.hints.chars = 'azsxdclmknjb'
 c.hints.auto_follow = 'unique-match'
-c.content.pdfjs = True
+c.hints.mode = 'number' # letter
 
 nunmap('m')
 nunmap('M')
@@ -163,11 +171,8 @@ nmap(leader + 'sw', ':cmd-set-text -s :session-save');
 #### Navigation {{{
 
 # Highlight inputs
-nmap('gi', 'hint inputs')
-
-# Selected
-nmap(localleader + 'gl', 'follow-selected') # Follow selected link
-nmap(localleader + 'gL', 'follow-selected --tab') # Follow selected link
+nmap('gi', 'hint inputs --mode letter')
+nmap('<Ctrl-f>', 'hint --mode=number --rapid links tab-bg')
 
 # Increment pagination
 nmap(localleader + 'nn', 'navigate increment')
@@ -182,6 +187,7 @@ nmap('P', 'open -- {clipboard}') # Open link in clipboard in the same tab
 #### TABS {{{
 c.tabs.show = 'multiple'
 c.tabs.title.format = '{perc}{private} {audio}{index}: {host} - {current_title}'
+c.tabs.title.format_pinned = '{index}'
 c.tabs.tooltips = True
 c.tabs.background = True
 c.tabs.select_on_remove = 'next'
@@ -207,7 +213,7 @@ nmap('<Ctrl-k>', 'tab-prev')
 nmap('<Ctrl-j>', 'tab-next')
 nmap('<Ctrl-Shift-k>', 'tab-move -')
 nmap('<Ctrl-Shift-j>', 'tab-move +')
-nmap('b', 'cmd-set-text -s :tab-select') # List buffers by index
+nmap(localleader + 'b', 'cmd-set-text -s :tab-select') # List buffers by index
 
 for i in range(1, 10 + 1):
     key = 0 if i == 10 else i
@@ -316,6 +322,8 @@ c.aliases['view-google-cache'] = 'open --tab http://www.google.com/search?q=cach
 #  c.aliases['xa'] = 'quit --save'
 c.aliases['h'] = 'help'
 
+c.aliases['mark-resource'] = 'spawn --userscript bookmark resource'
+nmap(localleader + 'tm', 'mark-resource')
 # }}}
 
 #### Dev {{{

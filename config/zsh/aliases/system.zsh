@@ -3,6 +3,7 @@
 
 alias update="sudo nixos-rebuild switch --upgrade";
 alias auto-remove="sudo nix-collect-garbage -d";
+alias clean-boot-entries="sudo /run/current-system/bin/switch-to-configuration boot";
 
 alias rebuild="sudo nixos-rebuild switch";
 alias list-gens="sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
