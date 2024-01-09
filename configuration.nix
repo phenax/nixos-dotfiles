@@ -74,7 +74,7 @@ in
     hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 8080 3000 3001 ];
+      allowedTCPPorts = [ 8080 8081 3000 3001 ];
       allowedUDPPorts = [ 41641 ];
     };
     nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
@@ -100,7 +100,7 @@ in
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
+    xdgOpenUsePortal = false;
     extraPortals = (with pkgs; [
       xdg-desktop-portal
       xdg-desktop-portal-gtk
@@ -139,6 +139,15 @@ in
     cozette
     noto-fonts-emoji
   ];
+
+  # programs.firefox = {
+  #   enable = true;
+  #   preferences = {
+  #     "browser.uidensity" = 1;
+  #     "browser.compactmode.show" = true;
+  #     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+  #   };
+  # };
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];

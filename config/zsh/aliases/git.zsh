@@ -44,6 +44,11 @@ alias gl='git log'
 
 alias gp='git push'
 
+alias gr='git rebase'
+alias gri='git rebase -i'
+alias grm='git rebase -i origin/master'
+alias grc='git rebase --continue'
+
 grename() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo "Usage: $0 old_branch new_branch"

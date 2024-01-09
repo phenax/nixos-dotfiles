@@ -1,0 +1,6 @@
+{
+  "filterLinkHints": true,
+  "keyMappings": "# Insert your preferred key mappings here.\nmap o Vomnibar.activateInNewTab\nmap O Vomnibar.activate\nmap b Vomnibar.activateBookmarksInNewTab\nmap B Vomnibar.activateBookmarks\nmap p openCopiedUrlInNewTab\nmap P openCopiedUrlInCurrentTab\n\nmap yu copyCurrentUrl\nmap u restoreTab\n\nmap <space>b Vomnibar.activateTabSelection\n\nunmap x\nunmap X\n\nmap J scrollDown\nmap K scrollUp\nmap <c-k> previousTab\nmap <c-j> nextTab\nmap <c-J> moveTabRight\nmap <c-K> moveTabLeft\n\n# map dd removeTab",
+  "settingsVersion": "2.0.5",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n  /* linkhint boxes */\n  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n color-stop(100%, #FFC542));\n  border: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n  /* linkhint text */\n  color: black;\n  font-weight: bold;\n  font-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}\n\n#vomnibar .vomnibarInput {\n  font-size: 14px;\n}\n\n#vomnibar ul {\n  margin: 0 !important;\n  padding: 0 !important;\n}\n\n#vomnibar ul li * {\n  font-size: 14px !important;\n}\n#vomnibar .vomnibarTopHalf .vomnibarSource {\n  color: #5a5c5f;\n}"
+}

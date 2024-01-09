@@ -23,18 +23,30 @@ nix-rollback() {
 #sv_disable() { sudo unlink /run/runit/service/$1; }
 
 setup_webcam_day() {
-  v4l2-ctl -d /dev/video2 --set-ctrl exposure_absolute=300
-  v4l2-ctl -d /dev/video2 --set-ctrl gamma=180
-  v4l2-ctl -d /dev/video2 --set-ctrl saturation=15
-  v4l2-ctl -d /dev/video2 --set-ctrl contrast=11
-  v4l2-ctl -d /dev/video2 --set-ctrl brightness=1
+  v4l2-ctl -d /dev/video2 \
+    --set-ctrl saturation=17 \
+    --set-ctrl contrast=11 \
+    --set-ctrl exposure_absolute=300 \
+    --set-ctrl exposure_auto=1 \
+    --set-ctrl brightness=1 \
+    --set-ctrl sharpness=4 \
+    --set-ctrl gamma=190 \
+    --set-ctrl power_line_frequency=1 \
+    --set-ctrl backlight_compensation=1 \
+    --set-ctrl gain=30
 }
 
 setup_webcam_night() {
-  v4l2-ctl -d /dev/video2 --set-ctrl exposure_absolute=460
-  v4l2-ctl -d /dev/video2 --set-ctrl gamma=230
-  v4l2-ctl -d /dev/video2 --set-ctrl saturation=14
-  v4l2-ctl -d /dev/video2 --set-ctrl contrast=10
-  v4l2-ctl -d /dev/video2 --set-ctrl brightness=1
+  v4l2-ctl -d /dev/video2 \
+    --set-ctrl saturation=18 \
+    --set-ctrl contrast=11 \
+    --set-ctrl exposure_absolute=500 \
+    --set-ctrl exposure_auto=1 \
+    --set-ctrl brightness=1 \
+    --set-ctrl sharpness=6 \
+    --set-ctrl gamma=230 \
+    --set-ctrl power_line_frequency=1 \
+    --set-ctrl backlight_compensation=1 \
+    --set-ctrl gain=64
 }
 

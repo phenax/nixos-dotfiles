@@ -102,4 +102,17 @@ in
     ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;
   };
+
+  # programs.chromium = {
+  #   enable = true;
+  #   package = pkgs.brave;
+  #   commandLineArgs = [ "--enable-devtools-experiments" "" ];
+  #   # --file_chooser, --enable-devtools-experiments --enabled-features --disabled-features --flag-switches-begin --flag-switches-end
+  #   extensions = [
+  #     { id = "fmkadmapgofadopljbjfkapdkoienihi"; } # React devtools
+  #     { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+  #     { id = "iohjgamcilhbgmhbnllfolmkmmekfmci"; } # Jam recording
+  #     { id = "jnkmfdileelhofjcijamephohjechhna"; } # GA debugger
+  #   ];
+  # };
 }

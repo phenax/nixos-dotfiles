@@ -94,12 +94,13 @@ lf_file_picker = ['sensible-terminal', '-c', 'lf-selector', '-g', '170x40+50+50'
 c.fileselect.handler = 'external'
 c.fileselect.single_file.command = lf_file_picker
 c.fileselect.multiple_files.command = lf_file_picker
+c.fileselect.folder.command = lf_file_picker
 
 # Hints
 c.hints.auto_follow = 'always'
-c.hints.chars = 'azsxdclmknjb'
+c.hints.chars = 'asdfhjklqwpei1290'
 c.hints.auto_follow = 'unique-match'
-c.hints.mode = 'number' # letter
+c.hints.mode = 'number' # number | letter
 
 nunmap('m')
 nunmap('M')
@@ -257,15 +258,22 @@ c.content.notifications.presenter = 'libnotify'
 c.content.notifications.enabled = 'ask'
 c.content.desktop_capture = 'ask'
 
-config.set('content.notifications.enabled', True, '*://reddit.com')
-config.set('content.notifications.enabled', True, '*://www.reddit.com')
+# Disable
+config.set('content.notifications.enabled', False, '*://reddit.com')
+config.set('content.notifications.enabled', False, '*://www.reddit.com')
+
+# general
 config.set('content.notifications.enabled', True, '*://web.whatsapp.com')
+config.set('content.notifications.enabled', True, '*://*.basecamp.com')
+config.set('content.notifications.enabled', True, '*://app.slack.com')
+# google
 config.set('content.notifications.enabled', True, '*://mail.google.com')
 config.set('content.notifications.enabled', True, '*://chat.google.com')
-config.set('content.notifications.enabled', True, '*://*.basecamp.com')
+config.set('content.notifications.enabled', True, '*://calendar.google.com')
+config.set('content.register_protocol_handler', True, '*://calendar.google.com')
+config.set('content.notifications.enabled', True, '*://meet.google.com')
 
-# Google meet
-config.set('content.notifications.enabled', False, '*://meet.google.com')
+# Media
 config.set('content.media.audio_video_capture', True, '*://meet.google.com')
 config.set('content.media.audio_capture', True, '*://meet.google.com')
 config.set('content.media.video_capture', True, '*://meet.google.com')
