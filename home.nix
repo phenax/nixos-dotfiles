@@ -103,6 +103,7 @@ in
     "scripts".source = ./scripts;
   };
 
+  # https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=programs.chromium
   # programs.chromium = {
   #   enable = true;
   #   package = pkgs.brave;
