@@ -14,7 +14,7 @@ playerctl_icon() {
 }
 
 network_state() {
-  local status=$((nmcli dev show wlp1s0 || echo "") | grep '^GENERAL.STATE:' | sed 's/^GENERAL.STATE:\s*//g');
+  local status=$((nmcli dev show wlp0s20f3 || echo "") | grep '^GENERAL.STATE:' | sed 's/^GENERAL.STATE:\s*//g');
   echo "  ${status:0:16}"; 
 }
 

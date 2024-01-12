@@ -2,7 +2,7 @@
 let
   sessions = [
     [ "tty1" windowManagers.dwm ]
-    [ "tty2" windowManagers.xmonad ]
+    # [ "tty2" windowManagers.xmonad ]
   ];
   windowManagers = {
     dwm = looped "dwm";

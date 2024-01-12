@@ -50,17 +50,14 @@ spew() {
   # Notification daemon
   spew "dunst" dunst -config ~/.config/dunst/dunstrc;
 
-  # Compositor
-  spew "picom" picom --config ~/.config/picom.conf;
+  # Compositor (TODO: Picom breaks everything. Fixit)
+  # spew "picom" picom --config ~/.config/picom.conf;
 
   # Scheduler
   spew "remind" remind -k'notify-send -a reminder %s' -z10 "$REMINDER_FILE";
 
   # Battery watcher
   run "" ~/scripts/battery-watch.sh start;
-
-  # Dwm blocks status text
-  # run "dwmblocks" dwmblocks;
 
   # Cron jobs
   #run "crond" crond -n -f ~/.config/crontab/crontab;

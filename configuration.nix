@@ -10,7 +10,7 @@ in
 {
   imports = [
     <home-manager/nixos>
-    ./hardware-configuration.nix
+    ./hardware/thinkpad-e14/hardware-configuration.nix
     ./packages.nix
     ./overlays-system.nix
     ./modules/login.nix
@@ -44,20 +44,8 @@ in
   ];
 
   # NOTE: Enable bluetooth using this and then use bluetoothctl
-  # hardware.bluetooth.enable = true;
-  # services.blueman.enable = true;
-
-  # services.vdirsyncer = {
-  #   enable = true;
-  #   jobs = {
-  #     google_cal = {
-  #       enable = true;
-  #       config = {
-  #         #
-  #       };
-  #     };
-  #   };
-  # };
+  hardware.bluetooth.enable = false;
+  services.blueman.enable = false;
 
   # Enable sound.
   sound.enable = false;
@@ -72,11 +60,11 @@ in
   # Network
   networking = {
     hostName = "smartfridge";
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 8080 8081 3000 3001 ];
-      allowedUDPPorts = [ 41641 ];
-    };
+    # firewall = {
+    #   enable = true;
+    #   allowedTCPPorts = [ 8080 8081 3000 3001 ];
+    #   allowedUDPPorts = [ 41641 ];
+    # };
     nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
     search = [ "resolve.construction" ];
     networkmanager.enable = true;
