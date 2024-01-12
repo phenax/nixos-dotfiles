@@ -112,7 +112,7 @@ in
     enable = true;
     autorun = false;
     displayManager.startx.enable = true;
-    videoDrivers = [ "intel" "modesetting" ];
+    # videoDrivers = [ "intel" "modesetting" ];
     libinput = {
       enable = true;
       touchpad = {

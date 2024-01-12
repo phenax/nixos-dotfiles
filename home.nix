@@ -82,10 +82,11 @@ in
     maxCacheTtl = 864000;
     defaultCacheTtl = 864000;
     enableSshSupport = false;
-    #pinentryFlavor = null;
-    #extraConfig = ''
-    #pinentry-program /home/imsohexy/nixos/packages/anypinentry/source/anypinentry
-    #'';
+    pinentryFlavor = "qt";
+    # pinentryFlavor = null;
+    # extraConfig = ''
+    #   pinentry-program ${localPkgs.anypinentry}/bin/anypinentry
+    # '';
   };
 
   home.file = {

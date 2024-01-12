@@ -74,8 +74,8 @@
       vaapiVdpau
       libvdpau-va-gl
       # intel-ocl
-      # intel-media-driver
-      # intel-gmmlib
+      intel-media-driver
+      intel-gmmlib
       vulkan-tools
       mesa.drivers
     ];
