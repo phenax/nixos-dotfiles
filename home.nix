@@ -41,7 +41,7 @@ in
 
   services.easyeffects = {
     enable = true;
-    preset = "default";
+    # preset = "default";
   };
 
   programs.lsd = {

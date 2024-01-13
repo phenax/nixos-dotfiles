@@ -10,7 +10,7 @@ in
 {
   imports = [
     <home-manager/nixos>
-    ./hardware/thinkpad-e14/hardware-configuration.nix
+    ./hardware/thinkpad-e14/default.nix
     ./packages.nix
     ./overlays-system.nix
     ./modules/login.nix
@@ -91,7 +91,7 @@ in
     xdgOpenUsePortal = false;
     extraPortals = (with pkgs; [
       xdg-desktop-portal
-      xdg-desktop-portal-gtk
+      # xdg-desktop-portal-gtk
       xdg-desktop-portal-xapp
     ]);
   };
@@ -127,6 +127,16 @@ in
     cozette
     noto-fonts-emoji
   ];
+
+  services.logind = {
+    powerKey = "ignore";
+    rebootKey = "ignore";
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+    hibernateKey = "ignore";
+    suspendKey = "ignore";
+  };
 
   # programs.firefox = {
   #   enable = true;

@@ -149,9 +149,9 @@ in
 
   programs.adb.enable = true;
 
-  programs.steam.enable = false;
-  hardware.steam-hardware.enable = false;
-  programs.gamemode.enable = false;
+  programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
+  programs.gamemode.enable = true;
 
   # Security wrappers
   # security.wrappers = {
