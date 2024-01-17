@@ -35,9 +35,12 @@
   boot.kernelParams = [
     "i8042.nopnp=1"
     "pci=nocrs"
+    "acpi_osi=linux"
     "acpi_backlight=native"
-    "i915.enable_dpcd_backlight=1"
-    "i915.force_probe=46a8"
+    "i915.enable_dpcd_backlight=0"
+    # "acpi_backlight=vendor"
+    # "acpi_backlight=intel_backlight"
+    # "i915.force_probe=46a8"
   ];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
