@@ -6,7 +6,6 @@
 
   services.fwupd.enable = true;
 
-  # 2-Sep-2023, Bug: https://nixpk.gs/pr-tracker.html?pr=252605
   boot.kernelPackages = pkgs.linuxPackages_6_6;
   boot.initrd = {
     availableKernelModules = [

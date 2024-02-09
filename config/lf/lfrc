@@ -125,6 +125,7 @@ map gdm   cd ~/Downloads/music
 map gdv   cd ~/dev
 map gdp   cd ~/dump
 map gp    cd ~/Pictures
+map gsc   cd ~/Pictures/screenshots
 map gmnt  cd /run/media/imsohexy
 map gdc   cd ~/Documents
 

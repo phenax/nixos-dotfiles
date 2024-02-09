@@ -37,6 +37,7 @@ let
     # sxhkd
 
     rnix-lsp
+    lua-language-server
     efm-langserver
 
     nodePackages.typescript
@@ -134,6 +135,7 @@ let
     xdo
     xdotool
     arandr
+    xorg.xgamma
 
     v4l-utils
   ];
@@ -152,6 +154,8 @@ in
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;
   programs.gamemode.enable = true;
+
+  programs.darling.enable = true;
 
   # Security wrappers
   # security.wrappers = {

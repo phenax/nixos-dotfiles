@@ -56,8 +56,6 @@ p__run_npm_script() {
 zle -N p__run_npm_script;
 bindkey '^B' p__run_npm_script;
 
-# TODO: Run just script
-
 fix-interpreter() {
   nix-shell -p patchelf --run "patchelf --set-interpreter \$(patchelf --print-interpreter \$(which mkdir)) $@"
 }

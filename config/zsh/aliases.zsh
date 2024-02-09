@@ -11,6 +11,8 @@ alias o='open $(fzf)';
 
 alias j='just';
 alias jl='just -l';
+alias je='just -e';
+alias jc='just --choose';
 
 # Load work aliases
 # source "$HOME/.work-config/zshconf/aliases.zsh";

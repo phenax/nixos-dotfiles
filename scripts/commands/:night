@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-~/scripts/brightness.sh set 2;
+brightnessctl --min-value || ~/scripts/brightness.sh set 2;
+
+xgamma -gamma 0.9;
 

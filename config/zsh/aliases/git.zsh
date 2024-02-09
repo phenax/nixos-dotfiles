@@ -40,13 +40,14 @@ alias gc!='git commit -v --amend'
 
 alias gst='git status'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gl='git log'
 
 alias gp='git push'
 
 alias gr='git rebase'
 alias gri='git rebase -i'
-alias grm='git rebase -i origin/master'
+alias grm='git rebase origin/master'
 alias grc='git rebase --continue'
 
 grename() {
