@@ -102,6 +102,7 @@ in
     ".config/picom.conf".source = ./config/picom.conf;
     ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;
+    ".config/bottom/bottom.toml".source = ./config/bottom.toml;
   };
 
   # https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=programs.chromium

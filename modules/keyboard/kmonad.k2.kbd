@@ -1,3 +1,12 @@
+#| Test config
+(defcfg
+  input  (device-file "/dev/input/by-id/usb-Keychron_Keychron_K2-event-kbd")
+  output (uinput-sink "kmonad-k2")
+  fallthrough true
+  allow-cmd false
+)
+|#
+
 (defsrc
 	esc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc

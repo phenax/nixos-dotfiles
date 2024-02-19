@@ -1,0 +1,91 @@
+[flags]
+left_legend = true
+rate = 700
+current_usage = true
+case_sensitive = false
+regex = false
+temperature_type = "celsius"
+expanded_on_startup = false
+hide_table_gap = true
+# battery = false
+# Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light", "nord", "nord-light"
+#color = "default"
+show_table_scroll_position = true
+
+[colors]
+border_color="#333333"
+highlighted_border_color="#4e3aA3"
+widget_title_color="#555555"
+selected_text_color="#ffffff"
+selected_bg_color="#4e3aA3"
+table_header_color="#888888"
+# Represents the colour of table headers (processes, CPU, disks, temperature).
+#table_header_color="LightBlue"
+# Represents the colour of the label each widget has.
+#widget_title_color="Gray"
+# Represents the average CPU color.
+#avg_cpu_color="Red"
+# Represents the colour the core will use in the CPU legend and graph.
+#cpu_core_colors=["LightMagenta", "LightYellow", "LightCyan", "LightGreen", "LightBlue", "LightRed", "Cyan", "Green", "Blue", "Red"]
+# Represents the colour RAM will use in the memory legend and graph.
+#ram_color="LightMagenta"
+# Represents the colour SWAP will use in the memory legend and graph.
+#swap_color="LightYellow"
+# Represents the colour ARC will use in the memory legend and graph.
+#arc_color="LightCyan"
+# Represents the colour the GPU will use in the memory legend and graph.
+#gpu_core_colors=["LightGreen", "LightBlue", "LightRed", "Cyan", "Green", "Blue", "Red"]
+# Represents the colour rx will use in the network legend and graph.
+#rx_color="LightCyan"
+# Represents the colour tx will use in the network legend and graph.
+#tx_color="LightGreen"
+# Represents the colour of the border of unselected widgets.
+#border_color="Gray"
+# Represents the colour of the border of selected widgets.
+#highlighted_border_color="LightBlue"
+# Represents the colour of most text.
+#text_color="Gray"
+# Represents the colour of text that is selected.
+#selected_text_color="Black"
+# Represents the background colour of text that is selected.
+#selected_bg_color="LightBlue"
+# Represents the colour of the lines and text of the graph.
+#graph_color="Gray"
+# Represents the colours of the battery based on charge
+#high_battery_color="green"
+#medium_battery_color="yellow"
+#low_battery_color="red"
+
+# Layout - layouts follow a pattern like this:
+# [[row]] represents a row in the application.
+# [[row.child]] represents either a widget or a column.
+# [[row.child.child]] represents a widget.
+[[row]]
+  ratio=30
+  [[row.child]]
+  type="cpu"
+  # ratio=6
+  # [[row.child]]
+  # ratio=1
+  # type="battery"
+[[row]]
+    ratio=30
+    [[row.child]]
+      ratio=3
+      [[row.child.child]]
+        type="net"
+      [[row.child.child]]
+        type="disk"
+    [[row.child]]
+      type="mem"
+      ratio=5
+[[row]]
+  ratio=40
+  [[row.child]]
+    type="temp"
+    ratio=3
+  [[row.child]]
+    type="proc"
+    ratio=5
+    default=true
+

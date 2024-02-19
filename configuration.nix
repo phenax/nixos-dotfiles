@@ -94,12 +94,16 @@ in
       # xdg-desktop-portal-gtk
       xdg-desktop-portal-xapp
     ]);
+    config = {
+      common.default = "*";
+    };
   };
+  programs.darling.enable = true; # macos emu
 
   # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
-  services.xserver.layout = "us";
+  services.xserver.xkb.layout = "us";
 
   # Home manager
   home-manager.users.imsohexy = { pkgs, ... }: {
@@ -137,15 +141,6 @@ in
     hibernateKey = "ignore";
     suspendKey = "ignore";
   };
-
-  # programs.firefox = {
-  #   enable = true;
-  #   preferences = {
-  #     "browser.uidensity" = 1;
-  #     "browser.compactmode.show" = true;
-  #     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-  #   };
-  # };
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];

@@ -88,7 +88,7 @@ let
 
     # TUI stuff
     lf
-    gotop
+    bottom
     tremc
     wyrd
     dua
