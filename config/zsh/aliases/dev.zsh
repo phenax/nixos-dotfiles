@@ -60,3 +60,18 @@ fix-interpreter() {
   nix-shell -p patchelf --run "patchelf --set-interpreter \$(patchelf --print-interpreter \$(which mkdir)) $@"
 }
 
+
+# Terminal through neovim
+vt() {
+  nvim +term \
+    +'norm i' \
+    +"lua vim.fn.feedkeys([[$1]])" \
+    +'set nonumber norelativenumber signcolumn=no' \
+    +'autocmd TermClose * execute "qa"' \
+    +'hi @_phenax.term-title guibg=#1a1824 guifg=#8e7ae3 gui=bold' \
+    +'set winbar=%#@_phenax.term-title#%=nvim-term%=';
+}
+
+p__nvim_virtual_terminal() { vt "$BUFFER"; }
+zle -N p__nvim_virtual_terminal;
+bindkey '^T' p__nvim_virtual_terminal;

@@ -83,6 +83,9 @@ in
     };
     lxd.enable = false;
     virtualbox.host.enable = false;
+    # qemu = {
+    #   enable = true;
+    # }
     # anbox.enable = true;
   };
   services.flatpak.enable = true;

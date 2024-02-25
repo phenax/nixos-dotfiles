@@ -50,3 +50,7 @@ setup_webcam_night() {
     --set-ctrl gain=64
 }
 
+limit_memory() {
+  local lim=${1:-100M}; shift 1;
+  systemd-run --user --scope -p MemoryHigh="$lim" -p MemorySwapMax="$lim" "$@";
+}

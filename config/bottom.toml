@@ -1,7 +1,7 @@
 [flags]
 left_legend = true
 rate = 700
-current_usage = true
+current_usage = false
 case_sensitive = false
 regex = false
 temperature_type = "celsius"
