@@ -24,8 +24,6 @@ in
     allowBroken = false;
   };
 
-  services.tlp.enable = true;
-
   services.udisks2.enable = true;
 
   programs.dconf.enable = true;
@@ -55,6 +53,7 @@ in
     alsa.enable = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
 
   # Network
@@ -103,6 +102,13 @@ in
   };
   programs.darling.enable = true; # macos emu
 
+  # programs.tmux = {
+  #   enable = true;
+  #   secureSocket = true;
+  #   terminal = "tmux-direct"; # st-256color
+  #   shortcut = "0";
+  # };
+
   # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -119,7 +125,6 @@ in
     enable = true;
     autorun = false;
     displayManager.startx.enable = true;
-    # videoDrivers = [ "intel" "modesetting" ];
     libinput = {
       enable = true;
       touchpad = {

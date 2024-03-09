@@ -16,7 +16,7 @@
       "thunderbolt"
       "sd_mod"
     ];
-    kernelModules = [ ];
+    kernelModules = [ "i915" ];
   };
   boot.kernelModules = [
     "kvm-intel"
@@ -30,6 +30,7 @@
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     acpi_call
+    v4l2loopback
   ];
   boot.kernelParams = [
     "i8042.nopnp=1"
@@ -37,6 +38,7 @@
     "acpi_osi=linux"
     "acpi_backlight=native"
     "i915.enable_dpcd_backlight=0"
+    "i915.enable_guc=2"
     # "acpi_backlight=vendor"
     # "acpi_backlight=intel_backlight"
     # "i915.force_probe=46a8"
@@ -72,16 +74,20 @@
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
+      # intel-vaapi-driver
       vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
-      # intel-ocl
-      intel-media-driver
       intel-gmmlib
       vulkan-tools
       mesa.drivers
     ];
   };
+  environment.variables = {
+    VDPAU_DRIVER = "va_gl";
+    LIBVA_DRIVER_NAME = "iHD";
+  };
+  # services.xserver.videoDrivers = [ "intel" ];
 
   # Bootloader
   boot.loader = {
@@ -110,7 +116,9 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   networking.useDHCP = lib.mkDefault true;
   powerManagement = {
-    enable = true;
-    cpuFreqGovernor = lib.mkDefault "powersave";
+    enable = false;
+    cpuFreqGovernor = "powersave";
   };
+
+  services.tlp.enable = lib.mkDefault false;
 }

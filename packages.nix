@@ -65,7 +65,7 @@ let
     imagemagick
     ffmpeg-full
     feh
-    obs-studio
+    # obs-studio
     inkscape
     # krita
     zathura
@@ -138,6 +138,9 @@ let
     xorg.xgamma
 
     v4l-utils
+
+    libva
+    libdrm
   ];
 in
 {

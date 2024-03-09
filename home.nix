@@ -39,6 +39,13 @@ in
   #   image/jpeg=sxiv.desktop
   # '';
 
+  programs.obs-studio = {
+    enable = true;
+    plugins = [
+      pkgs.obs-studio-plugins.obs-pipewire-audio-capture
+    ];
+  };
+
   services.easyeffects = {
     enable = true;
     # preset = "default";

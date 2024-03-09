@@ -212,6 +212,7 @@ nmap(leader + 'wp', 'tab-pin')
 # Tab movement
 nmap('<Ctrl-k>', 'tab-prev')
 nmap('<Ctrl-j>', 'tab-next')
+nmap(localleader + '<Tab>', 'tab-focus last')
 nmap('<Ctrl-Shift-k>', 'tab-move -')
 nmap('<Ctrl-Shift-j>', 'tab-move +')
 nmap(localleader + 'b', 'cmd-set-text -s :tab-select') # List buffers by index
