@@ -42,6 +42,7 @@ in
       "adbusers"
       "vboxusers"
       "uinput"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
   };

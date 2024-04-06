@@ -36,7 +36,7 @@ let
     # bspwm
     # sxhkd
 
-    rnix-lsp
+    nixd
     lua-language-server
     efm-langserver
 
@@ -67,7 +67,7 @@ let
     feh
     # obs-studio
     inkscape
-    # krita
+    krita
     zathura
     blender
     j4-dmenu-desktop
@@ -141,6 +141,15 @@ let
 
     libva
     libdrm
+
+    virt-manager
+    virt-viewer
+    spice 
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
+    gnome.adwaita-icon-theme
   ];
 in
 {
@@ -159,6 +168,11 @@ in
   programs.gamemode.enable = true;
 
   programs.darling.enable = true;
+
+  programs.alvr = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Security wrappers
   # security.wrappers = {

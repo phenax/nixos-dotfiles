@@ -15,6 +15,13 @@ in
     yarn
   ];
 
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
   # programs.emacs = {
   #   enable = true;
   # };

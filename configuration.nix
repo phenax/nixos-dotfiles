@@ -59,11 +59,11 @@ in
   # Network
   networking = {
     hostName = "smartfridge";
-    # firewall = {
-    #   enable = true;
-    #   allowedTCPPorts = [ 8080 8081 3000 3001 ];
-    #   allowedUDPPorts = [ 41641 ];
-    # };
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 8080 8081 3000 3001 ];
+      allowedUDPPorts = [ 41641 ];
+    };
     nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
     search = [ "resolve.construction" ];
     networkmanager.enable = true;
@@ -72,7 +72,10 @@ in
       127.0.0.1       field.shape-e2e.com
     '';
   };
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 
   services.atd.enable = true;
 
@@ -82,11 +85,19 @@ in
     };
     lxd.enable = false;
     virtualbox.host.enable = false;
-    # qemu = {
-    #   enable = true;
-    # }
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+    spiceUSBRedirection.enable = true;
     # anbox.enable = true;
   };
+  services.spice-vdagentd.enable = true;
+
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
