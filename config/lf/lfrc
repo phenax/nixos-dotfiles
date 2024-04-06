@@ -75,6 +75,10 @@ cmd unpack ${{
   esac
 }}
 
+cmd sudo_delete ${{
+  echo "Deleting $f..."
+  sudo --reset-timestamp rm -rf "$f"
+}}
 
 # Unset old keys
 map w
@@ -100,6 +104,7 @@ cmd fuzzy_search_dirs ${{
 
 # Mutations
 map dd      delete
+map sdd     sudo_delete
 map p       paste
 map x       cut
 map y       copy
