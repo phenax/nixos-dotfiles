@@ -5,10 +5,11 @@ in
 {
   imports = [
     ./overlays-home.nix
-    ./modules/music.home.nix
     ./modules/git.home.nix
-    ./modules/xresources.home.nix
+    ./modules/keybase.home.nix
     ./modules/mpv.home.nix
+    ./modules/music.home.nix
+    ./modules/xresources.home.nix
   ];
 
   home.packages = with pkgs; [

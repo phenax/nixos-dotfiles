@@ -133,4 +133,5 @@ map gp    cd ~/Pictures
 map gsc   cd ~/Pictures/screenshots
 map gmnt  cd /run/media/imsohexy
 map gdc   cd ~/Documents
+map gkb   cd /run/user/1000/keybase/kbfs
 
