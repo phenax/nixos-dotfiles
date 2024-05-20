@@ -25,8 +25,9 @@ let
     fzf
     docker-compose
     direnv
-    gh
+    # gh
     just
+    # delta
     # gibo
 
     gcc
@@ -134,6 +135,7 @@ let
     xclip
     xdo
     xdotool
+    wmctrl
     arandr
     xorg.xgamma
 
