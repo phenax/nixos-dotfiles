@@ -88,12 +88,13 @@ spew() {
 
 ##### Initialized applications {{{
 echo "[Autostart]: Checking applications";
-#on_startup sensible-browser;
 
 applications() {
   sleep 0.5;
 
   run "dwmblocks" dwmblocks;
+
+  on_startup sidekick;
 
   #focus_tag 9;
   #on_startup :today;
