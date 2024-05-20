@@ -4,7 +4,7 @@ let
 in
 {
   nixpkgs.overlays = with overlays; [
-    # neovim-nightly
+    pass-with-dmenu
     qutebrowser
     j4-dmenu-desktop
   ];

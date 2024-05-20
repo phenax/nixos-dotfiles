@@ -14,7 +14,7 @@ in
     ./packages.nix
     ./overlays-system.nix
     ./modules/login.nix
-    ./modules/torrent.home.nix
+    ./modules/torrent.nix
     ./modules/work.nix
     ./modules/keyboard/default.nix
   ];
@@ -125,6 +125,7 @@ in
   i18n.defaultLocale = "en_US.UTF-8";
   services.xserver.xkb.layout = "us";
 
+  home-manager.useGlobalPkgs = true;
   # Home manager
   home-manager.users.imsohexy = { pkgs, ... }: {
     imports = [ ./home.nix ];
