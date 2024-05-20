@@ -23,33 +23,28 @@ nix-rollback() {
 #sv_disable() { sudo unlink /run/runit/service/$1; }
 
 setup_webcam_day() {
-  v4l2-ctl -d /dev/video2 \
-    --set-ctrl saturation=17 \
+  v4l2-ctl -d /dev/video3 \
+    --set-ctrl brightness=0 \
     --set-ctrl contrast=11 \
-    --set-ctrl exposure_absolute=300 \
-    --set-ctrl exposure_auto=1 \
-    --set-ctrl brightness=1 \
-    --set-ctrl sharpness=4 \
-    --set-ctrl gamma=190 \
-    --set-ctrl power_line_frequency=1 \
-    --set-ctrl backlight_compensation=1 \
-    --set-ctrl gain=30
+    --set-ctrl saturation=16 \
+    --set-ctrl gamma=194 \
+    --set-ctrl gain=60 \
+    --set-ctrl sharpness=3 \
+    --set-ctrl exposure_time_absolute=350;
 }
 
 setup_webcam_night() {
-  v4l2-ctl -d /dev/video2 \
-    --set-ctrl saturation=18 \
-    --set-ctrl contrast=11 \
-    --set-ctrl exposure_absolute=500 \
-    --set-ctrl exposure_auto=1 \
+  v4l2-ctl -d /dev/video3 \
     --set-ctrl brightness=1 \
-    --set-ctrl sharpness=6 \
+    --set-ctrl contrast=11 \
+    --set-ctrl saturation=17 \
     --set-ctrl gamma=230 \
-    --set-ctrl power_line_frequency=1 \
-    --set-ctrl backlight_compensation=1 \
-    --set-ctrl gain=64
+    --set-ctrl gain=64 \
+    --set-ctrl sharpness=5 \
+    --set-ctrl exposure_time_absolute=500;
 }
 
+# Run a program with limited memory
 limit_memory() {
   local lim=${1:-100M}; shift 1;
   systemd-run --user --scope -p MemoryHigh="$lim" -p MemorySwapMax="$lim" "$@";

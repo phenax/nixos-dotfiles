@@ -36,6 +36,7 @@ calc() {
 
 get_node_script_runner() {
   if [[ -f ./yarn.json ]]; then echo "yarn";
+  elif [[ -f ./bun.lockb ]]; then echo "bun run";
   elif [[ -f ./pnpm-lock.yaml ]]; then echo "pnpm";
   else echo "npm run"; fi;
 }
@@ -66,6 +67,7 @@ vt() {
   nvim +term \
     +'norm i' \
     +"lua vim.fn.feedkeys([[$1]])" \
+    +'lua vim.go.termguicolors = false' \
     +'set nonumber norelativenumber signcolumn=no' \
     +'autocmd TermClose * execute "qa"' \
     +'hi @_phenax.term-title guibg=#1a1824 guifg=#8e7ae3 gui=bold' \
