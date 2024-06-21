@@ -57,6 +57,7 @@
     };
     delta = {
       enable = true;
+      # package = pkgs.delta;
       options = {
         navigate = true;
         side-by-side = true;
@@ -87,6 +88,9 @@
       pull = {
         rebase = false;
       };
+      # pager = {
+      #   diff = "${pkgs.delta}/bin/delta --color-only";
+      # };
     };
     signing.key = "AAAB13AE8B82A5267C1A35D7E1B701723EA37849";
     signing.signByDefault = true;

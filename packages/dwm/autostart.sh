@@ -58,31 +58,6 @@ spew() {
 
   # Battery watcher
   run "" ~/scripts/battery-watch.sh start;
-
-  # Cron jobs
-  #run "crond" crond -n -f ~/.config/crontab/crontab;
-
-  # Disk automount
-  #once "udiskie" ~/.bin/with_zsh udiskie;
-
-  # Clipboard history
-  #once "clipmenud" clipmenud;
-
-  # Network manager applet
-  #once "nm-applet" nm-applet;
-
-  # Syncthing
-  #run "syncthing" syncthing -logflags=0 -no-browser 2>&1 >/dev/null;
-
-  # Torrent daemon
-  #once "btpd" btpd -d "$HOME/.config/btpd";
-  #once "transmission" transmission-daemon --download-dir ~/Downloads/dl;
-
-  # Music daemon
-  #once "mpd" mpd ~/.config/mpd/mpd.conf --stdout --no-daemon;
-
-  # Hide mouse pointer
-  #once "unclutter" unclutter;
 # }}}
 
 

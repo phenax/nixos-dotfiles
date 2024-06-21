@@ -137,12 +137,12 @@ in
     enable = true;
     autorun = false;
     displayManager.startx.enable = true;
-    libinput = {
-      enable = true;
-      touchpad = {
-        tapping = true;
-        naturalScrolling = false;
-      };
+  };
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      naturalScrolling = false;
     };
   };
   fonts.packages = with pkgs; [

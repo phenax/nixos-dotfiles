@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
@@ -27,6 +27,7 @@ let
     direnv
     # gh
     just
+    # hurl
     # delta
     # gibo
 
@@ -46,6 +47,15 @@ let
     nodePackages.vscode-json-languageserver
     nodePackages.vscode-langservers-extracted
     nodePackages.prettier
+    biome
+
+    lua5_1
+    # .withPackages(ps: with ps; [
+    #   luarocks
+    #   lua-curl
+    # ])
+    lua51Packages.luarocks
+    lua51Packages.lua-curl
   ];
 
   apps = with pkgs; [
@@ -162,6 +172,10 @@ in
     "ffmpeg-3.4.8"
     "qtwebkit-5.212.0-alpha4"
   ];
+
+  # environment.variables = {
+  #   CURL_DIR = lib.makeLibraryPath [pkgs.curl];
+  # };
 
   programs.adb.enable = true;
 

@@ -6,7 +6,8 @@
 
   services.fwupd.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  # boot.kernelPackages = pkgs.linuxPackages_6_9;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
   boot.initrd = {
     availableKernelModules = [
       "xhci_pci"
@@ -27,6 +28,8 @@
     "uinput"
     "v4l2loopback"
     "acpi_call"
+    "thinkpad_acpi"
+    "coretemp"
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     acpi_call
@@ -46,11 +49,16 @@
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
     options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+    options thinkpad_acpi experimental=1 fan_control=1
   '';
   boot.supportedFilesystems = [ "ntfs" ];
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services.throttled.enable = true;
+  services.thermald = {
+    enable = true;
+    ignoreCpuidCheck = true;
+  };
 
   services.udev = {
     packages = [
@@ -59,10 +67,16 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    mesa
+    xorg.xf86inputlibinput
+    xorg.xf86videointel
+  ];
+  # services.xserver.videoDrivers = [ "intel" ];
+
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
-    # firmware = with pkgs; [ wireless-regdb rtw88-firmware ];
   };
 
   nixpkgs.config.packageOverrides = pkgs: {
