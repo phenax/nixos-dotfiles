@@ -10,6 +10,7 @@ in
     ./modules/mpv.home.nix
     ./modules/music.home.nix
     ./modules/xresources.home.nix
+    ./modules/firefox.home/default.nix
   ];
 
   home.packages = with pkgs; [

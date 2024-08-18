@@ -1,0 +1,120 @@
+:root {
+  --ff-accent-color: #4e3aA3;
+  --ff-bg-color: #0f0c19;
+  --ff-bg-color-1: #16121f;
+  --ff-bg-color-2: #26222f;
+  --ff-urlbar-height: 28px;
+}
+
+#navigator-toolbox {
+  --tab-min-height: 16px;
+  --tab-border-radius: 0;
+  --tab-block-margin: 0;
+  --toolbarbutton-inner-padding: 6px;
+  --toolbar-bgcolor: var(--ff-bg-color);
+  --toolbar-field-background-color: var(--ff-bg-color-2);
+  --toolbarbutton-border-radius: 0;
+  --toolbar-start-end-padding: 2px;
+}
+
+toolbarbutton {
+  --toolbarbutton-inner-padding: 6px;
+}
+
+#TabsToolbar {
+  background-color: var(--ff-bg-color) !important;
+}
+
+.browser-toolbar {
+  padding: 0 !important;
+  min-height: 0;
+}
+
+
+
+/* Tabs */
+
+.tabbrowser-tab {
+  padding: 0 !important;
+  font-size: 0.86rem !important;
+}
+
+.tabbrowser-tab .tab-label-container {
+  height: 2.2rem !important;
+}
+
+.tabbrowser-tab .tab-text {
+  line-height: 0;
+}
+
+.tabbrowser-tab .tab-background {
+  background-color: transparent !important;
+  border-bottom: 3px solid transparent;
+}
+.tabbrowser-tab .tab-background[selected] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-bottom-color: var(--ff-accent-color);
+}
+.tabbrowser-tab:hover .tab-background:not([selected]) {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.tab-close-button {
+  opacity: 0.6;
+  padding: 2px !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
+  margin-inline-start: 0 !important;
+}
+
+
+
+
+
+
+/* Nav bar with url */
+
+#nav-bar {
+  border-top: none !important;
+  background-color: var(--ff-bg-color-1) !important;
+}
+
+#urlbar-container {
+  min-height: var(--ff-urlbar-height) !important;
+}
+
+#urlbar {
+  font-size: 0.95rem !important;
+  min-height: 0 !important;
+  height: var(--ff-bg-color-1) !important;
+}
+
+.urlbar-input-container {
+  background-color: var(--ff-bg-color-2) !important;
+  border-color: transparent !important;
+  min-height: 0 !important;
+}
+
+#urlbar[breakout-extend] .urlbar-input-container {
+  background-color: var(--ff-bg-color-2) !important;
+}
+#urlbar[breakout-extend] .urlbar-input-container #identity-box {
+  display: none;
+}
+
+#urlbar-container {
+  margin: 0 !important;
+}
+
+#urlbar[focused='true'] > #urlbar-background {
+  --bxackground-color: var(--ff-bg-color) !important;
+  box-shadow: none !important;
+}
+
+#navigator-toolbox {
+  --border: none !important;
+}
+
