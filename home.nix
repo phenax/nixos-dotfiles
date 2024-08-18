@@ -98,7 +98,8 @@ in
     maxCacheTtl = 864000;
     defaultCacheTtl = 864000;
     enableSshSupport = false;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-qt;
+    # pinentryFlavor = "qt";
     # pinentryFlavor = null;
     # extraConfig = ''
     #   pinentry-program ${localPkgs.anypinentry}/bin/anypinentry

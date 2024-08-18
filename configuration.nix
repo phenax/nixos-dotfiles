@@ -46,7 +46,7 @@ in
   services.blueman.enable = false;
 
   # Enable sound.
-  sound.enable = false;
+  # sound.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -79,6 +79,7 @@ in
 
   services.atd.enable = true;
 
+  # programs.darling.enable = true; # macos emu
   virtualisation = {
     docker = {
       enable = true;
@@ -111,7 +112,6 @@ in
       common.default = "*";
     };
   };
-  programs.darling.enable = true; # macos emu
 
   # programs.tmux = {
   #   enable = true;
@@ -147,9 +147,11 @@ in
   };
   fonts.packages = with pkgs; [
     # jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "FiraMono" ]; })
     cozette
     noto-fonts-emoji
+    inter
+    roboto
   ];
 
   services.logind = {

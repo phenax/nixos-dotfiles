@@ -21,3 +21,5 @@ xset r rate 350 30;
 amixer set Capture nocap;
 amixer set Master off;
 
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY || true;
+

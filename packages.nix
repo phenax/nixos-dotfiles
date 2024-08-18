@@ -34,6 +34,7 @@ let
     gcc
     gnumake
     nodejs_20
+    bun
 
     # bspwm
     # sxhkd
@@ -72,7 +73,7 @@ let
     # Media
     spotify
     sxiv
-    youtube-dl
+    yt-dlp
     imagemagick
     ffmpeg-full
     feh
@@ -183,11 +184,9 @@ in
   hardware.steam-hardware.enable = true;
   programs.gamemode.enable = true;
 
-  programs.darling.enable = true;
-
   programs.alvr = {
-    enable = true;
-    openFirewall = true;
+    enable = false;
+    openFirewall = false;
   };
 
   # Security wrappers

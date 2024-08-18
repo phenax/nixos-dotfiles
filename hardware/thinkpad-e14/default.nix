@@ -82,10 +82,11 @@
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    # enable32Bit = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       # intel-vaapi-driver

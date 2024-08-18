@@ -17,9 +17,6 @@ setopt share_history          # share command history data
 
 export ZSH_CUSTOM_CONF_FILES="$HOME/.config/zsh";
 
-# FZF integration
-source <(fzf --zsh);
-
 for f in $ZSH_CUSTOM_CONF_FILES/*.zsh; do source $f; done;
 source $ZSH_CUSTOM_CONF_FILES/aliases.zsh;
 
@@ -27,6 +24,9 @@ source $ZSH_CUSTOM_CONF_FILES/aliases.zsh;
 if [[ "$DIRENV_DISABLE_HOOK" != "1" ]]; then
   eval "$(direnv hook zsh)"
 fi;
+
+# FZF integration
+source <(fzf --zsh);
 
 # Plugins
 # source ~/.config/zshplugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh;

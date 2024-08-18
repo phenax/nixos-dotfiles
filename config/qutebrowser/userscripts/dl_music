@@ -4,7 +4,7 @@ cd ~/Downloads/music/untagged;
 
 ~/scripts/notify.sh "Downloading audio in the background...";
 
-youtube-dl \
+yt-dlp \
   --add-metadata \
   --ignore-errors \
   --output '%(title)s.%(ext)s' \

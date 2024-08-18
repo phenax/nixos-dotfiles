@@ -2,7 +2,7 @@
 let
   downloadsDir = "/home/imsohexy/Downloads/dl";
   incompleteDownloadsDir = "/home/imsohexy/Downloads/dl/incomplete";
-  watchTorrentFilesOn = "/home/an/Downloads/qute";
+  watchTorrentFilesOn = "/home/imsohexy/Downloads/qute";
 in
 {
   services.transmission = {

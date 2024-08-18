@@ -1,8 +1,8 @@
 apps="
 sensible-terminal           exec $TERMINAL
 sensible-editor             exec $EDITOR
-sensible-browser            $BROWSER
-sensible-private-browser    $PRIVATE_BROWSER
+sensible-browser            exec $BROWSER
+sensible-private-browser    exec $PRIVATE_BROWSER
 ";
 
 BIN=$out/bin;
