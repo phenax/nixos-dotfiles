@@ -11,21 +11,22 @@
   // Configure global keybindings
   const KEYBINDINGS = () => ({
     RELEASE: [
-      [ctrl(key('j')), nextTab()],
-      [ctrl(key('k')), prevTab()],
-      [alt(key('j')), moveSelectedTabBy(+1)],
-      [alt(key('k')), moveSelectedTabBy(-1)],
       [ctrl(shift(key('J'))), moveSelectedTabBy(+1)],
       [ctrl(shift(key('K'))), moveSelectedTabBy(-1)],
+      [ctrl(alt(key('p'))), togglePassthrough(), { modes: ALL_MODES }],
+    ],
+    PRESS: [
+      // Block default key bindings
+      [ctrl(shift(key('J'))), preventDefault()],
+      [ctrl(shift(key('K'))), preventDefault()],
 
+      [ctrl(key('j')), preventDefault(nextTab())],
+      [ctrl(key('k')), preventDefault(prevTab())],
+
+      // Ctrl + number takes to the tab at position
       ...(Array.from({ length: 10 }, (_, idx) =>
         [ctrl(key(idx === 9 ? 0 : idx + 1)), tabIndex(idx)],
       )),
-    ],
-    PRESS: [
-      // Prevent the default browser's action
-      [ctrl(shift(key('J'))), preventDefault()],
-      [ctrl(shift(key('K'))), preventDefault()],
     ],
   });
 
@@ -34,6 +35,11 @@
   const tabIndex = idx => () => updateTabIndex((_n, _len) => idx)
   const preventDefault = f => e => { e.preventDefault(); f?.(e); };
   const moveSelectedTabBy = incr => () => updateSelectedTabIndex(incr);
+  const togglePassthrough = () => () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
+
+  const MODE_PASSTHRU = 'passthru';
+  const MODE_NORMAL = '';
+  const ALL_MODES = [MODE_NORMAL, MODE_PASSTHRU];
 
   const ctrl = b => e => b(e) && e.ctrlKey;
   const alt = b => e => b(e) && e.altKey;
@@ -59,21 +65,30 @@
   };
 
   const module = {
-    enabled: true,
+    mode: MODE_NORMAL,
+    allModes: ALL_MODES,
+
+    keybindings: KEYBINDINGS(),
 
     evaluateKeybindings: (bindings, e) => {
-      if (!module.enabled) return;
-
-      for (const [isKey, action] of bindings) {
-        if (isKey(e)) {
-          const shouldContinue = action(e);
-          if (!shouldContinue) break;
+      for (const [isKey, action, options] of bindings) {
+        // Only allow keys from the given mode
+        if ((options?.modes ?? [MODE_NORMAL]).includes(module.mode)) {
+          if (isKey(e)) {
+            const shouldContinue = action(e);
+            if (!shouldContinue) break;
+          }
         }
       }
     },
 
-    handleKeyUpEvent: e => module.evaluateKeybindings(KEYBINDINGS().RELEASE, e),
-    handleKeyDownEvent: e => module.evaluateKeybindings(KEYBINDINGS().PRESS, e),
+    updateMode: f => {
+      module.mode = f(module.mode);
+      gBrowser.tabContainer.dataset.keyMode = module.mode
+    },
+
+    handleKeyUpEvent: e => module.evaluateKeybindings(module.keybindings.RELEASE, e),
+    handleKeyDownEvent: e => module.evaluateKeybindings(module.keybindings.PRESS, e),
 
     init(win) {
       let observe = () => {

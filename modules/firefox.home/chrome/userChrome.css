@@ -36,15 +36,23 @@ toolbarbutton {
 
 .tabbrowser-tab {
   padding: 0 !important;
-  font-size: 0.86rem !important;
+  font-size: 0.8rem !important;
+}
+
+.tabbrowser-tab .tab-content {
+  padding-bottom: 2px !important;
 }
 
 .tabbrowser-tab .tab-label-container {
-  height: 2.2rem !important;
+  height: 1.8rem !important;
 }
 
 .tabbrowser-tab .tab-text {
-  line-height: 0;
+  padding: 0 !important;
+}
+
+.tabbrowser-tab .tab-secondary-label {
+  font-size: 0.6rem !important;
 }
 
 .tabbrowser-tab .tab-background {
@@ -70,7 +78,32 @@ toolbarbutton {
   margin-inline-start: 0 !important;
 }
 
+toolbarbutton#tabs-newtab-button image {
+  --button-size: 10px;
+  width: calc(2 * var(--toolbarbutton-inner-padding) + var(--button-size)) !important;
+  height: calc(2 * var(--toolbarbutton-inner-padding) + var(--button-size)) !important;
+}
 
+toolbarbutton#alltabs-button {
+  display: none !important;
+}
+
+/* Show a label to display the current mode for global keybindings */
+#tabbrowser-tabs[data-key-mode=""]::after {
+  display: none;
+}
+#tabbrowser-tabs[data-key-mode]::after {
+  content: attr(data-key-mode);
+  vertical-align: middle;
+  font-size: 0.73rem;
+  background-color: var(--ff-accent-color);
+  color: #ddd;
+  padding: 2px 5px;
+  top: 50%;
+  position: absolute;
+  right: 8px;
+  transform: translateY(-50%);
+}
 
 
 
@@ -88,21 +121,24 @@ toolbarbutton {
 
 #urlbar {
   font-size: 0.95rem !important;
-  min-height: 0 !important;
-  height: var(--ff-bg-color-1) !important;
+  min-height: var(--ff-urlbar-height) !important;
+  left: 0 !important;
+  width: 100% !important;
 }
 
 .urlbar-input-container {
   background-color: var(--ff-bg-color-2) !important;
   border-color: transparent !important;
   min-height: 0 !important;
+  padding-inline: 0 !important;
 }
 
 #urlbar[breakout-extend] .urlbar-input-container {
   background-color: var(--ff-bg-color-2) !important;
+  padding-inline: 0 !important;
 }
 #urlbar[breakout-extend] .urlbar-input-container #identity-box {
-  display: none;
+  opacity: 0.4 !important;
 }
 
 #urlbar-container {
@@ -110,11 +146,5 @@ toolbarbutton {
 }
 
 #urlbar[focused='true'] > #urlbar-background {
-  --bxackground-color: var(--ff-bg-color) !important;
-  box-shadow: none !important;
+  /* box-shadow: none !important; */
 }
-
-#navigator-toolbox {
-  --border: none !important;
-}
-
