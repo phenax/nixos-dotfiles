@@ -145,6 +145,19 @@ toolbarbutton#alltabs-button {
   margin: 0 !important;
 }
 
-#urlbar[focused='true'] > #urlbar-background {
-  /* box-shadow: none !important; */
+
+
+/* Sidebar + tab */
+#TabsToolbar {
+	visibility: collapse !important;
 }
+#sidebar-header {
+	display: none !important;
+}
+#sidebar-splitter {
+  display: none !important;
+}
+/* #appcontent { */
+/*   border-radius: 4px !important; */
+/*   overflow: hidden !important; */
+/* } */

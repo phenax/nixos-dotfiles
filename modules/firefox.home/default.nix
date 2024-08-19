@@ -7,15 +7,16 @@ let
   extensions = [
     "https://addons.mozilla.org/firefox/downloads/file/3792127/firefox_dracula-1.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4261352/tridactyl_vim-1.24.1.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4240798/sidetabs-0.66.xpi"
 
     # dev
     "https://addons.mozilla.org/firefox/downloads/file/4218479/font_inspect-0.5.8.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4314064/react_devtools-5.3.1.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/3970625/screen_recorder-0.1.8.xpi"
 
     # others
     "https://addons.mozilla.org/firefox/downloads/file/4332776/languagetool-8.11.6.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4317971/darkreader-4.9.88.xpi"
-    "https://addons.mozilla.org/firefox/downloads/file/3970625/screen_recorder-0.1.8.xpi"
   ];
 
   # about:config

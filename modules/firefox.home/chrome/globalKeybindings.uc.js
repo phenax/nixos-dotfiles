@@ -13,12 +13,16 @@
     RELEASE: [
       [ctrl(shift(key('J'))), moveSelectedTabBy(+1)],
       [ctrl(shift(key('K'))), moveSelectedTabBy(-1)],
+      [ctrl(shift(key('B'))), toggleTabSidebar()],
       [ctrl(alt(key('p'))), togglePassthrough(), { modes: ALL_MODES }],
     ],
     PRESS: [
       // Block default key bindings
       [ctrl(shift(key('J'))), preventDefault()],
       [ctrl(shift(key('K'))), preventDefault()],
+      [ctrl(shift(key('B'))), preventDefault()],
+      [ctrl(key('h')), preventDefault()],
+      [ctrl(key('b')), preventDefault()],
 
       [ctrl(key('j')), preventDefault(nextTab())],
       [ctrl(key('k')), preventDefault(prevTab())],
@@ -36,6 +40,9 @@
   const preventDefault = f => e => { e.preventDefault(); f?.(e); };
   const moveSelectedTabBy = incr => () => updateSelectedTabIndex(incr);
   const togglePassthrough = () => () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
+
+  const getSidebarId = () => [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0];
+  const toggleTabSidebar = () => () => SidebarController.toggle(getSidebarId() ?? undefined);
 
   const MODE_PASSTHRU = 'passthru';
   const MODE_NORMAL = '';
