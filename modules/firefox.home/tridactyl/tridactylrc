@@ -1,56 +1,28 @@
 colorscheme phenax
 
+set hintnames numeric
+set hintfiltermode vimperator-reflow
+set editorcmd sensible-terminal -e nvim
+set newtab about:blank
+set viewsource default
+set browsermaps { "<C-,>": "escapehatch", "<C-6>": "noh" }
+
+" Unbind default keys
+unbind d
+unbind D
+unbind <C-j>
+unbind <C-k>
+unbind t
+unbind tt
+unbind T
+unbind J
+unbind K
+
 bind o fillcmdline tabopen
 bind O fillcmdline open
 bind p clipboard tabopen
 bind P clipboard open
 
-set hintnames numeric
-set editorcmd sensible-terminal -e nvim
-set newtab about:blank
-set viewsource default
-set browsermaps { "<c-//>": "escapehatch", "<c-,>": "escapehatch" }
-
-" Tab control
-unbind d
-unbind D
-unbind <c-s-j>
-unbind <c-s-k>
-bind <c-d> tabclose
-bind <c-j> tabnext
-bind <c-k> tabprev
-bind <cs-j> tabmove +1
-bind <cs-k> tabmove -1
-
-unbind t
-unbind T
-" unbind tt
-" bind tt tabopen file:///home/imsohexy/.config/qutebrowser/homepage/index.html
-
-unbind <s-j>
-unbind <s-k>
-bind <s-j> scrollpx 0 200
-bind <s-k> scrollpx 0 -200
-
-" Open tab by index
-bind <space>1 tab 1
-bind <c-1> tab 1
-bind <space>2 tab 2
-bind <c-2> tab 2
-bind <space>3 tab 3
-bind <c-3> tab 3
-bind <space>4 tab 4
-bind <c-4> tab 4
-bind <space>5 tab 5
-bind <c-5> tab 5
-bind <space>6 tab 6
-bind <c-6> tab 6
-bind <space>7 tab 7
-bind <c-7> tab 7
-bind <space>8 tab 8
-bind <c-8> tab 8
-bind <space>9 tab 9
-bind <c-9> tab 9
-bind <space>0 tab 10
-bind <c-0> tab 10
+bind --mode=normal J scrollpx 0 200
+bind --mode=normal K scrollpx 0 -200
 
