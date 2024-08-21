@@ -32,13 +32,9 @@ let
     "browser.theme.toolbar-theme" = 0;
     "browser.aboutConfig.showWarning" = false;
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-    # "devtools.theme" = "dark";
     "ui.systemUsesDarkTheme" = 2;
-    # "devtools.toolbox.alwaysOnTop" = true;
-    # "devtools.toolbox.host" = "window";
     "layers.acceleration.force-enabled" = true;
     "gfx.webrender.all" = true;
-    # "svg.context-properties.content.enabled" = true;
     "widget.gtk.rounded-bottom-corners.enabled" = true;
     "browser.urlbar.suggest.calculator" = true;
     "browser.urlbar.unitConversion.enabled" = true;
@@ -46,7 +42,6 @@ let
     "extensions.pocket.enabled" = false;
     "extensions.pocket.showHome" = false;
     "browser.urlbar.suggest.pocket" = false;
-    # "privacy.donottrackheader.enabled" = true;
     "privacy.globalprivacycontrol.enabled" = true;
     "browser.search.suggest.enabled" = false;
     "browser.urlbar.suggest.searches" = false;
@@ -57,7 +52,6 @@ let
 
     "layout.css.has-selector.enabled" = true; 
     "browser.toolbars.bookmarks.visibility" = "never";
-    # "identity.fxaccounts.toolbar.enabled" = false;
     "browser.tabs.insertAfterCurrent" = true;
     "browser.urlbar.shortcuts.bookmarks" = false;
     "browser.urlbar.suggest.bookmark" = false;
@@ -68,8 +62,6 @@ let
     "browser.download.useDownloadDir" = false;
 
     # HAcky stuff
-    # "general.config.sandbox_enabled" = false;
-    # "general.config.obscure_value" = false;
     "xpinstall.signatures.required" = false;
     "extensions.install_origins.enabled" = false;
   };

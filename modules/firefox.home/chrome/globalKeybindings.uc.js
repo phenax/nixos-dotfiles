@@ -6,7 +6,6 @@
 // @shutdown             UC.globalKeybindings.destroy();
 // ==/UserScript==
 
-
 (() => {
   // Configure global keybindings
   const KEYBINDINGS = () => ({
