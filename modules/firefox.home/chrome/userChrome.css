@@ -157,7 +157,36 @@ toolbarbutton#alltabs-button {
 #sidebar-splitter {
   display: none !important;
 }
-/* #appcontent { */
-/*   border-radius: 4px !important; */
-/*   overflow: hidden !important; */
-/* } */
+
+
+
+/* URL bar progress indicator */
+#urlbar[data-page-progress="loaded"]::before {
+  display: none !important;
+}
+
+@keyframes ucLoadingSnimation {
+  0% { background-position: 130% 50%; }
+	100% { background-position: -70% 50%; }
+}
+
+#urlbar[data-page-progress]::before {
+  display: block;
+  content: " ";
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, .25) 50%,
+    rgba(255, 255, 255, 0) 65%
+  ) rgba(255, 255, 255, 0.05);
+  background-size: 200% 200%;
+  animation: ucLoadingSnimation 2.2s ease-in-out infinite;
+  border-bottom: 2px solid var(--ff-accent-color);
+}
