@@ -1,10 +1,4 @@
-:root {
-  --ff-accent-color: #4e3aA3;
-  --ff-bg-color: #0f0c19;
-  --ff-bg-color-1: #16121f;
-  --ff-bg-color-2: #26222f;
-  --ff-urlbar-height: 28px;
-}
+@import url('./styles/variables.css');
 
 #navigator-toolbox {
   --tab-min-height: 16px;
@@ -12,7 +6,7 @@
   --tab-block-margin: 0;
   --toolbarbutton-inner-padding: 6px;
   --toolbar-bgcolor: var(--ff-bg-color);
-  --toolbar-field-background-color: var(--ff-bg-color-2);
+  --toolbar-field-background-color: var(--ff-bg-color-1);
   --toolbarbutton-border-radius: 0;
   --toolbar-start-end-padding: 2px;
 }
@@ -28,6 +22,18 @@ toolbarbutton {
 .browser-toolbar {
   padding: 0 !important;
   min-height: 0;
+}
+
+/* Rounded browser content window */
+#browser {
+  background-color: var(--ff-bg-color);
+}
+#appcontent {
+  margin: 4px;
+  margin-top: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
 }
 
 
@@ -112,7 +118,8 @@ toolbarbutton#alltabs-button {
 
 #nav-bar {
   border-top: none !important;
-  background-color: var(--ff-bg-color-1) !important;
+  background-color: var(--ff-bg-color) !important;
+  padding: 4px 2px !important;
 }
 
 #urlbar-container {
@@ -124,6 +131,9 @@ toolbarbutton#alltabs-button {
   min-height: var(--ff-urlbar-height) !important;
   left: 0 !important;
   width: 100% !important;
+}
+#navigator-toolbox {
+  border-bottom: none !important;
 }
 
 .urlbar-input-container {
@@ -157,7 +167,27 @@ toolbarbutton#alltabs-button {
 #sidebar-splitter {
   display: none !important;
 }
-
+#sidebar-box {
+ --sidebar-hover-width: 36px;
+ display: grid !important;
+ min-width: var(--sidebar-hover-width) !important;
+ max-width: var(--sidebar-hover-width) !important;
+ overflow: visible !important;
+ height: 100% !important;
+ min-height: 100% !important;
+ max-height: 100% !important;
+}
+#sidebar {
+ height: 100% !important;
+ width: 100% !important;
+ min-width: 0 !important;
+}
+#sidebar-box.open {
+ --sidebar-visible-width: 240px;
+ width: var(--sidebar-visible-width) !important;
+ min-width: var(--sidebar-visible-width) !important;
+ max-width: var(--sidebar-visible-width) !important;
+}
 
 
 /* URL bar progress indicator */
@@ -190,3 +220,5 @@ toolbarbutton#alltabs-button {
   animation: ucLoadingSnimation 2.2s ease-in-out infinite;
   border-bottom: 2px solid var(--ff-accent-color);
 }
+
+

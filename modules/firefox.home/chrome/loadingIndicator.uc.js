@@ -63,7 +63,7 @@
     onProgressStateUpdate: (win, state) => {
       /** @type {HTMLElement} */
       const urlBar = win.gURLBar.textbox;
-      console.log(state, urlBar);
+      // console.log(state, urlBar);
       if (!urlBar) return;
 
       // urlBar.style.setProperty('--ff-urlbar-progress', perc);

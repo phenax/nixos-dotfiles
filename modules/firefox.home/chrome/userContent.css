@@ -1,0 +1,49 @@
+@import url('./styles/variables.css');
+
+/* @-moz-document domain(moz-extension://292e7676-1ee2-4c2d-8b18-19529d893b17/src/entries/sidebar/sidebar.html) { */
+/* html, body, * { */
+/*     border: 5px solid red !important; */
+/*     padding: 5rem !important; */
+/*   } */
+/* } */
+
+@-moz-document domain(lite.duckduckgo.com) {
+  html, body {
+    background-color: var(--ff-bg-color-1) !important;
+    color: white !important;
+  }
+
+  body {
+    width: 100%;
+    margin: auto;
+    max-width: 900px !important;
+  }
+
+  a {
+    color: var(--ff-accent-color-1) !important;
+  }
+
+  .result-link {
+    font-size: 1rem !important;
+  }
+
+  .did-you-mean {
+    font-size: 0.8rem !important;
+  }
+  .did-you-mean br {
+    display: none !important;
+  }
+
+  select.submit {
+    display: none !important;
+  }
+
+  .link-text {
+    color: #888 !important;
+  }
+
+  .header {
+    font-size: 1rem !important;
+  }
+}
+

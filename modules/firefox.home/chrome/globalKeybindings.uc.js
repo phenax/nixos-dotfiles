@@ -12,7 +12,7 @@
     RELEASE: [
       [ctrl(shift(key('J'))), moveSelectedTabBy(+1)],
       [ctrl(shift(key('K'))), moveSelectedTabBy(-1)],
-      [ctrl(shift(key('B'))), toggleTabSidebar()],
+      [ctrl(shift(key('B'))), sidetabs.toggle()],
       [ctrl(alt(key('p'))), togglePassthrough(), { modes: ALL_MODES }],
     ],
     PRESS: [
@@ -40,8 +40,15 @@
   const moveSelectedTabBy = incr => () => updateSelectedTabIndex(incr);
   const togglePassthrough = () => () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
 
-  const getSidebarId = () => [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0];
-  const toggleTabSidebar = () => () => SidebarController.toggle(getSidebarId() ?? undefined);
+  const sidetabs = {
+    getExtensionId: () => [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0],
+    ensureOpen: () => !SidebarController.isOpen && SidebarController.show(sidetabs.getExtensionId() ?? undefined),
+    toggle: () => () => {
+      sidetabs.ensureOpen();
+      const sidebar = document.getElementById('sidebar-box');
+      sidebar?.classList.toggle('open');
+    },
+  }
 
   const MODE_PASSTHRU = 'passthru';
   const MODE_NORMAL = '';
@@ -96,16 +103,21 @@
     handleKeyUpEvent: e => module.evaluateKeybindings(module.keybindings.RELEASE, e),
     handleKeyDownEvent: e => module.evaluateKeybindings(module.keybindings.PRESS, e),
 
+    onWindowReady: (win) => {
+      win.addEventListener('keyup', module.handleKeyUpEvent, true);
+      win.addEventListener('keydown', module.handleKeyDownEvent, true);
+
+      sidetabs.ensureOpen();
+    },
+
     init(win) {
-      let observe = () => {
+      const observe = () => {
         Services.obs.removeObserver(observe, 'browser-window-before-show');
-        win.addEventListener('keyup', module.handleKeyUpEvent, true);
-        win.addEventListener('keydown', module.handleKeyDownEvent, true);
+        module.onWindowReady(win)
       }
 
       if (win.__SSi) {
-        win.addEventListener('keyup', module.handleKeyUpEvent, true);
-        win.addEventListener('keydown', module.handleKeyDownEvent, true);
+        module.onWindowReady(win)
       } else {
         Services.obs.addObserver(observe, 'browser-window-before-show');
       }
