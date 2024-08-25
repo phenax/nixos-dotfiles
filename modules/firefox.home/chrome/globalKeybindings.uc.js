@@ -41,10 +41,21 @@
   const togglePassthrough = () => () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
 
   const sidetabs = {
-    getExtensionId: () => [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0],
-    ensureOpen: () => !SidebarController.isOpen && SidebarController.show(sidetabs.getExtensionId() ?? undefined),
-    toggle: () => () => {
-      sidetabs.ensureOpen();
+    getExtensionId: () => {
+      return [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0];
+    },
+    ensureReady: async () => {
+      for (let i = 0; i < 3; i++) {
+        if (sidetabs.getExtensionId()) {
+          return !SidebarController.isOpen && SidebarController.show(sidetabs.getExtensionId() ?? undefined)
+        } else {
+          console.log('sidebar retry...');
+          await new Promise(res => setTimeout(res), 100);
+        }
+      }
+    },
+    toggle: () => async () => {
+      await sidetabs.ensureReady();
       const sidebar = document.getElementById('sidebar-box');
       sidebar?.classList.toggle('open');
     },
@@ -97,17 +108,18 @@
 
     updateMode: f => {
       module.mode = f(module.mode);
-      gBrowser.tabContainer.dataset.keyMode = module.mode
+      if (gNavToolbox) gNavToolbox.dataset.keyMode = module.mode;
+      Services.obs.notifyObservers(null, 'uc:globalKeybindings:modeChanged', module.mode);
     },
 
     handleKeyUpEvent: e => module.evaluateKeybindings(module.keybindings.RELEASE, e),
     handleKeyDownEvent: e => module.evaluateKeybindings(module.keybindings.PRESS, e),
 
-    onWindowReady: (win) => {
+    onWindowReady: async (win) => {
       win.addEventListener('keyup', module.handleKeyUpEvent, true);
       win.addEventListener('keydown', module.handleKeyDownEvent, true);
 
-      sidetabs.ensureOpen();
+      await sidetabs.ensureReady();
     },
 
     init(win) {

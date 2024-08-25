@@ -16,7 +16,7 @@ toolbarbutton {
 }
 
 #TabsToolbar {
-  background-color: var(--ff-bg-color) !important;
+  background-color: var(--toolbar-bgcolor) !important;
 }
 
 .browser-toolbar {
@@ -94,31 +94,13 @@ toolbarbutton#alltabs-button {
   display: none !important;
 }
 
-/* Show a label to display the current mode for global keybindings */
-#tabbrowser-tabs[data-key-mode=""]::after {
-  display: none;
-}
-#tabbrowser-tabs[data-key-mode]::after {
-  content: attr(data-key-mode);
-  vertical-align: middle;
-  font-size: 0.73rem;
-  background-color: var(--ff-accent-color);
-  color: #ddd;
-  padding: 2px 5px;
-  top: 50%;
-  position: absolute;
-  right: 8px;
-  transform: translateY(-50%);
-}
-
-
 
 
 /* Nav bar with url */
 
 #nav-bar {
   border-top: none !important;
-  background-color: var(--ff-bg-color) !important;
+  background-color: var(--toolbar-bgcolor) !important;
   padding: 4px 2px !important;
 }
 
@@ -221,4 +203,29 @@ toolbarbutton#alltabs-button {
   border-bottom: 2px solid var(--ff-accent-color);
 }
 
+
+/* Key mode indicator */
+#navigator-toolbox[data-key-mode=""]::after {
+  display: none;
+}
+#navigator-toolbox[data-key-mode]::after {
+  content: attr(data-key-mode);
+  vertical-align: middle;
+  font-size: 0.73rem;
+  background-color: var(--ff-accent-color);
+  color: #ddd;
+  padding: 2px 5px;
+  top: 0;
+  position: absolute;
+  right: 0;
+  /* transform: translateY(-50%); */
+}
+
+/* Private browsing indicator */
+#main-window[privatebrowsingmode="temporary"] #navigator-toolbox {
+  --toolbar-bgcolor: var(--ff-bg-private) !important;
+}
+#main-window[privatebrowsingmode="temporary"] #browser {
+  background-color: var(--ff-bg-private) !important;
+}
 
