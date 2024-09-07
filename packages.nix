@@ -88,6 +88,7 @@ let
 
     remind
     dunst
+    newsboat
 
     # Audio
     qjackctl

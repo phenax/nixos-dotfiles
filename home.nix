@@ -120,6 +120,9 @@ in
     ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;
     ".config/bottom/bottom.toml".source = ./config/bottom.toml;
+    ".config/newsboat/config".source = ./config/newsboat/config;
+    ".config/newsboat/urls".source = ./config/newsboat/urls;
+    ".config/newsboat/opener.sh".source = ./config/newsboat/opener.sh;
   };
 
   # https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=programs.chromium

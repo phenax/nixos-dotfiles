@@ -1,0 +1,37 @@
+"query:dev tag:tags # \"dev\""
+"query:opensource tag:tags # \"opensource\""
+"query:youtube tag:tags # \"youtube\""
+"query:funny tag:tags # \"funny\""
+
+https://www.reddit.com/r/neovim.rss                 reddit
+https://dotfyle.com/this-week-in-neovim/rss.xml     opensource
+https://www.reddit.com/r/sideproject.rss            reddit ideas
+
+https://yts.mx/rss    movies
+
+https://www.nasa.gov/news-release/feed/       sci
+
+https://dev.to/feed                           dev
+https://developer.chrome.com/blog/feed.xml    dev
+https://hnrss.org/frontpage                   dev ideas
+https://overreacted.io/rss.xml                dev
+
+https://nixos.org/blog/announcements-rss.xml        ! opensource
+https://www.reddit.com/r/opensource.rss             ! reddit ideas opensource
+
+https://xkcd.com/rss.xml ! funny
+http://phdcomics.com/gradfeed.php ! funny
+
+
+# IamMoBo
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJswRv22oiUgmT1FuFeUekw ! youtube
+
+# InternetHistorian/incognito mode
+https://www.youtube.com/feeds/videos.xml?channel_id=UCR1D15p_vdP3HkrH8wgjQRw ! youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8Q7XEy86Q7T-3kNpNjYgwA ! youtube
+
+# Fireship
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA ! youtube dev
+
+# No boilerplate
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUMwY9iS8oMyWDYIe6_RmoA ! youtube dev
