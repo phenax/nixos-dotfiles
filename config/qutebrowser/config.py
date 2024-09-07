@@ -17,6 +17,7 @@ config.load_autoconfig()
 
 # Helper Functions {{{
 def toggle_stylesheets(stylesheets):
+    # TODO: Remove the given stylesheets from the list
     return 'config-cycle content.user_stylesheets \'' \
     + json.dumps(c.content.user_stylesheets) \
     + '\' \'' \
@@ -153,9 +154,11 @@ config.source('ui.py')
 
 ## Webpage styles
 c.content.user_stylesheets = [
-    "styles/scrollbar.css",
-    "styles/default.css",
-    "styles/adblocker.css",
+    'styles/scrollbar.css',
+    'styles/default.css',
+    'styles/adblocker.css',
+    # TODO: Add user styles for lite.duckduckgo.com
+    # 'styles/duckduckgo.css'
 ]
 
 # Dark mode
@@ -286,11 +289,13 @@ config.set('content.media.video_capture', True, '*://meet.google.com')
 c.url.default_page = '~/.config/qutebrowser/homepage/index.html'
 c.url.start_pages = [c.url.default_page]
 
-DEFAULT_SEARCH_ENGINE = 'go'
+DEFAULT_SEARCH_ENGINE = 'd'
 c.url.searchengines = {
     # Main general
-    'd': 'https://duckduckgo.com/?q={}',
-    'go': 'https://google.com/search?q={}',
+    'd': 'https://lite.duckduckgo.com/lite?q={}',
+    'go': 'https://lite.duckduckgo.com/lite?q={}',
+    'gg': 'https://google.com/search?q={}',
+    'ai': 'https://chatgpt.com/?temporary-chat=true&q={}',
     'br': 'https://search.brave.com/search?q={}',
 
     # Alt general

@@ -33,6 +33,8 @@
     ],
   });
 
+  // Restart firefox: Services.startup.quit(Services.startup.eForceQuit | Services.startup.eRestart)
+
   const nextTab = () => () => updateTabIndex((n, len) => (n + 1) % len);
   const prevTab = () => () => updateTabIndex((n, len) => n === 0 ? len - 1 : n - 1);
   const tabIndex = idx => () => updateTabIndex((_n, _len) => idx)

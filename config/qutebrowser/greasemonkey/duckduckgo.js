@@ -1,16 +1,59 @@
 // ==UserScript==
-// @name               Github PR helper
+// @name               DuckduckGo styles
 // @namespace          phenax.github.io
 // @version            0.0.0
 // @description        Github PR helper
 // @author             Akshay Nair
-// @match              *://duckduckgo.com/*
+// @match              *://*.duckduckgo.com/*
 // ==/UserScript==
 
 (() => {
-  const load = str =>
-    str.split(' ').forEach(x => (document.cookie = x));
+  document.body.classList.add('document-duckduckgo');
 
-  load('ae=d; 5=2; s=m; p=-2; am=osm; a=JetBrains%20Mono; t=JetBrains%20Mono; j=0f0c19; 7=15121f; 21=1f1c29;')
+  GM_addStyle(`
+.document-duckduckgo {
+  --ff-accent-color: #8161ff;
+  --ff-bg-color: #16121f;
+}
+
+.document-duckduckgo {
+  background-color: var(--ff-bg-color) !important;
+  color: white !important;
+  width: 100%;
+  margin: auto;
+  max-width: 900px !important;
+}
+
+.document-duckduckgo a {
+  color: var(--ff-accent-color) !important;
+}
+
+.document-duckduckgo .result-link {
+  font-size: 1rem !important;
+}
+
+.document-duckduckgo .did-you-mean {
+  font-size: 0.8rem !important;
+}
+.document-duckduckgo .did-you-mean br {
+  display: none !important;
+}
+
+.document-duckduckgo select.submit {
+  display: none !important;
+}
+
+.document-duckduckgo .link-text {
+  color: #888 !important;
+}
+
+.document-duckduckgo .header {
+  font-size: 1rem !important;
+}
+
+.document-duckduckgo .result-sponsored {
+  display: none !important;
+}
+`);
 })();
 
