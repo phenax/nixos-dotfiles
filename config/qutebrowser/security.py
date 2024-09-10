@@ -8,10 +8,10 @@ def compose(*args):
     return ' ;; '.join(args)
 
 def enable(s, ask = False):
-    return 'set ' + s + ' ' + ('ask' if ask else 'True')
+    return 'set --temp ' + s + ' ' + ('ask' if ask else 'True')
 
 def disable(s):
-    return 'set ' + s + ' False'
+    return 'set --temp ' + s + ' False'
 
 
 def rand_numstr(a, b):
@@ -50,8 +50,8 @@ c.content.canvas_reading = True
 # c.content.fullscreen.window = True   # Fullscreen fixed to window size
 
 # Tor
-c.aliases['tor-enable'] = 'set content.proxy "socks://localhost:9050"'
-c.aliases['tor-disable'] = 'config-unset content.proxy'
+c.aliases['tor-enable'] = 'set --temp content.proxy "socks://localhost:9050"'
+c.aliases['tor-disable'] = 'config-unset --temp content.proxy'
 c.aliases['tor-change'] = 'spawn --userscript tor_identity'
 
 # Fingerprinting feature switches

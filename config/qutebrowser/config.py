@@ -18,7 +18,7 @@ config.load_autoconfig()
 # Helper Functions {{{
 def toggle_stylesheets(stylesheets):
     # TODO: Remove the given stylesheets from the list
-    return 'config-cycle content.user_stylesheets \'' \
+    return 'config-cycle --temp content.user_stylesheets \'' \
     + json.dumps(c.content.user_stylesheets) \
     + '\' \'' \
     + json.dumps(c.content.user_stylesheets + stylesheets) \
@@ -157,12 +157,13 @@ c.content.user_stylesheets = [
     'styles/scrollbar.css',
     'styles/default.css',
     'styles/adblocker.css',
-    # TODO: Add user styles for lite.duckduckgo.com
+    # TODO: Add user styles for lite.duckduckgo.com. Had issue with CSP
     # 'styles/duckduckgo.css'
 ]
 
 # Dark mode
-c.aliases['toggle-darkmode'] = toggle_stylesheets(['styles/dark.css'])
+# c.aliases['toggle-darkmode'] = toggle_stylesheets(['styles/dark.css'])
+c.aliases['toggle-darkmode'] = 'config-cycle --temp colors.webpage.darkmode.enabled'
 
 nmap(localleader + 'td', ':toggle-darkmode')
 # }}}
