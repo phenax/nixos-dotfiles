@@ -11,6 +11,7 @@ in
     ./modules/music.home.nix
     ./modules/xresources.home.nix
     ./modules/firefox.home/default.nix
+    ./modules/newsboat.home/default.nix
   ];
 
   home.packages = with pkgs; [
@@ -120,22 +121,8 @@ in
     ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;
     ".config/bottom/bottom.toml".source = ./config/bottom.toml;
-    ".config/newsboat/config".source = ./config/newsboat/config;
-    ".config/newsboat/urls".source = ./config/newsboat/urls;
-    ".config/newsboat/opener.sh".source = ./config/newsboat/opener.sh;
+    # ".config/newsboat/config".source = ./config/newsboat/config;
+    # ".config/newsboat/urls".source = ./config/newsboat/urls;
+    # ".config/newsboat/opener.sh".source = ./config/newsboat/opener.sh;
   };
-
-  # https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=programs.chromium
-  # programs.chromium = {
-  #   enable = true;
-  #   package = pkgs.brave;
-  #   commandLineArgs = [ "--enable-devtools-experiments" "" ];
-  #   # --file_chooser, --enable-devtools-experiments --enabled-features --disabled-features --flag-switches-begin --flag-switches-end
-  #   extensions = [
-  #     { id = "fmkadmapgofadopljbjfkapdkoienihi"; } # React devtools
-  #     { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
-  #     { id = "iohjgamcilhbgmhbnllfolmkmmekfmci"; } # Jam recording
-  #     { id = "jnkmfdileelhofjcijamephohjechhna"; } # GA debugger
-  #   ];
-  # };
 }
