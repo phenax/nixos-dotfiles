@@ -9,7 +9,7 @@ let
     if lib.isList value
       then value ++ (if acc != null then acc else [])
       else value // (if acc != null then acc else {})
-  ) null ([{ queries = {}; visible = []; hidden = []; }] ++ feeds);
+  ) null ([{ queries = []; visible = []; hidden = []; }] ++ feeds);
 
   joinLines = lib.concatStringsSep "\n";
   joinWords = lib.concatStringsSep " ";
@@ -24,7 +24,7 @@ let
   toUrls = urls: joinLines (lib.map toUrl urls);
 
   toQueries = queries: joinLines
-    (lib.mapAttrsToList (key: val: "\"query:${key}:${val}\"") queries);
+    (lib.map (q: "\"query:${q.title}:${q.query}\"") queries);
 
   # { raw = a; } -> a | bool -> yesno | string -> "string" | number
   toConfigValue = val:
@@ -49,7 +49,11 @@ let
     (toUrls (lib.map (x: x // { hidden = true; }) urls.hidden))
   ];
 in {
-  home.packages = [ pkgs.newsboat ];
+  home.packages = [
+    pkgs.newsboat
+    pkgs.piper-tts
+    pkgs.nodePackages.peerflix
+  ];
 
   xdg.configFile = {
     "newsboat/urls".text = urlsFileContent;

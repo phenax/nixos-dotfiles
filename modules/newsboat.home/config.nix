@@ -1,8 +1,13 @@
-rec {
+let
+  opener = c: "~/.config/newsboat/opener.sh ${c}";
+  openCmd = opener "'%t' %u";
+  openLinkWith = c: ''set browser "${c}"; open-in-browser; set browser "${openCmd}"'';
+  pipeTo = c: "pipe-to \"${c}\"";
+in {
   config = {
     reload-threads = 6;
-    max-items = 20;
-    browser = "~/.config/newsboat/opener.sh '%t' %u";
+    # max-items = 20;
+    browser = openCmd;
     show-keymap-hint = false;
     refresh-on-startup = true;
     save-path = "~/Downloads/articles";
@@ -18,14 +23,14 @@ rec {
     g = "home";
     G = "end";
     q = "hard-quit";
-    n = "next";
-    p = "prev";
+    n = "next-unread";
+    p = "prev-unread";
   };
 
-  macros = let
-    copyCmd = "~/.config/newsboat/opener.sh copy %u";
-  in {
-    y = ''set browser "${copyCmd}"; open-in-browser; set browser "${config.browser}"'';
+  macros = {
+    y = openLinkWith (opener "copy %u");
+    t = pipeTo (opener "tts");
+    s = openLinkWith (opener "torrent-stream '%u'");
   };
 
   extraConfig = ''
