@@ -17,6 +17,7 @@ in
     ./modules/torrent.nix
     ./modules/work.nix
     ./modules/keyboard/default.nix
+    ./modules/jackett.nix
   ];
 
   nixpkgs.config = {

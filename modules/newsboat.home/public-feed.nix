@@ -1,3 +1,4 @@
+{ ... }:
 let
   tag = t: ''tags # \"${toString t}\"'';
   youtube = title: id: tags: {
@@ -15,7 +16,6 @@ in {
     { title = "#youtube"; query = tag "youtube"; }
     { title = "#news"; query = tag "news"; }
     { title = "#sci"; query = tag "sci"; }
-    { title = "#tv-shows"; query = tag "tv-shows"; }
   ];
 
   visible = [
@@ -50,8 +50,8 @@ in {
 
     { url = "https://devblogs.microsoft.com/typescript/feed/"; tags = ["news"]; }
     { url = "https://dev.to/feed/tag/typescript"; tags = ["news"]; title = "TS - dev.to"; }
-    { url = "https://hnrss.org/frontpage"; tags = ["news"]; }
-    { url = "https://hackernoon.com/feed"; tags = ["news"]; }
+    # { url = "https://hnrss.org/frontpage"; tags = ["news"]; }
+    # { url = "https://hackernoon.com/feed"; tags = ["news"]; }
     { url = "https://nitter.privacydev.net/vim_tricks/rss"; tags = ["twitter" "opensource"]; }
     { url = "https://nixos.org/blog/announcements-rss.xml"; tags = ["opensource" "news"]; }
     { url = "https://www.cyberciti.com/feed/"; tags = ["opensource" "news"]; }

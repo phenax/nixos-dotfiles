@@ -1,9 +1,9 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, ... }@opts:
 let
   cfg = import ./config.nix;
-  urls = mergeFeeds [ (import ./public-feed.nix) privateFeed ];
+  urls = mergeFeeds [ (import ./public-feed.nix opts) privateFeed ];
   privateFeed = let feedpath = ./private-feed.nix;
-    in if builtins.pathExists feedpath then import feedpath else {};
+    in if builtins.pathExists feedpath then import feedpath opts else {};
 
   mergeFeeds = feeds: lib.attrsets.foldAttrs (value: acc:
     if lib.isList value
