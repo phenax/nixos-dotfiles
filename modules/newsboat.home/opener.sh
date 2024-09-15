@@ -15,8 +15,10 @@ video() {
 image() { spawn feh -x -F --image-bg "#0f0c19" "$@"; }
 
 __tts() {
+  # https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US
   # local tts_model="en_US-ryan-high.onnx";
   local tts_model="en_US-lessac-medium.onnx";
+  # local tts_model="en_US-bryce-medium.onnx";
   local tts_model_path="$HOME/.config/piper-models/$tts_model";
   [ -f "$tts_model_path" ] || (echo "Model not found" && exit 1);
 

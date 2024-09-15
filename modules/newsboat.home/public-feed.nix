@@ -10,28 +10,36 @@ in {
   queries = [
     { title = "#dev-blog"; query = tag "dev-blog"; }
     { title = "#dev"; query = tag "dev"; }
+    { title = "#nvim"; query = tag "nvim"; }
     { title = "#podcast"; query = tag "podcast"; }
     { title = "#opensource"; query = tag "opensource"; }
     { title = "#funny"; query = tag "funny"; }
     { title = "#youtube"; query = tag "youtube"; }
     { title = "#news"; query = tag "news"; }
-    { title = "#sci"; query = tag "sci"; }
+    # { title = "#sci"; query = tag "sci"; }
   ];
 
   visible = [
-    { url = "https://mshibanami.github.io/GitHubTrendingRSS/weekly/all.xml"; tags = ["latest"]; }
-    { url = "https://dotfyle.com/this-week-in-neovim/rss.xml"; tags = ["opensource" "latest"]; }
-    { url = "https://www.reddit.com/r/neovim.rss"; tags = ["reddit"]; title = "r/neovim"; }
+    { url = "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml"; tags = []; title = "Github trending"; }
   ];
 
   hidden = [
-    { url = "https://www.nasa.gov/feeds/iotd-feed"; tags = ["sci"]; }
-    { url = "https://www.nasa.gov/news-release/feed/"; tags = ["sci"]; }
-    { url = "https://www.nature.com/nature.rss"; tags = ["sci"]; }
-    { url = "https://what-if.xkcd.com/feed.atom"; tags = ["sci"]; }
+    { url = "https://dotfyle.com/this-week-in-neovim/rss.xml"; tags = ["nvim" "opensource"]; }
+    { url = "https://www.reddit.com/r/neovim.rss"; tags = ["nvim" "reddit"]; title = "r/neovim"; }
+    # { url = "https://www.nasa.gov/feeds/iotd-feed"; tags = ["sci"]; }
+    # { url = "https://www.nasa.gov/news-release/feed/"; tags = ["sci"]; }
+    # { url = "https://www.nature.com/nature.rss"; tags = ["sci"]; }
+    # { url = "https://what-if.xkcd.com/feed.atom"; tags = ["sci"]; }
 
     { url = "https://feeds.transistor.fm/tomorrow"; tags = ["podcast"]; }
     { url = "https://feed.syntax.fm/"; tags = ["podcast"]; }
+    { url = "https://changelog.com/podcast/feed"; tags = ["podcast"]; }
+    { url = "https://seradio.libsyn.com/rss"; tags = ["podcast"]; }
+    { url = "https://changelog.com/jsparty/feed"; tags = ["podcast"]; }
+    { url = "https://feeds.buzzsprout.com/1952066.rss"; tags = ["podcast"]; }
+    { url = "https://www.spreaker.com/show/6102064/episodes/feed"; tags = ["podcast"]; }
+    { url = "https://feeds.soundcloud.com/users/soundcloud:users:206137365/sounds.rss"; tags = ["podcast"]; }
+    { url = "http://shoptalkshow.com/feed/podcast"; tags = ["podcast"]; }
 
     { url = "https://overreacted.io/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://tkdodo.eu/blog/rss.xml"; tags = ["dev-blog"]; }
@@ -42,6 +50,7 @@ in {
     { url = "https://vercel.com/atom"; tags = ["dev-blog"]; }
     { url = "https://reacttraining.com/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://www.developerway.com/rss.xml"; tags = ["dev-blog"]; }
+    { url = "https://blog.haskell.org/atom.xml"; tags = ["dev-blog"]; }
 
     { url = "https://cprss.s3.amazonaws.com/javascriptweekly.com.xml"; tags = ["dev"]; }
     { url = "https://cprss.s3.amazonaws.com/react.statuscode.com.xml"; tags = ["dev"]; }
