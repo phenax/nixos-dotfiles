@@ -1,17 +1,25 @@
-{ stdenv, pkgs, dmenu ? (import ../default.nix { pkgs = pkgs; }).dmenu }:
-with pkgs.lib;
-
+{ stdenv, pkgs, lib, dmenu ? (import ../default.nix { pkgs = pkgs; }).dmenu }:
 stdenv.mkDerivation rec {
-  name = "local-anypinentry-${version}";
-  version = "0.0.0";
+  pname = "anypinentry";
+  version = "0.1.0";
+  meta.mainProgram = "anypinentry";
 
   src = ./source;
 
-  wrapperPath = makeBinPath ([ dmenu ]);
+  buildInputs = [
+    dmenu
+    pkgs.getopt
+    pkgs.coreutils
+    pkgs.gnused
+    pkgs.gawk
+    pkgs.libnotify
+  ];
+  nativeBuildInputs = [ pkgs.makeWrapper ];
 
   unpackPhase = ''cp -r $src/* .'';
   installPhase = ''
     mkdir -p $out/bin;
-    cp $src/anypinentry $out/bin/
+    cp $src/anypinentry $out/bin/;
+    wrapProgram "$out/bin/anypinentry" --prefix PATH : "/bin:${lib.makeBinPath buildInputs}";
   '';
 }

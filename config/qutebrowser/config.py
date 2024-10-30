@@ -342,9 +342,14 @@ nmap(localleader + 'tm', 'mark-resource')
 # }}}
 
 #### Dev {{{
-nmap(leader + 'tr', 'config-source')    # Reload config
+# nmap(leader + 'tr', 'config-source')    # Reload config
 nmap(leader + 'ti', 'devtools window')  # Inspector
 nmap(leader + 'ts', 'view-source')      # View page source
+
+# Readbility {{{
+c.aliases['reading-mode'] = 'spawn --userscript readability-js';
+nmap(leader + 'tr', 'reading-mode')
+# }}}
 
 # Json formatter {{{
 c.aliases['format-json'] = 'spawn --userscript format_json';
