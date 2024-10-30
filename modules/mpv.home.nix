@@ -14,10 +14,15 @@
       hwdec = "auto-safe";
       vo = "gpu";
       profile = "gpu-hq";
+      save-position-on-quit = true;
     };
 
-    scripts = [
-      pkgs.mpvScripts.uosc
+    scripts = with pkgs.mpvScripts; [
+      uosc
+      videoclip # c to clip
+      youtube-upnext # <c-u> to show menu
+      mpv-cheatsheet # ? to see hints
+      # webtorrent-mpv-hook
     ];
 
     # scriptOpts = {

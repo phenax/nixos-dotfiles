@@ -62,9 +62,9 @@ let
   apps = with pkgs; [
     # Browser
     qutebrowser
-    nodePackages."@mozilla/readability"
-    nodePackages.jsdom
-    nodePackages.qutejs
+    # nodePackages."@mozilla/readability"
+    # nodePackages.jsdom
+    # nodePackages.qutejs
 
     # qutebrowser-qt5
     brave

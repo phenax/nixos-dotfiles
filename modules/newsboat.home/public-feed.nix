@@ -24,8 +24,11 @@ in {
   ];
 
   hidden = [
-    { url = "https://dotfyle.com/this-week-in-neovim/rss.xml"; tags = ["nvim" "opensource"]; }
     { url = "https://www.reddit.com/r/neovim.rss"; tags = ["nvim" "reddit"]; title = "r/neovim"; }
+    { url = "https://dotfyle.com/this-week-in-neovim/rss.xml"; tags = ["nvim"]; }
+    { url = "https://dotfyle.com/neovim/plugins/rss.xml"; tags = ["nvim"]; }
+    { url = "https://vimtricks.com/feed/"; tags = ["opensource" "nvim"]; }
+
     # { url = "https://www.nasa.gov/feeds/iotd-feed"; tags = ["sci"]; }
     # { url = "https://www.nasa.gov/news-release/feed/"; tags = ["sci"]; }
     # { url = "https://www.nature.com/nature.rss"; tags = ["sci"]; }
@@ -40,7 +43,10 @@ in {
     { url = "https://www.spreaker.com/show/6102064/episodes/feed"; tags = ["podcast"]; }
     { url = "https://feeds.soundcloud.com/users/soundcloud:users:206137365/sounds.rss"; tags = ["podcast"]; }
     { url = "http://shoptalkshow.com/feed/podcast"; tags = ["podcast"]; }
+    { url = "https://anchor.fm/s/dd6922b4/podcast/rss"; tags = ["podcast"]; title = "devtools.fm"; }
+    { url = "https://feeds.acast.com/public/shows/664fde3eda02bb0012bad909"; tags = ["podcast"]; }
 
+    { url = "https://lexi-lambda.github.io/feeds/all.rss.xml"; tags = ["dev-blog"]; }
     { url = "https://overreacted.io/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://tkdodo.eu/blog/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://kentcdodds.com/blog/rss.xml"; tags = ["dev-blog"]; }
@@ -51,6 +57,7 @@ in {
     { url = "https://reacttraining.com/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://www.developerway.com/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://blog.haskell.org/atom.xml"; tags = ["dev-blog"]; }
+    { url = "https://www.pschatzmann.ch/home/feed/"; tags = ["dev-blog"]; }
 
     { url = "https://cprss.s3.amazonaws.com/javascriptweekly.com.xml"; tags = ["dev"]; }
     { url = "https://cprss.s3.amazonaws.com/react.statuscode.com.xml"; tags = ["dev"]; }
@@ -61,7 +68,6 @@ in {
     { url = "https://dev.to/feed/tag/typescript"; tags = ["news"]; title = "TS - dev.to"; }
     # { url = "https://hnrss.org/frontpage"; tags = ["news"]; }
     # { url = "https://hackernoon.com/feed"; tags = ["news"]; }
-    { url = "https://nitter.privacydev.net/vim_tricks/rss"; tags = ["twitter" "opensource"]; }
     { url = "https://nixos.org/blog/announcements-rss.xml"; tags = ["opensource" "news"]; }
     { url = "https://www.cyberciti.com/feed/"; tags = ["opensource" "news"]; }
     { url = "https://itsfoss.com/rss/"; tags = ["opensource" "news"]; }
@@ -78,8 +84,9 @@ in {
     (youtube "Fireship" "UCsBjURrPoezykLs9EqgamOA" ["dev"])
     (youtube "No boilerplate" "UCUMwY9iS8oMyWDYIe6_RmoA" ["dev"])
     (youtube "TypeCraft" "UCo71RUe6DX4w-Vd47rFLXPg" ["dev"])
-    (youtube "exurb1a" "UCimiUgDLbi6P17BdaCZpVbg" [])
+    (youtube "exurb1a" "UCimiUgDLbi6P17BdaCZpVbg" ["think"])
     (youtube "Casually Explained" "UCr3cBLTYmIK9kY0F_OdFWFQ" ["funny"])
     (youtube "zefrank1" "UCVpankR4HtoAVtYnFDUieYA" ["funny"])
+    (youtube "3Blue 1Brown" "UCYO_jab_esuFRV4b17AJtAw" ["think"])
   ];
 }

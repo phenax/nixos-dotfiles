@@ -21,6 +21,7 @@ in
   users.groups = {
     uinput = { };
     storage = { };
+    dialout = { };
   };
 
   # User
@@ -43,6 +44,7 @@ in
       "vboxusers"
       "uinput"
       "libvirtd"
+      "dialout"
     ];
     shell = pkgs.zsh;
   };

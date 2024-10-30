@@ -61,9 +61,11 @@
   };
 
   services.udev = {
-    packages = [
-      pkgs.android-udev-rules
-      pkgs.platformio-core.udev
+    packages = with pkgs; [
+      alsa-utils
+      android-udev-rules
+      platformio-core.udev
+      openocd
     ];
   };
 
