@@ -1,6 +1,4 @@
-{ stdenv, pkgs, xorgproto, libX11, libXinerama, libXext, libXrandr }:
-with pkgs.lib;
-
+{ stdenv, pkgs, xorgproto, libX11, libXinerama, libXext, libXrandr, libxcrypt }:
 let
   user = "imsohexy";
   group = "users";
@@ -10,12 +8,12 @@ in stdenv.mkDerivation rec {
 
   src = ./source;
 
-  buildInputs = [ xorgproto libX11 libXinerama libXext libXrandr ];
+  buildInputs = [ xorgproto libX11 libXinerama libXext libXrandr libxcrypt ];
 
   unpackPhase = ''cp -r $src/* .'';
 
   postPatch = "
-    # sed -e 's/@@user/${user}/' -e 's/@@group/${group}/' -i config.def.h;
+    sed -e 's/{{user}}/${user}/' -e 's/{{group}}/${group}/' -i config.def.h;
     sed -i '/chmod u+s/d' Makefile;
   ";
 

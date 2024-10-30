@@ -11,7 +11,7 @@ let
     st
     dmenu
     anypinentry
-    # bslock
+    bslock
     # sidekick
   ];
 
@@ -196,11 +196,13 @@ in
   };
 
   # Security wrappers
-  # security.wrappers = {
-  #   bslock = {
-  #     owner = config.users.users.imsohexy.name;
-  #     group = "users";
-  #     source = "${localPkgs.bslock}/bin/bslock";
-  #   };
-  # };
+  security.wrappers = {
+    bslock = {
+      # owner = config.users.users.imsohexy.name;
+      owner = "root";
+      setuid = true;
+      group = "root";
+      source = "${localPkgs.bslock}/bin/bslock";
+    };
+  };
 }
