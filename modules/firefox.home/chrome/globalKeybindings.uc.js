@@ -43,23 +43,28 @@
   const togglePassthrough = () => () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
 
   const sidetabs = {
-    getExtensionId: () => {
-      return [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0];
-    },
+    // getExtensionId: () => {
+    //   return [...SidebarController.sidebars].find(([_, p]) => p.label?.match(/sidetabs/i))?.[0];
+    // },
     ensureReady: async () => {
-      for (let i = 0; i < 3; i++) {
-        if (sidetabs.getExtensionId()) {
-          return !SidebarController.isOpen && SidebarController.show(sidetabs.getExtensionId() ?? undefined)
-        } else {
-          console.log('sidebar retry...');
-          await new Promise(res => setTimeout(res), 100);
-        }
-      }
+      // Hide sidebar
+      SidebarController.hide();
+      // Close by default
+      SidebarController.toggleExpanded(false);
+      // for (let i = 0; i < 3; i++) {
+      //   if (sidetabs.getExtensionId()) {
+      //     return !SidebarController.isOpen && SidebarController.show(sidetabs.getExtensionId() ?? undefined)
+      //   } else {
+      //     console.log('sidebar retry...');
+      //     await new Promise(res => setTimeout(res), 100);
+      //   }
+      // }
     },
     toggle: () => async () => {
-      await sidetabs.ensureReady();
-      const sidebar = document.getElementById('sidebar-box');
-      sidebar?.classList.toggle('open');
+      SidebarController.toggleExpanded();
+      // await sidetabs.ensureReady();
+      // const sidebar = document.getElementById('sidebar-box');
+      // sidebar?.classList.toggle('open');
     },
   }
 

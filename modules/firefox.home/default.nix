@@ -5,7 +5,7 @@ let
   extensions = [
     "https://addons.mozilla.org/firefox/downloads/file/3792127/firefox_dracula-1.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4261352/tridactyl_vim-1.24.1.xpi"
-    "https://addons.mozilla.org/firefox/downloads/file/4240798/sidetabs-0.66.xpi"
+    # "https://addons.mozilla.org/firefox/downloads/file/4240798/sidetabs-0.66.xpi"
     # "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
 
     # dev

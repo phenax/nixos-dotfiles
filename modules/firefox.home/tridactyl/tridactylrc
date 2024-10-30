@@ -17,11 +17,19 @@ unbind tt
 unbind T
 unbind J
 unbind K
+unbind f
+unbind n
+unbind N
+unbind a
+unbind A
+unbind <C-f>
 
 bind o fillcmdline tabopen
 bind O fillcmdline open
 bind p clipboard tabopen
 bind P clipboard open
+bind n findnext
+bind N findprev
 
 bind --mode=normal J scrollpx 0 200
 bind --mode=normal K scrollpx 0 -200

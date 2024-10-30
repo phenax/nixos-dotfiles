@@ -101,11 +101,15 @@ toolbarbutton#alltabs-button {
 #nav-bar {
   border-top: none !important;
   background-color: var(--toolbar-bgcolor) !important;
-  padding: 4px 2px !important;
+  padding: 6px 2px 3px !important;
+}
+#TabsToolbar {
+  visibility: collapse !important;
 }
 
 #urlbar-container {
   min-height: var(--ff-urlbar-height) !important;
+  --urlbar-container-height: unset !important;
 }
 
 #urlbar {
@@ -123,6 +127,8 @@ toolbarbutton#alltabs-button {
   border-color: transparent !important;
   min-height: 0 !important;
   padding-inline: 0 !important;
+  padding-block: 0 !important;
+  height: var(--ff-urlbar-height) !important;
 }
 
 #urlbar[breakout-extend] .urlbar-input-container {
@@ -140,35 +146,21 @@ toolbarbutton#alltabs-button {
 
 
 /* Sidebar + tab */
-#TabsToolbar {
-	visibility: collapse !important;
-}
-#sidebar-header {
-	display: none !important;
-}
-#sidebar-splitter {
-  display: none !important;
+#sidebar-main {
+  background: var(--ff-bg-color) !important;
 }
 #sidebar-box {
- --sidebar-hover-width: 36px;
- display: grid !important;
- min-width: var(--sidebar-hover-width) !important;
- max-width: var(--sidebar-hover-width) !important;
- overflow: visible !important;
- height: 100% !important;
- min-height: 100% !important;
- max-height: 100% !important;
+  background: var(--ff-bg-color) !important;
+  margin: 3px 0 !important;
 }
 #sidebar {
- height: 100% !important;
- width: 100% !important;
- min-width: 0 !important;
+  background: var(--ff-bg-color-2) !important;
 }
-#sidebar-box.open {
- --sidebar-visible-width: 240px;
- width: var(--sidebar-visible-width) !important;
- min-width: var(--sidebar-visible-width) !important;
- max-width: var(--sidebar-visible-width) !important;
+
+#tabbrowser-tabbox {
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  margin: 4px !important;
 }
 
 
@@ -228,4 +220,35 @@ toolbarbutton#alltabs-button {
 #main-window[privatebrowsingmode="temporary"] #browser {
   background-color: var(--ff-bg-private) !important;
 }
+#main-window[privatebrowsingmode="temporary"] #sidebar-main {
+  background: var(--ff-bg-private) !important;
+}
+#main-window[privatebrowsingmode="temporary"] #sidebar-box {
+  background: var(--ff-bg-private) !important;
+}
 
+
+/* Tab counter */
+#tabbrowser-tabs {
+  counter-reset: section;
+}
+
+.tabbrowser-tab::before {
+  counter-increment: section;
+  content: counter(section);
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bolder;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.6rem;
+  background: var(--ff-bg-color);
+  border: 1px solid #555;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

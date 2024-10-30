@@ -7,6 +7,9 @@ in {
     "browser.startup.homepage" = homepage-url;
     "browser.newtab.url" = homepage-url;
 
+    "sidebar.verticalTabs" = true;
+    "sidebar.main.tools" = "";
+    "sidebar.visibility" = "always-show";
     "browser.startup.blankWindow" = false;
     "browser.tabs.drawInTitlebar" = true;
     "browser.uidensity" = 0;
