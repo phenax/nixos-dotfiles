@@ -7,8 +7,10 @@
   --toolbarbutton-inner-padding: 6px;
   --toolbar-bgcolor: var(--ff-bg-color);
   --toolbar-field-background-color: var(--ff-bg-color-1);
-  --toolbarbutton-border-radius: 0;
+  --toolbarbutton-border-radius: 5px;
   --toolbar-start-end-padding: 2px;
+  --urlbar-margin-inline: 0;
+  --urlbar-container-padding: 0;
 }
 
 toolbarbutton {
@@ -101,7 +103,7 @@ toolbarbutton#alltabs-button {
 #nav-bar {
   border-top: none !important;
   background-color: var(--toolbar-bgcolor) !important;
-  padding: 6px 2px 3px !important;
+  padding: 3px 2px 0 !important;
 }
 #TabsToolbar {
   visibility: collapse !important;
@@ -115,11 +117,20 @@ toolbarbutton#alltabs-button {
 #urlbar {
   font-size: 0.95rem !important;
   min-height: var(--ff-urlbar-height) !important;
-  left: 0 !important;
-  width: 100% !important;
+  top: 5px !important;
+}
+#urlbar:not([breakout-extend]) {
+  height: var(--ff-urlbar-height) !important;
 }
 #navigator-toolbox {
   border-bottom: none !important;
+}
+
+.urlbarView-url {
+  color: var(--ff-accent-color-1) !important;
+}
+.urlbarView {
+  background-color: var(--ff-bg-color-2) !important;
 }
 
 .urlbar-input-container {
@@ -165,16 +176,16 @@ toolbarbutton#alltabs-button {
 
 
 /* URL bar progress indicator */
-#urlbar[data-page-progress="loaded"]::before {
+/* #urlbar[data-page-progress="loaded"]::before {
   display: none !important;
-}
+} */
 
 @keyframes ucLoadingSnimation {
   0% { background-position: 130% 50%; }
 	100% { background-position: -70% 50%; }
 }
 
-#urlbar[data-page-progress]::before {
+/* #urlbar[data-page-progress]::before {
   display: block;
   content: " ";
   pointer-events: none;
@@ -193,7 +204,7 @@ toolbarbutton#alltabs-button {
   background-size: 200% 200%;
   animation: ucLoadingSnimation 2.2s ease-in-out infinite;
   border-bottom: 2px solid var(--ff-accent-color);
-}
+} */
 
 
 /* Key mode indicator */
