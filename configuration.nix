@@ -62,7 +62,7 @@ in
     hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 8080 8081 3000 3001 ];
+      allowedTCPPorts = [ 3000 3001 ];
       allowedUDPPorts = [ 41641 ];
     };
     nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];

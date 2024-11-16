@@ -1,11 +1,12 @@
 { ... }:
 {
-  imports = [ ./kmonad.nix ];
+  # imports = [ ./kmonad.nix ];
 
   services.kmonad = {
     enable = true;
     keyboards = {
       k2 = {
+        name = "k2";
         device = "/dev/input/by-id/usb-Keychron_Keychron_K2-event-kbd";
         defcfg = {
           enable = true;
