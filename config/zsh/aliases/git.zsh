@@ -50,6 +50,20 @@ alias gri='git rebase -i'
 alias grm='git rebase origin/master'
 alias grc='git rebase --continue'
 
+# Open files changed in a commit
+# egc         : Open files in last commit
+# egc HEAD~1  : Open files in commit before the last one
+egc() {
+  nvim $(git show --name-only --pretty="" "$@");
+}
+
+# Open files in diff
+# egd              : Open files changed (HEAD)
+# egd origin/main  : Open files diff between origin/main
+egd() {
+  nvim $(git diff --name-only ${1:-HEAD});
+}
+
 grename() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo "Usage: $0 old_branch new_branch"

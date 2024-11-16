@@ -1,5 +1,4 @@
-
-# Pacman aliases
+alias copy="xclip -selection clipboard -i";
 
 alias update="sudo nixos-rebuild switch --upgrade";
 alias auto-remove="sudo nix-collect-garbage -d";
