@@ -24,7 +24,7 @@ in {
   ];
 
   hidden = [
-    { url = "https://www.reddit.com/r/neovim.rss"; tags = ["nvim" "reddit"]; title = "r/neovim"; }
+    # { url = "https://www.reddit.com/r/neovim.rss"; tags = ["nvim" "reddit"]; title = "r/neovim"; }
     { url = "https://dotfyle.com/this-week-in-neovim/rss.xml"; tags = ["nvim"]; }
     { url = "https://dotfyle.com/neovim/plugins/rss.xml"; tags = ["nvim"]; }
     { url = "https://vimtricks.com/feed/"; tags = ["opensource" "nvim"]; }
@@ -53,7 +53,7 @@ in {
     { url = "https://world.hey.com/dhh/feed.atom"; tags = ["dev-blog"]; }
     { url = "https://developer.chrome.com/blog/feed.xml"; tags = ["dev-blog"]; }
     { url = "https://programmingisterrible.com/rss"; tags = ["dev-blog"]; }
-    { url = "https://vercel.com/atom"; tags = ["dev-blog"]; }
+    # { url = "https://vercel.com/atom"; tags = ["dev-blog"]; }
     { url = "https://reacttraining.com/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://www.developerway.com/rss.xml"; tags = ["dev-blog"]; }
     { url = "https://blog.haskell.org/atom.xml"; tags = ["dev-blog"]; }
@@ -65,7 +65,7 @@ in {
     { url = "https://dev.to/feed/tag/haskell"; tags = ["dev"]; title = "Haskell - dev.to"; }
 
     { url = "https://devblogs.microsoft.com/typescript/feed/"; tags = ["news"]; }
-    { url = "https://dev.to/feed/tag/typescript"; tags = ["news"]; title = "TS - dev.to"; }
+    # { url = "https://dev.to/feed/tag/typescript"; tags = ["news"]; title = "TS - dev.to"; }
     # { url = "https://hnrss.org/frontpage"; tags = ["news"]; }
     # { url = "https://hackernoon.com/feed"; tags = ["news"]; }
     { url = "https://nixos.org/blog/announcements-rss.xml"; tags = ["opensource" "news"]; }
