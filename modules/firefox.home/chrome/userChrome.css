@@ -117,11 +117,18 @@ toolbarbutton#alltabs-button {
 #urlbar {
   font-size: 0.95rem !important;
   min-height: var(--ff-urlbar-height) !important;
+}
+#urlbar[breakout-extend] {
   top: 5px !important;
+  width: var(--urlbar-width) !important;
 }
 #urlbar:not([breakout-extend]) {
   height: var(--ff-urlbar-height) !important;
 }
+#urlbar-container {
+  padding-block: 0 !important;
+}
+
 #navigator-toolbox {
   border-bottom: none !important;
 }

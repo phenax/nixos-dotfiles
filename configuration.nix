@@ -4,9 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  localPkgs = import ./packages/default.nix { pkgs = pkgs; };
-in
 {
   imports = [
     <home-manager/nixos>

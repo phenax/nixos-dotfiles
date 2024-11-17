@@ -12,8 +12,10 @@
     RELEASE: [
       [ctrl(shift(key('J'))), moveSelectedTabBy(+1)],
       [ctrl(shift(key('K'))), moveSelectedTabBy(-1)],
-      [ctrl(shift(key('B'))), sidetabs.toggle()],
-      [ctrl(alt(key('p'))), togglePassthrough(), { modes: ALL_MODES }],
+      [ctrl(shift(key('B'))), sidetabs.toggle],
+      [ctrl(alt(key('p'))), togglePassthrough, { modes: ALL_MODES }],
+      [alt(key('h')), history.back],
+      [alt(key('l')), history.forward],
     ],
     PRESS: [
       // Block default key bindings
@@ -22,6 +24,8 @@
       [ctrl(shift(key('B'))), preventDefault()],
       [ctrl(key('h')), preventDefault()],
       [ctrl(key('b')), preventDefault()],
+      [alt(key('h')), preventDefault()],
+      [alt(key('l')), preventDefault()],
 
       [ctrl(key('j')), preventDefault(nextTab())],
       [ctrl(key('k')), preventDefault(prevTab())],
@@ -40,7 +44,12 @@
   const tabIndex = idx => () => updateTabIndex((_n, _len) => idx)
   const preventDefault = f => e => { e.preventDefault(); f?.(e); };
   const moveSelectedTabBy = incr => () => updateSelectedTabIndex(incr);
-  const togglePassthrough = () => () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
+  const togglePassthrough = () => UC.globalKeybindings.updateMode(m => m !== MODE_PASSTHRU ? MODE_PASSTHRU : MODE_NORMAL)
+
+  const history = {
+    back: () => gBrowser.goBack(),
+    forward: () => gBrowser.goForward(),
+  }
 
   const sidetabs = {
     // getExtensionId: () => {
@@ -60,7 +69,7 @@
       //   }
       // }
     },
-    toggle: () => async () => {
+    toggle: async () => {
       SidebarController.toggleExpanded();
       // await sidetabs.ensureReady();
       // const sidebar = document.getElementById('sidebar-box');
