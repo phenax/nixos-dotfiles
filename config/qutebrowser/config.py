@@ -81,6 +81,8 @@ c.input.spatial_navigation = False
 
 c.content.dns_prefetch = True # Use dns prefetching for speed
 
+c.qt.workarounds.remove_service_workers = True # TODO: Added because of crashes
+
 c.content.pdfjs = True
 
 # Editor
@@ -297,6 +299,7 @@ c.url.searchengines = {
     'go': 'https://lite.duckduckgo.com/lite?q={}',
     'gg': 'https://google.com/search?q={}',
     'ai': 'https://chatgpt.com/?temporary-chat=true&q={}',
+    'aic': 'https://claude.ai/new?q={}',
     'br': 'https://search.brave.com/search?q={}',
 
     # Alt general

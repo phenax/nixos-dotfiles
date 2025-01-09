@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  services.kbfs.enable = true;
-  services.keybase.enable = true;
+  services.kbfs.enable = false;
+  services.keybase.enable = false;
 }
 

@@ -72,9 +72,9 @@
   environment.systemPackages = with pkgs; [
     mesa
     xorg.xf86inputlibinput
-    xorg.xf86videointel
+    # xorg.xf86videointel
   ];
-  # services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   hardware = {
     enableAllFirmware = true;
