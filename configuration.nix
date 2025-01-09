@@ -15,6 +15,8 @@
     ./modules/work.nix
     ./modules/keyboard/default.nix
     ./modules/jackett.nix
+    ./modules/thunderbird/default.nix
+    ./modules/clamav.nix
   ];
 
   nixpkgs.config = {
@@ -144,12 +146,14 @@
     };
   };
   fonts.packages = with pkgs; [
-    # jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "FiraMono" ]; })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
     cozette
     noto-fonts-emoji
     inter
     roboto
+    vistafonts
   ];
 
   services.logind = {
