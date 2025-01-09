@@ -27,6 +27,7 @@ let
     direnv
     # gh
     just
+    difftastic
     # hurl
     # delta
     # gibo
@@ -97,7 +98,7 @@ let
 
     # Audio
     qjackctl
-    ardour
+    # ardour
     a2jmidid
     pavucontrol
     audacity
@@ -110,6 +111,8 @@ let
     tremc
     wyrd
     dua
+
+    (builtins.getFlake "github:phenax/chelleport/5262d942c4c2c36529fbe704e7de165044e6dc99").packages.x86_64-linux.default
   ];
 
   utils = with pkgs; [
@@ -125,7 +128,7 @@ let
     at
     bc
     bat
-    catimg
+    # catimg
     fd
     # sad
     mediainfo
@@ -168,7 +171,7 @@ let
     spice-protocol
     win-virtio
     win-spice
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
   ];
 in
 {
@@ -194,6 +197,9 @@ in
     enable = false;
     openFirewall = false;
   };
+
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
 
   # Security wrappers
   security.wrappers = {
