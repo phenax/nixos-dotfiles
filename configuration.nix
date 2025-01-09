@@ -17,6 +17,7 @@
     ./modules/jackett.nix
     ./modules/thunderbird/default.nix
     ./modules/clamav.nix
+    ./modules/lockscreen.nix
   ];
 
   nixpkgs.config = {
@@ -28,17 +29,14 @@
 
   programs.dconf.enable = true;
 
-  # Fix hmr issue?
+  programs.nix-ld.enable = true;
+
+  # Fix hmr issue
   systemd.extraConfig = ''DefaultLimitNOFILE=65536'';
   systemd.user.extraConfig = ''DefaultLimitNOFILE=65536'';
   boot.kernel.sysctl."fs.inotify.max_user_instances" = 8192;
   security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "-";
-      item = "nofile";
-      value = "65536";
-    }
+    { domain = "*"; type = "-"; item = "nofile"; value = "65536"; }
   ];
 
   # NOTE: Enable bluetooth using this and then use bluetoothctl

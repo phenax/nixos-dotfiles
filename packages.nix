@@ -11,7 +11,6 @@ let
     st
     dmenu
     anypinentry
-    bslock
     # sidekick
   ];
 
@@ -200,15 +199,4 @@ in
 
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
-
-  # Security wrappers
-  security.wrappers = {
-    bslock = {
-      # owner = config.users.users.imsohexy.name;
-      owner = "root";
-      setuid = true;
-      group = "root";
-      source = "${localPkgs.bslock}/bin/bslock";
-    };
-  };
 }
