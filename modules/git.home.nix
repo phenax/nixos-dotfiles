@@ -54,6 +54,8 @@
     ];
     aliases = {
       ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
+      dshow = "-c diff.external='difft --display side-by-side-show-both' show --ext-diff";
+      ddiff = "-c diff.external='difft --display side-by-side-show-both' diff";
     };
     delta = {
       enable = true;
@@ -64,6 +66,12 @@
         line-numbers = true;
       };
     };
+    # difftastic = {
+    #   enable = true;
+    #   display = "side-by-side";
+    #   color = "auto";
+    #   background = "dark";
+    # };
     extraConfig = {
       color = {
         ui = true;
