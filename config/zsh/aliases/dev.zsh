@@ -77,3 +77,19 @@ vt() {
 p__nvim_virtual_terminal() { vt "$BUFFER"; }
 zle -N p__nvim_virtual_terminal;
 bindkey '^T' p__nvim_virtual_terminal;
+
+
+synsearch() {
+  local search_cmd='biome search {q} --no-errors-on-unmatched --skip-errors | awk "/search/ {print \$1}"';
+  local preview_lines=10;
+  local preview_cmd="bat --style=full --color=always --line-range \$(printf '%s' {} | cut -d: -f2):+$preview_lines \$(printf '%s' {} | cut -d: -f1)";
+
+  (fzf --multi --wrap --ansi --disabled -q "$1" \
+    --bind "start:reload:$search_cmd" \
+    --bind "change:reload:$search_cmd" \
+    --preview "$preview_cmd" \
+    < /dev/null) \
+    | cut -d: -f1 \
+    | xargs -r "$EDITOR" {};
+}
+

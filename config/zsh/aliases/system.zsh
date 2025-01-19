@@ -22,25 +22,25 @@ nix-rollback() {
 #sv_disable() { sudo unlink /run/runit/service/$1; }
 
 setup_webcam_day() {
-  v4l2-ctl -d /dev/video3 \
-    --set-ctrl brightness=0 \
-    --set-ctrl contrast=11 \
-    --set-ctrl saturation=16 \
-    --set-ctrl gamma=194 \
-    --set-ctrl gain=60 \
+  v4l2-ctl -d /dev/video2 \
+    --set-ctrl brightness=1 \
+    --set-ctrl contrast=13 \
+    --set-ctrl saturation=15 \
+    --set-ctrl gamma=150 \
+    --set-ctrl gain=70 \
     --set-ctrl sharpness=3 \
-    --set-ctrl exposure_time_absolute=350;
+    --set-ctrl exposure_time_absolute=400;
 }
 
 setup_webcam_night() {
-  v4l2-ctl -d /dev/video3 \
-    --set-ctrl brightness=1 \
-    --set-ctrl contrast=11 \
-    --set-ctrl saturation=17 \
-    --set-ctrl gamma=230 \
-    --set-ctrl gain=64 \
-    --set-ctrl sharpness=5 \
-    --set-ctrl exposure_time_absolute=500;
+  v4l2-ctl -d /dev/video2 \
+    --set-ctrl brightness=2 \
+    --set-ctrl contrast=12 \
+    --set-ctrl saturation=13 \
+    --set-ctrl gamma=160 \
+    --set-ctrl gain=70 \
+    --set-ctrl sharpness=2 \
+    --set-ctrl exposure_time_absolute=520;
 }
 
 # Run a program with limited memory

@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -e;
+
+read_clipboard() { xclip -selection clipboard -o || echo -n ""; }
+update_clipboard() { xclip -selection clipboard -i; }
+edit_file() { st -e nvim "$@"; }
+
+tmp_file=$(mktemp /tmp/cbedit-XXXXX);
+read_clipboard > $tmp_file;
+edit_file $tmp_file;
+update_clipboard < $tmp_file;
