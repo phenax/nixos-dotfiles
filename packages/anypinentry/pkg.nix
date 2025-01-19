@@ -1,7 +1,7 @@
 { stdenv, pkgs, lib, dmenu ? (import ../default.nix { pkgs = pkgs; }).dmenu }:
 stdenv.mkDerivation rec {
   pname = "anypinentry";
-  version = "0.1.0";
+  version = "0.1.1";
   meta.mainProgram = "anypinentry";
 
   src = ./source;
