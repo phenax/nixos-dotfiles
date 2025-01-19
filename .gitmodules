@@ -4,9 +4,6 @@
 [submodule "packages/dwm/source"]
 	path = packages/dwm/source
 	url = git@github.com:phenax/dwm.git
-[submodule "packages/st/source"]
-	path = packages/st/source
-	url = git@github.com:phenax/st.git
 [submodule "packages/dmenu/source"]
 	path = packages/dmenu/source
 	url = git@github.com:phenax/dmenu.git
@@ -31,3 +28,6 @@
 [submodule "packages/xmonad/source"]
 	path = packages/xmonad/source
 	url = git@github.com:phenax/xmonad-config.git
+[submodule "packages/st/source"]
+	path = packages/st/source
+	url = git@github.com:phenax/st-kitty-term.git

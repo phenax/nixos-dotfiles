@@ -7,7 +7,8 @@ set ratios 2:3
 set dirpreviews false
 
 set preview true
-set previewer ~/.config/lf/previewer.sh
+set previewer ~/nixos/config/lf/previewer.sh
+set cleaner ~/nixos/config/lf/cleaner.sh
 set cursorpreviewfmt "\033[7m"
 
 cmd open_internal ${{

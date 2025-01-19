@@ -1,15 +1,13 @@
-{ stdenv, pkgs, libX11, libXinerama, libXft, fontconfig, pkg-config, ncurses }:
-with pkgs.lib;
+{ stdenv, pkgs, libX11, libXft, fontconfig, pkg-config, ncurses, imlib2 }:
 
 stdenv.mkDerivation rec {
   name = "local-st-${version}";
-  version = "0.8.4";
+  version = "0.9.4";
 
   src = ./source;
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ libX11 libXft fontconfig ncurses ];
-
+  buildInputs = [ libX11 libXft fontconfig ncurses imlib2 ];
 
   unpackPhase = ''cp -r $src/* .'';
 

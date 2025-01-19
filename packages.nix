@@ -118,6 +118,8 @@ let
     libnotify
     xcwd
     unzip
+    p7zip
+    unrar
     curl
     jq
     wget
@@ -127,13 +129,14 @@ let
     at
     bc
     bat
-    # catimg
+    chafa
+    kitty
+    figlet
     fd
     # sad
     mediainfo
     poppler_utils
     glow
-    # figlet
     wineWowPackages.stable
     pkgs.steam-run
     flatpak

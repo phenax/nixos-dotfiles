@@ -1,22 +1,26 @@
 #!/bin/sh
 
-width=`echo "$(tput cols) / 2" | bc`;
-height=`echo "$(tput lines) - 3" | bc`;
+set -eo pipefail
 
-x=$((width - 3));
-y=3;
+file="$1";
+w="$2";
+h="$3";
+x="$4";
+y="$5";
 
-~/scripts/image.sh clear;
+show_image() {
+	kitten icat --transfer-mode file --stdin no --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty;
+}
 
 case "$1" in
   # Archives
-	*.tgz|*.tar.gz) tar tzf "$1";;
-	*.tar.bz2|*.tbz2) tar tjf "$1";;
-	*.tar.txz|*.txz) xz --list "$1";;
-	*.tar) tar tf "$1";;
-	*.zip|*.jar|*.war|*.ear|*.oxt) unzip -l "$1";;
-	*.rar) unrar l "$1";;
-	*.7z) 7z l "$1";;
+	*.tgz|*.tar.gz) tar tzf "$1" ;;
+	*.tar.bz2|*.tbz2) tar tjf "$1" ;;
+	*.tar.txz|*.txz) xz --list "$1" ;;
+	*.tar) tar tf "$1" ;;
+	*.zip|*.jar|*.war|*.ear|*.oxt) unzip -l "$1" ;;
+	*.rar) unrar l "$1" ;;
+	*.7z) 7z l "$1" ;;
 	*.o) nm "$1" | less ;;
   *.apk) mediainfo "$1" ;;
 
@@ -29,14 +33,10 @@ case "$1" in
 	*.[1-8]) man "$1" | col -b ;;
 
 	# Images
-	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp)
-		catimg -w "$((width * 2 * 3))" "$1";
-		echo "done"
+	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif)
+		show_image 2>/dev/null || chafa -f symbols --size "$((w * 2 / 3))" "$file" || echo "cant display image";
+		exit 1;
 	;;
-
-	#*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp)
-    #~/scripts/image.sh draw "$1" "$x" "$y" "$width" "$height";
-  #;;
 
 	# Audio
   *.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.flac)
