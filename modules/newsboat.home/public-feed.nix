@@ -34,17 +34,18 @@ in {
     # { url = "https://www.nature.com/nature.rss"; tags = ["sci"]; }
     # { url = "https://what-if.xkcd.com/feed.atom"; tags = ["sci"]; }
 
-    { url = "https://feeds.transistor.fm/tomorrow"; tags = ["podcast"]; }
+    { url = "https://feeds.buzzsprout.com/1817535.rss"; tags = ["podcast"]; title = "Haskell Interlude"; }
+    # { url = "https://feeds.transistor.fm/tomorrow"; tags = ["podcast"]; }
     { url = "https://feed.syntax.fm/"; tags = ["podcast"]; }
     { url = "https://changelog.com/podcast/feed"; tags = ["podcast"]; }
-    { url = "https://seradio.libsyn.com/rss"; tags = ["podcast"]; }
-    { url = "https://changelog.com/jsparty/feed"; tags = ["podcast"]; }
+    # { url = "https://seradio.libsyn.com/rss"; tags = ["podcast"]; }
+    # { url = "https://changelog.com/jsparty/feed"; tags = ["podcast"]; }
     { url = "https://feeds.buzzsprout.com/1952066.rss"; tags = ["podcast"]; }
     { url = "https://www.spreaker.com/show/6102064/episodes/feed"; tags = ["podcast"]; }
     { url = "https://feeds.soundcloud.com/users/soundcloud:users:206137365/sounds.rss"; tags = ["podcast"]; }
-    { url = "http://shoptalkshow.com/feed/podcast"; tags = ["podcast"]; }
+    # { url = "http://shoptalkshow.com/feed/podcast"; tags = ["podcast"]; }
     { url = "https://anchor.fm/s/dd6922b4/podcast/rss"; tags = ["podcast"]; title = "devtools.fm"; }
-    { url = "https://feeds.acast.com/public/shows/664fde3eda02bb0012bad909"; tags = ["podcast"]; }
+    # { url = "https://anchor.fm/s/fb57a4a8/podcast/rss"; tags = ["podcast"]; }
 
     { url = "https://lexi-lambda.github.io/feeds/all.rss.xml"; tags = ["dev-blog"]; }
     { url = "https://overreacted.io/rss.xml"; tags = ["dev-blog"]; }

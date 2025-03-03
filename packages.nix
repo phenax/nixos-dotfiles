@@ -33,7 +33,7 @@ let
 
     gcc
     gnumake
-    nodejs_20
+    nodejs_23
     bun
 
     # bspwm
@@ -51,12 +51,9 @@ let
     biome
 
     lua5_1
-    # .withPackages(ps: with ps; [
-    #   luarocks
-    #   lua-curl
-    # ])
     lua51Packages.luarocks
     lua51Packages.lua-curl
+    luajitPackages.magick # lua51Packages.magick
   ];
 
   apps = with pkgs; [
@@ -112,6 +109,7 @@ let
     dua
 
     (builtins.getFlake "github:phenax/chelleport/5262d942c4c2c36529fbe704e7de165044e6dc99").packages.x86_64-linux.default
+    (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
   ];
 
   utils = with pkgs; [
@@ -160,11 +158,11 @@ let
     wmctrl
     arandr
     xorg.xgamma
-
     v4l-utils
 
     libva
     libdrm
+    pkg-config
 
     virt-manager
     virt-viewer

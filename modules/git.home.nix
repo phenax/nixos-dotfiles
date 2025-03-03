@@ -51,6 +51,7 @@
       "tags.temp"
       "ayak.sh"
       ".direnv"
+      ".local.lua"
     ];
     aliases = {
       ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
@@ -94,7 +95,7 @@
         whitespace = "red reverse";
       };
       pull = {
-        rebase = false;
+        rebase = true;
       };
       # pager = {
       #   diff = "${pkgs.delta}/bin/delta --color-only";
