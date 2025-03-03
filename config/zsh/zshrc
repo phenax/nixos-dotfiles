@@ -2,6 +2,8 @@ autoload -U colors && colors;
 setopt auto_cd;
 setopt inc_append_history;
 
+export LESS=--chop-long-lines # less no wrapping
+
 export SAVEHIST=10000
 # export HISTSIZE=50000
 # export HISTFILE=~/.config/zsh_history

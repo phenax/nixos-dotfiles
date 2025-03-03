@@ -89,7 +89,7 @@ synsearch() {
     --bind "change:reload:$search_cmd" \
     --preview "$preview_cmd" \
     < /dev/null) \
-    | cut -d: -f1 \
-    | xargs -r "$EDITOR" {};
+    | awk -F: -v q="'" '{ print "+" q "call cursor(" $2 "," $3 ")" q " " $1 }' \
+    | xargs -r "$EDITOR";
 }
 
