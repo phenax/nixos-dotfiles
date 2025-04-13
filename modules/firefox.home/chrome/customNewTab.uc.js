@@ -10,6 +10,10 @@
   // Managed in about:config
   const NEWTAB_URL_PREF = 'browser.newtab.url'
 
+  console.log('-------------------------------------------');
+  console.log('-------------------------------------------');
+  console.log('-------------------------------------------');
+
   if (!AboutNewTab) {
     globalThis.AboutNewTab = ChromeUtils.import('resource:///modules/AboutNewTab.jsm').AboutNewTab;
   }
@@ -24,6 +28,10 @@
     },
 
     init() {
+      console.log('-------------------------------------------');
+      console.log('init new tab');
+      console.log('-------------------------------------------');
+
       module.updateNewTabURL();
       Services.obs.addObserver(module.updateNewTabURL, 'newtab-url-changed');
     },

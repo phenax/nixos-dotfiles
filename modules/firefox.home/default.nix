@@ -1,12 +1,16 @@
 { config, pkgs, lib, ... }:
 let
-  unwrapped-firefox-package = pkgs.firefox-devedition-unwrapped;
+  unwrappedFirefoxPackage = pkgs.firefox-devedition-unwrapped;
+
+  firefoxBinName = "firefox-devedition";
+
+  configDir = ".mozilla/firefox";
 
   extensions = [
     "https://addons.mozilla.org/firefox/downloads/file/3792127/firefox_dracula-1.0.xpi"
-    "https://addons.mozilla.org/firefox/downloads/file/4261352/tridactyl_vim-1.24.1.xpi"
+    # "https://addons.mozilla.org/firefox/downloads/file/4261352/tridactyl_vim-1.24.1.xpi"
     # "https://addons.mozilla.org/firefox/downloads/file/4240798/sidetabs-0.66.xpi"
-    # "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+    "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
 
     # dev
     "https://addons.mozilla.org/firefox/downloads/file/4218479/font_inspect-0.5.8.xpi"
@@ -25,26 +29,30 @@ let
     Preferences = lib.mapAttrs (_key: val: { Status = "locked"; Value = val; }) preferences;
   };
 
-  firefox = pkgs.wrapFirefox unwrapped-firefox-package {
+  firefox = pkgs.wrapFirefox unwrappedFirefoxPackage {
     extraPrefs = builtins.readFile ./autoconfig.js;
   };
 
   profilePath = "default";
 in {
   programs.firefox = {
-    enable = true;
+    enable = false;
     package = firefox;
 
-    nativeMessagingHosts = [ pkgs.tridactyl-native ];
+    # nativeMessagingHosts = [ pkgs.tridactyl-native ];
     policies = policies;
   };
 
-  home.file = {
-    ".config/tridactyl".source = ./tridactyl;
+  home.packages = if config.programs.firefox.enable then [
+    (pkgs.writeShellScriptBin "firefox" ''exec ${firefox}/bin/${firefoxBinName}'')
+  ] else [];
 
-    ".mozilla/firefox/${profilePath}/chrome".source = ./chrome;
+  home.file = if config.programs.firefox.enable then {
+    # ".config/tridactyl".source = ./tridactyl;
 
-    ".mozilla/firefox/profiles.ini".text = lib.generators.toINI {} {
+    "${configDir}/${profilePath}/chrome".source = ./chrome;
+
+    "${configDir}/profiles.ini".text = lib.generators.toINI {} {
       Profile1 = {
         Name = "default";
         IsRelative = 1;
@@ -61,5 +69,5 @@ in {
         Version = 2;
       };
     };
-  };
+  } else {};
 }

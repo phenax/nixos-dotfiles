@@ -2,7 +2,7 @@
 
 trim() { sed '/^$/ d'; }
 
-chromium_version="112";
+chromium_version="136";
 
 useragents=`echo "
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$chromium_version.0.3729.169 Safari/537.36

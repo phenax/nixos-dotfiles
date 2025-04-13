@@ -21,7 +21,7 @@ def random_version(a, b):
     return rand_numstr(a, b) + '.' + rand_numstr(0, 100)
 
 def random_useragent():
-    chrome_version = random_version(108, 112)
+    chrome_version = random_version(130, 150)
     # firefox_version = random_version(77, 80)
     build_version = random_version(1000, 3000)
 

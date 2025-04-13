@@ -7,7 +7,7 @@
   services.fwupd.enable = true;
 
   # boot.kernelPackages = pkgs.linuxPackages_6_9;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.initrd = {
     availableKernelModules = [
       "xhci_pci"

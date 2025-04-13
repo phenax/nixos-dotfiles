@@ -139,6 +139,10 @@
     },
 
     init(win) {
+      console.log('-------------------------------------------');
+      console.log('init keys');
+      console.log('-------------------------------------------');
+
       const observe = () => {
         Services.obs.removeObserver(observe, 'browser-window-before-show');
         module.onWindowReady(win)

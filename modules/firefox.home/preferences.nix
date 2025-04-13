@@ -6,6 +6,7 @@ in {
     "browser.newtabpage.enabled" = false;
     "browser.startup.homepage" = homepage-url;
     "browser.newtab.url" = homepage-url;
+    "browser.ml.chat.enabled" = false;
 
     "sidebar.verticalTabs" = true;
     "sidebar.main.tools" = "";

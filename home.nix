@@ -51,8 +51,14 @@ in
 
   programs.obs-studio = {
     enable = true;
+    # enableVirtualCamera = true;
+    # package = pkgs.obs-studio.override {
+    #   browserSupport = true;
+    # };
     plugins = [
       pkgs.obs-studio-plugins.obs-pipewire-audio-capture
+      pkgs.obs-studio-plugins.obs-backgroundremoval
+      # pkgs.obs-studio-plugins.obs-webkitgtk
     ];
   };
 
