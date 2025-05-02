@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+MAX_CHARS=36
+
 player() { playerctl --player=mopidy "$@"; }
 
 # Get player state
@@ -16,7 +18,7 @@ get_play_state() {
 # Get title - artist (song label)
 #get_label() { player metadata --format '{{title}} - {{artist}}' || echo '...'; }
 get_label() {
-  echo -n "$(mpc current | cut -c1-20)";
+  echo -n "$(mpc current | cut -c1-"$MAX_CHARS")";
   echo "...";
 }
 

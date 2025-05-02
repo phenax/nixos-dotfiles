@@ -45,7 +45,7 @@
       "dmenu.highlightselbg" = theme.accent;
       "dmenu.highlightselfg" = theme.background;
 
-      "dwm.normbordercolor" = theme.background;
+      "dwm.normbordercolor" = theme.background-light;
       "dwm.normbgcolor" = theme.background;
       "dwm.normfgcolor" = theme.foreground;
 

@@ -72,7 +72,7 @@ let
     slack
 
     # Media
-    spotify
+    # spotify
     sxiv
     yt-dlp
     imagemagick
@@ -110,6 +110,9 @@ let
 
     (builtins.getFlake "github:phenax/chelleport/5262d942c4c2c36529fbe704e7de165044e6dc99").packages.x86_64-linux.default
     (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
+    (pkgs.writeShellScriptBin
+      "null-browser"
+      ''exec /home/imsohexy/dev/projects/web-browser/result/bin/null-browser "$@"'')
   ];
 
   utils = with pkgs; [
@@ -135,10 +138,18 @@ let
     mediainfo
     poppler_utils
     glow
-    wineWowPackages.stable
     pkgs.steam-run
     flatpak
     distrobox
+
+    # FIXME: wine broken: 19 April 25
+    (import (
+      builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
+      }
+    ) {}).wineWowPackages.stable
+
+    # wineWowPackages.stable
     # appimage-run
 
     # Audio

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+xdg-open 'http://localhost:6680'
+
+# spotify

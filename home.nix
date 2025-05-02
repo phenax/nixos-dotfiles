@@ -8,7 +8,7 @@ in
     ./modules/git.home.nix
     ./modules/keybase.home.nix
     ./modules/mpv.home.nix
-    ./modules/music.home.nix
+    ./modules/music.home/default.nix
     ./modules/xresources.home.nix
     ./modules/firefox.home/default.nix
     ./modules/newsboat.home/default.nix
