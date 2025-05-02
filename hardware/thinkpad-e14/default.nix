@@ -4,10 +4,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  services.fwupd.enable = true;
+  # services.fwupd.enable = true;
 
-  # boot.kernelPackages = pkgs.linuxPackages_6_9;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd = {
     availableKernelModules = [
       "xhci_pci"
@@ -42,6 +41,10 @@
     "acpi_backlight=native"
     "i915.enable_dpcd_backlight=0"
     "i915.enable_guc=2"
+    "i915.enable_psr=0"
+    "i915.enable_dc=0"
+    # "nomodeset"
+    # "i915.modeset=0"
     # "acpi_backlight=vendor"
     # "acpi_backlight=intel_backlight"
     # "i915.force_probe=46a8"
@@ -97,14 +100,13 @@
       libvdpau-va-gl
       intel-gmmlib
       vulkan-tools
-      mesa.drivers
+      mesa
     ];
   };
   environment.variables = {
     VDPAU_DRIVER = "va_gl";
     LIBVA_DRIVER_NAME = "iHD";
   };
-  # services.xserver.videoDrivers = [ "intel" ];
 
   # Bootloader
   boot.loader = {

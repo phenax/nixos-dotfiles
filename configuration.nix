@@ -44,7 +44,6 @@
   services.blueman.enable = false;
 
   # Enable sound.
-  # sound.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -59,7 +58,7 @@
     hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 3000 3001 ];
+      allowedTCPPorts = [ 3000 3001 8081 ];
       allowedUDPPorts = [ 41641 ];
     };
     nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
@@ -69,10 +68,6 @@
       127.0.0.1       phenax.local
       127.0.0.1       field.shape-e2e.com
     '';
-  };
-  services.tailscale = {
-    enable = true;
-    openFirewall = true;
   };
 
   services.atd.enable = true;

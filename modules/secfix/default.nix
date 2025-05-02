@@ -1,4 +1,4 @@
-{ config , lib , pkgs , ... }:
+{ config, lib, pkgs, ... }:
 let
   secfix-agent = pkgs.stdenv.mkDerivation {
     pname = "secfix-agent";
