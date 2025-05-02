@@ -21,7 +21,7 @@ def random_version(a, b):
     return rand_numstr(a, b) + '.' + rand_numstr(0, 100)
 
 def random_useragent():
-    chrome_version = random_version(130, 150)
+    chrome_version = random_version(135, 150)
     # firefox_version = random_version(77, 80)
     build_version = random_version(1000, 3000)
 
@@ -37,7 +37,7 @@ c.content.cookies.accept = 'no-3rdparty'
 c.content.geolocation = 'ask'
 c.content.headers.do_not_track = True
 c.content.headers.referer = 'never'
-# c.content.headers.user_agent = random_useragent()
+c.content.headers.user_agent = random_useragent()
 c.content.blocking.enabled = True
 c.content.media.audio_capture = 'ask'
 c.content.media.video_capture = 'ask'
