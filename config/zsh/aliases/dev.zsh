@@ -3,6 +3,8 @@ alias remi="wyrd $REMINDER_FILE";
 
 alias aws="docker run --rm -it amazon/aws-cli"
 
+alias pop_run="cd ~/dev/pop && just run"
+
 # nix shell with zsh
 nix-zsh() { nix-shell --run "WITH_NIX_PREFIX='${NX_PREFIX:-':'}' zsh" "$@"; }
 
