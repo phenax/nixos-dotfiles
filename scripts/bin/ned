@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+rlwrap -A --complete-filenames -D 2 \
+  -H ~/.local/state/.ned_history \
+  --only-cook "::ed::" -p'1;35' -R \
+  ed -v -p "::ed:: " -E "$@" || true;

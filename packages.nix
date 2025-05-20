@@ -24,6 +24,8 @@ let
     fzf
     docker-compose
     direnv
+    ed
+    rlwrap
     # gh
     just
     difftastic
@@ -33,7 +35,7 @@ let
 
     gcc
     gnumake
-    nodejs_23
+    nodejs_24
     bun
 
     # bspwm
@@ -94,7 +96,8 @@ let
 
     # Audio
     qjackctl
-    # ardour
+    ardour
+    fluidsynth
     a2jmidid
     pavucontrol
     audacity
