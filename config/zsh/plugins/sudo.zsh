@@ -12,9 +12,6 @@
 #
 # ------------------------------------------------------------------------------
 
-MAGIC_ENTER_GIT_COMMAND='git status';
-MAGIC_ENTER_OTHER_COMMAND='ls';
-
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then

@@ -48,3 +48,15 @@ limit_memory() {
   local lim=${1:-100M}; shift 1;
   systemd-run --user --scope -p MemoryHigh="$lim" -p MemorySwapMax="$lim" "$@";
 }
+
+# KDE connect aliases
+phone() {
+  local device=$(kdeconnect-cli -a --id-only)
+  if [ -z "$device" ]; then
+    echo "Device not found"
+    return 1
+  fi
+  kdeconnect-cli --device "$device" "$@"
+}
+phone_file() { phone --share "$@"; }
+phone_text() { phone --share-text "$@"; }

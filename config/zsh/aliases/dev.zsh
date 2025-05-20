@@ -3,7 +3,7 @@ alias remi="wyrd $REMINDER_FILE";
 
 alias aws="docker run --rm -it amazon/aws-cli"
 
-alias pop_run="cd ~/dev/pop && just run"
+alias pop_run="sh -c 'cd ~/dev/pop && just run'"
 
 # nix shell with zsh
 nix-zsh() { nix-shell --run "WITH_NIX_PREFIX='${NX_PREFIX:-':'}' zsh" "$@"; }
@@ -79,19 +79,4 @@ vt() {
 p__nvim_virtual_terminal() { vt "$BUFFER"; }
 zle -N p__nvim_virtual_terminal;
 bindkey '^T' p__nvim_virtual_terminal;
-
-
-synsearch() {
-  local search_cmd='biome search {q} --no-errors-on-unmatched --skip-errors | awk "/search/ {print \$1}"';
-  local preview_lines=10;
-  local preview_cmd="bat --style=full --color=always --line-range \$(printf '%s' {} | cut -d: -f2):+$preview_lines \$(printf '%s' {} | cut -d: -f1)";
-
-  (fzf --multi --wrap --ansi --disabled -q "$1" \
-    --bind "start:reload:$search_cmd" \
-    --bind "change:reload:$search_cmd" \
-    --preview "$preview_cmd" \
-    < /dev/null) \
-    | awk -F: -v q="'" '{ print "+" q "call cursor(" $2 "," $3 ")" q " " $1 }' \
-    | xargs -r "$EDITOR";
-}
 

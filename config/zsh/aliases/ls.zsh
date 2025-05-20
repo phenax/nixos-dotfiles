@@ -2,7 +2,6 @@
 alias trash="ls \$TRASH_TMP_DIR";
 
 # List files aliases
-alias ls="lsd";
 alias l="ls -1";
 alias la='ls -a';
 alias ll='ls -alF';

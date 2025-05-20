@@ -1,3 +1,6 @@
+MAGIC_ENTER_GIT_COMMAND='git status';
+MAGIC_ENTER_OTHER_COMMAND='ls';
+
 # Bind quick stuff to enter!
 #
 # Pressing enter in a git directory runs `git status`
