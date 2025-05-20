@@ -43,6 +43,8 @@
   hardware.bluetooth.enable = false;
   services.blueman.enable = false;
 
+  programs.kdeconnect.enable = true;
+
   # Enable sound.
   security.rtkit.enable = true;
   services.pipewire = {

@@ -39,25 +39,30 @@ spew() {
 
 
 ##### Autostart {{{
-  echo "[Autostart]: Running daemons";
+echo "[Autostart]: Running daemons";
 
-  # Key daemon
-  spew "shotkey" shotkey;
+# Key daemon
+spew "shotkey" shotkey;
 
-  # Wallpaper
-  run "" ~/.fehbg;
+# Wallpaper
+run "" ~/.fehbg;
 
-  # Notification daemon
-  spew "dunst" dunst -config ~/.config/dunst/dunstrc;
+# Notification daemon
+spew "dunst" dunst -config ~/.config/dunst/dunstrc;
 
-  # Compositor
-  spew "picom" picom --config ~/.config/picom.conf;
+# Compositor
+spew "picom" picom --config ~/.config/picom.conf;
 
-  # Scheduler
-  spew "remind" remind -k'notify-send -a reminder %s' -z10 "$REMINDER_FILE";
+# Scheduler
+spew "remind" remind -k'notify-send -a reminder %s' -z10 "$REMINDER_FILE";
 
-  # Battery watcher
-  run "" ~/scripts/battery-watch.sh start;
+# Battery watcher
+run "" ~/scripts/battery-watch.sh start;
+
+# KDEconnect connect
+# run "" kdeconnect-cli --refresh;
+
+once "easyeffects" easyeffects --gapplication-service;
 # }}}
 
 
