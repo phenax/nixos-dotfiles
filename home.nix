@@ -6,11 +6,10 @@ in
   imports = [
     ./overlays-home.nix
     ./modules/git.home.nix
-    ./modules/keybase.home.nix
     ./modules/mpv.home.nix
     ./modules/music.home/default.nix
     ./modules/xresources.home.nix
-    ./modules/firefox.home/default.nix
+    # ./modules/firefox.home/default.nix
     ./modules/newsboat.home/default.nix
   ];
 
@@ -67,19 +66,9 @@ in
     # preset = "default";
   };
 
-  programs.lsd = {
-    enable = true;
-    enableAliases = true;
-  };
-
   services.syncthing = {
     enable = true;
     tray = false;
-  };
-
-  services.unclutter = {
-    enable = true;
-    timeout = 5;
   };
 
   services.udiskie = {
@@ -106,7 +95,7 @@ in
     defaultCacheTtl = 864000;
     enableSshSupport = false;
     # pinentryPackage = pkgs.pinentry-qt;
-    pinentryPackage = localPkgs.anypinentry;
+    pinentry.package = localPkgs.anypinentry;
     # extraConfig = ''
     #   pinentry-program ${localPkgs.anypinentry}/bin/anypinentry
     # '';
@@ -126,8 +115,5 @@ in
     ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;
     ".config/bottom/bottom.toml".source = ./config/bottom.toml;
-    # ".config/newsboat/config".source = ./config/newsboat/config;
-    # ".config/newsboat/urls".source = ./config/newsboat/urls;
-    # ".config/newsboat/opener.sh".source = ./config/newsboat/opener.sh;
   };
 }

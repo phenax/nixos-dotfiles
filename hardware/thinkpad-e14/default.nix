@@ -1,7 +1,10 @@
 { config, lib, pkgs, modulesPath, ... }:
-{
+let
+  nixos-hardware = builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; };
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    "${nixos-hardware}/lenovo/thinkpad/e14/intel"
   ];
 
   # services.fwupd.enable = true;
@@ -65,7 +68,14 @@
 
   services.udev = {
     packages = with pkgs; [
-      alsa-utils
+      # alsa-utils
+      # (alsa-utils.overrideAttrs (self: {
+      #   postFixup = ''
+      #     ${self.postFixup}
+      #
+      #     cat $out/lib/udev/rules.d/*
+      #   '';
+      # }))
       android-udev-rules
       platformio-core.udev
       openocd
@@ -139,5 +149,5 @@
     cpuFreqGovernor = "powersave";
   };
 
-  services.tlp.enable = lib.mkDefault false;
+  # services.tlp.enable = lib.mkDefault false;
 }

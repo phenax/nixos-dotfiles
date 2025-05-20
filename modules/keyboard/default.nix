@@ -1,7 +1,5 @@
 { ... }:
 {
-  # imports = [ ./kmonad.nix ];
-
   services.kmonad = {
     enable = true;
     keyboards = {

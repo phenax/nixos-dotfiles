@@ -94,9 +94,8 @@
         new = "green bold";
         whitespace = "red reverse";
       };
-      pull = {
-        rebase = true;
-      };
+      pull.rebase = true;
+      rebase.autosquash = true;
       # pager = {
       #   diff = "${pkgs.delta}/bin/delta --color-only";
       # };
