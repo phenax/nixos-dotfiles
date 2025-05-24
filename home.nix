@@ -11,6 +11,7 @@ in
     ./modules/xresources.home.nix
     # ./modules/firefox.home/default.nix
     ./modules/newsboat.home/default.nix
+    ./modules/email/aerc.home.nix
   ];
 
   home.packages = with pkgs; [

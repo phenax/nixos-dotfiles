@@ -75,7 +75,7 @@ applications() {
   run "dwmblocks" dwmblocks;
 
   on_startup sidekick;
-  spew "thunderbird" thunderbird;
+  # spew "thunderbird" thunderbird;
 
   #focus_tag 9;
   #on_startup :today;

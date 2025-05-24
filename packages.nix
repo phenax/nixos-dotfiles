@@ -24,6 +24,7 @@ let
     fzf
     docker-compose
     direnv
+    w3m
     ed
     rlwrap
     # gh
