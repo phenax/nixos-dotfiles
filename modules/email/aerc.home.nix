@@ -58,4 +58,20 @@ in {
 
     stylesets.default = theme;
   };
+
+  xdg.desktopEntries.aerc-window = {
+    name = "aerc";
+    exec = "sensible-terminal -e aerc %u";
+    terminal = false;
+    mimeType = ["x-scheme-handler/mailto"];
+    genericName = "Mail Client";
+    comment = "Launches the aerc email client";
+    categories = ["Office" "Network" "Email" "ConsoleOnly"];
+    type = "Application";
+    icon = "utilities-terminal";
+    settings = {
+      Keywords = "Email;Mail;IMAP;SMTP";
+      Version = "1.0";
+    };
+  };
 }
