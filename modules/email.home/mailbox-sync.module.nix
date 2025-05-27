@@ -10,10 +10,10 @@ let
 
   notify-script = ''
     emails=$(${notmuch} search --format=json '${cfg.notify.filter}' \
-      | ${jq} -r '.[0:5] | map("* " + .subject + " (tag: " + (.tags | join(" ")) + ")") | join("\n\n")');
+      | ${jq} -r '.[0:5] | map("— " + .subject + "\n" + .authors + "\n(tag: " + (.tags | join(" ")) + ")") | join("\n\n")');
 
     # Notify
-    ${notify-send} --app-name=notmuch "New mail baybey ($new_mail_count)" "$emails";
+    ${notify-send} --app-name=notmuch "Read your mail dumbass ($new_mail_count)" "\n$emails";
   '';
 
   sync-script = ''

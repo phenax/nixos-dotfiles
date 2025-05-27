@@ -14,7 +14,7 @@ in {
     enable = true;
     name = "work";
     maildir = work-maildir;
-    sync.frequency = "*:0/5";
+    sync.frequency = "*:0/10";
     notify.enable = true;
   };
 
