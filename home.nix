@@ -12,6 +12,7 @@ in
     # ./modules/firefox.home/default.nix
     ./modules/newsboat.home/default.nix
     ./modules/email/aerc.home.nix
+    ./modules/calendar.home/default.nix
   ];
 
   home.packages = with pkgs; [
