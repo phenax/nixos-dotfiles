@@ -18,6 +18,7 @@
     ./modules/thunderbird/default.nix
     ./modules/clamav.nix
     ./modules/lockscreen.nix
+    ./modules/sound/default.nix
   ];
 
   nixpkgs.config = {
@@ -44,16 +45,6 @@
   services.blueman.enable = false;
 
   programs.kdeconnect.enable = true;
-
-  # Enable sound.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-  };
 
   # Network
   networking = {
@@ -108,24 +99,10 @@
     };
   };
 
-  # programs.tmux = {
-  #   enable = true;
-  #   secureSocket = true;
-  #   terminal = "tmux-direct"; # st-256color
-  #   shortcut = "0";
-  # };
-
   # I18n and keyboard layout
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_GB.UTF-8";
   services.xserver.xkb.layout = "us";
-
-  home-manager.useGlobalPkgs = true;
-  # Home manager
-  home-manager.users.imsohexy = { pkgs, ... }: {
-    imports = [ ./home.nix ];
-    home = { stateVersion = "21.03"; };
-  };
 
   # X11 config
   services.xserver = {
@@ -159,6 +136,13 @@
     lidSwitchExternalPower = "ignore";
     hibernateKey = "ignore";
     suspendKey = "ignore";
+  };
+
+  # Home manager
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.imsohexy = { pkgs, ... }: {
+    imports = [ ./home.nix ];
+    home = { stateVersion = "21.03"; };
   };
 
   nix.settings = {

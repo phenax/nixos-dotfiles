@@ -63,11 +63,6 @@ in
     ];
   };
 
-  services.easyeffects = {
-    enable = true;
-    # preset = "default";
-  };
-
   services.syncthing = {
     enable = true;
     tray = false;

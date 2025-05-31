@@ -81,12 +81,11 @@ let
     imagemagick
     ffmpeg-full
     feh
-    # obs-studio
-    inkscape
-    krita
     zathura
-    blender
-    j4-dmenu-desktop
+    inkscape
+    # obs-studio
+    # krita
+    # blender
 
     # chiaki # PS remote play
 
@@ -95,16 +94,6 @@ let
     dunst
     newsboat
 
-    # Audio
-    qjackctl
-    ardour
-    fluidsynth
-    a2jmidid
-    pavucontrol
-    audacity
-    # guitarix
-    # easyeffects
-
     # TUI stuff
     lf
     bottom
@@ -112,8 +101,8 @@ let
     wyrd
     dua
 
-    (builtins.getFlake "github:phenax/chelleport/5262d942c4c2c36529fbe704e7de165044e6dc99").packages.x86_64-linux.default
-    (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
+    # (builtins.getFlake "github:phenax/chelleport/5262d942c4c2c36529fbe704e7de165044e6dc99").packages.x86_64-linux.default
+    # (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
     (pkgs.writeShellScriptBin
       "null-browser"
       ''exec /home/imsohexy/dev/projects/web-browser/result/bin/null-browser "$@"'')
@@ -152,12 +141,6 @@ let
         url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
       }
     ) {}).wineWowPackages.stable
-
-    # wineWowPackages.stable
-    # appimage-run
-
-    # Audio
-    alsa-utils
 
     # X stuff
     picom
@@ -207,11 +190,6 @@ in
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;
   programs.gamemode.enable = true;
-
-  programs.alvr = {
-    enable = false;
-    openFirewall = false;
-  };
 
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
