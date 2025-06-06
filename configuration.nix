@@ -10,11 +10,11 @@
     ./hardware/thinkpad-e14/default.nix
     ./packages.nix
     ./overlays-system.nix
+    ./modules/service-router.module.nix
     ./modules/login.nix
     ./modules/torrent.nix
     ./modules/work.nix
     ./modules/keyboard/default.nix
-    ./modules/jackett.nix
     ./modules/thunderbird/default.nix
     ./modules/clamav.nix
     ./modules/lockscreen.nix
@@ -25,6 +25,8 @@
     allowUnfree = true;
     allowBroken = false;
   };
+
+  services.service-router.enable = true;
 
   services.udisks2.enable = true;
 
@@ -57,10 +59,9 @@
     nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
     search = [ "resolve.construction" ];
     networkmanager.enable = true;
-    extraHosts = ''
-      127.0.0.1       phenax.local
-      127.0.0.1       field.shape-e2e.com
-    '';
+    hosts = {
+      "127.0.0.1" = ["phenax.local" "field.shape-e2e.com"];
+    };
   };
 
   services.atd.enable = true;

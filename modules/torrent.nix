@@ -1,12 +1,33 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   downloadsDir = "/home/imsohexy/Downloads/dl";
-  incompleteDownloadsDir = "/home/imsohexy/Downloads/dl/incomplete";
+  incompleteDownloadsDir = "${downloadsDir}/incomplete";
   watchTorrentFilesOn = "/home/imsohexy/Downloads/qute";
+
+  radarrPort = 7878;
+  sonarrPort = 8989;
+  prowlarrPort = 9696;
+
+  group = "multimedia";
 in
 {
+  systemd.tmpfiles.rules = [
+    "d ${downloadsDir} 0770 - ${group} - -"
+  ];
+  users.groups."${group}" = { };
+  users.users.imsohexy.extraGroups = [ group ];
+
+  environment.systemPackages = with pkgs; [ managarr ];
+
+  services.service-router.routes = {
+    sonarr.port = sonarrPort;
+    radarr.port = radarrPort;
+    prowlarr.port = prowlarrPort;
+  };
+
   services.transmission = {
     enable = true;
+    group = group;
     settings = {
       "download-dir" = downloadsDir;
       "download-queue-enabled" = true;
@@ -30,6 +51,36 @@ in
       "utp-enabled" = true;
       "watch-dir" = watchTorrentFilesOn;
       "watch-dir-enabled" = false;
+    };
+  };
+
+  services.sonarr = {
+    enable = true;
+    # openFirewall = true;
+    user = "imsohexy";
+    group = group;
+    settings = {
+      server.port = sonarrPort;
+      auth.enabled = false;
+    };
+  };
+
+  services.radarr = {
+    enable = true;
+    # openFirewall = true;
+    user = "imsohexy";
+    group = group;
+    settings = {
+      server.port = radarrPort;
+      auth.enabled = false;
+    };
+  };
+
+  services.prowlarr = {
+    enable = true;
+    # openFirewall = true;
+    settings = {
+      server.port = prowlarrPort;
     };
   };
 }
