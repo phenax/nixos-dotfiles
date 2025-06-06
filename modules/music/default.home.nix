@@ -1,11 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@moduleAttrs:
 let
-  mpd = {
-    host = "127.0.0.1";
-    port = 6600;
-    musicDir = "${config.home.homeDirectory}/Downloads/music";
-    playlistDir = "${config.home.homeDirectory}/Downloads/music/playlist";
-  };
+  cfg = import ./config.nix moduleAttrs;
 in
 {
   home.packages = with pkgs; [ mpc_cli playerctl ];
@@ -25,12 +20,12 @@ in
       };
       file = {
         enabled = true;
-        media_dirs = [ mpd.musicDir ];
+        media_dirs = [ cfg.mpd.musicDir ];
         show_dotfiles = false;
       };
       m3u = {
         enabled = true;
-        playlists_dir = mpd.playlistDir;
+        playlists_dir = cfg.mpd.playlistDir;
       };
       audio = {
         mixer = "software";
@@ -42,15 +37,15 @@ in
       };
       mpd = {
         enabled = true;
-        hostname = mpd.host;
-        port = mpd.port;
+        hostname = cfg.mpd.host;
+        port = cfg.mpd.port;
         max_connections = 20;
         connection_timeout = 60;
       };
       http = {
         enabled = true;
         hostname = "0.0.0.0";
-        port = 6680;
+        port = cfg.mopidyHttpPort;
         default_app = "iris";
       };
       softwaremixer.enabled = true;
