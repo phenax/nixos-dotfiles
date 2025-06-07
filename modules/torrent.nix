@@ -7,6 +7,7 @@ let
   radarrPort = 7878;
   sonarrPort = 8989;
   prowlarrPort = 9696;
+  jellyfinPort = 8096;
 
   group = "multimedia";
 in
@@ -23,6 +24,7 @@ in
     sonarr.port = sonarrPort;
     radarr.port = radarrPort;
     prowlarr.port = prowlarrPort;
+    jellyfin.port = jellyfinPort;
   };
 
   services.transmission = {
@@ -78,9 +80,15 @@ in
 
   services.prowlarr = {
     enable = true;
-    # openFirewall = true;
     settings = {
       server.port = prowlarrPort;
     };
+  };
+
+  services.jellyfin = {
+    enable = true;
+    user = "imsohexy";
+    group = group;
+    openFirewall = true;
   };
 }
