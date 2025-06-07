@@ -126,7 +126,8 @@ map <backtab> search-prev
 
 # Traversal keys
 map \\f   fuzzy_search_dirs
-map gdl   cd ~/Downloads/dl
+map gdl   cd ~/Downloads
+map gmd   cd /media
 map gdm   cd ~/Downloads/music
 map gdv   cd ~/dev
 map gdp   cd ~/dump
