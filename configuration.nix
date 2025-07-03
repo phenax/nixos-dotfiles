@@ -6,7 +6,6 @@
     ./hardware/thinkpad-e14
     ./packages.nix
     ./overlays-system.nix
-    ./modules/service-router.module.nix
     ./modules/login.nix
     ./modules/torrent.nix
     ./modules/work.nix
@@ -22,8 +21,6 @@
     allowUnfree = true;
     allowBroken = false;
   };
-
-  services.service-router.enable = false; # TODO: Remove when all set
 
   services.udisks2.enable = true;
 
