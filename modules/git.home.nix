@@ -5,7 +5,7 @@
     extensions = with pkgs; [
       gh-copilot
       gh-poi
-      gh-dash
+      # gh-dash
       gh-notify
     ];
     settings = {
@@ -17,28 +17,28 @@
     };
   };
 
-  programs.gh-dash = {
-    enable = true;
-    settings = {
-      defaults = {
-        preview = {
-          open = true;
-          width = 80;
-        };
-      };
-      pager = { diff = "delta"; };
-      keybindings = {
-        prs = [
-          { key = "m"; command = "echo accident"; }
-          { key = "x"; command = "echo accident"; }
-          { key = "a"; command = "echo accident"; }
-          { key = "A"; command = "echo accident"; }
-          { key = "W"; command = "echo accident"; }
-          { key = "X"; command = "echo accident"; }
-        ];
-      };
-    };
-  };
+  # programs.gh-dash = {
+  #   enable = true;
+  #   settings = {
+  #     defaults = {
+  #       preview = {
+  #         open = true;
+  #         width = 80;
+  #       };
+  #     };
+  #     pager = { diff = "delta"; };
+  #     keybindings = {
+  #       prs = [
+  #         { key = "m"; command = "echo accident"; }
+  #         { key = "x"; command = "echo accident"; }
+  #         { key = "a"; command = "echo accident"; }
+  #         { key = "A"; command = "echo accident"; }
+  #         { key = "W"; command = "echo accident"; }
+  #         { key = "X"; command = "echo accident"; }
+  #       ];
+  #     };
+  #   };
+  # };
 
   programs.git = {
     enable = true;

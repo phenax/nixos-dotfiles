@@ -31,7 +31,7 @@ alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
 
-alias gco='git checkout'
+# alias gco='git checkout'
 alias gb='git branch'
 
 alias gc='git commit -v'
@@ -86,5 +86,15 @@ g_most_edited() {
     grep -E -v '.(html|scss|json)$' | \
     head -n 10 \
   ;
+}
+
+# Git checkout branch
+gco() {
+  if ! [ "$#" = "0" ]; then
+    git checkout "$@";
+  else
+    local b="$(git branch | fzf | xargs)";
+    [ -n "$b" ] && git switch "$b";
+  fi
 }
 

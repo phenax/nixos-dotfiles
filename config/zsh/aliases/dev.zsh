@@ -37,6 +37,8 @@ calc() {
 }
 
 get_node_script_runner() {
+  # TODO: Check .engines.*
+  # jq -r .engines.pnpm package.json
   if [[ -f ./yarn.json ]]; then echo "yarn";
   elif [[ -f ./bun.lockb ]]; then echo "bun run";
   elif [[ -f ./pnpm-lock.yaml ]]; then echo "pnpm";
