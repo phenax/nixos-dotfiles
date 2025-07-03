@@ -8,6 +8,9 @@ self: super: {
             doCheck = false;
             pythonImportsCheck = [ "tldextract" ];
           });
+          lxml-html-clean = super.lxml-html-clean.overridePythonAttrs (_: {
+            doCheck = false;
+          });
         };
       };
     };

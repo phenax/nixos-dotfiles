@@ -218,6 +218,8 @@ nmap(leader + 'wp', 'tab-pin')
 # Tab movement
 nmap('<Ctrl-k>', 'tab-prev')
 nmap('<Ctrl-j>', 'tab-next')
+nmap('<Ctrl-Tab>', 'tab-next')
+nmap('<Ctrl-Shift-Tab>', 'tab-prev')
 nmap(localleader + '<Tab>', 'tab-focus last')
 nmap('<Ctrl-Shift-k>', 'tab-move -')
 nmap('<Ctrl-Shift-j>', 'tab-move +')
@@ -295,9 +297,10 @@ c.url.start_pages = [c.url.default_page]
 DEFAULT_SEARCH_ENGINE = 'd'
 c.url.searchengines = {
     # Main general
+    'ss': 'https://www.startpage.com/do/search?q={}',
     'd': 'https://lite.duckduckgo.com/lite?q={}',
-    'go': 'https://lite.duckduckgo.com/lite?q={}',
-    'gg': 'https://google.com/search?q={}',
+    'gg': 'https://lite.duckduckgo.com/lite?q={}',
+    'go': 'https://google.com/search?q={}',
     'ai': 'https://chatgpt.com/?temporary-chat=true&q={}',
     'aic': 'https://claude.ai/new?q={}',
     'br': 'https://search.brave.com/search?q={}',
