@@ -10,7 +10,6 @@
     ./modules/torrent.nix
     ./modules/work.nix
     ./modules/keyboard
-    ./modules/thunderbird
     ./modules/clamav.nix
     ./modules/lockscreen.nix
     ./modules/sound
