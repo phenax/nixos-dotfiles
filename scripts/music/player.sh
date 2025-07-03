@@ -2,7 +2,7 @@
 
 MAX_CHARS=36
 
-player() { playerctl --player=mopidy "$@"; }
+player() { playerctl --player=mpd "$@"; }
 
 # Get player state
 #get_play_state() { player metadata --format '{{status}}' || echo 'Stopped'; }
