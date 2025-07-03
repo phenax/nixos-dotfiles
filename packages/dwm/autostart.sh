@@ -45,7 +45,8 @@ echo "[Autostart]: Running daemons";
 spew "shotkey" shotkey;
 
 # Wallpaper
-run "" ~/.fehbg;
+# run "" ~/.fehbg;
+hsetroot -solid "#141313"
 
 # Notification daemon
 spew "dunst" dunst -config ~/.config/dunst/dunstrc;

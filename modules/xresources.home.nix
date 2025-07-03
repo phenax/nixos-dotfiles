@@ -1,9 +1,8 @@
-{ config, pkgs, epkgs, ... }:
+{ ... }:
 {
   xresources.properties =
     let
-      theme = import ./xresources/catcula.nix;
-      # theme = import ./xresources/tealicious.nix;
+      theme = import ./xresources/dark.nix;
     in
     {
       "*.foreground" = theme.foreground;
@@ -11,7 +10,7 @@
       "*.cursorColor" = theme.foreground;
       "*.accent" = theme.accent;
 
-      "*.color0" = "#15121f";
+      "*.color0" = "#171717";
       "*.color8" = "#555555";
 
       "*.color1" = "#e06c75";

@@ -47,7 +47,7 @@ prompt() {
   p_status;
   p_dir;
   echo -n '$(p_git)';
-  segment "λ" black white;
+  segment "󱄅" black 13;
 }
 
 export PROMPT="$(prompt) ";
