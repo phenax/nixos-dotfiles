@@ -101,7 +101,7 @@ let
     wyrd
     dua
 
-    # (builtins.getFlake "github:phenax/chelleport/5262d942c4c2c36529fbe704e7de165044e6dc99").packages.x86_64-linux.default
+    (builtins.getFlake "github:phenax/chelleport/bf57e4968d059b207c036b57818a58ed8c54d141").packages.x86_64-linux.default
     # (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
     (pkgs.writeShellScriptBin
       "null-browser"
@@ -157,6 +157,7 @@ let
     arandr
     xorg.xgamma
     v4l-utils
+    hsetroot
 
     libva
     libdrm

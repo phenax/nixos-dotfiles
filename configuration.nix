@@ -1,24 +1,21 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports = [
     <home-manager/nixos>
-    ./hardware/thinkpad-e14/default.nix
+    ./hardware/thinkpad-e14
     ./packages.nix
     ./overlays-system.nix
     ./modules/service-router.module.nix
     ./modules/login.nix
     ./modules/torrent.nix
     ./modules/work.nix
-    ./modules/keyboard/default.nix
-    ./modules/thunderbird/default.nix
+    ./modules/keyboard
+    ./modules/thunderbird
     ./modules/clamav.nix
     ./modules/lockscreen.nix
-    ./modules/sound/default.nix
+    ./modules/sound
+    ./modules/notifications
   ];
 
   nixpkgs.config = {
@@ -26,7 +23,7 @@
     allowBroken = false;
   };
 
-  services.service-router.enable = true;
+  services.service-router.enable = false; # TODO: Remove when all set
 
   services.udisks2.enable = true;
 
@@ -46,7 +43,7 @@
   hardware.bluetooth.enable = false;
   services.blueman.enable = false;
 
-  programs.kdeconnect.enable = true;
+  # programs.kdeconnect.enable = true;
 
   # Network
   networking = {
@@ -56,7 +53,7 @@
       allowedTCPPorts = [ 3000 3001 8081 ];
       allowedUDPPorts = [ 41641 ];
     };
-    nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+    nameservers = [ "100.100.100.100" "1.1.1.1" "8.8.8.8" ];
     search = [ "resolve.construction" ];
     networkmanager.enable = true;
     hosts = {
