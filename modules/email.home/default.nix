@@ -46,7 +46,7 @@ in {
       source            = "notmuch://${maildir}";
       outgoing          = "gmi send -t -C ${work-maildir}";
       query-map         = "${./query-map.conf}";
-      folders-sort      = "Inbox,Unread,Important,_sent,_spam";
+      folders-sort      = "Inbox,Unread,Important,Sent,_spam";
       default           = "INBOX";
       copy-to           = "Sent";
       postpone          = "[Gmail]/Drafts";
