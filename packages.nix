@@ -44,7 +44,15 @@ let
 
     nixd
     lua-language-server
-    fennel-ls
+    ((fennel-ls.override { lua = lua5_1; luaPackages = lua51Packages; }).overrideAttrs (self: {
+      version = "0.2.2";
+      src = pkgs.fetchFromSourcehut {
+        owner = "~xerool";
+        repo = "fennel-ls";
+        rev = "3c1e01da6f1423719229c830319a61dba7c2bb99";
+        hash = "sha256-Jop1R/rm+K2sBufVs+JWB4INboLeU7xdviWgb2lXamA=";
+      };
+    }))
     fnlfmt
     efm-langserver
 
@@ -55,7 +63,7 @@ let
     nodePackages.prettier
     # biome
 
-    # lua5_1
+    lua5_1
     luajit
     luajitPackages.luarocks
     luajitPackages.lua-curl
