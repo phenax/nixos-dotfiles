@@ -58,7 +58,7 @@ in {
     options thinkpad_acpi experimental=1 fan_control=1
   '';
   boot.supportedFilesystems = [ "ntfs" ];
-  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services.throttled.enable = true;
   services.thermald = {
