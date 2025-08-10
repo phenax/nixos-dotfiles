@@ -1,7 +1,9 @@
 setopt prompt_subst
 
+autoload -U colors && colors
+
 # Theme
-COL_ACCENT=13;
+COL_ACCENT="#007070";
 
 COL_DIR=$COL_ACCENT;
 
@@ -17,7 +19,7 @@ git_changes() { git status --porcelain 2> /dev/null | wc -l; }
 
 # Prompt dir
 p_dir() {
-  segment "%2~" $COL_DIR white;
+  segment "%2~" $COL_DIR brightwhite;
 }
 
 # Prompt terminal status
@@ -47,7 +49,7 @@ prompt() {
   p_status;
   p_dir;
   echo -n '$(p_git)';
-  segment "󱄅" black 13;
+  segment "󱄅" black "$COL_ACCENT";
 }
 
 export PROMPT="$(prompt) ";

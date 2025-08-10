@@ -1,5 +1,6 @@
 let
-  accent = "#4f3aA3";
+  xresources = (import ../xresources.home.nix {}).xresources.properties;
+  accent = xresources."*.accent";
 in {
   "title.bg" = accent;
   "title.fg" = "black";

@@ -29,7 +29,7 @@
       "*.color13" = "#4e3aA3";
 
       "*.color6" = "#56B6C2";
-      "*.color14" = "#0fb9b1";
+      "*.color14" = "#042f2f";
 
       "*.color7" = "#ABB2BF";
       "*.color15" = "#ebdbb2";

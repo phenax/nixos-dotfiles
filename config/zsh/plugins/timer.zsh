@@ -7,7 +7,7 @@ function precmd() {
     now=$(($(date +%s%0N)/1000000))
     elapsed=$(($now-$timer))
 
-    export RPROMPT="%F{magenta}${elapsed}ms %{$reset_color%}"
+    export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
     unset timer
   fi
 }

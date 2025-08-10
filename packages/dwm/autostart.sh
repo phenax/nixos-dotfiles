@@ -46,7 +46,7 @@ spew "shotkey" shotkey;
 
 # Wallpaper
 # run "" ~/.fehbg;
-hsetroot -solid "#141313"
+hsetroot -solid "#101414"
 
 # Notification daemon
 spew "dunst" dunst -config ~/.config/dunst/dunstrc;

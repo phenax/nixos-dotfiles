@@ -14,10 +14,10 @@ xset s noblank;
 # Typing rate
 xset r rate 350 30;
 
-# Display settings
+# Display settings: day mode
 ~/scripts/commands/:day
 
-# Sound
+# Sound settings
 amixer set Capture nocap;
 amixer set Master off;
 

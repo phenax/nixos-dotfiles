@@ -15,8 +15,8 @@ in
       user "imsohexy"
       group "users"
       restore_paused "yes"
-      metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
-      auto_update	"yes"
+      metadata_to_use "artist,album,title,track,name,genre,date,composer,performer,disc"
+      auto_update "yes"
       auto_update_depth "5"
       follow_outside_symlinks "yes"
       follow_inside_symlinks "yes"
@@ -37,7 +37,7 @@ in
         format "44100:16:2"
       }
 
-      filesystem_charset		"UTF-8"
+      filesystem_charset "UTF-8"
     '';
   };
 

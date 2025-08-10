@@ -131,17 +131,17 @@
     frame_color = "#6f8285"
 
 [urgency_low]
-    background = "#7e6aD3"
+    background = "#042f2f"
     foreground = "#ffffff"
     timeout = 3
 
 [urgency_normal]
-    background = "#4e3aA3"
+    background = "#007070"
     foreground = "#ffffff"
     timeout = 5
 
 [urgency_critical]
-    background = "#d63031"
+    background = "#7c162e"
     foreground = "#ffffff"
     timeout = 10
 
