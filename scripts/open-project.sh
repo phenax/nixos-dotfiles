@@ -26,10 +26,10 @@ case "$projtype" in
 esac
 
 if [ ! -z "$fulldir" ]; then
-  if [ ! -d "$fulldir" ]; then
-    mkdir -p $fulldir;
-    notify-send "Created new project at $fulldir";
-  fi;
+  # if [ ! -d "$fulldir" ]; then
+  #   mkdir -p $fulldir;
+  #   notify-send "Created new project at $fulldir";
+  # fi;
 
   ~/scripts/sessions/project.sh "$fulldir";
 fi;

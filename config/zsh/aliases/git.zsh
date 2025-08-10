@@ -93,8 +93,8 @@ gco() {
   if ! [ "$#" = "0" ]; then
     git checkout "$@";
   else
-    local b="$(git branch | fzf | xargs)";
-    [ -n "$b" ] && git switch "$b";
+    local b="$(git branch --format '%(refname:short)' | fzf)";
+    [ -n "$b" ] && git checkout "$b";
   fi
 }
 

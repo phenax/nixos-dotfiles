@@ -12,6 +12,14 @@ nix-rollback() {
   sudo nixos-rebuild switch --rollback=$1;
 }
 
+nixlsversions() {
+  if [ -z "$1" ]; then
+    echo "Specify package name";
+    return 1;
+  fi;
+  curl "https://www.nixhub.io/packages/$1?_data=routes%2F_nixhub.packages.%24pkg._index" | jq '.releases | map([.version, .platforms[0].commit_hash, .platforms[0].attribute_path])'
+}
+
 #alias mirrorlist-refresh="sudo reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist-arch"
 
 # Sandbox

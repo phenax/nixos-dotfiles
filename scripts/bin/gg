@@ -1,0 +1,98 @@
+#!/usr/bin/env sh
+
+set -eu -o pipefail;
+
+gg_file="$(git rev-parse --git-path _hooked_branch_list)";
+
+current_branch() { git branch --show-current; }
+
+confirm() {
+  echo -n "You sure? (y/n) ";
+  read response;
+  [ "$response" = "y" ];
+}
+
+branchlist() { cat "$gg_file" | sed '/^$/d' 2>/dev/null; }
+
+add() {
+  echo "$1" >> "$gg_file";
+  sort -u "$gg_file" -o "$gg_file";
+}
+
+remove_branch() {
+  local new_branchlist=$(branchlist | grep -v "$1");
+  echo "Removing $1...";
+  if (confirm); then
+    echo "$new_branchlist" > "$gg_file";
+  fi
+}
+
+prompt_branchlist() {
+  branchlist | grep -v "$(current_branch)" | fzf;
+}
+
+cmd_list() { branchlist; }
+
+cmd_add() {
+  if [ "$#" == 0 ]; then
+    add "$(current_branch)";
+  elif [ "$1" == "-s" ]; then
+    local branch=$(git branch --format '%(refname:short)' | fzf);
+    [ -z "$branch" ] && echo "<noop>" && exit 0;
+    add "$branch";
+  elif [ "$1" == "-" ]; then
+    while read b; do add "$b"; done
+  elif [ -n "$1" ]; then
+    add "$1";
+  fi
+}
+
+cmd_remove() {
+  if [ "$#" == 0 ]; then
+    local branch=$(branchlist | fzf);
+    [ -z "$branch" ] && echo "<noop>" && exit 0;
+    remove_branch "$branch";
+  elif [ "$1" == "-" ]; then
+    while read b; do remove_branch "$b"; done
+  elif [ -n "$1" ]; then
+    remove_branch "$1";
+  fi
+}
+
+cmd_checkout() {
+  local branch=$(prompt_branchlist);
+  [ -z "$branch" ] && echo "<noop>" && exit 0;
+  git checkout "$branch";
+}
+
+cmd_clear() {
+  echo "Clearing branch list";
+  if (confirm); then
+    echo -n "" > "$gg_file";
+  fi
+}
+
+cmd_rebase() {
+  local branch=$(prompt_branchlist);
+  [ -z "$branch" ] && echo "<noop>" && exit 0;
+  echo "Rebase $(current_branch) with base $branch";
+  if (confirm); then
+    git rebase "$branch";
+  fi
+}
+
+cmd="$1"; shift 1;
+
+case "$cmd" in
+  l|ls|ll|list) cmd_list ;;
+  a|add) cmd_add "$@" ;;
+  c|co|checkout) cmd_checkout ;;
+  rb|rebase) cmd_rebase ;;
+  rm|remove) cmd_remove "$@" ;;
+  clear) cmd_clear ;;
+  *)
+    echo "Invalid command: $cmd"
+    echo "Use: (ls)list | (a)add | (rm)remove | (co)checkout | (re)rebase | clear"
+  ;;
+esac
+
