@@ -1,4 +1,4 @@
-{ config, pkgs, epkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   localPkgs = import ./packages/default.nix { pkgs = pkgs; };
 in
@@ -9,9 +9,9 @@ in
     ./modules/mpv.home.nix
     ./modules/music/default.home.nix
     ./modules/xresources.home.nix
-    ./modules/newsboat.home/default.nix
-    ./modules/email.home/default.nix
-    ./modules/calendar.home/default.nix
+    # ./modules/newsboat.home
+    ./modules/email.home
+    ./modules/calendar.home
   ];
 
   home.packages = with pkgs; [
@@ -24,18 +24,6 @@ in
       uris = ["qemu:///system"];
     };
   };
-
-  # programs.emacs = {
-  #   enable = true;
-  # };
-  # services.emacs = {
-  #   enable = true;
-  #   client.enable = true;
-  # };
-  # programs.direnv = {
-  #   enable = true;
-  #   enableNixDirenvIntegration = true;
-  # };
 
   # xdg.configFile."mimeapps.list".text = ''
   #   [Default Applications]

@@ -7,6 +7,6 @@ in
     pass-with-dmenu
     qutebrowser
     j4-dmenu-desktop
-    # neovim-nightly
+    neovim-nightly
   ];
 }

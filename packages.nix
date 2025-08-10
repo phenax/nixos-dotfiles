@@ -44,6 +44,8 @@ let
 
     nixd
     lua-language-server
+    fennel-ls
+    fnlfmt
     efm-langserver
 
     nodePackages.typescript
@@ -51,28 +53,24 @@ let
     nodePackages.vscode-json-languageserver
     nodePackages.vscode-langservers-extracted
     nodePackages.prettier
-    biome
+    # biome
 
-    lua5_1
-    lua51Packages.luarocks
-    lua51Packages.lua-curl
+    # lua5_1
+    luajit
+    luajitPackages.luarocks
+    luajitPackages.lua-curl
     luajitPackages.magick # lua51Packages.magick
   ];
 
   apps = with pkgs; [
     # Browser
     qutebrowser
-    # nodePackages."@mozilla/readability"
-    # nodePackages.jsdom
-    # nodePackages.qutejs
-
-    # qutebrowser-qt5
     brave
     # firefox
     # ungoogled-chromium
 
     # Comm
-    slack
+    # slack
 
     # Media
     # spotify
@@ -83,16 +81,18 @@ let
     feh
     zathura
     inkscape
+    jellyfin-mpv-shim
     # obs-studio
     # krita
-    # blender
+    blender
 
+    minetest
+    xonotic
+    openarena
     # chiaki # PS remote play
 
-    tgpt
     remind
     dunst
-    newsboat
 
     # TUI stuff
     lf
@@ -100,12 +100,13 @@ let
     tremc
     wyrd
     dua
+    # newsboat
 
     (builtins.getFlake "github:phenax/chelleport/bf57e4968d059b207c036b57818a58ed8c54d141").packages.x86_64-linux.default
     # (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
     (pkgs.writeShellScriptBin
       "null-browser"
-      ''exec /home/imsohexy/dev/projects/web-browser/result/bin/null-browser "$@"'')
+      ''exec /home/imsohexy/dev/projects/null-browser/result/bin/null-browser "$@"'')
   ];
 
   utils = with pkgs; [
