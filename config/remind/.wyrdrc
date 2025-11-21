@@ -145,25 +145,25 @@ bind "<esc>"             entry_cancel
 
 
 # set up the colors
-color help               green magenta
+color help               black green
 color timed_default      white default
 color timed_current      white red
-color timed_reminder1    white magenta
+color timed_reminder1    black green
 color timed_reminder2    white red
 color timed_reminder3    white green
-color timed_reminder4    white magenta
+color timed_reminder4    black green
 color untimed_reminder   white default
 color timed_date         cyan default
-color selection_info     white magenta
+color selection_info     black green
 color description        white default
-color status             white magenta
+color status             black green
 
 color calendar_labels    white default
 color calendar_level1    white default
-color calendar_level2    magenta default
-color calendar_level3    magenta default
+color calendar_level2    green default
+color calendar_level3    green default
 color calendar_today     white red
 
-color left_divider       magenta default
-color right_divider      magenta default
+color left_divider       green default
+color right_divider      green default
 

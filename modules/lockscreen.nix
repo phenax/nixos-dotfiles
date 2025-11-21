@@ -6,8 +6,8 @@ in {
 
   services.xserver.xautolock = {
     enable = true;
-    time = 15; # minutes
-    locker = "${localPkgs.bslock}/bin/bslock";
+    time = 30; # minutes
+    locker = "bslock";
 
     enableNotifier = true;
     notify = 30;

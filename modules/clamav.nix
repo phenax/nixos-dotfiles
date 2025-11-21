@@ -1,17 +1,25 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  enable = true;
+in {
   services.clamav = {
-    daemon.enable = true;
-    scanner = {
-      enable = true;
-      interval = "Sun *-*-* 12:00:00";
-      # scanDirectories = [
-      #   "/home"
-      #   "/var/lib"
-      #   "/tmp"
-      #   "/etc"
-      #   "/var/tmp"
-      # ];
+    daemon = {
+      inherit enable;
     };
-    updater.enable = false;
+    scanner = {
+      inherit enable;
+      interval = "Sat *-*-* 11:00:00";
+      scanDirectories = [
+        "/home"
+        "/var/lib"
+        "/tmp"
+        "/etc"
+        "/var/tmp"
+      ];
+    };
+    updater = {
+      inherit enable;
+      frequency = 1;
+    };
   };
 }

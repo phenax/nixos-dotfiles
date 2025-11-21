@@ -53,17 +53,20 @@ in
   #'';
 
   # Global
-  environment.variables =
-    let
-      apps = (import ../packages/sensible-apps/sensible-apps.nix).apps;
-    in
-    {
-      EDITOR = apps.EDITOR;
-      VISUAL = apps.EDITOR;
-      TERMINAL = apps.TERMINAL;
-      BROWSER = apps.BROWSER;
-      PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
-    };
+  environment.variables = let
+    apps = (import ../packages/sensible-apps/sensible-apps.nix).apps;
+  in {
+    EDITOR = apps.EDITOR;
+    VISUAL = apps.EDITOR;
+    TERMINAL = apps.TERMINAL;
+    BROWSER = apps.BROWSER;
+    PRIVATE_BROWSER = apps.PRIVATE_BROWSER;
+  };
+  environment.sessionVariables = rec {
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    PATH = [ "$HOME/scripts/bin" XDG_BIN_HOME ];
+    LS_COLORS = "di=96:ln=36:or=31:mi=31:ex=32";
+  };
   environment.shells = with pkgs; [ zsh bashInteractive ];
   programs.zsh = {
     enable = true;
@@ -91,7 +94,6 @@ in
     ''
       case "$(tty)" in
         ${toString cases}
-        *) echo "Only tty for you, $(tty)" ;;
       esac;
     '';
   };

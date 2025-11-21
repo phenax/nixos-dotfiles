@@ -52,6 +52,7 @@
       "ayak.sh"
       ".direnv"
       ".local.lua"
+      ".nvim.lua"
     ];
     aliases = {
       ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
@@ -65,6 +66,8 @@
         navigate = true;
         side-by-side = true;
         line-numbers = true;
+        hyperlinks = true;
+        paging = "always";
       };
     };
     # difftastic = {
@@ -99,6 +102,10 @@
       # pager = {
       #   diff = "${pkgs.delta}/bin/delta --color-only";
       # };
+      diff.tool = "nvimdiff";
+      merge.tool = "nvimdiff";
+      difftool.prompt = false;
+      mergetool.prompt = false;
     };
     signing.key = "AAAB13AE8B82A5267C1A35D7E1B701723EA37849";
     signing.signByDefault = true;
