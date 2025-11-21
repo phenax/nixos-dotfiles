@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+set -e -o pipefail
+
+TTS_MODELS_PATH="$HOME/.config/piper-models"
+
+playaudio() {
+  ffplay -nodisp -autoexit -f s16le -ar 22050 -
+}
+
+text2speech() {
+  # https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US
+  local tts_model="en_US-lessac-medium.onnx";
+  # local tts_model="en_US-ryan-high.onnx";
+  # local tts_model="en_US-bryce-medium.onnx";
+  local tts_model_path="$TTS_MODELS_PATH/$tts_model";
+  [ -f "$tts_model_path" ] || (echo "Model not found" && exit 1);
+
+  piper --model "$tts_model_path" --sentence_silence 0.4 --output-raw | playaudio
+}
+
+text2speech;
+

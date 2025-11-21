@@ -13,7 +13,7 @@ open_by_mimetype() {
   echo "Opening $file ($mime)...";
 
   case "$mime" in
-    inode/directory)             lf "$file" ;;
+    inode/directory)             daffm "$file" ;;
 
     application/x-bittorrent)    ~/scripts/torrent.sh torrent "$file" ;;
 

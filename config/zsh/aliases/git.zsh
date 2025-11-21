@@ -54,14 +54,14 @@ alias grc='git rebase --continue'
 # egc         : Open files in last commit
 # egc HEAD~1  : Open files in commit before the last one
 egc() {
-  nvim $(git show --name-only --pretty="" "$@");
+  sensible-editor $(git show --name-only --pretty="" "$@");
 }
 
 # Open files in diff
 # egd              : Open files changed (HEAD)
 # egd origin/main  : Open files diff between origin/main
 egd() {
-  nvim $(git diff --name-only ${1:-HEAD});
+  sensible-editor $(git diff --name-only ${1:-HEAD});
 }
 
 grename() {
@@ -96,5 +96,15 @@ gco() {
     local b="$(git branch --format '%(refname:short)' | fzf)";
     [ -n "$b" ] && git checkout "$b";
   fi
+}
+
+ghpr() {
+  if [ -f '.github/pull_request_template.md' ]; then
+    gh pr create -e -a "@me" -T 'pull_request_template.md' "$@" || true
+  else
+    gh pr create -e -a "@me" "$@" || true
+  fi
+
+  xdg-open "$(gh pr view --json url -q .url)"
 }
 

@@ -1,6 +1,6 @@
 
 fzf-change-dir-cwd() { # fzf + cd in cwd
-  selected=$(find . -maxdepth 1 -type d | fzf);
+  selected=$(fd --type d --maxdepth 1 --hidden --no-ignore | fzf);
   if [ ! -z "$selected" ] && [ "$selected" != "$(pwd)" ]; then
     cd $selected;
   fi
@@ -11,7 +11,7 @@ zle -N fzf-change-dir-cwd;
 bindkey '^O' fzf-change-dir-cwd;
 
 fzf-change-dir() {
-  local result=$(find -type d | fzf);
+  local result=$(fd --type d --hidden --no-ignore | fzf);
   if ! [[ -z "$result" ]]; then
     cd "$result"
   fi

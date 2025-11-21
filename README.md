@@ -8,15 +8,14 @@
 * `qutebrowser` - Web browser
 * `feh` - Wallpaper
 * `pass` - Password manager
-* `nvim` - Text editor
+* `kakoune` - Text editor
 * `zsh` - My shell
 * `sxiv` - Image viewer
 * `mpv` - Video player
-* `lf` - File manager
+* `daffm` - File manager
 * `mpd` - Music daemon
 * `ncmpcpp` + `mpc` - Music client
 * `dwmblocks` - Status bar text ([My fork of dwmblocks](https://github.com/phenax/dwmblocks))
 * `dmenu` - Application launcher / custom menu scripts ([My fork of dmenu](https://github.com/phenax/dmenu))
 * `picom` - Compositor
 * `zathura` - PDF reader
-

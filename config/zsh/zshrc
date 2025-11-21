@@ -3,6 +3,7 @@ setopt auto_cd;
 setopt inc_append_history;
 
 export LESS="-R --chop-long-lines" # less no wrapping
+export MANPAGER="nvim +Man\!" # man pager with nvim
 
 export SAVEHIST=10000
 # export HISTSIZE=50000

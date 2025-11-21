@@ -14,6 +14,8 @@
     ./modules/lockscreen.nix
     ./modules/sound
     ./modules/notifications
+    ./modules/kakoune
+    ./modules/ai
   ];
 
   nixpkgs.config = {
@@ -47,14 +49,14 @@
     hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 3000 3001 8081 ];
+      allowedTCPPorts = [ 3000 3001 ];
       allowedUDPPorts = [ 41641 ];
     };
     nameservers = [ "100.100.100.100" "1.1.1.1" "8.8.8.8" ];
     search = [ "resolve.construction" ];
     networkmanager.enable = true;
     hosts = {
-      "127.0.0.1" = ["phenax.local" "field.shape-e2e.com"];
+      "127.0.0.1" = ["field.shape-e2e.com"];
     };
   };
 
@@ -65,14 +67,14 @@
     docker = {
       enable = true;
     };
-    lxd.enable = false;
+    # lxd.enable = false;
     virtualbox.host.enable = false;
     libvirtd = {
       enable = true;
       qemu = {
         swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        # ovmf.enable = true;
+        # ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
     spiceUSBRedirection.enable = true;
@@ -114,23 +116,21 @@
   };
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-    nerd-fonts.fira-mono
     cozette
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     inter
     roboto
-    vistafonts
+    vista-fonts
   ];
 
-  services.logind = {
-    powerKey = "ignore";
-    rebootKey = "ignore";
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
-    hibernateKey = "ignore";
-    suspendKey = "ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandleRebootKey = "ignore";
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleHibernateKey = "ignore";
+    HandleSuspendKey = "ignore";
   };
 
   # Home manager

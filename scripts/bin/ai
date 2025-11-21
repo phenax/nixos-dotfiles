@@ -1,0 +1,48 @@
+#!/usr/bin/env sh
+
+set -e -o pipefail
+
+AI_API_URL=${AI_API_URL:-"http://localhost:9081"}
+AI_API_KEY=${AI_API_KEY:-"no-key"}
+
+system_prompt="
+When responding with code, you are a senior software engineer, output only the raw code, without any enclosing markdown code blocks. Output only the final code. Do not include backticks, comments, or explanations.
+Do not include \`\`\` or any surrounding formatting. If you add anything other than code, you have failed.
+When responding with content, be concise.
+Do not hallucinate facts and respond with accurate information as much as possible.
+If you don't know, just say so. If you are not sure, ask for clarification.
+If the context appears unreadable or of poor quality, tell the user then answer as best as you can.
+"
+
+call_completion() {
+  local opts='"stream": true'
+  local payload="{\"messages\": $1, $opts }"
+  curl --silent --no-buffer \
+    -XPOST "$AI_API_URL/v1/chat/completions" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $AI_API_KEY" \
+    --data "$payload" \
+    | tee "$HOME/.local/state/local-ai-last-response" \
+    | stdbuf -oL sed -E 's/^data:\s*//; /^$/d' \
+    | while IFS= read -r line; do
+        printf "%s" "$line" | jq -rj '.choices[0].delta.content // ""' 2>/dev/null || true
+      done;
+}
+
+arg_prompt="$1"
+stdin=""
+if ! [ -t 0 ];
+  then stdin="$(cat)";
+fi
+
+# Start llama server if not started already
+# from: modules/ai/default.nix
+llama-start-server-background
+
+# Call completion api
+call_completion "$(jq -n \
+  --arg system "$system_prompt" \
+  --arg user "$arg_prompt" \
+  --arg user_supplement "$stdin" \
+  '[{ role: "system", content: $system }, { role: "user", content: $user }, { role: "user", content: $user_supplement }]')"
+

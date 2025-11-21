@@ -25,6 +25,7 @@ p_dir() {
 # Prompt terminal status
 p_status() {
   [[ ! -z "$WITH_NIX_PREFIX" ]] && echo -n "$(segment "[NIX:$WITH_NIX_PREFIX] " black $COL_ACCENT)";
+  [[ "$TERM" = "tmux-256color" ]] && echo -n "$(segment "[tmux]" black $COL_ACCENT)";
   echo -n "%(?..$(segment 'x' black $COL_STATUS_ERROR))"
   echo -n "%(1j.$(segment '(jobs: %j)' black $COL_STATUS_BG).)"
 }

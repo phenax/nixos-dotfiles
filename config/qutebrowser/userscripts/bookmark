@@ -13,8 +13,7 @@ case "$1" in
     echo "$QUTE_URL" >> "$BOOKMARKS_PATH"
   ;;
   resource)
-    ~/dev/projects/nvim-ts-peek/bin/nvim-peek dmenu "$QUTE_URL" "$QUTE_TITLE" \
-      && notify-send "Saved $QUTE_URL";
+    ~/.config/kak/scripts/logger.sh link "$QUTE_URL";
   ;;
 esac || true
 

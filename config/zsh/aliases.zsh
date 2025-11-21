@@ -6,7 +6,7 @@ alias grep="grep --color=auto";
 # Application shortcuts
 alias emedit="emacsclient -c -n";
 alias e="sensible-editor";
-alias v="nvim";
+alias k="kak-tmux";
 alias o='open $(fzf)';
 
 alias j='just';
@@ -37,4 +37,9 @@ alias szathura="swallow zathura";
 
 # Dictionary
 dict() { curl dict://dict.org/d:$1; }
+
+countdown() {
+  date;
+  sleep "$1" && notify-send -u critical "${2:-"Timer done"}"
+}
 

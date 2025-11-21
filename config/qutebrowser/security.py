@@ -21,9 +21,9 @@ def random_version(a, b):
     return rand_numstr(a, b) + '.' + rand_numstr(0, 100)
 
 def random_useragent():
-    chrome_version = random_version(135, 150)
+    chrome_version = random_version(140, 150)
     # firefox_version = random_version(77, 80)
-    build_version = random_version(1000, 3000)
+    build_version = random_version(1000, 5000)
 
     agents = [
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chromium/' + chrome_version + '.0.4044.138 Chrome/' + chrome_version + '.' + build_version + ' Safari/{webkit_version}',

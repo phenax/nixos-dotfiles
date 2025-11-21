@@ -1,6 +1,6 @@
 let
   apps = {
-    EDITOR = "nvim";
+    EDITOR = "kak-tmux";
     TERMINAL = "st";
     BROWSER = "qutebrowser";
     PRIVATE_BROWSER = "qutebrowser ':open -p'";

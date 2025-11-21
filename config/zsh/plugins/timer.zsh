@@ -1,5 +1,6 @@
 function preexec() {
   timer=$(($(date +%s%0N)/1000000))
+  echo -n "\\x1b]133;A\\x1b\\" # OSC 133 for marking prompt
 }
 
 function precmd() {

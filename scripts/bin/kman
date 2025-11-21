@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+kak -e "man $@; map global normal q :quit<ret>;"

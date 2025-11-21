@@ -10,7 +10,7 @@
       "*.cursorColor" = theme.foreground;
       "*.accent" = theme.accent;
 
-      "*.color0" = "#171717";
+      "*.color0" = "#222222";
       "*.color8" = "#555555";
 
       "*.color1" = "#e06c75";

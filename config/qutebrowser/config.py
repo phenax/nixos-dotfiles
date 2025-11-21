@@ -93,7 +93,7 @@ c.input.insert_mode.auto_load = True
 c.input.insert_mode.leave_on_load = True
 
 # File selector
-lf_file_picker = ['sensible-terminal', '-c', 'lf-selector', '-g', '170x40+50+50', '-e', 'lf', '-selection-path', '{}']
+lf_file_picker = ['st', '-i', '-g', '170x40+50+50', '-e', 'sh', '-c', 'DAFFM_SELECTIONS_OUT={} daffm -c @picker']
 c.fileselect.handler = 'external'
 c.fileselect.single_file.command = lf_file_picker
 c.fileselect.multiple_files.command = lf_file_picker
@@ -301,7 +301,8 @@ c.url.searchengines = {
     'd': 'https://lite.duckduckgo.com/lite?q={}',
     'gg': 'https://lite.duckduckgo.com/lite?q={}',
     'go': 'https://google.com/search?q={}',
-    'ai': 'https://chatgpt.com/?temporary-chat=true&q={}',
+    'ai': 'http://localhost:9081/?q={}',
+    'aio': 'https://chatgpt.com/?temporary-chat=true&q={}',
     'aic': 'https://claude.ai/new?q={}',
     'br': 'https://search.brave.com/search?q={}',
 

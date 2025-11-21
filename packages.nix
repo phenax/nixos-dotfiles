@@ -21,15 +21,19 @@ let
     ripgrep
     ast-grep
     ctags
-    fzf
     docker-compose
     direnv
     w3m
     ed
     rlwrap
+    moreutils
+    gitu
     # gh
     just
     difftastic
+    gemini-cli
+    yq-go
+    babashka
     # hurl
     # delta
     # gibo
@@ -38,6 +42,7 @@ let
     gnumake
     nodejs_24
     bun
+    marksman
 
     # bspwm
     # sxhkd
@@ -49,8 +54,8 @@ let
       src = pkgs.fetchFromSourcehut {
         owner = "~xerool";
         repo = "fennel-ls";
-        rev = "3c1e01da6f1423719229c830319a61dba7c2bb99";
-        hash = "sha256-Jop1R/rm+K2sBufVs+JWB4INboLeU7xdviWgb2lXamA=";
+        rev = "cd9821cd80e7e4db8bbed388cbaf17473cd54ba3";
+        hash = "sha256-3qX77hZjO/rNOO58cG9yGFVFQDYaeJdDEhbjNTIIQys=";
       };
     }))
     fnlfmt
@@ -67,21 +72,17 @@ let
     luajit
     luajitPackages.luarocks
     luajitPackages.lua-curl
-    luajitPackages.magick # lua51Packages.magick
+    luajitPackages.magick
+    luajitPackages.fennel
   ];
 
   apps = with pkgs; [
     # Browser
     qutebrowser
     brave
-    # firefox
-    # ungoogled-chromium
-
-    # Comm
-    # slack
+    ungoogled-chromium
 
     # Media
-    # spotify
     sxiv
     yt-dlp
     imagemagick
@@ -89,12 +90,11 @@ let
     feh
     zathura
     inkscape
-    jellyfin-mpv-shim
     # obs-studio
     # krita
     blender
 
-    minetest
+    luanti
     xonotic
     openarena
     # chiaki # PS remote play
@@ -110,11 +110,12 @@ let
     dua
     # newsboat
 
-    (builtins.getFlake "github:phenax/chelleport/bf57e4968d059b207c036b57818a58ed8c54d141").packages.x86_64-linux.default
+    # (builtins.getFlake "github:phenax/daffm/b61d4cdc759e08eb7990aa7f3a67eb737cd7b930").packages.x86_64-linux.default
+    (pkgs.writeShellScriptBin "daffm" ''exec /home/imsohexy/dev/projects/daffm/result/bin/daffm "$@"'')
+
+    # (builtins.getFlake "github:phenax/chelleport/bf57e4968d059b207c036b57818a58ed8c54d141").packages.x86_64-linux.default
     # (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
-    (pkgs.writeShellScriptBin
-      "null-browser"
-      ''exec /home/imsohexy/dev/projects/null-browser/result/bin/null-browser "$@"'')
+    (pkgs.writeShellScriptBin "null-browser" ''exec /home/imsohexy/dev/projects/null-browser/result/bin/null-browser "$@"'')
   ];
 
   utils = with pkgs; [
@@ -136,9 +137,11 @@ let
     kitty
     figlet
     fd
+    fzf
     # sad
     mediainfo
-    poppler_utils
+    poppler-utils
+    epub2txt2
     glow
     pkgs.steam-run
     flatpak
@@ -172,12 +175,13 @@ let
     libdrm
     pkg-config
 
+    lsof
     virt-manager
     virt-viewer
-    spice 
+    spice
     spice-gtk
     spice-protocol
-    win-virtio
+    virtio-win
     win-spice
     adwaita-icon-theme
   ];
@@ -189,6 +193,7 @@ in
   nixpkgs.config.permittedInsecurePackages = [
     "ffmpeg-3.4.8"
     "qtwebkit-5.212.0-alpha4"
+    "qtwebengine-5.15.19"
   ];
 
   # environment.variables = {
