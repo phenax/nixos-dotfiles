@@ -3,7 +3,7 @@ let
   cfg = import ./config.nix moduleAttrs;
 in
 {
-  home.packages = with pkgs; [ mpc_cli playerctl ];
+  home.packages = with pkgs; [ mpc playerctl ];
 
   programs.ncmpcpp = {
     enable = true;

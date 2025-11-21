@@ -12,7 +12,7 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     qjackctl
-    ardour
+    # ardour
     fluidsynth
     a2jmidid
     pavucontrol

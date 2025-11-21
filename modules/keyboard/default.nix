@@ -1,7 +1,7 @@
 { ... }:
 {
   services.kmonad = {
-    enable = true;
+    enable = false;
     keyboards = {
       k2 = {
         name = "k2";

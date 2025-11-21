@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   downloadsDir = "/home/imsohexy/Downloads/_downloads";
   incompleteDownloadsDir = "${downloadsDir}/_incomplete";
@@ -16,6 +16,7 @@ in
   services.transmission = {
     enable = true;
     group = group;
+    package = pkgs.transmission_4;
     settings = {
       "download-dir" = downloadsDir;
       "download-queue-enabled" = true;

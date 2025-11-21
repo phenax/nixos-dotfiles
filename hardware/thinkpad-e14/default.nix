@@ -76,9 +76,11 @@ in {
       #     cat $out/lib/udev/rules.d/*
       #   '';
       # }))
-      android-udev-rules
+      # android-udev-rules
       platformio-core.udev
       openocd
+      zsa-udev-rules
+      logitech-udev-rules
     ];
   };
 
@@ -95,7 +97,7 @@ in {
   };
 
   nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
   hardware.graphics = {
     enable = true;
@@ -105,8 +107,8 @@ in {
     extraPackages = with pkgs; [
       intel-media-driver
       # intel-vaapi-driver
-      vaapiIntel
-      vaapiVdpau
+      intel-vaapi-driver
+      libva-vdpau-driver
       libvdpau-va-gl
       intel-gmmlib
       vulkan-tools

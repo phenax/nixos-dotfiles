@@ -52,7 +52,7 @@ in
 
   services.syncthing = {
     enable = true;
-    tray = false;
+    tray = { enable = false; };
   };
 
   services.udiskie = {
