@@ -5,6 +5,16 @@ in {
   services.clamav = {
     daemon = {
       inherit enable;
+      settings = {
+        OnAccessPrevention = true;
+        OnAccessIncludePath = [
+          "/home/imsohexy/Downloads"
+          "/home/imsohexy/Documents"
+        ];
+      };
+    };
+    clamonacc = {
+      inherit enable;
     };
     scanner = {
       inherit enable;
