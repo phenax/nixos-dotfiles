@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec ~/scripts/monitor.sh on left-of

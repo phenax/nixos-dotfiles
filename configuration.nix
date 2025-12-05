@@ -49,8 +49,8 @@
     hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 3000 3001 ];
-      allowedUDPPorts = [ 41641 ];
+      allowedTCPPorts = [ 3000 3001 80 443 ];
+      allowedUDPPorts = [ 41641 80 443 ];
     };
     nameservers = [ "100.100.100.100" "1.1.1.1" "8.8.8.8" ];
     search = [ "resolve.construction" ];
@@ -152,6 +152,11 @@
     keep-outputs = true
     keep-derivations = true
   '';
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   allowReboot = false;
+  #   dates = "monthly";
+  # };
 
   system.stateVersion = "20.09";
 }

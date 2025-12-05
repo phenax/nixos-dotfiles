@@ -94,7 +94,7 @@ in
     ".local/share/qutebrowser/userscripts".source = ./config/qutebrowser/userscripts;
     ".local/share/qutebrowser/greasemonkey".source = ./config/qutebrowser/greasemonkey;
     ".config/dunst".source = ./config/dunst;
-    ".config/lf".source = ./config/lf;
+    # ".config/lf".source = ./config/lf;
     ".config/picom.conf".source = ./config/picom.conf;
     ".wyrdrc".source = ./config/remind/.wyrdrc;
     "scripts".source = ./scripts;

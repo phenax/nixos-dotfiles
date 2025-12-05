@@ -1,16 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   localPkgs = import ../packages/default.nix { inherit pkgs; };
 in {
   environment.systemPackages = [ localPkgs.bslock ];
 
+  # TODO: Clear gpg pass cache on autolock `gpg-connect-agent reloadagent /bye`
   services.xserver.xautolock = {
     enable = true;
-    time = 30; # minutes
-    locker = "${localPkgs.bslock}/bin/bslock";
+    time = 45; # minutes
+    locker = "/run/wrappers/bin/bslock"; # Bslock with security wrapper
     enableNotifier = true;
     notify = 30;
-    notifier = "${pkgs.libnotify}/bin/notify-send 'Locking in 30 seconds'";
+    notifier = ''${pkgs.libnotify}/bin/notify-send "Locking in 30 seconds"'';
     killer = null;
   };
 

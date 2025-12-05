@@ -21,7 +21,7 @@ yt_download() {
     return 0;
   fi
 
-  yt-dlp -x --audio-format mp3 \
+  yt-dlp -x --audio-format flac --audio-quality 8 \
     --embed-metadata --embed-thumbnail \
     --parse-metadata "playlist_index:%(track_number)s" --add-metadata \
     -o "$MUSIC_DIR/%(artist|Others)s/%(album,playlist)s/%(playlist_index)02d - %(title)s.%(ext)s" \

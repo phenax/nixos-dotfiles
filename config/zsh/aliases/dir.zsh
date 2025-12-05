@@ -19,6 +19,7 @@ alias gvim="cd $NIXCONF/config/nvim";
 alias gemacs="cd $NIXCONF/config/emacs";
 alias gcmd="cd $NIXCONF/scripts/commands";
 alias gzsh="cd $NIXCONF/config/zsh";
+alias gkak="cd $HOME/.config/kak";
 
 alias gdwm="cd $NIXCONF/packages/dwm/source";
 alias gbar="cd $NIXCONF/packages/dwmblocks/source";

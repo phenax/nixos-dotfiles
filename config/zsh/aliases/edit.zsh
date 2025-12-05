@@ -12,5 +12,6 @@ alias ekey='gkey && sensible-editor config.h';
 alias equte='gqute && sensible-editor config.py';
 alias eas='sensible-editor ~/nixos/packages/dwm/autostart.sh';
 alias emime="sensible-editor ~/nixos/scripts/bin/open";
+alias ekak='gkak && sensible-editor autoload/+init.kak';
 
-alias fe='sensible-editor `fzf`'
+alias fe='sensible-editor `fzf`';

@@ -23,10 +23,7 @@ let
     ctags
     docker-compose
     direnv
-    w3m
-    ed
     rlwrap
-    moreutils
     gitu
     # gh
     just
@@ -42,7 +39,7 @@ let
     gnumake
     nodejs_24
     bun
-    marksman
+    nodePackages.typescript
 
     # bspwm
     # sxhkd
@@ -60,8 +57,7 @@ let
     }))
     fnlfmt
     efm-langserver
-
-    nodePackages.typescript
+    marksman
     nodePackages.typescript-language-server
     nodePackages.vscode-json-languageserver
     nodePackages.vscode-langservers-extracted
@@ -80,7 +76,7 @@ let
     # Browser
     qutebrowser
     brave
-    ungoogled-chromium
+    chromium
 
     # Media
     sxiv
@@ -92,18 +88,18 @@ let
     inkscape
     # obs-studio
     # krita
-    blender
+    # blender
 
-    luanti
-    xonotic
-    openarena
+    # luanti
+    # xonotic
+    # openarena
     # chiaki # PS remote play
 
     remind
     dunst
 
     # TUI stuff
-    lf
+    # lf
     bottom
     tremc
     wyrd
@@ -138,6 +134,9 @@ let
     figlet
     fd
     fzf
+    w3m
+    ed
+    moreutils
     # sad
     mediainfo
     poppler-utils
@@ -148,11 +147,11 @@ let
     distrobox
 
     # FIXME: wine broken: 19 April 25
-    (import (
-      builtins.fetchTarball {
-        url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
-      }
-    ) {}).wineWowPackages.stable
+    # (import (
+    #   builtins.fetchTarball {
+    #     url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
+    #   }
+    # ) {}).wineWowPackages.stable
 
     # X stuff
     picom
@@ -191,9 +190,9 @@ in
   environment.systemPackages = devPackages ++ customPackages ++ apps ++ utils;
 
   nixpkgs.config.permittedInsecurePackages = [
-    "ffmpeg-3.4.8"
-    "qtwebkit-5.212.0-alpha4"
-    "qtwebengine-5.15.19"
+    # "ffmpeg-3.4.8"
+    # "qtwebkit-5.212.0-alpha4"
+    # "qtwebengine-5.15.19"
   ];
 
   # environment.variables = {
