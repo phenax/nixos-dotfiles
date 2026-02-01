@@ -27,7 +27,7 @@ in
     editorconfig-core-c
     ripgrep
     tmux
-    gitu
+    # gitu
     moreutils
   ];
 }

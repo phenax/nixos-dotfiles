@@ -24,7 +24,22 @@ let
     docker-compose
     direnv
     rlwrap
-    gitu
+    # gitu
+    # Switch to gitu later. This is to get around breaking package (1 Feb 2026)
+    (rustPlatform.buildRustPackage rec {
+      pname = "gitu";
+      version = "0.40.0-dev";
+      src = fetchFromGitHub {
+        owner = "altsem";
+        repo = "gitu";
+        rev = "6d16d79c29cf1bf9d6c447e1d1a28c3d56da110a";
+        hash = "sha256-zdoAfMs3JZkrpNg81V9ucF2khliuBFPr8VlvY2qEmos=";
+      };
+      cargoHash = "sha256-dmhaef9DoqUuD2YQtFBNjkYv+MpwaTnHfOUrAwqV6ao=";
+      nativeBuildInputs = [ pkg-config ];
+      buildInputs = [ libgit2 openssl zlib ];
+      nativeCheckInputs = [ git ];
+    })
     # gh
     just
     difftastic
