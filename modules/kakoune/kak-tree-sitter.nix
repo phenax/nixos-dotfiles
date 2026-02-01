@@ -2,16 +2,16 @@
 with pkgs;
 rustPlatform.buildRustPackage rec {
   pname = "kak-tree-sitter";
-  version = "3.0.0-local";
+  version = "3.0.0-local.1";
 
   src = fetchFromSourcehut {
     owner = "~hadronized";
     repo = "kak-tree-sitter";
-    rev = "cdcfb42da9affd9dd0db9e8df1173731c61e3d9f"; # 27 Oct 2025
-    hash = "sha256-Q8R++fEJMZFftiI9zGjwF7X8mek2oc40Yl9WMUtQWEA=";
+    rev = "e183201ebdd247b7bbefb9ce9cab10930788aa05"; # 3 Jan 2026
+    hash = "sha256-iDpWzvtM0xQSEqs+TsfW3AGaMYwYkHwWqKrbWPRposc=";
   };
 
-  cargoHash = "sha256-lZNM5HqICP6JfaMiBjACcUNRTTTIRhq2ou8cOLU0yOU=";
+  cargoHash = "sha256-WblDG+8GSsy3s2dDE7fgWY6Jkoe7Qqw0ijPR/YQrX7I=";
 
   meta = {
     mainProgram = "kak-tree-sitter";
