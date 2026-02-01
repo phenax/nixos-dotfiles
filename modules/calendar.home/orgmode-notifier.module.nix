@@ -8,7 +8,10 @@ let
       Type = "oneshot";
       ExecStart = "${config.xdg.configHome}/nvim/orgmode_notifier.sh";
       WorkingDirectory = config.home.homeDirectory;
-      Environment = "PATH=${pkgs.neovim}/bin:${pkgs.libnotify}/bin:/usr/bin:/bin";
+      Environment = [
+        # NOTE: Bug in orgmode-notifier (pkgs.neovim doesnt build correctly)
+        "PATH=${pkgs.neovim}/bin:${pkgs.libnotify}/bin:/usr/bin:/bin"
+      ];
     };
   };
 

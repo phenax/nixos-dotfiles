@@ -46,7 +46,7 @@ spew "shotkey" shotkey;
 
 # Wallpaper
 # run "" ~/.fehbg;
-hsetroot -solid "#101414"
+# hsetroot -solid "#101414"
 
 # Notification daemon
 spew "dunst" dunst -config ~/.config/dunst/dunstrc;
@@ -64,6 +64,10 @@ run "" ~/scripts/battery-watch.sh start;
 # run "" kdeconnect-cli --refresh;
 
 once "easyeffects" easyeffects --gapplication-service;
+
+# Configure primary screen
+xrandr --output eDP-1 --gamma 1.0:0.9:0.76 --brightness 1 || true;
+
 # }}}
 
 
@@ -75,7 +79,7 @@ applications() {
 
   run "dwmblocks" dwmblocks;
 
-  on_startup sidekick;
+  # on_startup sidekick;
   # spew "thunderbird" thunderbird;
 
   #focus_tag 9;

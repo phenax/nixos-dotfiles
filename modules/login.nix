@@ -48,9 +48,6 @@ in
     ];
     shell = pkgs.zsh;
   };
-  #security.sudo.configFile = ''
-  # %wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown
-  #'';
 
   # Global
   environment.variables = let
@@ -66,6 +63,15 @@ in
     XDG_BIN_HOME = "$HOME/.local/bin";
     PATH = [ "$HOME/scripts/bin" XDG_BIN_HOME ];
     LS_COLORS = "di=96:ln=36:or=31:mi=31:ex=32";
+    XDG_SESSION_TYPE = "x11";
+    FZF_DEFAULT_OPTS=''
+      --color=fg:-1,fg+:#d0d0d0,bg:-1,bg+:#262626
+      --color=hl:#007070,hl+:#007070,info:#007070,marker:#007070
+      --color=prompt:#007070,spinner:#007070,pointer:#007070,header:#07afaf
+      --color=border:#262626,label:#aeaeae,query:#d9d9d9
+      --preview-window='sharp' --prompt=': ' --marker='>' --gutter=' ' --pointer=' '
+      --layout=reverse --height 40% --info='right' --separator='-' --scrollbar=' '
+    '';
   };
   environment.shells = with pkgs; [ zsh bashInteractive ];
   programs.zsh = {
@@ -78,6 +84,8 @@ in
     histSize = 50000;
     interactiveShellInit = ''source ~/.config/zsh/zshrc'';
     promptInit = "";
+    enableLsColors = false;
+    vteIntegration = true;
     loginShellInit = with builtins; let
       cases = map
         (
@@ -97,6 +105,7 @@ in
       esac;
     '';
   };
+
   services = {
     getty = {
       autologinUser = "imsohexy";

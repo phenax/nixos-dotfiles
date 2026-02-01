@@ -9,7 +9,7 @@ in
   ];
 
   services.ical2org = {
-    enable = true;
+    enable = false;
     icalLink = private.icalLink;
     outputPath = "${config.home.homeDirectory}/nixos/extras/notes/calendar-sync.autogen.org";
     syncFrequency = "*:0/10"; # Every 10 minutes
@@ -25,7 +25,7 @@ in
   };
 
   services.orgmode-notifier = {
-    enable = true;
+    enable = false;
     pollFrequency = "*:0/1"; # Every minute
   };
 }

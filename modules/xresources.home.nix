@@ -49,7 +49,7 @@
       "dwm.normfgcolor" = theme.foreground;
 
       "dwm.selbordercolor" = theme.accent;
-      "dwm.selbgcolor" = theme.accent;
-      "dwm.selfgcolor" = theme.foreground;
+      "dwm.selbgcolor" = theme.background;
+      "dwm.selfgcolor" = "#2dd4bf";
     };
 }
