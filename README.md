@@ -1,7 +1,6 @@
 # Dotfiles
 
 ## The tools I'm managing here actively are
-* `nixos` - OS
 * `dwm` - Window manager ([My fork of dwm](https://github.com/phenax/dwm))
 * `st` - Terminal ([My fork of st](https://github.com/phenax/st))
 * `shotkey` - Key bindings [Simple hotkey daemon](https://github.com/phenax/shotkey) [My config](https://github.com/phenax/shotkey/blob/personal/config.h)

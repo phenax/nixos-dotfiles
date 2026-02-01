@@ -31,9 +31,9 @@ qr-str() { curl qrenco.de/$1; }
 alias dl-audio="youtube-dl --ignore-errors --output '%(title)s.%(ext)s' --extract-audio";
 
 # Swallow window
-alias smpv="swallow mpv";
-alias ssxiv="swallow sxiv";
-alias szathura="swallow zathura";
+# alias smpv="swallow mpv";
+# alias ssxiv="swallow sxiv";
+# alias szathura="swallow zathura";
 
 # Dictionary
 dict() { curl dict://dict.org/d:$1; }

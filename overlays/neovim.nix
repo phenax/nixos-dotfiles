@@ -1,5 +1,5 @@
 let
-  rev = "928308a20559523bb3898861a6f28e9589ab3a0e"; # (19 Sept 2025)
+  rev = "14a21b492d6acd79495b14c9d127a94b77c0b72c"; # (24 Dec 2025)
 in
   import (builtins.fetchTarball {
     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/${rev}.tar.gz";

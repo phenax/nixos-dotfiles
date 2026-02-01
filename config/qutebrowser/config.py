@@ -93,11 +93,11 @@ c.input.insert_mode.auto_load = True
 c.input.insert_mode.leave_on_load = True
 
 # File selector
-lf_file_picker = ['st', '-i', '-g', '170x40+50+50', '-e', 'sh', '-c', 'DAFFM_SELECTIONS_OUT={} daffm -c @picker']
+daffm_file_picker = ['st', '-i', '-g', '170x40+50+50', '-e', 'sh', '-c', 'DAFFM_SELECTIONS_OUT={} daffm -c @picker']
 c.fileselect.handler = 'external'
-c.fileselect.single_file.command = lf_file_picker
-c.fileselect.multiple_files.command = lf_file_picker
-c.fileselect.folder.command = lf_file_picker
+c.fileselect.single_file.command = daffm_file_picker
+c.fileselect.multiple_files.command = daffm_file_picker
+c.fileselect.folder.command = daffm_file_picker
 
 # Hints
 c.hints.auto_follow = 'always'
@@ -130,6 +130,7 @@ nunmap("+")
 nunmap("-")
 nunmap("=")
 nmap("z=", "zoom-in")
+nmap("z+", "zoom-in")
 nmap("z-", "zoom-out")
 nmap("zz", "zoom")
 

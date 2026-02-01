@@ -67,4 +67,3 @@ open() {
   echo "Couldn't open file. Add rule to opener."; exit 1;
 }
 open;
-
