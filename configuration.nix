@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -15,12 +15,20 @@
     ./modules/sound
     ./modules/notifications
     ./modules/kakoune
-    ./modules/ai
+    # ./modules/ai
   ];
 
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = false;
+  };
+
+  services.clipmenu = {
+    enable = true;
+  };
+  systemd.user.services.clipmenu = {
+    wantedBy = lib.mkForce [ "default.target" ];
+    after = lib.mkForce [ "default.target" ];
   };
 
   services.udisks2.enable = true;
@@ -49,8 +57,17 @@
     hostName = "smartfridge";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 3000 3001 80 443 ];
-      allowedUDPPorts = [ 41641 80 443 ];
+      allowedTCPPorts = [
+        8081
+        3000
+        3001
+        22000 # Syncthing
+      ];
+      allowedUDPPorts = [
+        41641 # Tailscale
+        22000 # Syncthing
+        21027 # Syncthing (discovery)
+      ];
     };
     nameservers = [ "100.100.100.100" "1.1.1.1" "8.8.8.8" ];
     search = [ "resolve.construction" ];
@@ -115,6 +132,7 @@
     };
   };
   fonts.packages = with pkgs; [
+    # nerd-fonts._3270
     nerd-fonts.jetbrains-mono
     cozette
     noto-fonts-color-emoji

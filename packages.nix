@@ -28,7 +28,6 @@ let
     # gh
     just
     difftastic
-    gemini-cli
     yq-go
     babashka
     # hurl
@@ -43,8 +42,10 @@ let
 
     # bspwm
     # sxhkd
+    android-tools
 
     nixd
+    nixfmt
     lua-language-server
     ((fennel-ls.override { lua = lua5_1; luaPackages = lua51Packages; }).overrideAttrs (self: {
       version = "0.2.2";
@@ -94,6 +95,8 @@ let
     # xonotic
     # openarena
     # chiaki # PS remote play
+    # rpcs3
+    # rusty-psn
 
     remind
     dunst
@@ -152,6 +155,7 @@ let
     #     url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
     #   }
     # ) {}).wineWowPackages.stable
+    wineWowPackages.stable
 
     # X stuff
     picom
@@ -174,6 +178,7 @@ let
     libdrm
     pkg-config
 
+    fatsort
     lsof
     virt-manager
     virt-viewer
@@ -198,8 +203,6 @@ in
   # environment.variables = {
   #   CURL_DIR = lib.makeLibraryPath [pkgs.curl];
   # };
-
-  programs.adb.enable = true;
 
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;

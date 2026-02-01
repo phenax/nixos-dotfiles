@@ -108,3 +108,13 @@ ghpr() {
   xdg-open "$(gh pr view --json url -q .url)"
 }
 
+# rename a git branch interactively
+gbrn() {
+  branch=$(git rev-parse --abbrev-ref HEAD);
+  tmp=$(mktemp -u /tmp/__git_branch_rename.XXXX);
+  trap "rm -rf $tmp" EXIT;
+  echo -n "$branch" > "$tmp";
+  $EDITOR "$tmp";
+  new_branch="$(cat $tmp)"
+  [ -z "$new_branch" ] || git branch -m "$new_branch";
+}
