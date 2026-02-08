@@ -37,7 +37,7 @@ in {
     "browser.dataFeatureRecommendations.enabled" = false;
     "extensions.htmlaboutaddons.recommendations.enabled" = false;
 
-    "layout.css.has-selector.enabled" = true; 
+    "layout.css.has-selector.enabled" = true;
     "browser.toolbars.bookmarks.visibility" = "never";
     "browser.tabs.insertAfterCurrent" = true;
     "browser.urlbar.shortcuts.bookmarks" = false;

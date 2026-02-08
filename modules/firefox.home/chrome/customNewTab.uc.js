@@ -2,20 +2,19 @@
 // @name                 Custom New Tab
 // @version              1.0
 // @description          Load a custom link or local file, instead of the default new tab page
+// @include              main
 // @startup              UC.customNewTab.updateNewTabURL()
 // @shutdown             UC.customNewTab.destroy();
+// @onlyonce
 // ==/UserScript==
 
+console.log('------------------------- newtab')
 (() => {
   // Managed in about:config
   const NEWTAB_URL_PREF = 'browser.newtab.url'
 
-  console.log('-------------------------------------------');
-  console.log('-------------------------------------------');
-  console.log('-------------------------------------------');
-
   if (!AboutNewTab) {
-    globalThis.AboutNewTab = ChromeUtils.import('resource:///modules/AboutNewTab.jsm').AboutNewTab;
+    globalThis.AboutNewTab = ChromeUtils.importESModule('resource:///modules/AboutNewTab.sys.mjs').AboutNewTab;
   }
 
   const module = {
@@ -28,10 +27,6 @@
     },
 
     init() {
-      console.log('-------------------------------------------');
-      console.log('init new tab');
-      console.log('-------------------------------------------');
-
       module.updateNewTabURL();
       Services.obs.addObserver(module.updateNewTabURL, 'newtab-url-changed');
     },

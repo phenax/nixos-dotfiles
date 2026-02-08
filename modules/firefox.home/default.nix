@@ -1,10 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  unwrappedFirefoxPackage = pkgs.firefox-devedition-unwrapped;
-
-  firefoxBinName = "firefox-devedition";
-
+  unwrappedFirefoxPackage = pkgs.firefox-unwrapped;
+  firefoxBinName = "firefox";
   configDir = ".mozilla/firefox";
+  # unwrappedFirefoxPackage = pkgs.librewolf-unwrapped;
+  # firefoxBinName = "librewolf";
+  # configDir = ".config/librewolf/librewolf";
 
   extensions = [
     "https://addons.mozilla.org/firefox/downloads/file/3792127/firefox_dracula-1.0.xpi"
@@ -36,10 +37,8 @@ let
   profilePath = "default";
 in {
   programs.firefox = {
-    enable = false;
+    enable = true;
     package = firefox;
-
-    # nativeMessagingHosts = [ pkgs.tridactyl-native ];
     policies = policies;
   };
 
@@ -48,18 +47,11 @@ in {
   ] else [];
 
   home.file = if config.programs.firefox.enable then {
-    # ".config/tridactyl".source = ./tridactyl;
-
     "${configDir}/${profilePath}/chrome".source = ./chrome;
 
     "${configDir}/profiles.ini".text = lib.generators.toINI {} {
-      Profile1 = {
-        Name = "default";
-        IsRelative = 1;
-        Path = profilePath;
-      };
       Profile0 = {
-        Name = "dev-edition-default";
+        Name = "default";
         Default = 1;
         IsRelative = 1;
         Path = profilePath;

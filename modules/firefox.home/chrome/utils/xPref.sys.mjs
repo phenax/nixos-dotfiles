@@ -1,10 +1,13 @@
-let EXPORTED_SYMBOLS = ['xPref'];
+'use strict';
 
-var xPref = {
-  get: function(prefPath, def = false, valueIfUndefined, setDefault = true) {
+export const xPref = {
+  // Retorna o valor da preferência, seja qual for o tipo, mas não
+  // testei com tipos complexos como nsIFile, não sei como detectar
+  // uma preferência assim, na verdade nunca vi uma
+  get: function (prefPath, def = false, valueIfUndefined, setDefault = true) {
     let sPrefs = def ?
-      Services.prefs.getDefaultBranch(null) :
-      Services.prefs;
+                   Services.prefs.getDefaultBranch(null) :
+                   Services.prefs;
 
     try {
       switch (sPrefs.getPrefType(prefPath)) {
@@ -26,25 +29,23 @@ var xPref = {
     return;
   },
 
-  set: function(prefPath, value, def = false) {
+  set: function (prefPath, value, def = false) {
     let sPrefs = def ?
-      Services.prefs.getDefaultBranch(null) :
-      Services.prefs;
+                   Services.prefs.getDefaultBranch(null) :
+                   Services.prefs;
 
-    try {
-      switch (typeof value) {
-        case 'string':
-          return sPrefs.setStringPref(prefPath, value) || value;
-        case 'number':
-          return sPrefs.setIntPref(prefPath, value) || value;
-        case 'boolean':
-          return sPrefs.setBoolPref(prefPath, value) || value;
-      }
-    } catch (e) { console.error(e) }
+    switch (typeof value) {
+      case 'string':
+        return sPrefs.setStringPref(prefPath, value) || value;
+      case 'number':
+        return sPrefs.setIntPref(prefPath, value) || value;
+      case 'boolean':
+        return sPrefs.setBoolPref(prefPath, value) || value;
+    }
     return;
   },
 
-  lock: function(prefPath, value) {
+  lock: function (prefPath, value) {
     let sPrefs = Services.prefs;
     this.lockedBackupDef[prefPath] = this.get(prefPath, true);
     if (sPrefs.prefIsLocked(prefPath))
@@ -56,7 +57,7 @@ var xPref = {
 
   lockedBackupDef: {},
 
-  unlock: function(prefPath) {
+  unlock: function (prefPath) {
     Services.prefs.unlockPref(prefPath);
     let bkp = this.lockedBackupDef[prefPath];
     if (bkp == undefined)
@@ -67,8 +68,12 @@ var xPref = {
 
   clear: Services.prefs.clearUserPref,
 
-  addListener: function(prefPath, trat) {
-    this.observer = function(aSubject, aTopic, prefPath) {
+  // Detecta mudanças na preferência e retorna:
+  // return[0]: valor da preferência alterada
+  // return[1]: nome da preferência alterada
+  // Guardar chamada numa var se quiser interrompê-la depois
+  addListener: function (prefPath, trat) {
+    this.observer = function (aSubject, aTopic, prefPath) {
       return trat(xPref.get(prefPath), prefPath);
     }
 
@@ -79,7 +84,9 @@ var xPref = {
     };
   },
 
-  removeListener: function(obs) {
+  // Encerra pref observer
+  // Só precisa passar a var definida quando adicionou
+  removeListener: function (obs) {
     Services.prefs.removeObserver(obs.prefPath, obs.observer);
   }
 }

@@ -2,9 +2,13 @@
 // @name                 Global Keybindings
 // @version              1.0
 // @description          Setup global keybindings on all windows
+// @include              main
 // @startup              UC.globalKeybindings.init(win);
 // @shutdown             UC.globalKeybindings.destroy();
+// @onlyonce
 // ==/UserScript==
+
+console.log('------------------------- keybinds')
 
 (() => {
   // Configure global keybindings

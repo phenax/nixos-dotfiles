@@ -4,8 +4,6 @@
     ManagedBookmarks = [
       { toplevel_name = "Managed bookmarks"; }
       { name = "Daily Dev"; url = "https://app.daily.dev"; }
-      { name = "Email: Microsoft Outlook"; url = "https://outlook.office365.com/mail/"; }
-      { name = "Email: GMail"; url = "https://mail.google.com/mail/u/0/"; }
       # { name = "Shtuff"; children = [] }
     ];
     DisplayBookmarksToolbar = "never";
@@ -33,7 +31,6 @@
     };
     ShowHomeButton = false;
 
-    # PopupBlocking = [];
     SearchEngines = {
       Default = "DuckDuckGo lite";
       SearchSuggestEnabled = false;

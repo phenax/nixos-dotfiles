@@ -1,9 +1,9 @@
 :root {
-  --ff-accent-color: #4e3aA3;
-  --ff-accent-color-1: #8161ff;
-  --ff-bg-color: #0f0c19;
-  --ff-bg-color-1: #16121f;
-  --ff-bg-color-2: #26222f;
+  --ff-accent-color: #007070;
+  --ff-accent-color-1: #009090;
+  --ff-bg-color: #000000;
+  --ff-bg-color-1: #101414;
+  --ff-bg-color-2: #202222;
   --ff-bg-private: hsl(247, 36%, 15%);
   --ff-urlbar-height: 24px;
 }

@@ -12,6 +12,7 @@ in
     # ./modules/newsboat.home
     ./modules/email.home
     ./modules/calendar.home
+    ./modules/firefox.home
   ];
 
   home.packages = with pkgs; [
