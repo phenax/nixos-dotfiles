@@ -1,0 +1,11 @@
+extend = "@"
+
+[keymap]
+q = [
+  "quit",
+  """shell
+    [ -z "$DAFFM_LAST_DIR_PATH" ] || pwd > "$DAFFM_LAST_DIR_PATH";
+  """
+]
+cq = "quit"
+Q = "quit"

@@ -1,0 +1,20 @@
+opener = """
+echo "$files" | while IFS= read file; do
+  kcr edit "$file"
+done
+"""
+extend = "@"
+
+[keymap]
+l = "open-and-quit"
+"<cr>" = "open-and-quit"
+
+"~" = """eval
+  echo "<daffm>cd '${DAFFM_PATH_RELATIVE_TO:-$PWD}'"
+"""
+
+[commands]
+open-and-quit = [
+  """eval [ -d "$cursor" ] || echo '<daffm>quit' """,
+  "open"
+]

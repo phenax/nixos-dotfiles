@@ -1,0 +1,115 @@
+opener = """
+echo "$files" | while IFS= read file; do
+  case "$(file --mime-type "$file" -bL)" in
+    image/*) setsid -f sxiv "$file" >/dev/null 2>&1 ;;
+    video/*|image/gif) setsid -f mpv "$file" >/dev/null 2>&1 ;;
+    application/pdf) setsid -f zathura "$file" >/dev/null 2>&1 ;;
+    *)
+      if isutf8 -q "$file"; then
+        $EDITOR "$file"
+      else
+        setsid -f xdg-open "$file"
+      fi
+    ;;
+  esac
+done;
+"""
+
+[keymap]
+md = "cmdline-set !mkdir -p "
+mf = "cmdline-set !touch "
+rn = ["""!! clear; echo "$files" | vidir -v - """, "selection-clear"]
+rd = "!! clear; vidir -v ."
+dd = """! clear; echo "$files"; rm -rfIv %f"""
+sdd = """! clear; echo "$files"; sudo rm -rfIv %f"""
+cc = ["""!! clear; echo "Duplicated $cursor"; cp -r "$cursor" "${cursor}.dup" """, "selection-clear"]
+cp = ["!!cp -irv %s -t %d", "selection-clear"]
+mv = ["!!mv -iv %s -t %d", "selection-clear"]
+
+gdl = "cd ~/Downloads"
+gdm = "cd ~/Downloads/music"
+gdc = "cd ~/Documents"
+gp = "cd ~/Pictures"
+gsc = "cd ~/Pictures/screenshots"
+gdp = "cd ~/dump"
+gmnt = "cd /run/media/imsohexy"
+gdv = "cd ~/dev/projects"
+gcc = "cd ~/.config"
+gcl = "cd ~/.local"
+
+# Clipboard
+yy = """shell
+relpath=$(realpath -s --relative-to="${DAFFM_PATH_RELATIVE_TO:-$PWD}" "$cursor")
+echo -n "$relpath" | xclip -selection clipboard
+"""
+YY = """shell
+echo -n "$cursor" | xclip -selection clipboard
+"""
+yc = """shell
+xclip -selection clipboard -t $(file --mime-type % -bL) -i "$cursor"
+"""
+yf = """shell
+echo "$files" | sed 's|^|file://|' | xclip -selection clipboard -t text/uri-list -i
+"""
+
+# Mark directories
+"m1" = """eval echo "<daffm>map <space>1 cd %d" """
+"m2" = """eval echo "<daffm>map <space>2 cd %d" """
+"m3" = """eval echo "<daffm>map <space>3 cd %d" """
+"m4" = """eval echo "<daffm>map <space>4 cd %d" """
+
+# Alt openers
+"<space>du" = "!!dua i ."
+"\\xz" = """!! unzip "$cursor" """
+"\\x7" = """!! 7z x "$cursor" """
+"\\xt" = """!! tar xzf "$cursor" """
+"\\xr" = """!! unrar x "$cursor" """
+"\\wi" = """!! wine "$cursor" """
+"<space>p" = "preview"
+"<space>fd" = [
+  """shell
+    clear;
+    realpath -q "$(fd --type d --hidden | fzf)" > /tmp/.daffm-fzf-output;
+  """,
+  """eval
+    if [ -s "/tmp/.daffm-fzf-output" ]; then
+      echo "<daffm>cd $(cat /tmp/.daffm-fzf-output)"
+    fi
+    rm -f /tmp/.daffm-fzf-output
+  """
+]
+
+[commands]
+preview = """shell!
+file='%args'
+if [ -z "$file" ]; then file="$cursor"; fi
+clear;
+case "$file" in
+  *.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif) chafa -f kitty "$file" ;;
+  *.wav|*.mp3|*.flac|*.m4a|*.wma|*.ac3|*.og[agx]|*.opus|*.flac)
+    mediainfo "$file"
+  ;;
+  *.avi|*.mp4|*.ogv|*.mkv|*.mpg|*.mpeg|*.m2v|*.mov|*.webm|*.mts|*.m4v)
+    mediainfo "$file"
+  ;;
+  *.pdf) pdftotext "$file" - | less ;;
+  *.docx) docx2txt "$file" - | less ;;
+  *.md|*.org) glow -s dark -p "$file" ;;
+  *.tgz|*.tar.gz) tar tzf "$file" ;;
+  *.tar.bz2|*.tbz2) tar tjf "$file" ;;
+  *.tar.bz2|*.tbz2) tar tjf "$file" ;;
+  *.tar.txz|*.txz) xz --list "$file" ;;
+  *.tar) tar tf "$file" ;;
+  *.zip|*.jar|*.war|*.ear|*.oxt) unzip -l "$file" ;;
+  *.rar) unrar l "$file" ;;
+  *.7z) 7z l "$file" ;;
+  *.o) nm "$file" | less ;;
+  *)
+    if isutf8 -q "$file"; then
+      bat --color always "$file" || cat "$file"
+    else
+      mediainfo "$file"
+    fi
+  ;;
+esac
+"""

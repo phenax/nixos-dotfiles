@@ -9,7 +9,7 @@ alias lt='daffm';
 # cd to navigated directory on quit
 lc () {
   tmp="$(mktemp)"
-  DAFFM_LAST_DIR_PATH="$tmp" daffm -c @lastcd
+  DAFFM_LAST_DIR_PATH="$tmp" daffm -c @lastcd "$@"
   if [ -f "$tmp" ]; then
     dir="$(cat "$tmp")"
     rm -f "$tmp"

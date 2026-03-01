@@ -13,6 +13,7 @@ in
     ./modules/email.home
     ./modules/calendar.home
     ./modules/firefox.home
+    ./modules/daffm.home
   ];
 
   home.packages = with pkgs; [

@@ -1,0 +1,22 @@
+opener = """
+  if [ -z "$DAFFM_SELECTIONS_OUT" ]; then
+    echo "<cant open file>"
+  else
+    echo "$files" > "$DAFFM_SELECTIONS_OUT";
+  fi
+"""
+extend = "@"
+
+[keymap]
+l = "open-and-quit"
+"<cr>" = "open-and-quit"
+
+"~" = """eval
+  echo "<daffm>cd '${DAFFM_PATH_RELATIVE_TO:-$PWD}'"
+"""
+
+[commands]
+open-and-quit = [
+  """eval [ -z $DAFFM_SELECTIONS_OUT ] || [ -d "$cursor" ] || echo '<daffm>quit' """,
+  "open"
+]
