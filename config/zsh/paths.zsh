@@ -39,3 +39,7 @@ export REMINDER_FILE="$HOME/nixos/extras/notes/schedule/reminders.rem";
 export DEV_DIR="$HOME/dev";
 export PROJECTS_DIR="$DEV_DIR/projects";
 
+export ANSIBLE_HOME="$XDG_DATA_HOME/ansible"
+
+# QMK config home
+export QMK_HOME="$HOME/.local/share/qmk_firmware/"

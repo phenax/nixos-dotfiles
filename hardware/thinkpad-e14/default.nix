@@ -81,13 +81,14 @@ in {
       openocd
       zsa-udev-rules
       logitech-udev-rules
+      qmk-udev-rules
     ];
   };
 
   environment.systemPackages = with pkgs; [
     mesa
-    xorg.xf86inputlibinput
-    # xorg.xf86videointel
+    xf86inputlibinput
+    # xf86videointel
   ];
   services.xserver.videoDrivers = [ "modesetting" ];
 
@@ -151,5 +152,5 @@ in {
     cpuFreqGovernor = "powersave";
   };
 
-  # services.tlp.enable = lib.mkDefault false;
+  services.tlp.enable = false;
 }

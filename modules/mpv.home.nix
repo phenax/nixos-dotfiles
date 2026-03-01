@@ -19,9 +19,9 @@
 
     scripts = with pkgs.mpvScripts; [
       uosc
-      videoclip # c to clip
-      youtube-upnext # <c-u> to show menu
-      mpv-cheatsheet # ? to see hints
+      # videoclip # c to clip
+      # youtube-upnext # <c-u> to show menu
+      # mpv-cheatsheet # ? to see hints
       # webtorrent-mpv-hook
     ];
 
