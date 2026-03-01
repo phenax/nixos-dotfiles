@@ -15,6 +15,7 @@
     ./modules/sound
     ./modules/notifications
     ./modules/kakoune
+    ./modules/tmux
     # ./modules/ai
   ];
 
@@ -123,6 +124,9 @@
     enable = true;
     autorun = false;
     displayManager.startx.enable = true;
+    # Keyboard config
+    autoRepeatDelay = 350;
+    autoRepeatInterval = 30;
   };
   services.libinput = {
     enable = true;
@@ -134,6 +138,8 @@
   fonts.packages = with pkgs; [
     # nerd-fonts._3270
     nerd-fonts.jetbrains-mono
+    miracode
+    monocraft
     cozette
     noto-fonts-color-emoji
     inter
@@ -163,7 +169,7 @@
     auto-optimise-store = true;
   };
   nix.gc = {
-    automatic = true;
+    automatic = false;
     dates = "weekly";
   };
   nix.extraOptions = ''

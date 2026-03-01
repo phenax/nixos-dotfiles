@@ -15,7 +15,7 @@ def read_xresources(prefix):
 
 xresources = read_xresources('*')
 
-c.fonts.default_family = 'JetBrainsMono Nerd Font'
+c.fonts.default_family = 'monospace'
 c.fonts.default_size = '12px'
 c.colors.webpage.preferred_color_scheme = 'dark'
 

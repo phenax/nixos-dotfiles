@@ -11,7 +11,7 @@
 * `zsh` - My shell
 * `sxiv` - Image viewer
 * `mpv` - Video player
-* `daffm` - File manager
+* `daffm` - Simple file manager ([github](https://github.com/phenax/daffm))
 * `mpd` - Music daemon
 * `ncmpcpp` + `mpc` - Music client
 * `dwmblocks` - Status bar text ([My fork of dwmblocks](https://github.com/phenax/dwmblocks))
