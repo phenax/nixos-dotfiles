@@ -101,7 +101,9 @@ let
     ffmpeg-full
     feh
     zathura
+
     inkscape
+    kicad
     # obs-studio
     # krita
     # blender
@@ -124,18 +126,16 @@ let
     dua
     # newsboat
 
-    # (builtins.getFlake "github:phenax/daffm/b61d4cdc759e08eb7990aa7f3a67eb737cd7b930").packages.x86_64-linux.default
-    (pkgs.writeShellScriptBin "daffm" ''exec /home/imsohexy/dev/projects/daffm/result/bin/daffm "$@"'')
-
     # (builtins.getFlake "github:phenax/chelleport/bf57e4968d059b207c036b57818a58ed8c54d141").packages.x86_64-linux.default
     # (builtins.getFlake "github:phenax/draw-stuff-on-your-screen/6e0e1f6ee603045cac5bb5d9d75d80c9ddef6c6e").packages.x86_64-linux.default
-    (pkgs.writeShellScriptBin "null-browser" ''exec /home/imsohexy/dev/projects/null-browser/result/bin/null-browser "$@"'')
+    # (pkgs.writeShellScriptBin "null-browser" ''exec /home/imsohexy/dev/projects/null-browser/result/bin/null-browser "$@"'')
   ];
 
   utils = with pkgs; [
     libnotify
     xcwd
     unzip
+    zip
     p7zip
     unrar
     curl
@@ -169,23 +169,23 @@ let
     #   builtins.fetchTarball {
     #     url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
     #   }
-    # ) {}).wineWowPackages.stable
-    wineWowPackages.stable
+    # ) {}).wineWow64Packages.stable
+    wineWow64Packages.stable
 
     # X stuff
     picom
     brightnessctl
-    xorg.xinit
-    xorg.xrandr
-    xorg.xmodmap
-    xorg.xkill
-    xorg.xhost
+    xinit
+    xrandr
+    xmodmap
+    xkill
+    xhost
     xclip
     xdo
     xdotool
     wmctrl
     arandr
-    xorg.xgamma
+    xgamma
     v4l-utils
     hsetroot
 
@@ -219,9 +219,9 @@ in
   #   CURL_DIR = lib.makeLibraryPath [pkgs.curl];
   # };
 
-  programs.steam.enable = true;
-  hardware.steam-hardware.enable = true;
-  programs.gamemode.enable = true;
+  # programs.steam.enable = true;
+  # hardware.steam-hardware.enable = true;
+  # programs.gamemode.enable = true;
 
   programs._1password.enable = true;
   programs._1password-gui.enable = true;

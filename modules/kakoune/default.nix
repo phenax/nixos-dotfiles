@@ -8,6 +8,7 @@ let
     ];
   };
   kak-tree-sitter-unstable = import ./kak-tree-sitter.nix { inherit pkgs lib; };
+  kakoune-lsp-unstable = import ./kakoune-lsp.nix { inherit pkgs lib; };
   kak-tmux = pkgs.writeShellScriptBin "kak-tmux" ''
     if [ -t 0 ] && [ -z "$TMUX" ]; then
       exec </dev/tty; exec <&1; ${tmux}/bin/tmux new "${my-kakoune}/bin/kak$(printf ' %q' "$@")"
@@ -19,15 +20,12 @@ in
 {
   environment.systemPackages = [
     my-kakoune
-    kakoune-lsp
+    # kakoune-lsp
+    kakoune-lsp-unstable
     kakoune-cr
     kak-tree-sitter-unstable
     kak-tmux
 
     editorconfig-core-c
-    ripgrep
-    tmux
-    # gitu
-    moreutils
   ];
 }
