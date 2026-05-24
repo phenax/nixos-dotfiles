@@ -7,11 +7,11 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "kakoune-lsp";
     repo = "kakoune-lsp";
-    rev = "5ac69fde4222fa458908ff0c17d3aa429c74e28a"; # 28 Feb 2026
-    hash = "sha256-PjYPhzMoT8rE2XGI/O9SAcksv2XGyk682IbHJW5vusc=";
+    rev = "a0b9232dfec86c7c87388128c4592d921ee21988"; # 24 May 2026
+    hash = "sha256-uGyjLx5iFsnzFNx8TnojQkQrbwhAUcor9l6gFS76vIk=";
   };
 
-  cargoHash = "sha256-nwxZwyT9sNoZuvvg/YJFlVshe6i+W9avmquq9iXmFVM=";
+  cargoHash = "sha256-RoyAxWT+GT1Oz0q+9UE4yAoMHp05CMmR6fYUb5+Ku9U=";
 
   meta = {
     mainProgram = "kak-lsp";

@@ -7,11 +7,11 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromSourcehut {
     owner = "~hadronized";
     repo = "kak-tree-sitter";
-    rev = "5fe17202e3b818da0f12790d8186fd5ea5e22f6b"; # 28 Feb 2026
-    hash = "sha256-z89g58Dr+c1TW9qQVpry1HRNcbxOCIMcNsc+u3KGtFo=";
+    rev = "e4e1d270129c985cbf2a39e23ef1e41323bfc84e"; # 24 May 2026
+    hash = "sha256-+bu5Z6bntJYQ3x/NdBiMeZ4mnhLqFoF1jcUh422FMPQ=";
   };
 
-  cargoHash = "sha256-ink1qZD/ujLi/PlJRej5rByBka5a6pPVMP+Y1YlTE1c=";
+  cargoHash = "sha256-ztVBBeLU1AByDz3yVDMZ102bDG6JfL/6IoJlcqRmCmU=";
 
   meta = {
     mainProgram = "kak-tree-sitter";
