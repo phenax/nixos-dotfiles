@@ -9,22 +9,6 @@ lockPref('extensions.install_origins.enabled', false);
 lockPref('extensions.experiments.enabled', true);
 } catch (ex) { console.error(ex); };
 
-// Setup user chrome support
-try {
-  const cmanifest = Services.dirsvc.get('UChrm', Ci.nsIFile);
-  cmanifest.append('utils');
-  cmanifest.append('chrome.manifest');
-  Components.manager.QueryInterface(Ci.nsIComponentRegistrar).autoRegister(cmanifest);
-} catch (ex) { console.error(ex); };
-
-try {
-  Services.scriptloader.loadSubScript('chrome://userchromejs/content/BootstrapLoader.js');
-} catch (ex) { console.error(ex); };
-
-try {
-  Services.scriptloader.loadSubScript('chrome://userchromejs/content/userChrome.js');
-} catch (ex) {};
-
 // Prefs
 try {
 pref('devtools.theme', 'dark');
